@@ -38,7 +38,6 @@ const leadSearchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" heigh
   class:list={['ml-search-bar', kbHero && 'ml-search-bar--kb-hero']}
   action={searchAction}
   method="get"
-  target="_blank"
   role="search"
   aria-label={ariaLabel}
 >
@@ -98,21 +97,43 @@ const leadSearchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" heigh
     document.querySelectorAll('form.ml-search-bar').forEach((form) => {
       if (form.dataset.mlSearchNavigate) return;
       form.dataset.mlSearchNavigate = '1';
-      form.addEventListener('submit', (e) => {
-        const input = form.querySelector('input[name="q"]');
-        const raw = input && 'value' in input ? String(input.value) : '';
-        const q = raw.trim();
-        if (!q) {
+      form.addEventListener(
+        'submit',
+        (e) => {
+          if (form.dataset.mlSubmitOpening === '1') {
+            e.preventDefault();
+            return;
+          }
+          const input = form.querySelector('input[name="q"]');
+          const raw = input && 'value' in input ? String(input.value) : '';
+          const q = raw.trim();
+          if (!q) {
+            e.preventDefault();
+            if (input instanceof HTMLElement) input.focus();
+            return;
+          }
           e.preventDefault();
-          if (input instanceof HTMLElement) input.focus();
-          return;
-        }
-        e.preventDefault();
-        const url = `${searchAction}?q=${encodeURIComponent(q)}`;
-        const tab = window.open(url, '_blank', 'noopener,noreferrer');
-        if (tab) tab.opener = null;
-        else window.location.assign(url);
-      });
+          form.dataset.mlSubmitOpening = '1';
+          const url = `${searchAction}?q=${encodeURIComponent(q)}`;
+          const tab = window.open(url, '_blank', 'noopener,noreferrer');
+          if (tab) {
+            tab.opener = null;
+          } else {
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          }
+          window.setTimeout(() => {
+            delete form.dataset.mlSubmitOpening;
+          }, 800);
+        },
+        { capture: true },
+      );
     });
   });
 </script>

@@ -28,7 +28,7 @@ export const kakobuyHomeTopStripBannerUrl =
   'https://nstatic.kakobuy.com/banner/202605/07/d95c7e68b8c432b1ca1f18189308fb39.png';
 
 /** Default Discord invite (TOP banner `/join/discord` redirect + floating dock). Override with `PUBLIC_KAKOBUY_DISCORD_URL` or `PUBLIC_FLOAT_DISCORD_URL`. */
-export const defaultKakobuyDiscordUrl = 'https://discord.gg/9hrqg53zgs';
+export const defaultKakobuyDiscordUrl = 'https://discord.com/invite/9hrqg53zgs';
 
 /** Community subreddit referenced across the hub (floating dock, stubs). Override Reddit URL via `PUBLIC_FLOAT_REDDIT_URL` where applicable. */
 export const defaultCommunityRedditUrl = 'https://www.reddit.com/r/kakobuy/';
