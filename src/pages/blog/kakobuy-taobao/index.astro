@@ -1,0 +1,49 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-taobao';
+const publishedISO = '2026-05-03';
+---
+
+<BlogArticleShell
+  title="Kakobuy Taobao buying guide for Spreadsheet users | kakobuy-cn.com"
+  description="Paste-to-buy checklist for Taobao-class listings through Kakobuy: URLs, variant grids, domestic fees, and QC hand-offs."
+  canonicalPath={canonicalPath}
+  headline="Kakobuy Taobao intake: stable URLs, variant grids, and paste-to-buy hygiene"
+  publishedISO={publishedISO}
+  displayDate="3 May 2026"
+>
+  <p class="blog-lede" slot="lede">
+    <strong>Kakobuy Taobao</strong> is the archetypal shopping-agent path: massive SKU diversity, mature logistics APIs on the domestic side, and predictable variant selectors—until a seller silently rotates inventory mid-season.
+    Spreadsheet discipline keeps your Kakobuy intake aligned with the listing you stared at while budgeting freight.
+  </p>
+
+  <h2>Canonical URLs still matter</h2>
+  <p>
+    Taobao-family listings expose multiple entry URLs—mobile shares, shortened promos, storefront hops. Kakobuy ingestion generally prefers the stable listing core that resolves to your variant IDs. If your Spreadsheet row stores only a marketing redirect, expect mismatched photography downstream.
+  </p>
+
+  <h2>Variant grids deserve explicit capture</h2>
+  <ul>
+    <li>Colourway codes differ from marketing nicknames—copy both.</li>
+    <li>Measurement charts shift between batches; screenshot table rows alongside URL.</li>
+    <li>Bundled accessories sometimes toggle via cryptic checkboxes—note defaults.</li>
+  </ul>
+
+  <h2>Domestic vs international economics</h2>
+  <p>
+    Kakobuy fronts seller-side payments and domestic forwarding; your spreadsheet cell usually tracks item CNY—not outbound volumetrics. International quotes arrive later and deserve separate rows so friends do not confuse “cheap hoodie” with “cheap door-to-door”.
+  </p>
+
+  <h2>QC bridge</h2>
+  <p>
+    Once warehouse photos publish, shift mindset from “deal hunting” to “evidence review”—see <a href="/blog/kakobuy-spreadsheet-qc/">QC habits</a> before approving export labels.
+  </p>
+
+  <h2>Neighbour marketplaces</h2>
+  <p>
+    Compare nimble storefront flows in <a href="/blog/kakobuy-weidian/">Weidian paste hygiene</a> and wholesale stacks in <a href="/blog/kakobuy-1688/">1688 logistics</a>. Walk-through lovers should keep <a href="/how-to-buy/">How to buy</a> open beside this tab.
+  </p>
+</BlogArticleShell>

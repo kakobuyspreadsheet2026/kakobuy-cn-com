@@ -1,0 +1,226 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultOgImagePath, siteStructuredDataIds } from '../../../consts';
+import { HTML_LANG_BY_ROUTE } from '../../../i18n/config';
+
+export const prerender = true;
+
+const locale = 'en';
+const canonicalPath = '/blog/kakobuy-coupons';
+const blogIndexHref = getRelativeLocaleUrl(locale, 'blog');
+const homeHref = getRelativeLocaleUrl(locale, '');
+
+const title =
+  'Kakobuy coupons explained: welcome bonuses, shipping codes & scams to avoid | Kakobuy Spreadsheet hub';
+const description =
+  'Independent guide to Kakobuy coupons: how signup bundles differ from parcel coupons, where codes are redeemed, why “item coupons” are usually fiction, and how to verify anything in your signed-in wallet.';
+
+const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
+const { organizationId, websiteId } = siteStructuredDataIds(origin);
+const pageUrl = new URL(canonicalPath, Astro.site).href;
+const shareImageUrl = new URL(defaultOgImagePath, Astro.site).href;
+const publishedISO = '2026-05-08';
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${pageUrl}#article`,
+  url: pageUrl,
+  headline: 'Kakobuy coupons: welcome packs, shipping codes, and what is actually real',
+  image: [shareImageUrl],
+  datePublished: publishedISO,
+  dateModified: publishedISO,
+  author: { '@type': 'Organization', name: 'kakobuy-cn.com editorial' },
+  publisher: { '@id': organizationId },
+  description,
+  inLanguage: HTML_LANG_BY_ROUTE.en,
+  isPartOf: { '@id': websiteId },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+  },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  locale={locale}
+  hreflangLocales={['en']}
+  ogType="article"
+  articlePublishedTime={publishedISO}
+  articleModifiedTime={publishedISO}
+  jsonLd={articleLd}
+>
+  <SiteHeader locale={locale} />
+
+  <main>
+    <section class="band-alt">
+      <div class="wrap">
+        <div class="page-mast">
+          <p class="blog-nav">
+            <a href={homeHref}>← Home</a>
+            <span aria-hidden="true"> · </span>
+            <a href={blogIndexHref}>Blog</a>
+          </p>
+
+          <article class="blog-piece">
+            <header class="blog-piece-head">
+              <h1 class="simple-page-title">Kakobuy coupons: welcome packs, shipping codes, and what is actually real</h1>
+              <p class="blog-piece-meta">
+                <time datetime={publishedISO}>8 May 2026</time>
+                <span> · Editorial · kakobuy-cn.com</span>
+              </p>
+              <p class="blog-lede">
+                People search for <strong>kakobuy coupons</strong> because the checkout path is noisy: welcome banners, seasonal promos, Discord rumours,
+                and random codes pasted into spreadsheets. This article separates what normally exists from what is usually marketing fiction—then shows
+                how to verify any claim inside your own Kakobuy wallet.
+              </p>
+            </header>
+
+            <div class="blog-body prose-block">
+              <h2>If you only remember four things</h2>
+              <ul>
+                <li><strong>Coupons are not cashback.</strong> They shave slices off eligible charges under Kakobuy’s rules—not a separate payday.</li>
+                <li><strong>Three buckets matter:</strong> new-account “welcome” bundles, <em>parcel / shipping</em> coupons, and whatever influencers call “item discounts.”</li>
+                <li><strong>The third bucket is almost never a real coupon field.</strong> Agents consolidate freight; they are not the Taobao seller.</li>
+                <li><strong>The tie-breaker is always your signed-in console:</strong> Wallet → Coupon (or the redemption slot Kakobuy exposes)—never a screenshot from chat.</li>
+              </ul>
+
+              <h2>Bucket A — Welcome bonuses (chunked coupon packs)</h2>
+              <p>
+                Kakobuy and peers routinely advertise a headline number for newcomers. In practice that number is usually a <strong>bundle of smaller vouchers</strong>
+                with different thresholds (minimum spend), expiry windows, and “one coupon per checkout” style limits. A \$200-style headline might unpack into several
+                RMB pieces—each useful, none of them a blank cheque.
+              </p>
+              <p>
+                Treat welcome maths as <strong>conditional liquidity</strong>: open the coupon drawer after signup and read threshold + expiry per row. If a Twitter thread claims a bigger bundle than your wallet shows, the thread is stale or restricted by region/campaign—not evidence you can force through support.
+              </p>
+
+              <h2>Bucket B — Instant / shipping coupons (the ones that behave like normal promo codes)</h2>
+              <p>
+                Limited-time shipping coupons are the closest thing in this ecosystem to the coupons shoppers recognise elsewhere: a code or voucher tied to
+                <strong>international parcel payment</strong> or related charges, sometimes zero threshold, sometimes minimum spend, sometimes single-use.
+                Campaigns rotate; copying a code from a forum without checking dates is how people waste time.
+              </p>
+              <p>
+                Independent aggregators such as <a href="https://www.jadeship.com/agents/kakobuy/discount" target="_blank" rel="noopener noreferrer">JadeShip’s Kakobuy discount roundup</a>
+                can be a helpful <em>starting point</em> for comparing how third parties summarise codes—but they are not Kakobuy’s ledger. Use them to jog your memory, then confirm redemption and eligibility in-app before you promise yourself a landed price.
+              </p>
+
+              <h2>Bucket C — “Item coupons” (usually a confusion, occasionally a scam)</h2>
+              <p>
+                Domestic marketplace coupons absolutely exist-on Taobao, Weidian, Douyin malls, etc.—because the <strong>merchant</strong> funds them. Shopping agents,
+                however, are forwarding and warehousing workflows. If someone pitches an “item coupon” that bypasses Kakobuy’s normal paste-and-buy flow, slow down:
+                there may simply be no field for it, or you may be looking at a screenshot engineered to steal login or wallet actions.
+              </p>
+
+              <h2>Where Kakobuy expects you to redeem codes</h2>
+              <p>
+                UX labels move between releases, but the stable pattern is: open the user centre, find <strong>Wallet / Coupon</strong> (or the redemption entry Kakobuy ships beside it),
+                paste the code, and watch for a confirmation toast. Eligible coupons then appear in the list you can apply when you submit a parcel for international shipping.
+                If redemption fails, screenshot the error and compare against the coupon’s published terms—expiry and threshold are the usual culprits.
+              </p>
+
+              <h2>Stacking, seasonal rails, and official announcements</h2>
+              <p>
+                Kakobuy periodically stacks subsidies or promo rails on top of coupons—think shipping-percent credits during a holiday window plus voucher redemption at parcel checkout.
+                Those combos change month to month. Your Spreadsheet cells rarely include the subsidiary ledger detail; treat mirrored notices on hubs like ours as context,
+                but pricing authority stays inside Kakobuy’s signed-in quotes (see also our <a href="/promotions/kakobuy-may-2026/">May 2026 promotions recap mirror</a> when that campaign is relevant).
+              </p>
+
+              <h2>How this fits the Kakobuy Spreadsheet workflow</h2>
+              <p>
+                Spreadsheet shopping is a link-forward discipline: you stabilise SKUs in browse tabs, paste into Kakobuy, pay domestic legs there, then fight freight realism at export time.
+                Coupons belong at the <strong>wallet + parcel</strong> stage—not as a substitute for verifying QC photos or DIM-weight surprises. If a coupon saves ten dollars but you approve the wrong size because you rushed, the coupon did not help.
+              </p>
+
+              <h2>Closing honesty checklist</h2>
+              <ol>
+                <li>Did I redeem this code myself and see it listed under Coupons?</li>
+                <li>Does the threshold match what I am actually about to pay for?</li>
+                <li>Will it still be valid on the day I submit the parcel, not merely the day I bought domestic?</li>
+                <li>Am I expecting merchant discounts when I should be expecting freight discounts?</li>
+              </ol>
+
+              <p class="blog-disclaimer">
+                <strong>Disclaimer:</strong> kakobuy-cn.com publishes editorial context for Kakobuy Spreadsheet shoppers—explainer copy, catalogue bridges, and mirrored announcements—not coupons hosted by us.
+                Offers change without notice; only Kakobuy’s authenticated UI governs eligibility. We are not affiliated with Kakobuy SARL beyond summarising public-facing workflows.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .blog-nav {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+  }
+  .blog-piece-head {
+    margin-bottom: 1.25rem;
+    max-width: 48rem;
+  }
+  .blog-piece-meta {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .blog-lede {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 48rem;
+  }
+  .blog-piece {
+    max-width: 52rem;
+  }
+  .prose-block {
+    font-size: 0.975rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .prose-block :where(h2) {
+    margin: 1.75rem 0 0.65rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .prose-block :where(h2:first-child) {
+    margin-top: 0;
+  }
+  .prose-block :where(p) {
+    margin: 0 0 0.85rem;
+  }
+  .prose-block :where(ul, ol) {
+    margin: 0 0 0.85rem;
+    padding-left: 1.35rem;
+  }
+  .prose-block :where(li) {
+    margin-bottom: 0.4rem;
+  }
+  .prose-block :where(strong) {
+    color: var(--text);
+  }
+  .prose-block :where(a) {
+    font-weight: 600;
+    color: var(--accent-dark, #0f766e);
+  }
+  .blog-disclaimer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+</style>

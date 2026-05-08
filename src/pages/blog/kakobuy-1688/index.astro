@@ -1,0 +1,54 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-1688';
+const publishedISO = '2026-05-02';
+---
+
+<BlogArticleShell
+  title="Kakobuy & 1688 wholesale: MOQ, sizing units, and agent mediation | kakobuy-cn.com"
+  description="How Alibaba 1688 sourcing intersects Kakobuy Spreadsheet tracking—MOQs, enterprise wording, domestic invoices, and QC realism."
+  canonicalPath={canonicalPath}
+  headline="Kakobuy & 1688: wholesale listings, MOQ traps, and what agents actually forward"
+  publishedISO={publishedISO}
+  displayDate="2 May 2026"
+>
+  <p class="blog-lede" slot="lede">
+    <strong>Kakobuy 1688</strong> searches spike when shoppers chase factory-adjacent pricing. Alibaba’s wholesale marketplace speaks a different language—MOQs, unit multiples, offline invoicing hints—than Taobao retail grids.
+    Agents translate buyer intent into domestic execution, but they cannot vaporise supplier rules your Spreadsheet forgot to log.
+  </p>
+
+  <h2>1688 expectations vs closet buys</h2>
+  <ul>
+    <li><strong>MOQ &amp; tiers:</strong> “Cheap per piece” often assumes buying packs—confirm counts before promising splits to friends.</li>
+    <li><strong>Lead times:</strong> made-to-order batches blow up spreadsheet ETAs.</li>
+    <li><strong>Specs:</strong> industrial sizing charts differ from fashion glossaries—translate deliberately.</li>
+  </ul>
+
+  <h2>How Kakobuy mediation fits</h2>
+  <p>
+    Agents aggregate domestic freight, consolidate parcels, and expose QC photography—mirroring the Kakobuy funnel described across educational hubs (for general marketplace primers, communities such as <a href="https://www.jadeship.com/" target="_blank" rel="noopener noreferrer">JadeShip</a> catalogue tooling alongside Chinese marketplaces).
+    None of that removes supplier-side constraints; it routes them through warehouse workflows you can audit visually.
+  </p>
+
+  <h2>Spreadsheet columns worth adding</h2>
+  <ol>
+    <li>Listing URL + supplier shop ID.</li>
+    <li>Declared MOQ + your negotiated quantity.</li>
+    <li>Colour/size mapping with factory codes.</li>
+    <li>Domestic shipping subsidy notes (if sellers vary freight).</li>
+    <li>QC acceptance checkbox separate from “paid internationally.”</li>
+  </ol>
+
+  <h2>When to prefer Taobao or Weidian instead</h2>
+  <p>
+    If MOQ friction dominates, retail lanes (<a href="/blog/kakobuy-taobao/">Taobao intake</a>, <a href="/blog/kakobuy-weidian/">Weidian hygiene</a>) may reduce coordination tax—even if unit price rises slightly.
+  </p>
+
+  <h2>Compliance humility</h2>
+  <p>
+    Wholesale screenshots may include export-restricted categories depending on jurisdiction—your regulators win arguments against spreadsheet optimism. We publish notes, not legal clearance.
+  </p>
+</BlogArticleShell>

@@ -1,0 +1,30 @@
+---
+import { mlSpreadsheetKakobuy } from '../consts';
+
+interface Props {
+  disclaimerTitle?: string;
+  /** Raw HTML for the disclaimer body (trusted, from i18n bundles). */
+  disclaimerHtml?: string;
+  copyrightLine?: string;
+}
+
+const {
+  disclaimerTitle = 'Disclaimer:',
+  disclaimerHtml,
+  copyrightLine = '© 2026 kakobuy-cn.com · Editorial notes only—carts, payouts, and freight approvals stay off-domain.',
+} = Astro.props;
+
+const defaultDisclaimerHtml = `kakobuy-cn.com publishes <strong>Kakobuy Spreadsheet</strong> context only: think explainers, catalogue entry points, and cautionary notes—not checkout. Outbound targets such as the <a href="${mlSpreadsheetKakobuy}" target="_blank" rel="noopener noreferrer">Spreadsheet browse bridge</a>, Chinese marketplaces, and <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">kakobuy.com</a> operate independently; we never custody payments or parcels. Cross-check QC imagery and seller policies personally. No endorsement relationship with Kakobuy or linked merchants—follow each platform’s binding policies.`;
+---
+
+<footer>
+  <div class="wrap">
+    <div class="page-mast">
+      <p>
+        <strong>{disclaimerTitle}</strong>{' '}
+        <span set:html={disclaimerHtml ?? defaultDisclaimerHtml} />
+      </p>
+      <p style="margin-top:1rem;">{copyrightLine}</p>
+    </div>
+  </div>
+</footer>

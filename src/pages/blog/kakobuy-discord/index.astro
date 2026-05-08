@@ -1,0 +1,44 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-discord';
+const publishedISO = '2026-05-05';
+---
+
+<BlogArticleShell
+  title="Kakobuy Discord: giveaways, invite funnels, and verification habits | kakobuy-cn.com"
+  description="Why Kakobuy Discord marketing exists, how raffles differ from wallet balances, and how to open Discord invites without handing chats your login."
+  canonicalPath={canonicalPath}
+  headline="Kakobuy Discord: drops, raffles, and keeping rumours separated from wallet facts"
+  publishedISO={publishedISO}
+  displayDate="5 May 2026"
+>
+  <p class="blog-lede" slot="lede">
+    <strong>Kakobuy Discord</strong> surfaces marketing bursts—lucky draws, seasonal banners, influencer bridges—that rarely ship with fine print in chat logs.
+    Treat Discord as an <em>announcement accelerant</em>, not a ledger: if someone pastes a coupon, redeem it inside Kakobuy and screenshot success before you narrate wins publicly.
+  </p>
+
+  <h2>Why agents maintain Discord servers</h2>
+  <p>
+    Shopping agents compete on attention. Discord bundles flash campaigns, multilingual chatter, and referral energy into one feed. That is useful for spotting promos early—and noisy for anyone seeking binding fee quotes.
+  </p>
+
+  <h2>Same-origin invite hygiene (this hub)</h2>
+  <p>
+    Some browsers and extensions hide bare discord.gg links. Our site exposes a same-origin bridge at <a href="/join/discord">/join/discord</a> that forwards to the live invite endpoint—use whichever resolves cleanly in your environment.
+  </p>
+
+  <h2>Raffles vs coupons vs account balance</h2>
+  <ul>
+    <li><strong>Raffles</strong> publish eligibility rules asynchronously—export milestones, regional locks, or cut-off dates may apply.</li>
+    <li><strong>Coupons</strong> belong in Wallet → Coupon flows—never trust DMs promising instant credits.</li>
+    <li><strong>Support</strong> should be initiated inside authenticated consoles, not through unofficial bots asking for passwords.</li>
+  </ul>
+
+  <h2>Cross-reads</h2>
+  <p>
+    Compare Discord hype with <a href="/blog/kakobuy-coupons/">coupon mechanics</a> and <a href="/news/">News desk</a> banner explainers so homepage creatives and chat rumours stay aligned.
+  </p>
+</BlogArticleShell>

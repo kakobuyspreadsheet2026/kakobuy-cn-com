@@ -1,0 +1,51 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-weidian';
+const publishedISO = '2026-05-04';
+---
+
+<BlogArticleShell
+  title="Kakobuy Weidian sourcing: URLs, albums, and agent paste pitfalls | kakobuy-cn.com"
+  description="How Weidian listings interact with Kakobuy intake—album redirects, variant fidelity, and why Spreadsheet cells should store canonical captures."
+  canonicalPath={canonicalPath}
+  headline="Kakobuy Weidian links: album drift, mobile URLs, and Spreadsheet paste discipline"
+  publishedISO={publishedISO}
+  displayDate="4 May 2026"
+>
+  <p class="blog-lede" slot="lede">
+    <strong>Kakobuy Weidian</strong> workflows hinge on URL fidelity: shops reorganise albums, swap hero tiles, and update sizing grids faster than spreadsheet screenshots refresh.
+    The disciplined shopper snapshots <em>a resolving listing address</em> next to variant picks—then hands Kakobuy the same URL they scrutinised in-browser.
+  </p>
+
+  <h2>Weidian ≠ miniature Taobao</h2>
+  <p>
+    UX metaphors differ: storefront tiles, chat-heavy merchant tooling, and mobile-forward flows dominate. Agents abstract much of this—but only if your pasted URL resolves to the exact SKU variant Kakobuy should negotiate domestically.
+  </p>
+
+  <h2>Spreadsheet hygiene that survives reorder storms</h2>
+  <ul>
+    <li><strong>Store URLs as plain text</strong> to avoid spreadsheet apps rewriting schemes.</li>
+    <li><strong>Note colour/size SKUs</strong> adjacent to the URL—not only human-readable nicknames.</li>
+    <li><strong>Timestamp research:</strong> note the calendar day you captured a row—albums evolve.</li>
+    <li><strong>Avoid screenshot-only provenance:</strong> images omit coupon deltas sellers toggle silently.</li>
+  </ul>
+
+  <h2>Paste → domestic purchase → QC</h2>
+  <p>
+    Kakobuy’s intake translates marketplace listings into agent SKUs; Weidian volatility makes QC photography especially binding—compare panels closely once inbound shots arrive (bridge from <a href="/blog/kakobuy-spreadsheet-qc/">Spreadsheet QC notes</a>).
+  </p>
+
+  <h2>Tools mindset</h2>
+  <p>
+    Third-party converters and spreadsheets—examples include community favourites profiled on aggregators such as <a href="https://www.jadeship.com/" target="_blank" rel="noopener noreferrer">JadeShip</a>—can clarify URLs,
+    but they do not replace verifying that Kakobuy resolved the correct SKU before payment authorisation.
+  </p>
+
+  <h2>Contrast with Taobao/Tmall-class listings</h2>
+  <p>
+    For structured marketplace grids, see <a href="/blog/kakobuy-taobao/">Kakobuy Taobao intake</a>; for wholesale stacks, <a href="/blog/kakobuy-1688/">1688 notes</a>.
+  </p>
+</BlogArticleShell>

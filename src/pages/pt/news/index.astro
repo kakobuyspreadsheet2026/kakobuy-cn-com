@@ -1,0 +1,67 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NewsPageBody from '../../../components/pages/NewsPageBody.astro';
+import { ml, siteStructuredDataIds } from '../../../consts';
+import officialKakobuyNoticeExcerpts from '../../../data/officialKakobuyNoticeExcerpts.json';
+import {
+  homeCategoryBannerTapUrls,
+  homeCategoryBannersWithHrefs,
+} from '../../../lib/homeCategoryBannersWithHrefs';
+import { getNewsCopy, hydrateNewsCopy, newsHowToJsonLd } from '../../../i18n/copy/newsPage';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { HTML_LANG_BY_ROUTE } from '../../../i18n/config';
+
+export const prerender = true;
+
+const locale = 'pt';
+const canonicalPath = '/pt/news';
+
+const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
+
+const raw = getNewsCopy(locale);
+const copy = hydrateNewsCopy(raw, {
+  guideUrl: `${ml}/guide`,
+  buyerUrl: getRelativeLocaleUrl(locale, 'buyer-shares'),
+  howToUrl: getRelativeLocaleUrl(locale, 'how-to-buy'),
+  kakobuyHomeUrl: 'https://kakobuy.com/',
+  homeCuratedUrl: `${getRelativeLocaleUrl(locale, '')}#curated-directory`,
+  mlCatalogUrl: `${ml}/spreadsheet/kakobuy`,
+  excerptCount: officialKakobuyNoticeExcerpts.length,
+  carouselTapUrls: homeCategoryBannerTapUrls(locale),
+});
+
+const homeHref = getRelativeLocaleUrl(locale, '');
+const { websiteId } = siteStructuredDataIds(origin);
+const pageUrl = new URL(canonicalPath, Astro.site).href;
+const inLang = HTML_LANG_BY_ROUTE[locale];
+
+const webPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  name: copy.title,
+  url: pageUrl,
+  description: copy.description,
+  inLanguage: inLang,
+  isPartOf: { '@id': websiteId },
+};
+
+const howToLd = newsHowToJsonLd(copy, inLang);
+---
+
+<Layout
+  title={copy.title}
+  description={copy.description}
+  canonicalPath={canonicalPath}
+  locale={locale}
+  i18nRouteSegment="news"
+  jsonLd={[webPageLd, howToLd]}
+>
+  <NewsPageBody
+    locale={locale}
+    copy={copy}
+    homeHref={homeHref}
+    banners={homeCategoryBannersWithHrefs(locale)}
+    excerpts={officialKakobuyNoticeExcerpts}
+  />
+</Layout>
