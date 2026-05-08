@@ -36,7 +36,7 @@ const leadSearchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" heigh
 
 <form
   class:list={['ml-search-bar', kbHero && 'ml-search-bar--kb-hero']}
-  action={searchAction}
+  action=""
   method="get"
   role="search"
   aria-label={ariaLabel}
@@ -71,7 +71,7 @@ const leadSearchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" heigh
         <span class="ml-search-bar__by-image-text">{searchByImageLabel}</span>
       </a>
     </div>
-    <button type="submit" class="ml-search-bar__submit" aria-label={searchSubmitLabel}>
+    <button type="button" class="ml-search-bar__submit" aria-label={searchSubmitLabel}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18"
@@ -97,43 +97,58 @@ const leadSearchIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" heigh
     document.querySelectorAll('form.ml-search-bar').forEach((form) => {
       if (form.dataset.mlSearchNavigate) return;
       form.dataset.mlSearchNavigate = '1';
+
+      const input = form.querySelector('input[name="q"]');
+      const btn = form.querySelector('button.ml-search-bar__submit');
+      if (!(input instanceof HTMLInputElement) || !(btn instanceof HTMLButtonElement)) return;
+
+      function openCatalogue() {
+        if (form.dataset.mlSubmitOpening === '1') return;
+        const q = String(input.value).trim();
+        if (!q) {
+          input.focus();
+          return;
+        }
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return;
+        }
+        form.dataset.mlSubmitOpening = '1';
+        const url = `${searchAction}?q=${encodeURIComponent(q)}`;
+        const tab = window.open(url, '_blank', 'noopener,noreferrer');
+        if (tab) tab.opener = null;
+        window.setTimeout(() => {
+          delete form.dataset.mlSubmitOpening;
+        }, 800);
+      }
+
       form.addEventListener(
         'submit',
         (e) => {
-          if (form.dataset.mlSubmitOpening === '1') {
-            e.preventDefault();
-            return;
-          }
-          const input = form.querySelector('input[name="q"]');
-          const raw = input && 'value' in input ? String(input.value) : '';
-          const q = raw.trim();
-          if (!q) {
-            e.preventDefault();
-            if (input instanceof HTMLElement) input.focus();
-            return;
-          }
           e.preventDefault();
-          form.dataset.mlSubmitOpening = '1';
-          const url = `${searchAction}?q=${encodeURIComponent(q)}`;
-          const tab = window.open(url, '_blank', 'noopener,noreferrer');
-          if (tab) {
-            tab.opener = null;
-          } else {
-            const a = document.createElement('a');
-            a.href = url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-          }
-          window.setTimeout(() => {
-            delete form.dataset.mlSubmitOpening;
-          }, 800);
+          e.stopImmediatePropagation();
+          openCatalogue();
         },
         { capture: true },
       );
+
+      btn.addEventListener('click', () => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return;
+        }
+        openCatalogue();
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          return;
+        }
+        openCatalogue();
+      });
     });
   });
 </script>
