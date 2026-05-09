@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import LocaleHomeStub from '../../components/LocaleHomeStub.astro';
 import { ptHome } from '../../i18n/stubs/pt';
-import { ml, siteStructuredDataIds } from '../../consts';
+import { kakobuyHomeHeroBannerUrl, siteStructuredDataIds } from '../../consts';
 
 export const prerender = true;
 
@@ -33,6 +33,7 @@ const webPageLd = {
   i18nRouteSegment=""
   jsonLd={webPageLd}
   showDiscordTopBanner={false}
+  lcpPreloadImages={[kakobuyHomeHeroBannerUrl]}
 >
   <LocaleHomeStub content={ptHome} />
 </Layout>
