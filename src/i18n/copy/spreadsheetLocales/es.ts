@@ -4,7 +4,7 @@ export const es: SpreadsheetPageCopy = {
   title:
     'Catálogo Kakobuy Spreadsheet — carriles indexados, alfabetización QC y URLs listas para pegar | kakobuy-cn.com',
   description:
-    'Compañero de lectura para el browse Kakobuy Spreadsheet: raíles del catálogo indexado sobre fichas Taobao / Weidian / 1688, advertencias de QC, flete sin fantasía — descubres aquí, la cartera se queda en Kakobuy.',
+    'Compañero de lectura para el browse Kakobuy Spreadsheet: raíles del catálogo para fichas Taobao / Weidian / 1688, advertencias de QC, flete realista, lectura columna a columna, guías curadas y FAQs — descubres aquí, la cartera se queda en Kakobuy.',
   keywords:
     'catálogo Kakobuy spreadsheet, navegación Kakobuy Spreadsheet, QC spreadsheet Weidian, enlaces agente Taobao, hoja compras 2026, fotografía warehouse primer, URLs marketplace curadas',
   backHomeLabel: '← Volver al inicio',
@@ -12,7 +12,8 @@ export const es: SpreadsheetPageCopy = {
   h2Hero: 'Un directorio vivo de atajos de marketplace pensado para compradores Kakobuy.',
   subhead:
     'Recorre zapatillas, outerwear, accesorios, bolsos, electrónica y carriles raros del catálogo enlazado, eleva URLs de producto y entrégalas a Kakobuy para ruta doméstica, fotografía de almacén y elección de courier.',
-  introHtml: `Piensa en kakobuy-cn.com como la <strong>capa de narración</strong> junto a <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">la UI de browse del Spreadsheet</a></strong>. Traducimos jerga, señalamos vacíos de QC y enlazamos artículos — pero <strong><a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a></strong> solo gestiona checkout, compliance, matemática de paquetes y disputas. Empareja este ensayo con <a href="{newsUrl}">Noticias y guías</a> para avisos espejo o <a href="{howToUrl}">Cómo comprar</a> para coreografía literal al pegar enlaces.`,
+  introHtml: `Piensa en kakobuy-cn.com como la <strong>capa de narración</strong> junto a <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">la UI de browse del Spreadsheet</a></strong>. Traducimos jerga, señalamos vacíos de QC y enlazamos artículos — pero <strong><a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a></strong> solo gestiona checkout, compliance, matemática de paquetes y disputas. Empareja este ensayo con <a href="{newsUrl}">Noticias y guías</a> para avisos espejo o <a href="{howToUrl}">Cómo comprar</a> para coreografía literal al pegar enlaces.<br/><br/>
+<strong>kakobuy-cn.com no aloja</strong> la parrilla SKU en vivo; publicamos espejos editoriales para que entiendas por qué desaparecen filas, por qué los screenshots inflan el QC y dónde la matemática de flete internacional se separa de las celdas optimistas.`,
   heroTags: [
     'Pools de SKU tamaño catálogo',
     'QC del seller ≠ QC del almacén',
@@ -23,7 +24,8 @@ export const es: SpreadsheetPageCopy = {
   ],
   whatIsTitle: '¿Qué es este “spreadsheet” que todos capturan?',
   whatIsBodyHtml: `En la práctica es una <strong>malla de marcadores</strong>: filas apuntan a mercancía Taobao, Weidian o 1688 sin obligarte a jugar ruleta de búsqueda cada noche. El <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">shell de browse</a></strong> refleja cómo los creadores etiquetan zapatillas, streetwear, electrónica rara, kits y compras compulsivas de fragancias.<br/><br/>
-Algunas columnas promocionan stills de fábrica — trátalos como <em>migas de marketing</em> hasta que Kakobuy suba capturas de almacén a tu cuenta. Nada en este hostname almacena SKU ni recauda pagos.`,
+Algunas columnas promocionan stills de fábrica — trátalos como <em>migas de marketing</em> hasta que Kakobuy suba capturas de almacén a tu cuenta. Nada en este hostname almacena SKU ni recauda pagos.<br/><br/>
+<strong>El ritmo de actualización importa:</strong> los sellers reorganizan álbumes, matan variantes o renombran batches más rápido que envejecen los screenshots de Discord. Ante la duda, vuelve al <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">browse del catálogo</a></strong> antes de confiar en exportaciones viejas.`,
   learnMoreLabel: 'Profundizar →',
   previewTitle: 'Arquetipos que los compradores acechan en las hojas',
   previewIntroHtml: `Las tarjetas suenan a <strong>marcadores de género</strong>, no a precios en vivo — runners retro, tees lavados, hoodies doble zipper, slings, jerseys de malla, buds gaming. El inventario rota con el ritmo del seller; precios “adyacentes” ignoran ruleta aduanera y sorpresas volumétricas. Salta a <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">el catálogo</a></strong> para lo comprable hoy.`,
@@ -116,6 +118,63 @@ Algunas columnas promocionan stills de fábrica — trátalos como <em>migas de 
       body: 'Elige líneas equilibrando familiaridad aduanera, hambre de seguro y honestidad volumétrica — el tracking vive en Kakobuy.',
     },
   ],
+  columnsTitle: 'Leer filas del spreadsheet sin ahogarte',
+  columnsIntroHtml: `Los maquetados cambian entre curadores, pero las hojas orientadas a Kakobuy comparten motivos: URLs de marketplace, apodos de batch, stills opcionales del seller y precios “direccionales” que ignoran aranceles o sorpresas volumétricas. Trata cada celda como una <strong>pista de ruteo</strong> hasta que <strong><a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a></strong> ingiera tu pegado y publique fotos de almacén.<br/><br/>
+Si la jerga sigue opaca, suma este texto con <a href="{howToUrl}">Cómo comprar</a> para no copiar URLs hero de tienda por error.`,
+  columnTips: [
+    {
+      title: 'URL canónica del artículo vs atajo de tienda',
+      body: 'Copia siempre el permalink del listing que Taobao / Weidian / 1688 muestra para esa SKU. Las URLs splash del escaparate suelen perder variantes cuando el agent resuelve grillas.',
+    },
+    {
+      title: 'Apodos de batch y jerga de fábrica',
+      body: 'Las celdas con nombres de batch son memoria para Discord, no garantías. Anota fechas junto a apodos para recordar qué narrativa correspondía a cada temporada.',
+    },
+    {
+      title: 'Miniaturas QC inline',
+      body: 'Trata los stills incrustados como marketing del seller. La fotografía inbound de Kakobuy ejecuta la calidad; disputa antes de liberar export.',
+    },
+    {
+      title: 'Precios “cerca del spreadsheet”',
+      body: 'Las columnas rara vez incluyen aranceles, toggles de seguro, FX o divisores volumétricos. Modela costo landed dentro de Kakobuy en lugar de confiar en filas optimistas.',
+    },
+    {
+      title: 'Filtros por carril y pestañas de temporada',
+      body: 'Calzado, punto, accesorios, electrónica y fragancias suelen vivir en raíles distintos — revisa el chrome de filtros antes de asumir que una fila desapareció.',
+    },
+  ],
+  resourcesTitle: 'Lecturas profundas en este dominio',
+  resourcesIntroHtml: `Estos largos permanecen en kakobuy-cn.com para que captures menos pantalla y entiendas más: alfabetización QC tras subidas de almacén, líneas de tiempo derivadas de Reddit y una checklist de paquete entre optimismo de spreadsheet y facturas de flete. El checkout solo ocurre en <strong><a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a></strong>; aquí no hay carritos.`,
+  resourceCards: [
+    {
+      title: 'QC de almacén después de pegar una fila',
+      bodyHtml: `Los stills del seller en la hoja solo orientan. Rutinas de zoom, timing de disputas y por qué las fotos inbound ganan al hype — en nuestra <a href="/blog/kakobuy-spreadsheet-qc/">guía Kakobuy Spreadsheet QC</a>.`,
+    },
+    {
+      title: 'Cronologías de comunidad sin cavar Discord',
+      bodyHtml: `Quien busca hilos de <strong>kakobuy spreadsheet reddit</strong> quiere prueba retrospectiva de flete — lo condensamos en <a href="/blog/kakobuy-spreadsheet-reddit/">Spreadsheet × Reddit notes</a>.`,
+    },
+    {
+      title: 'De fila del spreadsheet a etiqueta outbound',
+      bodyHtml: `Usa la <a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">checklist Spreadsheet → parcel</a> para volumetría, seguros y cuándo un re-QC supera aprobar paneles malos.`,
+    },
+  ],
+  marketplaceBridgeTitle: 'Cuando el enlace termina en Taobao, Weidian o 1688',
+  marketplaceBridgeIntroHtml: `Los tres mundos envejecen el stock distinto — enlaces caen, grillas de tallas cambian y el mayorista arrastra MOQ. Elige la guía adecuada y sigue con <a href="{howToUrl}">Cómo comprar</a> para los clics reales en Kakobuy.`,
+  marketplaceBridgeCards: [
+    {
+      title: 'Taobao detrás de muchas filas',
+      bodyHtml: `Todavía manda en calzado y capas — mira <a href="/blog/kakobuy-taobao/">Kakobuy × Taobao primer</a> para variantes y URLs vitrina que rompen el agente.`,
+    },
+    {
+      title: 'Weidian que muta cada semana',
+      bodyHtml: `Tiendas por álbum cambian más rápido que tus screenshots — lee <a href="/blog/kakobuy-weidian/">Kakobuy × Weidian notes</a> antes de fiarte del QC miniatura.`,
+    },
+    {
+      title: 'Filas mayoristas 1688',
+      bodyHtml: `Enlaces bulk traen MOQ y letra pequeña — empieza en <a href="/blog/kakobuy-1688/">Kakobuy × 1688 guide</a> cuando la hoja huele a wholesale.`,
+    },
+  ],
   faqTitle: 'FAQ — aclaraciones rápidas',
   faqs: [
     {
@@ -142,6 +201,18 @@ Algunas columnas promocionan stills de fábrica — trátalos como <em>migas de 
       q: '¿Qué tan volátil es el inventario?',
       aHtml: `Mucho. URLs 404 suelen significar rotación de stock — registra la falla en el ticket del agente en vez de explotar en Discord.`,
     },
+    {
+      q: '¿kakobuy-cn.com es el spreadsheet “oficial”?',
+      aHtml: `No — somos un hub editorial independiente. Kakobuy opera el comercio en <a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">kakobuy.com</a>; el browse del spreadsheet vive en <a href="{ml}" target="_blank" rel="noopener noreferrer">su superficie de catálogo</a>. Nosotros explicamos flujos alrededor.`,
+    },
+    {
+      q: '¿Por qué murió una URL del spreadsheet de la noche a la mañana?',
+      aHtml: `Los sellers reorganizan listings todo el tiempo. Ayer perfecto, hoy 404 — anótalo en Kakobuy antes de imaginar sabotaje. Refresca vía <a href="{ml}" target="_blank" rel="noopener noreferrer">browse en vivo</a> antes de clonar enlaces a tus trackers.`,
+    },
+    {
+      q: '¿Basta con screenshots de Discord?',
+      aHtml: `Envejecen rápido en carriles pesados en flete. Empareja <a href="{howToUrl}">Cómo comprar</a> para higiene de pegado y usa las guías anteriores cuando el QC exija más que hilos de hype.`,
+    },
   ],
   bottomCtaTitle: '¿Listo para abrir el browse Spreadsheet?',
   bottomCtaIntroHtml: `Lanza la <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">superficie de catálogo</a></strong>, fija <a href="{howToUrl}">Cómo comprar</a> para higiene procedural y revisa <a href="{newsUrl}">Noticias y guías</a> cuando Kakobuy mueva políticas. Trata precios adyacentes a la hoja como <strong>solo direccionales</strong>; aranceles, toggles de seguro, volumetría y FX pertenecen a tu ledger Kakobuy.`,
@@ -151,6 +222,8 @@ Algunas columnas promocionan stills de fábrica — trátalos como <em>migas de 
     'URLs nivel SKU; atajos de tienda fantasean variantes en agents.',
     'QC de marketing ≠ QC inbound — vuelve a probar tras subidas warehouse.',
     'Matemática landed vence precio de columna — planifica DIM y fees de línea.',
+    'Sigue cambios de política en News — las celdas rara vez anuncian compliance.',
+    'Anota apodos de batch junto a URLs para recordar qué shorthand perseguías.',
   ],
   ctaLabel: 'Entrar al catálogo en vivo →',
   howToBuyLabel: 'Playbook de pegado → Cómo comprar',

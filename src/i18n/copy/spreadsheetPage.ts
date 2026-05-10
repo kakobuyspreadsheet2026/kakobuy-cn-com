@@ -13,6 +13,7 @@ export type {
   SpreadsheetFaq,
   SpreadsheetPageCopy,
   SpreadsheetPreviewCard,
+  SpreadsheetResourceCard,
 } from './spreadsheetCopy.types';
 
 type HydrateCtx = { ml: string; howTo: string; news: string };
@@ -37,6 +38,17 @@ export function hydrateSpreadsheetCopy(
     introHtml: hydrateStr(raw.introHtml, ctx),
     whatIsBodyHtml: hydrateStr(raw.whatIsBodyHtml, ctx),
     previewIntroHtml: hydrateStr(raw.previewIntroHtml, ctx),
+    columnsIntroHtml: hydrateStr(raw.columnsIntroHtml, ctx),
+    resourcesIntroHtml: hydrateStr(raw.resourcesIntroHtml, ctx),
+    resourceCards: raw.resourceCards.map((r) => ({
+      ...r,
+      bodyHtml: hydrateStr(r.bodyHtml, ctx),
+    })),
+    marketplaceBridgeIntroHtml: hydrateStr(raw.marketplaceBridgeIntroHtml, ctx),
+    marketplaceBridgeCards: raw.marketplaceBridgeCards.map((r) => ({
+      ...r,
+      bodyHtml: hydrateStr(r.bodyHtml, ctx),
+    })),
     bottomCtaIntroHtml: hydrateStr(raw.bottomCtaIntroHtml, ctx),
     faqs: raw.faqs.map((f) => ({
       ...f,

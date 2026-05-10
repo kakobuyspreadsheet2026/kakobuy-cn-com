@@ -9,6 +9,7 @@ import { getRecentBlogPosts } from '../lib/recentBlogPosts';
 import { getRecentBuyerShares } from '../lib/recentBuyerShares';
 import { getHomeRecentBlogCopy } from '../i18n/copy/homeRecentBlog';
 import { getHomeRecentBuyerSharesCopy } from '../i18n/copy/homeRecentBuyerShares';
+import { getHomeSpreadsheetPromoCopy } from '../i18n/copy/homeSpreadsheetPromo';
 import { HTML_LANG_BY_ROUTE, ROUTE_LOCALES, type RouteLocale } from '../i18n/config';
 import type { HomeStubContent } from '../i18n/types';
 
@@ -50,6 +51,9 @@ const blogRecent = getHomeRecentBlogCopy(locale);
 const buyerSharesRecent = getHomeRecentBuyerSharesCopy(locale);
 const blogIndexHref = getRelativeLocaleUrl(locale, 'blog');
 const buyerSharesIndexHref = getRelativeLocaleUrl(locale, 'buyer-shares');
+const spreadsheetExplainerHref = getRelativeLocaleUrl(locale, 'spreadsheet');
+const howToBuyHref = getRelativeLocaleUrl(locale, 'how-to-buy');
+const spreadsheetPromo = getHomeSpreadsheetPromoCopy(locale);
 
 const blogDateLocale = routeLocale === 'pt' ? 'pt-BR' : HTML_LANG_BY_ROUTE[routeLocale];
 
@@ -184,6 +188,32 @@ function formatIsoDate(iso: string): string {
               </p>
             </div>
           </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="spreadsheet-hub"
+    class="home-spreadsheet-promo"
+    aria-labelledby="home-spreadsheet-promo-heading"
+  >
+    <div class="wrap">
+      <div class="page-mast">
+        <h2 id="home-spreadsheet-promo-heading" class="home-spreadsheet-promo__title">
+          {spreadsheetPromo.title}
+        </h2>
+        <p class="section-intro home-spreadsheet-promo__intro">{spreadsheetPromo.body}</p>
+        <ul class="home-spreadsheet-promo__bullets">
+          {spreadsheetPromo.bullets.map((line) => (
+            <li class="home-spreadsheet-promo__bullet">{line}</li>
+          ))}
+        </ul>
+        <div class="cta-row home-spreadsheet-promo__ctas">
+          <a class="btn btn-primary" href={spreadsheetExplainerHref}>
+            {spreadsheetPromo.ctaSpreadsheet}
+          </a>
+          <a class="btn btn-ghost" href={howToBuyHref}>{spreadsheetPromo.ctaHowToBuy}</a>
         </div>
       </div>
     </div>
@@ -439,5 +469,61 @@ function formatIsoDate(iso: string): string {
   .home-recent-buyer-shares__all:hover {
     background: var(--accent-soft, rgba(255, 30, 111, 0.08));
     border-color: rgba(255, 30, 111, 0.22);
+  }
+
+  .home-spreadsheet-promo {
+    padding: clamp(2rem, 5vw, 2.75rem) 0;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .home-spreadsheet-promo__title {
+    margin: 0 auto 0.65rem;
+    font-size: clamp(1.2rem, 3vw, 1.45rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 44rem;
+  }
+
+  .home-spreadsheet-promo__intro {
+    margin-bottom: 1rem !important;
+    max-width: 46rem !important;
+  }
+
+  .home-spreadsheet-promo__bullets {
+    margin: 0 auto 1.25rem;
+    padding: 0;
+    list-style: none;
+    max-width: 40rem;
+    text-align: left;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .home-spreadsheet-promo__bullet {
+    position: relative;
+    margin: 0 0 0.55rem;
+    padding-left: 1.15rem;
+  }
+
+  .home-spreadsheet-promo__bullet::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: var(--oob-pink, #ff1e6f);
+    opacity: 0.85;
+  }
+
+  .home-spreadsheet-promo__bullet:last-child {
+    margin-bottom: 0;
+  }
+
+  .home-spreadsheet-promo__ctas {
+    margin-top: 0.15rem;
   }
 </style>
