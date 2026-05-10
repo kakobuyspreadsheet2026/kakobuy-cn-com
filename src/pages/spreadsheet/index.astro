@@ -1,4 +1,5 @@
 ---
+import { absoluteCanonicalUrl } from '../../lib/canonicalPath';
 import Layout from '../../layouts/Layout.astro';
 import SpreadsheetPageBody from '../../components/pages/SpreadsheetPageBody.astro';
 import { ml, siteStructuredDataIds } from '../../consts';
@@ -24,7 +25,7 @@ const homeHref = getRelativeLocaleUrl(locale, '');
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { websiteId } = siteStructuredDataIds(origin);
-const pageUrl = new URL(canonicalPath, Astro.site).href;
+const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 
 const webPageLd = {
   '@context': 'https://schema.org',

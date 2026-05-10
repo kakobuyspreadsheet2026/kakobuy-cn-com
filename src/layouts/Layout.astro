@@ -23,6 +23,7 @@ import {
   structuredDataLogoPath,
   structuredDataLogoWidth,
 } from '../consts';
+import { canonicalPathWithTrailingSlash } from '../lib/canonicalPath';
 
 interface Props {
   title: string;
@@ -42,6 +43,11 @@ interface Props {
    * Default: all configured locales.
    */
   hreflangLocales?: RouteLocale[];
+  /**
+   * When true, every emitted `hreflang` alternate uses this page’s canonical URL (e.g. EN-only
+   * blog posts where segment-based alternates would wrongly target `/blog/` hubs).
+   */
+  hreflangMirrorsCanonical?: boolean;
   /** Public path (e.g. `/foo.png`) or absolute URL; defaults to site-wide share image. */
   ogImage?: string;
   /** Open Graph type; use `article` for blog posts (adds `article:*` meta when timestamps provided). */
@@ -64,6 +70,7 @@ const {
   locale: localeProp,
   i18nRouteSegment: segmentProp,
   hreflangLocales: hreflangLocalesProp,
+  hreflangMirrorsCanonical = false,
   ogImage,
   ogType = 'website',
   articlePublishedTime,
@@ -73,7 +80,8 @@ const {
   lcpPreloadImages,
 } = Astro.props;
 
-const canonical = new URL(canonicalPath, Astro.site).href;
+const canonicalPathNormalized = canonicalPathWithTrailingSlash(canonicalPath);
+const canonical = new URL(canonicalPathNormalized, Astro.site).href;
 const locale = normalizeRouteLocale(
   localeProp ?? (Astro.currentLocale as RouteLocale | undefined),
 );
@@ -169,7 +177,7 @@ const ld = [organizationLd, websiteLd, ...pageLd];
 const hreflangClusters = astroLocaleCodes.map((code, i) => ({
   locale: normalizeRouteLocale(code.startsWith('pt') ? 'pt' : code),
   hreflang: HREFLANG_BY_ROUTE[normalizeRouteLocale(code.startsWith('pt') ? 'pt' : code)],
-  href: hreflangUrls[i],
+  href: hreflangMirrorsCanonical ? canonical : hreflangUrls[i],
 }));
 
 const allowedHreflangs = hreflangLocalesProp
@@ -179,8 +187,9 @@ const allowedHreflangs = hreflangLocalesProp
 const filteredHreflang = hreflangClusters.filter((c) => allowedHreflangs.has(c.locale));
 
 const localeIndexOfEn = astroLocaleCodes.findIndex((c) => c === 'en' || String(c).startsWith('en'));
-const xDefaultHref =
-  allowedHreflangs.has('en') && localeIndexOfEn >= 0
+const xDefaultHref = hreflangMirrorsCanonical
+  ? canonical
+  : allowedHreflangs.has('en') && localeIndexOfEn >= 0
     ? hreflangUrls[localeIndexOfEn]
     : filteredHreflang[0]?.href ?? canonical;
 

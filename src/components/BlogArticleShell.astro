@@ -1,4 +1,5 @@
 ---
+import { absoluteCanonicalUrl } from '../lib/canonicalPath';
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
@@ -27,7 +28,7 @@ const homeHref = getRelativeLocaleUrl(locale, '');
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { organizationId, websiteId } = siteStructuredDataIds(origin);
-const pageUrl = new URL(canonicalPath, Astro.site).href;
+const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 const shareImageUrl =
   ogImage && /^https?:\/\//i.test(ogImage)
     ? ogImage
@@ -71,6 +72,7 @@ const breadcrumbLd = breadcrumbListLd([
   canonicalPath={canonicalPath}
   locale={locale}
   hreflangLocales={['en']}
+  hreflangMirrorsCanonical
   ogImage={ogImage}
   ogType="article"
   articlePublishedTime={publishedISO}

@@ -4,6 +4,7 @@
  * Many blockers hide elements whose href points at discord.* — this avoids that pattern.
  */
 import { defaultKakobuyDiscordUrl } from '../../consts';
+import { absoluteCanonicalUrl } from '../../lib/canonicalPath';
 
 export const prerender = true;
 
@@ -24,7 +25,7 @@ const discordUrl = target || defaultKakobuyDiscordUrl;
     />
     <meta http-equiv="refresh" content={`0;url=${discordUrl}`} />
     <title>Redirecting…</title>
-    <link rel="canonical" href={new URL('/join/discord', Astro.site).href} />
+    <link rel="canonical" href={absoluteCanonicalUrl('/join/discord', Astro.site)} />
   </head>
   <body
     style="margin:0;font-family:system-ui,sans-serif;padding:2rem;background:#f6f6fb;color:#1a1a1a;line-height:1.5"

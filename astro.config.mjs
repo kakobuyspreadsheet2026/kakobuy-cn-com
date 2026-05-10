@@ -6,6 +6,7 @@ const site = 'https://kakobuy-cn.com';
 
 export default defineConfig({
   site,
+  trailingSlash: 'always',
   integrations: [
     sitemap({
       /** Ensure trailing-slash URLs for routes that need explicit inclusion (must stay crawlable). */

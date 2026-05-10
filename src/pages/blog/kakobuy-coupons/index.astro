@@ -1,4 +1,5 @@
 ---
+import { absoluteCanonicalUrl } from '../../../lib/canonicalPath';
 import Layout from '../../../layouts/Layout.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
@@ -21,7 +22,7 @@ const description =
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { organizationId, websiteId } = siteStructuredDataIds(origin);
-const pageUrl = new URL(canonicalPath, Astro.site).href;
+const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 const shareImageUrl = new URL(defaultOgImagePath, Astro.site).href;
 const publishedISO = '2026-05-08';
 
@@ -53,6 +54,7 @@ const articleLd = {
   canonicalPath={canonicalPath}
   locale={locale}
   hreflangLocales={['en']}
+  hreflangMirrorsCanonical
   ogType="article"
   articlePublishedTime={publishedISO}
   articleModifiedTime={publishedISO}
