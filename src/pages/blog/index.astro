@@ -6,6 +6,7 @@ import { siteStructuredDataIds } from '../../consts';
 import { getBlogCopy } from '../../i18n/copy/blogPage';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { HTML_LANG_BY_ROUTE } from '../../i18n/config';
+import { breadcrumbListLd } from '../../lib/breadcrumbSchema';
 
 export const prerender = true;
 
@@ -17,6 +18,7 @@ const homeHref = getRelativeLocaleUrl(locale, '');
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { websiteId } = siteStructuredDataIds(origin);
 const pageUrl = new URL(canonicalPath, Astro.site).href;
+const homeAbs = new URL(homeHref, Astro.site).href;
 
 const webPageLd = {
   '@context': 'https://schema.org',
@@ -28,6 +30,11 @@ const webPageLd = {
   inLanguage: HTML_LANG_BY_ROUTE[locale],
   isPartOf: { '@id': websiteId },
 };
+
+const breadcrumbLd = breadcrumbListLd([
+  { name: copy.breadcrumbHomeLabel, url: homeAbs },
+  { name: copy.h1, url: pageUrl },
+]);
 ---
 
 <Layout
@@ -36,7 +43,16 @@ const webPageLd = {
   canonicalPath={canonicalPath}
   locale={locale}
   i18nRouteSegment="blog"
-  jsonLd={webPageLd}
+  jsonLd={[webPageLd, breadcrumbLd]}
 >
-  <BlogPageBody locale={locale} copy={copy} homeHref={homeHref} posts={blogPosts} />
+  <BlogPageBody
+    locale={locale}
+    copy={copy}
+    homeHref={homeHref}
+    posts={blogPosts}
+    breadcrumbUi={[
+      { label: copy.breadcrumbHomeLabel, href: homeHref },
+      { label: copy.h1 },
+    ]}
+  />
 </Layout>

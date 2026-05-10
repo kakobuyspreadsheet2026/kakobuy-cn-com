@@ -1,0 +1,116 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-spreadsheet-to-parcel-checklist';
+const publishedISO = '2026-05-09';
+---
+
+<BlogArticleShell
+  title="Kakobuy Spreadsheet to parcel checklist: paste, QC, consolidate, ship | kakobuy-cn.com"
+  description="An editorial walk-through from Spreadsheet row to outbound parcel on Kakobuy—URL hygiene, warehouse QC, consolidation choices, and why freight quotes compare chargeable weight to scale weight."
+  canonicalPath={canonicalPath}
+  headline="Kakobuy Spreadsheet → parcel: the link-forward checklist"
+  publishedISO={publishedISO}
+  displayDate="9 May 2026"
+>
+  <p class="blog-lede" slot="lede">
+    Many Kakobuy shoppers arrive with the same artefact: a curated row—a Taobao SKU, a Weidian album link, or a 1688 offer—and a vague anxiety about whether “paste into Kakobuy” preserves intent through QC and consolidation into one outbound parcel.
+    This is that funnel spelled out as a checklist: what to freeze before you pay domestically, what warehouse QC can prove, how consolidation interacts with packaging volume, and how international quotes relate to standard freight maths—not rumours from Discord drops or Reddit haul captions alone.
+  </p>
+
+  <h2>What “Spreadsheet → parcel” means</h2>
+  <p>
+    Chinese consumer marketplaces (Taobao, Weidian-style storefronts, 1688 wholesale listings) sell items domestically; a shopping agent such as <a href="https://kakobuy.com/">Kakobuy</a> is typically involved after you decide what listing URL and variants represent “your row.”
+    Kakobuy markets forwarding-oriented tooling—the site exposes workflows aimed at bringing marketplace URLs through domestic receipt into outbound shipment (<a href="https://kakobuy.com/forwarding">forwarding overview</a>).
+    Taobao’s own overseas-facing gateway explicitly describes the marketplace model used by sellers there—the operator presenting itself as a trading venue rather than the merchant on each SKU—which matters when expectations collide during QC (<a href="https://world.taobao.com/">Taobao overseas gateway</a>).
+    Alibaba Group publishes umbrella descriptions of its business footprint (<a href="https://www.alibabagroup.com/en-US/about-businesses">Alibaba Group: businesses overview</a>), useful orientation when your Spreadsheet mixes retail-grade Taobao rows with wholesale-feeling 1688 listings forwarded through one wallet.
+  </p>
+
+  <h2>Phase A — Freeze the listing identity before paste</h2>
+  <p>
+    The goal before handing Kakobuy anything is to minimise drift between “what you researched” and “what resolves inside Kakobuy’s intake UI.” That reduces rework tickets later—especially when a Spreadsheet row is rebuilt weeks apart from checkout.
+  </p>
+
+  <h3>Taobao and large-catalog URLs</h3>
+  <p>
+    Stable canonical URLs and SKU grids deserve deliberate hygiene—mobile redirects and variant selections behave badly under hurry.
+    Our <a href="/blog/kakobuy-taobao/">Kakobuy Taobao intake notes</a> walk through paste discipline so your dominant variant survives paste-to-buy.
+  </p>
+
+  <h3>Weidian album versus item URLs</h3>
+  <p>
+    Weidian links drift between album views and focused item pages more readily than classic Taobao SKU URLs expect.
+    Read <a href="/blog/kakobuy-weidian/">Kakobuy Weidian links</a> before batch-pasting fashion-forward rows whose thumbnails looked identical in browser tabs.
+  </p>
+
+  <h3>1688 wholesale realities</h3>
+  <p>
+    Minimum-order quantities, invoicing tone, and fulfilment variance show up earlier on wholesale lanes than on impulse Taobao carts.
+    Pair wholesale rows with <a href="/blog/kakobuy-1688/">Kakobuy &amp; 1688</a> so MOQ misreads do not survive into warehouse disputes you cannot unwind cheaply.
+  </p>
+
+  <h2>Phase B — Paste, domestic purchase, and expected latency</h2>
+  <p>
+    After intake resolves correctly, the domestic leg is China-market fulfilment: seller packing, domestic courier hand-offs, and warehouse scanning—not yet your courier abroad.
+    Treat ETA chatter from <a href="/blog/kakobuy-spreadsheet-reddit/">Reddit haul threads</a> as retrospective timelines tied to specific freight lanes and seasons; binding ETAs live inside signed-in tooling on Kakobuy, which iterates product surfaces independently of editorial mirrors like ours.
+    Where promotional mechanics confuse checkout (“welcome packs,” parcel coupons, warehouse-side bundles), separate myth from checkout-visible instruments via <a href="/blog/kakobuy-coupons/">Kakobuy coupons</a>—discount maths belongs after variant correctness, not before it.
+  </p>
+
+  <h2>Phase C — Warehouse QC as decision-grade evidence</h2>
+  <p>
+    QC in agent workflows usually means inbound warehouse photography—metadata-rich proof about what crossed the dock before you authorize export spend—not a factory audit certificate.
+    Deep-read <a href="/blog/kakobuy-spreadsheet-qc/">Kakobuy Spreadsheet QC</a> for how to compare pixels against listing galleries and when retakes beat impulse approvals.
+  </p>
+  <ul>
+    <li><strong>Reject early:</strong> dispute ambiguous batches while routing costs remain domestic-weight.</li>
+    <li><strong>ZOOM deliberately:</strong> stitching, ink alignment, panel symmetry, sole stacks—the spreadsheet rarely captures defects photography exposes.</li>
+    <li><strong>Packaging intent:</strong> shoeboxes versus flattened inserts materially alter volumetric quotes downstream.</li>
+  </ul>
+
+  <h2>Phase D — Consolidation and packaging toggles</h2>
+  <p>
+    Consolidation bundles multiple accepted warehouse lines into fewer outbound cartons; fewer parcels can reduce duplicated outer-carton mass but may introduce oversized interiors unless Kakobuy’s consolidation presets strip bulky seller-branded boxes intelligently.
+    Kakobuy exposes estimator tooling adjacent to logistics workflows (<a href="https://kakobuy.com/tools/estimate">shipping estimator</a>)—your Spreadsheet should capture nominal weights or volumes only as hypotheses until estimator outputs reflect measured dims inside Kakobuy.
+    Discuss urgency-sensitive chatter—drops, raffles, coupon rumours—with scepticism; operational coupons still reconcile inside account tooling rather than screenshots (<a href="/blog/kakobuy-discord/">Kakobuy Discord context</a>).
+  </p>
+
+  <h2>Phase E — International freight quotes and chargeable weight</h2>
+  <p>
+    Air-centric parcel lanes frequently bill off <em>chargeable weight</em>: the larger of scale weight and volumetric (dimensional) weight derived from bounding-box measurements.
+    Neutral logistics primers spell out the comparison explicitly—Maersk’s air cargo guide defines chargeable weight as based on the higher of gross versus volumetric weight, illustrating the industry-standard cm³→kg divisor convention tied to IATA practice (<a href="https://www.maersk.com/logistics-explained/transportation-and-freight/2025/03/10/air-cargo-chargeable-weight">Maersk: air cargo chargeable weight</a>; association reference at <a href="https://www.iata.org/">IATA</a>).
+    Express-style parcel carriers sometimes adopt different dimensional divisors than trunk air freight—Maersk notes airlines may apply alternate divisors—so treat Spreadsheet “/kg guesses” as sensitivity analysis until Kakobuy prints final dims for your consolidated carton class.
+  </p>
+
+  <h2>Cross-cutting habits that survive customs seasons</h2>
+  <ul>
+    <li><strong>Annotate each Spreadsheet row</strong> with listing capture date, dominant variant colourway, and seller messaging promises—QC disputes benefit from contemporaneous notes.</li>
+    <li><strong>Keep intake URLs canonical</strong>; rebuild tabs instead of trusting stale QR forwards.</li>
+    <li><strong>Isolate wholesale experiments</strong> from emotionally loaded retail grails so MOQ failures do not delay unrelated QC clears.</li>
+    <li><strong>Reconcile coupons against checkout pages</strong>, not Telegram forwards—see <a href="/blog/kakobuy-coupons/">coupons primer</a>.</li>
+  </ul>
+
+  <h2>Ground-truth checklist (print-friendly sequence)</h2>
+  <ol>
+    <li>Listing identity frozen (URL + SKU + notes).</li>
+    <li>Paste into Kakobuy; variants eye-verified against Spreadsheet row.</li>
+    <li>Domestic leg monitored inside Kakobuy—ignore anecdotal ETAs unless they cite same lane and season.</li>
+    <li>QC imagery compared against listing and notes; retake or dispute before export authorization.</li>
+    <li>Consolidation/packaging toggles chosen with volumetric awareness.</li>
+    <li>Estimator/final quote reviewed against Maersk-class chargeable-weight intuition.</li>
+    <li>Outbound label issued only after parcel composition matches accepted QC lines.</li>
+  </ol>
+
+  <p>
+    Need UI-adjacent choreography next to marketplace theory? Start from <a href="/how-to-buy/">How to buy</a> for step screenshots aligned with broader notices mirrored on <a href="/news/">News</a>.
+  </p>
+
+  <h2>Sources and further reading</h2>
+  <ul>
+    <li>Kakobuy product surfaces referenced operationally here: <a href="https://kakobuy.com/">home</a>, <a href="https://kakobuy.com/forwarding">forwarding</a>, <a href="https://kakobuy.com/tools/estimate">shipping estimator</a>.</li>
+    <li>Taobao overseas gateway statement on marketplace structure: <a href="https://world.taobao.com/">world.taobao.com</a>.</li>
+    <li>Alibaba Group footprint orientation: <a href="https://www.alibabagroup.com/en-US/about-businesses">about businesses</a>.</li>
+    <li>Air freight chargeable weight primer (industry framing): <a href="https://www.maersk.com/logistics-explained/transportation-and-freight/2025/03/10/air-cargo-chargeable-weight">Maersk logistics explained</a>; trade association hub <a href="https://www.iata.org/">IATA</a>.</li>
+  </ul>
+</BlogArticleShell>

@@ -39,7 +39,14 @@ export const HTML_LANG_BY_ROUTE: Record<RouteLocale, string> = {
 };
 
 /** Logical route segment passed to `getAbsoluteLocaleUrlList(...)` (no leading slash). */
-export type I18nRouteSegment = '' | 'how-to-buy' | 'news' | 'buyer-shares' | 'spreadsheet' | 'blog';
+export type I18nRouteSegment =
+  | ''
+  | 'about'
+  | 'how-to-buy'
+  | 'news'
+  | 'buyer-shares'
+  | 'spreadsheet'
+  | 'blog';
 
 export function normalizeRouteLocale(lc: string | undefined): RouteLocale {
   if (lc && (ROUTE_LOCALES as readonly string[]).includes(lc)) return lc as RouteLocale;

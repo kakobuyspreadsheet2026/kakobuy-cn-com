@@ -1,18 +1,17 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import BlogPageBody from '../../../components/pages/BlogPageBody.astro';
-import blogPosts from '../../../data/blogPosts.json';
+import AboutPageBody from '../../../components/pages/AboutPageBody.astro';
 import { siteStructuredDataIds } from '../../../consts';
-import { getBlogCopy } from '../../../i18n/copy/blogPage';
+import { getAboutPageCopy } from '../../../i18n/copy/aboutPage';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { HTML_LANG_BY_ROUTE } from '../../../i18n/config';
 import { breadcrumbListLd } from '../../../lib/breadcrumbSchema';
 
 export const prerender = true;
 
-const locale = 'fr';
-const canonicalPath = '/fr/blog';
-const copy = getBlogCopy(locale);
+const locale = 'pt';
+const canonicalPath = '/pt/about';
+const copy = getAboutPageCopy(locale);
 const homeHref = getRelativeLocaleUrl(locale, '');
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
@@ -22,13 +21,14 @@ const homeAbs = new URL(homeHref, Astro.site).href;
 
 const webPageLd = {
   '@context': 'https://schema.org',
-  '@type': 'Blog',
+  '@type': 'AboutPage',
   '@id': `${pageUrl}#webpage`,
   name: copy.title,
   url: pageUrl,
   description: copy.description,
   inLanguage: HTML_LANG_BY_ROUTE[locale],
   isPartOf: { '@id': websiteId },
+  keywords: copy.keywords,
 };
 
 const breadcrumbLd = breadcrumbListLd([
@@ -42,17 +42,8 @@ const breadcrumbLd = breadcrumbListLd([
   description={copy.description}
   canonicalPath={canonicalPath}
   locale={locale}
-  i18nRouteSegment="blog"
+  i18nRouteSegment="about"
   jsonLd={[webPageLd, breadcrumbLd]}
 >
-  <BlogPageBody
-    locale={locale}
-    copy={copy}
-    homeHref={homeHref}
-    posts={blogPosts}
-    breadcrumbUi={[
-      { label: copy.breadcrumbHomeLabel, href: homeHref },
-      { label: copy.h1 },
-    ]}
-  />
+  <AboutPageBody locale={locale} copy={copy} homeHref={homeHref} />
 </Layout>

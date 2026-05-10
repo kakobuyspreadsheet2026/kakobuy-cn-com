@@ -5,6 +5,7 @@ import SiteFooter from './SiteFooter.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { defaultOgImagePath, siteStructuredDataIds } from '../consts';
 import { HTML_LANG_BY_ROUTE } from '../i18n/config';
+import { breadcrumbListLd } from '../lib/breadcrumbSchema';
 
 interface Props {
   title: string;
@@ -53,6 +54,14 @@ const articleLd = {
     url: pageUrl,
   },
 };
+
+const homeAbs = new URL(homeHref, Astro.site).href;
+const blogAbs = new URL(blogIndexHref, Astro.site).href;
+const breadcrumbLd = breadcrumbListLd([
+  { name: 'Home', url: homeAbs },
+  { name: 'Blog', url: blogAbs },
+  { name: headline, url: pageUrl },
+]);
 ---
 
 <Layout
@@ -65,7 +74,7 @@ const articleLd = {
   ogType="article"
   articlePublishedTime={publishedISO}
   articleModifiedTime={publishedISO}
-  jsonLd={articleLd}
+  jsonLd={[articleLd, breadcrumbLd]}
 >
   <SiteHeader locale={locale} />
 
@@ -73,13 +82,21 @@ const articleLd = {
     <section class="band-alt">
       <div class="wrap">
         <div class="page-mast">
-          <p class="blog-nav">
-            <a href={homeHref}>← Home</a>
-            <span aria-hidden="true"> · </span>
-            <a href={blogIndexHref}>Blog</a>
-          </p>
+          <nav class="blog-bc-nav" aria-label="Breadcrumb">
+            <ol class="blog-bc-list">
+              <li class="blog-bc-item">
+                <a href={homeHref}>Home</a>
+              </li>
+              <li class="blog-bc-item">
+                <a href={blogIndexHref}>Blog</a>
+              </li>
+              <li class="blog-bc-item blog-bc-current" aria-current="page">
+                <span class="blog-bc-current-text">{headline}</span>
+              </li>
+            </ol>
+          </nav>
 
-          <article class="blog-piece">
+          <article class="blog-piece" lang="en">
             <header class="blog-piece-head">
               <h1 class="simple-page-title">{headline}</h1>
               <p class="blog-piece-meta">
@@ -96,7 +113,8 @@ const articleLd = {
               <p class="blog-disclaimer">
                 <strong>Disclaimer:</strong> kakobuy-cn.com publishes independent editorial notes for Kakobuy Spreadsheet shoppers—browse bridges,
                 explainers, and mirrored notices—not checkout, warehousing, or dispute outcomes on kakobuy.com. Features and policies change; rely on your
-                signed-in Kakobuy console for binding quotes and QC tooling.
+                signed-in Kakobuy console for binding quotes and QC tooling.{' '}
+                <a href="/about/">About &amp; editorial independence</a>.
               </p>
             </div>
           </article>
@@ -105,13 +123,51 @@ const articleLd = {
     </section>
   </main>
 
-  <SiteFooter />
+  <SiteFooter locale={locale} />
 </Layout>
 
 <style>
-  .blog-nav {
+  .blog-bc-nav {
     margin: 0 0 0.75rem;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  .blog-bc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: baseline;
+  }
+  .blog-bc-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    max-width: 100%;
+  }
+  .blog-bc-item:not(.blog-bc-current)::after {
+    content: '/';
+    color: var(--border);
+    margin-left: 0.35rem;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  .blog-bc-item a {
+    font-weight: 600;
+    color: var(--accent-dark, #0f766e);
+    text-decoration: none;
+  }
+  .blog-bc-item a:hover {
+    text-decoration: underline;
+  }
+  .blog-bc-current-text {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    word-break: break-word;
   }
   .blog-piece-head {
     margin-bottom: 1.25rem;

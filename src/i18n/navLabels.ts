@@ -10,6 +10,7 @@ const navTexts: Record<
     blog: string;
     buyerShares: string;
     spreadsheet: string;
+    about: string;
     categories: string;
   }
 > = {
@@ -19,6 +20,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Buyer shares',
     spreadsheet: 'Spreadsheet',
+    about: 'About',
     categories: 'Categories',
   },
   de: {
@@ -27,6 +29,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Buyer‑Posts',
     spreadsheet: 'Spreadsheet',
+    about: 'Über uns',
     categories: 'Kategorien',
   },
   pt: {
@@ -35,6 +38,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Depoimentos',
     spreadsheet: 'Planilha',
+    about: 'Sobre',
     categories: 'Categorias',
   },
   es: {
@@ -43,6 +47,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Opiniones',
     spreadsheet: 'Hoja',
+    about: 'Acerca de',
     categories: 'Categorías',
   },
   fr: {
@@ -51,6 +56,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Retours acheteurs',
     spreadsheet: 'Feuille',
+    about: 'À propos',
     categories: 'Catégories',
   },
   it: {
@@ -59,6 +65,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Esperienze',
     spreadsheet: 'Foglio',
+    about: 'Informazioni',
     categories: 'Categorie',
   },
   pl: {
@@ -67,6 +74,7 @@ const navTexts: Record<
     blog: 'Blog',
     buyerShares: 'Wpisy',
     spreadsheet: 'Arkusz',
+    about: 'O nas',
     categories: 'Kategorie',
   },
 };

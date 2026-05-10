@@ -30,7 +30,14 @@ const routeLocale = (ROUTE_LOCALES as readonly string[]).includes(locale)
 type LocaleSwitchResolved =
   | {
       kind: 'localized';
-      segment: '' | 'how-to-buy' | 'news' | 'buyer-shares' | 'spreadsheet' | 'blog';
+      segment:
+        | ''
+        | 'about'
+        | 'how-to-buy'
+        | 'news'
+        | 'buyer-shares'
+        | 'spreadsheet'
+        | 'blog';
     }
   | { kind: 'fixed'; href: string };
 
@@ -53,6 +60,7 @@ function resolveLocaleSwitchPath(rawPath: string): LocaleSwitchResolved {
   const joined = rest.join('/');
 
   if (
+    joined === 'about' ||
     joined === 'how-to-buy' ||
     joined === 'news' ||
     joined === 'buyer-shares' ||
@@ -113,6 +121,7 @@ const navBarLinks: NavItem[] = [
   { label: t.blog, href: getRelativeLocaleUrl(locale, 'blog'), external: false },
   { label: t.buyerShares, href: getRelativeLocaleUrl(locale, 'buyer-shares'), external: false },
   { label: t.spreadsheet, href: getRelativeLocaleUrl(locale, 'spreadsheet'), external: false },
+  { label: t.about, href: getRelativeLocaleUrl(locale, 'about'), external: false },
 ];
 
 const homeHref = getRelativeLocaleUrl(locale, '');

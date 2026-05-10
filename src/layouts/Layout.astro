@@ -29,7 +29,14 @@ interface Props {
   description: string;
   canonicalPath?: string;
   locale?: string;
-  i18nRouteSegment?: '' | 'how-to-buy' | 'news' | 'buyer-shares' | 'spreadsheet' | 'blog';
+  i18nRouteSegment?:
+    | ''
+    | 'about'
+    | 'how-to-buy'
+    | 'news'
+    | 'buyer-shares'
+    | 'spreadsheet'
+    | 'blog';
   /**
    * Locales that actually have a page for this URL (SEO: do not emit hreflang to 404s).
    * Default: all configured locales.
@@ -74,6 +81,7 @@ const htmlLang = HTML_LANG_BY_ROUTE[locale];
 
 function inferSegmentFromCanonical(pathOnly: string):
   | ''
+  | 'about'
   | 'how-to-buy'
   | 'news'
   | 'buyer-shares'
@@ -85,6 +93,7 @@ function inferSegmentFromCanonical(pathOnly: string):
   }
   const joined = segs.join('/');
   if (
+    joined === 'about' ||
     joined === 'how-to-buy' ||
     joined === 'news' ||
     joined === 'buyer-shares' ||
@@ -95,6 +104,7 @@ function inferSegmentFromCanonical(pathOnly: string):
   /** Deep routes like `/blog/post-slug` share the section’s localized hub for hreflang targets. */
   const primary = segs[0];
   if (
+    primary === 'about' ||
     primary === 'how-to-buy' ||
     primary === 'news' ||
     primary === 'buyer-shares' ||

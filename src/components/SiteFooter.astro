@@ -1,7 +1,12 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { normalizeRouteLocale } from '../i18n/config';
+import { footerAboutLinkLabel } from '../i18n/copy/footerAboutLink';
 import { mlSpreadsheetKakobuy } from '../consts';
 
 interface Props {
+  /** Used for localized About link target (defaults to English hub home locale). */
+  locale?: string;
   disclaimerTitle?: string;
   /** Raw HTML for the disclaimer body (trusted, from i18n bundles). */
   disclaimerHtml?: string;
@@ -9,10 +14,15 @@ interface Props {
 }
 
 const {
+  locale: localeProp,
   disclaimerTitle = 'Disclaimer:',
   disclaimerHtml,
   copyrightLine = '© 2026 kakobuy-cn.com · Editorial notes only—carts, payouts, and freight approvals stay off-domain.',
 } = Astro.props;
+
+const locale = normalizeRouteLocale(localeProp);
+const aboutHref = getRelativeLocaleUrl(locale, 'about');
+const aboutLabel = footerAboutLinkLabel[locale] ?? footerAboutLinkLabel.en;
 
 const defaultDisclaimerHtml = `kakobuy-cn.com publishes <strong>Kakobuy Spreadsheet</strong> context only: think explainers, catalogue entry points, and cautionary notes—not checkout. Outbound targets such as the <a href="${mlSpreadsheetKakobuy}" target="_blank" rel="noopener noreferrer">Spreadsheet browse bridge</a>, Chinese marketplaces, and <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">kakobuy.com</a> operate independently; we never custody payments or parcels. Cross-check QC imagery and seller policies personally. No endorsement relationship with Kakobuy or linked merchants—follow each platform’s binding policies.`;
 ---
@@ -20,6 +30,9 @@ const defaultDisclaimerHtml = `kakobuy-cn.com publishes <strong>Kakobuy Spreadsh
 <footer>
   <div class="wrap">
     <div class="page-mast">
+      <p class="footer-about-line">
+        <a class="footer-about-link" href={aboutHref}>{aboutLabel}</a>
+      </p>
       <p>
         <strong>{disclaimerTitle}</strong>{' '}
         <span set:html={disclaimerHtml ?? defaultDisclaimerHtml} />
@@ -28,3 +41,18 @@ const defaultDisclaimerHtml = `kakobuy-cn.com publishes <strong>Kakobuy Spreadsh
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-about-line {
+    margin: 0 0 0.65rem;
+    font-size: 0.875rem;
+  }
+  .footer-about-link {
+    font-weight: 600;
+    color: var(--accent-dark, #0f766e);
+    text-decoration: none;
+  }
+  .footer-about-link:hover {
+    text-decoration: underline;
+  }
+</style>

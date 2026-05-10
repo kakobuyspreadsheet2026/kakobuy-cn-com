@@ -1,9 +1,15 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import KakobuyHomeHero from './KakobuyHomeHero.astro';
 import SiteFooter from './SiteFooter.astro';
 import HomeCategoryBanners from './HomeCategoryBanners.astro';
 import { defaultCommunityRedditUrl, ml } from '../consts';
 import { homeCategoryBannersWithHrefs } from '../lib/homeCategoryBannersWithHrefs';
+import { getRecentBlogPosts } from '../lib/recentBlogPosts';
+import { getRecentBuyerShares } from '../lib/recentBuyerShares';
+import { getHomeRecentBlogCopy } from '../i18n/copy/homeRecentBlog';
+import { getHomeRecentBuyerSharesCopy } from '../i18n/copy/homeRecentBuyerShares';
+import { HTML_LANG_BY_ROUTE, ROUTE_LOCALES, type RouteLocale } from '../i18n/config';
 import type { HomeStubContent } from '../i18n/types';
 
 interface Props {
@@ -34,6 +40,27 @@ const CAT_ICON: Record<string, string> = {
 };
 
 const browseMlRoot = ml.replace(/\/$/, '');
+
+const routeLocale = (ROUTE_LOCALES as readonly string[]).includes(locale)
+  ? (locale as RouteLocale)
+  : ('en' as RouteLocale);
+const recentBlogPosts = getRecentBlogPosts(5);
+const recentBuyerShares = getRecentBuyerShares(4);
+const blogRecent = getHomeRecentBlogCopy(locale);
+const buyerSharesRecent = getHomeRecentBuyerSharesCopy(locale);
+const blogIndexHref = getRelativeLocaleUrl(locale, 'blog');
+const buyerSharesIndexHref = getRelativeLocaleUrl(locale, 'buyer-shares');
+
+const blogDateLocale = routeLocale === 'pt' ? 'pt-BR' : HTML_LANG_BY_ROUTE[routeLocale];
+
+function formatIsoDate(iso: string): string {
+  try {
+    const d = new Date(`${iso}T12:00:00`);
+    return new Intl.DateTimeFormat(blogDateLocale, { dateStyle: 'medium' }).format(d);
+  } catch {
+    return iso;
+  }
+}
 ---
 
 <KakobuyHomeHero locale={locale} />
@@ -69,6 +96,15 @@ const browseMlRoot = ml.replace(/\/$/, '');
             ))
           }
         </div>
+
+        <p class="category-explore-kicker">
+          {c.exploreKickerLead}
+          <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">Kakobuy</a>
+          {c.exploreKickerTrail}
+        </p>
+        <p class="category-explore-intro">{c.exploreIntro}</p>
+        <p class="category-explore-sub">{c.exploreSub}</p>
+
         <div class="category-below-icon">
           <a class="category-below-icon-link" href={redditHref} target="_blank" rel="noopener noreferrer" aria-label={c.redditAria}>
             <img
@@ -82,13 +118,73 @@ const browseMlRoot = ml.replace(/\/$/, '');
             />
           </a>
         </div>
-        <p class="category-explore-kicker">
-          {c.exploreKickerLead}
-          <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">Kakobuy</a>
-          {c.exploreKickerTrail}
-        </p>
-        <p class="category-explore-intro">{c.exploreIntro}</p>
-        <p class="category-explore-sub">{c.exploreSub}</p>
+
+        <div class="home-feed-row">
+          <nav class="home-feed-row__col home-recent-blog" aria-labelledby="recent-blog-heading">
+            <div class="home-recent-feed-panel">
+              <h3 id="recent-blog-heading" class="home-recent-blog__heading">{blogRecent.heading}</h3>
+              {
+                blogRecent.englishArticlesNote ? (
+                  <p class="home-recent-blog__lang-note">{blogRecent.englishArticlesNote}</p>
+                ) : null
+              }
+              <ol class="home-recent-blog__list">
+                {
+                  recentBlogPosts.map((post) => (
+                    <li class="home-recent-blog__item">
+                      <a class="home-recent-blog__link" href={`/blog/${post.slug}/`}>
+                        <span class="home-recent-blog__title">{post.title}</span>
+                        <time class="home-recent-blog__date" datetime={post.published}>
+                          {formatIsoDate(post.published)}
+                        </time>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ol>
+              <p class="home-recent-blog__footer">
+                <a class="home-recent-blog__all" href={blogIndexHref}>{blogRecent.viewAll}</a>
+              </p>
+            </div>
+          </nav>
+
+          <nav class="home-feed-row__col home-recent-buyer-shares" aria-labelledby="recent-buyer-shares-heading">
+            <div class="home-recent-feed-panel">
+              <h3 id="recent-buyer-shares-heading" class="home-recent-buyer-shares__heading">{buyerSharesRecent.heading}</h3>
+              {
+                buyerSharesRecent.englishArticlesNote ? (
+                  <p class="home-recent-buyer-shares__lang-note">{buyerSharesRecent.englishArticlesNote}</p>
+                ) : null
+              }
+              <ol class="home-recent-buyer-shares__list">
+                {
+                  recentBuyerShares.map((pick) => (
+                    <li class="home-recent-buyer-shares__item">
+                      <a
+                        class="home-recent-buyer-shares__link"
+                        href={pick.redditUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${pick.title} — opens Reddit in a new tab`}
+                      >
+                        <span class="home-recent-buyer-shares__title">{pick.title}</span>
+                        <span class="home-recent-buyer-shares__sub">{pick.redditLabel}</span>
+                        {pick.addedAt ? (
+                          <time class="home-recent-buyer-shares__date" datetime={pick.addedAt}>
+                            {formatIsoDate(pick.addedAt)}
+                          </time>
+                        ) : null}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ol>
+              <p class="home-recent-buyer-shares__footer">
+                <a class="home-recent-buyer-shares__all" href={buyerSharesIndexHref}>{buyerSharesRecent.viewAll}</a>
+              </p>
+            </div>
+          </nav>
+        </div>
       </div>
     </div>
   </section>
@@ -147,6 +243,7 @@ const browseMlRoot = ml.replace(/\/$/, '');
 </main>
 
 <SiteFooter
+  locale={locale}
   disclaimerTitle={c.footer.disclaimerLabel}
   disclaimerHtml={c.footer.disclaimerHtml}
   copyrightLine={c.footer.copyrightLine}
@@ -183,4 +280,164 @@ const browseMlRoot = ml.replace(/\/$/, '');
   }
 
   /* exploreKicker splitter may leave dangling text — keep simple underline link */
+
+  /* Blog + Buyer shares row — after category copy + Reddit icon */
+
+  .home-feed-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3vw, 1.35rem);
+    margin-top: 1.65rem;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    max-width: min(52rem, 100%);
+    margin-inline: auto;
+  }
+
+  .home-feed-row__col {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .home-feed-row__col {
+      flex: 1 1 calc(50% - 0.75rem);
+      max-width: calc(50% - 0.675rem);
+    }
+  }
+
+  .home-recent-feed-panel {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    margin-inline: auto;
+    text-align: center;
+    padding: clamp(1rem, 3vw, 1.2rem) clamp(1rem, 3.5vw, 1.35rem) clamp(1.05rem, 3vw, 1.25rem);
+    background: var(--surface);
+    border: 1px solid rgba(232, 232, 240, 0.98);
+    border-radius: 0.85rem;
+    box-shadow:
+      0 10px 28px rgba(26, 26, 26, 0.06),
+      0 2px 8px rgba(26, 26, 26, 0.04);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-recent-blog__heading,
+  .home-recent-buyer-shares__heading {
+    margin: 0 0 0.65rem;
+    font-size: clamp(1.05rem, 2.6vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .home-recent-blog__lang-note,
+  .home-recent-buyer-shares__lang-note {
+    margin: 0 0 0.85rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .home-recent-blog__list,
+  .home-recent-buyer-shares__list {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+  }
+
+  .home-recent-blog__item,
+  .home-recent-buyer-shares__item {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid rgba(232, 232, 240, 0.95);
+  }
+
+  .home-recent-blog__item:last-of-type,
+  .home-recent-buyer-shares__item:last-of-type {
+    border-bottom: none;
+  }
+
+  .home-recent-blog__link,
+  .home-recent-buyer-shares__link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    padding: 0.72rem 0.05rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 0.35rem;
+    margin-inline: -0.15rem;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .home-recent-blog__link:hover,
+  .home-recent-buyer-shares__link:hover {
+    background: rgba(255, 30, 111, 0.06);
+    color: var(--accent-dark, #e91362);
+  }
+
+  .home-recent-blog__title,
+  .home-recent-buyer-shares__title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.38;
+  }
+
+  .home-recent-buyer-shares__sub {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .home-recent-blog__date,
+  .home-recent-buyer-shares__date {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .home-recent-blog__footer,
+  .home-recent-buyer-shares__footer {
+    margin: 1rem 0 0;
+    text-align: center;
+  }
+
+  .home-recent-blog__all,
+  .home-recent-buyer-shares__all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+    text-decoration: none;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition:
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .home-recent-blog__all:hover,
+  .home-recent-buyer-shares__all:hover {
+    background: var(--accent-soft, rgba(255, 30, 111, 0.08));
+    border-color: rgba(255, 30, 111, 0.22);
+  }
 </style>
