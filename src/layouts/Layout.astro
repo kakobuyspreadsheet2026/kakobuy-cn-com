@@ -185,6 +185,13 @@ const xDefaultHref =
     : filteredHreflang[0]?.href ?? canonical;
 
 const ogAlternates = ROUTE_LOCALES.filter((lc) => lc !== locale && allowedHreflangs.has(lc));
+
+/** GA4 — omit in dev so local previews do not pollute reports. Override via `PUBLIC_GA_MEASUREMENT_ID`. */
+const ga4MeasurementId =
+  typeof import.meta.env.PUBLIC_GA_MEASUREMENT_ID === 'string' &&
+  import.meta.env.PUBLIC_GA_MEASUREMENT_ID.trim().length > 0
+    ? import.meta.env.PUBLIC_GA_MEASUREMENT_ID.trim()
+    : 'G-ZMRNL5GG8M';
 ---
 
 <!doctype html>
@@ -206,6 +213,22 @@ const ogAlternates = ROUTE_LOCALES.filter((lc) => lc !== locale && allowedHrefla
     <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+
+    {
+      import.meta.env.PROD ? (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`} />
+          <script is:inline define:vars={{ ga4MeasurementId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', ga4MeasurementId);
+          </script>
+        </>
+      ) : null
+    }
 
     <meta property="og:type" content={ogType} />
     {ogType === 'article' && articlePublishedTime ? (
