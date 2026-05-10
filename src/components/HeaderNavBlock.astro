@@ -129,6 +129,11 @@ const norm = (p: string) => (p.replace(/\/$/, '') === '' ? '/' : p.replace(/\/$/
 
 const pathnameNorm = norm(pathname.split('?')[0] ?? pathname);
 const homeNorm = norm(homeHref);
+const blogHref = getRelativeLocaleUrl(locale, 'blog');
+const blogNorm = norm(blogHref);
+const drawerNavItems = navBarLinks.filter((item) => norm(item.href) !== blogNorm);
+
+const localeShort = routeLocale.toUpperCase();
 ---
 
 <nav class="oob-header-nav" aria-label="Site and category navigation">
@@ -137,7 +142,7 @@ const homeNorm = norm(homeHref);
       'oob-nav-link',
       'oob-nav-link--home',
       'oob-nav-link--brand',
-        { 'oob-nav-link--accent': pathnameNorm === homeNorm },
+      { 'oob-nav-link--accent': pathnameNorm === homeNorm },
     ]}
     href={homeHref}
     aria-label="kakobuy-cn.com home — Kakobuy Spreadsheet hub"
@@ -154,7 +159,7 @@ const homeNorm = norm(homeHref);
     />
   </a>
 
-  <details class="oob-nav-dd">
+  <details class="oob-nav-dd oob-nav-dd--categories">
     <summary class="oob-nav-dd-trigger" aria-label={`${t.categories}: Kakobuy Spreadsheet browse menu`}>
       {t.categories}
     </summary>
@@ -169,30 +174,48 @@ const homeNorm = norm(homeHref);
     </div>
   </details>
 
-  {
-    navBarLinks.map((item) =>
-      item.external ? (
-        <a class="oob-nav-link" href={item.href} target="_blank" rel="noopener noreferrer">
-          {item.label}
-        </a>
-      ) : (
-        <a
-          class:list={[
-            'oob-nav-link',
-            {
-              'oob-nav-link--accent':
-                pathnameNorm === norm(item.href) || pathnameNorm.startsWith(`${norm(item.href)}/`),
-            },
-          ]}
-          href={item.href}
-        >
-          {item.label}
-        </a>
-      ),
-    )
-  }
+  <a
+    class:list={[
+      'oob-nav-link',
+      'oob-nav-blog-mobile',
+      'oob-hide-desktop',
+      {
+        'oob-nav-link--accent':
+          pathnameNorm === blogNorm || pathnameNorm.startsWith(`${blogNorm}/`),
+      },
+    ]}
+    href={blogHref}
+  >
+    {t.blog}
+  </a>
 
-  <details class="oob-nav-dd oob-nav-dd--locale">
+  <div class="oob-nav-links-desktop oob-hide-mobile">
+    {
+      navBarLinks.map((item) =>
+        item.external ? (
+          <a class="oob-nav-link" href={item.href} target="_blank" rel="noopener noreferrer">
+            {item.label}
+          </a>
+        ) : (
+          <a
+            class:list={[
+              'oob-nav-link',
+              {
+                'oob-nav-link--accent':
+                  pathnameNorm === norm(item.href) ||
+                  pathnameNorm.startsWith(`${norm(item.href)}/`),
+              },
+            ]}
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ),
+      )
+    }
+  </div>
+
+  <details class="oob-nav-dd oob-nav-dd--locale oob-hide-mobile">
     <summary
       class="oob-nav-dd-trigger"
       aria-label={`${localeMenuLabel} — ${LOCALE_NATIVE_NAME[routeLocale]} (current)`}
@@ -215,6 +238,85 @@ const homeNorm = norm(homeHref);
       }
     </div>
   </details>
+
+  <div class="oob-nav-mobile-tools">
+    <details class="oob-nav-m-lang">
+      <summary>
+        <svg
+          class="oob-nav-m-lang-globe"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+          <path
+            d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+            stroke="currentColor"
+            stroke-width="2"></path>
+        </svg>
+        <span class="oob-nav-m-lang-code">{localeShort}</span>
+      </summary>
+      <div class="oob-nav-dd-panel oob-nav-m-lang-panel">
+        {
+          localeChoices.map(({ code, label, href }) => (
+            <a
+              class:list={['oob-nav-dd-link', code === routeLocale && 'oob-nav-dd-link--current']}
+              href={href}
+              hreflang={HREFLANG_BY_ROUTE[code]}
+              lang={code}
+              aria-current={code === routeLocale ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+
+    <details class="oob-nav-m-menu">
+      <summary aria-label="Site menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M5 7h14M5 12h14M5 17h14"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+        </svg>
+      </summary>
+      <div class="oob-nav-m-menu-panel" tabindex="-1">
+        {
+          drawerNavItems.map((item) =>
+            item.external ? (
+              <a
+                class="oob-nav-m-drawer-link"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <a
+                class:list={[
+                  'oob-nav-m-drawer-link',
+                  {
+                    'oob-nav-m-drawer-link--accent':
+                      pathnameNorm === norm(item.href) ||
+                      pathnameNorm.startsWith(`${norm(item.href)}/`),
+                  },
+                ]}
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            ),
+          )
+        }
+      </div>
+    </details>
+  </div>
 </nav>
 
 <style>
@@ -237,6 +339,12 @@ const homeNorm = norm(homeHref);
     padding-bottom: 0;
     padding-right: 0.55rem;
     justify-content: flex-start;
+    flex-shrink: 0;
+  }
+
+  .oob-nav-dd--categories {
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .oob-nav-dd--locale .oob-nav-dd-panel {
@@ -247,5 +355,132 @@ const homeNorm = norm(homeHref);
   .oob-nav-dd-link--current {
     background: rgba(13, 148, 136, 0.1);
     color: var(--accent-dark, #0f766e);
+  }
+
+  /* Mobile: language capsule + round menu (reference layout) */
+  .oob-nav-m-lang {
+    position: relative;
+  }
+
+  .oob-nav-m-lang > summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.62rem 0.35rem 0.48rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .oob-nav-m-lang > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .oob-nav-m-lang-code {
+    letter-spacing: 0.02em;
+  }
+
+  .oob-nav-m-lang-globe {
+    flex-shrink: 0;
+    color: var(--text);
+    opacity: 0.92;
+  }
+
+  .oob-nav-m-lang-panel {
+    right: 0;
+    left: auto;
+    min-width: 11rem;
+  }
+
+  .oob-nav-m-menu {
+    position: relative;
+  }
+
+  .oob-nav-m-menu > summary {
+    list-style: none;
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 0;
+  }
+
+  .oob-nav-m-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .oob-nav-m-menu-panel {
+    position: absolute;
+    z-index: 110;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    left: auto;
+    width: min(17.5rem, calc(100vw - 1.5rem));
+    padding: 0.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.55rem;
+    box-shadow:
+      0 14px 40px rgba(26, 27, 58, 0.14),
+      0 2px 8px rgba(26, 27, 58, 0.06);
+    max-height: min(70vh, 22rem);
+    overflow-y: auto;
+  }
+
+  .oob-nav-m-drawer-link {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 2.75rem;
+    padding: 0.42rem 0.58rem;
+    border-radius: 0.35rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .oob-nav-m-drawer-link:hover {
+    background: rgba(255, 30, 111, 0.06);
+    color: var(--oob-pink, #ff1e6f);
+  }
+
+  .oob-nav-m-drawer-link--accent {
+    color: var(--oob-pink, #ff1e6f);
+  }
+
+  @media (max-width: 767px) {
+    .oob-nav-blog-mobile {
+      padding-left: 0.48rem;
+      padding-right: 0.52rem;
+      min-height: 2.45rem;
+      font-size: 0.78rem;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .oob-nav-m-menu-panel {
+      width: 13rem;
+    }
   }
 </style>

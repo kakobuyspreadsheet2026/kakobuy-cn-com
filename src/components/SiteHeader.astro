@@ -75,6 +75,54 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
     border: none;
   }
 
+  @media (max-width: 767px) {
+    .oob-header-nav {
+      flex-wrap: nowrap;
+      gap: 0.15rem;
+      row-gap: 0;
+      align-items: center;
+      position: relative;
+      z-index: 60;
+    }
+
+    .oob-hide-mobile {
+      display: none !important;
+    }
+
+    .oob-nav-mobile-tools {
+      margin-left: auto;
+      display: flex !important;
+      align-items: center;
+      gap: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    .oob-nav-dd .oob-nav-dd-trigger {
+      padding-left: 0.55rem;
+      padding-right: 1.35rem;
+      font-size: 0.78rem;
+      min-height: 2.45rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .oob-hide-desktop {
+      display: none !important;
+    }
+
+    .oob-nav-mobile-tools {
+      display: none !important;
+    }
+  }
+
+  .oob-nav-links-desktop {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.08rem;
+    row-gap: 0.35rem;
+  }
+
   .oob-nav-link {
     flex: 0 0 auto;
     display: inline-flex;

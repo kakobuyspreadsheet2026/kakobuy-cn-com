@@ -703,9 +703,12 @@ const ga4MeasurementId =
           flex-basis: calc((100cqi - var(--hbc-gap)) / 2);
         }
       }
-      @container home-category-banners (max-width: 420px) {
+      /* Phones / narrow shells: one full-width card per view (no peek of next slide). */
+      @container home-category-banners (max-width: 640px) {
         .home-category-banners__slide {
-          flex-basis: min(100cqi - 1.25rem, 320px);
+          flex: 0 0 100cqi;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
         }
       }
       .home-category-banners__slide > .home-category-banner-link,
