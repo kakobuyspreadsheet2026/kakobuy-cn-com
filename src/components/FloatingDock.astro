@@ -433,14 +433,47 @@ const redditDockIcon = '/icons/reddit-snoo.png';
     background: var(--accent-soft, rgba(255, 30, 111, 0.08));
     color: var(--accent-dark, #e91362);
   }
+  /* Stand out from grey sibling buttons: filled brand chip + white glyph */
   .floating-dock__btn--video {
-    color: var(--accent-dark, #e91362);
+    color: #fff;
+    background: linear-gradient(
+      155deg,
+      var(--accent, #ff1e6f) 0%,
+      var(--accent-dark, #e91362) 48%,
+      #c41052 100%
+    );
+    box-shadow:
+      0 3px 12px rgba(233, 19, 98, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+  .floating-dock__btn--video:hover {
+    background: linear-gradient(
+      155deg,
+      #ff3d82 0%,
+      var(--accent, #ff1e6f) 45%,
+      var(--accent-dark, #e91362) 100%
+    );
+    color: #fff;
+    box-shadow:
+      0 5px 18px rgba(233, 19, 98, 0.48),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    filter: brightness(1.03);
+  }
+  .floating-dock__btn--video .floating-dock__icon :global(svg) {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
   }
   .floating-dock__btn--video-active {
-    background: rgba(233, 19, 98, 0.12);
+    background: linear-gradient(155deg, #e91362 0%, #b30e4a 100%);
+    color: #fff;
     box-shadow:
-      inset 0 0 0 2px var(--accent, #ff1e6f),
-      0 0 0 1px rgba(255, 30, 111, 0.15);
+      inset 0 0 0 2px rgba(255, 255, 255, 0.38),
+      0 4px 16px rgba(179, 14, 74, 0.45);
+    filter: none;
+  }
+  .floating-dock__btn--video-active:hover {
+    filter: brightness(1.04);
   }
   .floating-dock__btn--discord {
     color: #5865f2;
