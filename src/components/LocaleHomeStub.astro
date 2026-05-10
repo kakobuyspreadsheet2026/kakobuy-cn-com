@@ -45,7 +45,7 @@ const routeLocale = (ROUTE_LOCALES as readonly string[]).includes(locale)
   ? (locale as RouteLocale)
   : ('en' as RouteLocale);
 const recentBlogPosts = getRecentBlogPosts(5);
-const recentBuyerShares = getRecentBuyerShares(4);
+const recentBuyerShares = getRecentBuyerShares(5);
 const blogRecent = getHomeRecentBlogCopy(locale);
 const buyerSharesRecent = getHomeRecentBuyerSharesCopy(locale);
 const blogIndexHref = getRelativeLocaleUrl(locale, 'blog');
