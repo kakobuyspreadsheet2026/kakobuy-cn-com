@@ -14,12 +14,12 @@ export const prerender = true;
 const locale = 'it';
 const canonicalPath = '/it/spreadsheet';
 const sheetUrl =
-  import.meta.env.PUBLIC_KAKOBUY_SPREADSHEET_URL?.trim() || `${ml}/spreadsheet/kakobuy`;
+  import.meta.env.PUBLIC_KAKOBUY_SPREADSHEET_URL?.trim() || ml;
 
 const howToHref = getRelativeLocaleUrl(locale, 'how-to-buy');
 const newsHref = getRelativeLocaleUrl(locale, 'news');
 const raw = getSpreadsheetPageCopy(locale);
-const copy = hydrateSpreadsheetCopy(raw, `${ml}/spreadsheet/kakobuy`, howToHref, newsHref);
+const copy = hydrateSpreadsheetCopy(raw, ml, howToHref, newsHref);
 const homeHref = getRelativeLocaleUrl(locale, '');
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';

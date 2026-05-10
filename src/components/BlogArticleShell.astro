@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
+import BlogEndCta from './BlogEndCta.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { defaultOgImagePath, siteStructuredDataIds } from '../consts';
 import { HTML_LANG_BY_ROUTE } from '../i18n/config';
@@ -110,6 +111,7 @@ const breadcrumbLd = breadcrumbListLd([
 
             <div class="blog-body prose-block">
               <slot />
+              <BlogEndCta locale={locale} />
               <p class="blog-disclaimer">
                 <strong>Disclaimer:</strong> kakobuy-cn.com publishes independent editorial notes for Kakobuy Spreadsheet shoppers—browse bridges,
                 explainers, and mirrored notices—not checkout, warehousing, or dispute outcomes on kakobuy.com. Features and policies change; rely on your
@@ -225,6 +227,7 @@ const breadcrumbLd = breadcrumbListLd([
     font-weight: 600;
     color: var(--accent-dark, #0f766e);
   }
+
   .blog-disclaimer {
     margin-top: 2rem;
     padding-top: 1rem;

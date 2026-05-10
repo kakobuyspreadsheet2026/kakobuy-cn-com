@@ -3,6 +3,7 @@ import shippingRaw from '../data/redditShippingShareSummaries.json';
 
 /** Mirrors `RedditSharePick` without importing from `.astro`. */
 export type RedditSharePickLike = {
+  id: string;
   title: string;
   redditUrl: string;
   redditLabel: string;

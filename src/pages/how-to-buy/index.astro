@@ -12,7 +12,7 @@ export const prerender = true;
 const locale = 'en';
 const canonicalPath = '/how-to-buy';
 const raw = getHowToBuyCopy(locale);
-const copy = hydrateHowToBuyCopy(raw, `${ml}/spreadsheet/kakobuy`, howToBuyDesktopNewsExcerpts.length);
+const copy = hydrateHowToBuyCopy(raw, ml, howToBuyDesktopNewsExcerpts.length);
 const homeHref = getRelativeLocaleUrl(locale, '');
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';

@@ -1,5 +1,6 @@
 ---
 export interface RedditSharePick {
+  id: string;
   title: string;
   summary: string;
   redditUrl: string;
@@ -74,7 +75,7 @@ const t = isShipping
       <p class="reddit-picks-intro" set:html={t.intro} />
       <div class="reddit-picks-stack">
         {picks.map((item) => (
-          <div class="reddit-pick-card">
+          <div class="reddit-pick-card" id={item.id}>
             <h2 class="reddit-pick-title">{item.title}</h2>
             {item.galleryImageUrls?.length ? (
               <div

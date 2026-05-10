@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
+import BlogEndCta from '../../../components/BlogEndCta.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { defaultOgImagePath, siteStructuredDataIds } from '../../../consts';
 import { HTML_LANG_BY_ROUTE } from '../../../i18n/config';
@@ -147,6 +148,8 @@ const articleLd = {
                 <li>Will it still be valid on the day I submit the parcel, not merely the day I bought domestic?</li>
                 <li>Am I expecting merchant discounts when I should be expecting freight discounts?</li>
               </ol>
+
+              <BlogEndCta locale={locale} />
 
               <p class="blog-disclaimer">
                 <strong>Disclaimer:</strong> kakobuy-cn.com publishes editorial context for Kakobuy Spreadsheet shoppers—explainer copy, catalogue bridges, and mirrored announcements—not coupons hosted by us.

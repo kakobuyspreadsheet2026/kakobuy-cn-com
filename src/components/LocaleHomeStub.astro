@@ -65,6 +65,13 @@ function formatIsoDate(iso: string): string {
     return iso;
   }
 }
+
+const blogFreshIso = recentBlogPosts[0]?.published ?? '';
+const buyerShareDates = recentBuyerShares.map((p) => p.addedAt).filter(Boolean) as string[];
+const buyerSharesFreshIso =
+  buyerShareDates.length > 0
+    ? [...buyerShareDates].sort((a, b) => b.localeCompare(a))[0]
+    : '';
 ---
 
 <KakobuyHomeHero locale={locale} />
@@ -126,7 +133,22 @@ function formatIsoDate(iso: string): string {
         <div class="home-feed-row">
           <nav class="home-feed-row__col home-recent-blog" aria-labelledby="recent-blog-heading">
             <div class="home-recent-feed-panel">
-              <h3 id="recent-blog-heading" class="home-recent-blog__heading">{blogRecent.heading}</h3>
+              <div class="home-recent-feed-panel__mast">
+                <h3 id="recent-blog-heading" class="home-recent-blog__heading">{blogRecent.heading}</h3>
+                {
+                  blogFreshIso ? (
+                    <p class="home-recent-feed-panel__fresh">
+                      <span class="home-recent-feed-panel__fresh-label">{blogRecent.lastUpdatedLabel}</span>
+                      <span class="home-recent-feed-panel__fresh-sep" aria-hidden="true">
+                        {' · '}
+                      </span>
+                      <time class="home-recent-feed-panel__fresh-date" datetime={blogFreshIso}>
+                        {formatIsoDate(blogFreshIso)}
+                      </time>
+                    </p>
+                  ) : null
+                }
+              </div>
               {
                 blogRecent.englishArticlesNote ? (
                   <p class="home-recent-blog__lang-note">{blogRecent.englishArticlesNote}</p>
@@ -134,10 +156,15 @@ function formatIsoDate(iso: string): string {
               }
               <ol class="home-recent-blog__list">
                 {
-                  recentBlogPosts.map((post) => (
+                  recentBlogPosts.map((post, bi) => (
                     <li class="home-recent-blog__item">
                       <a class="home-recent-blog__link" href={`/blog/${post.slug}/`}>
-                        <span class="home-recent-blog__title">{post.title}</span>
+                        <span class="home-recent-blog__title-line">
+                          <span class="home-recent-blog__title">{post.title}</span>
+                          {bi === 0 ? (
+                            <span class="home-feed-new-badge" aria-hidden="true">{blogRecent.newBadge}</span>
+                          ) : null}
+                        </span>
                         <time class="home-recent-blog__date" datetime={post.published}>
                           {formatIsoDate(post.published)}
                         </time>
@@ -154,7 +181,24 @@ function formatIsoDate(iso: string): string {
 
           <nav class="home-feed-row__col home-recent-buyer-shares" aria-labelledby="recent-buyer-shares-heading">
             <div class="home-recent-feed-panel">
-              <h3 id="recent-buyer-shares-heading" class="home-recent-buyer-shares__heading">{buyerSharesRecent.heading}</h3>
+              <div class="home-recent-feed-panel__mast">
+                <h3 id="recent-buyer-shares-heading" class="home-recent-buyer-shares__heading">
+                  {buyerSharesRecent.heading}
+                </h3>
+                {
+                  buyerSharesFreshIso ? (
+                    <p class="home-recent-feed-panel__fresh">
+                      <span class="home-recent-feed-panel__fresh-label">{buyerSharesRecent.lastUpdatedLabel}</span>
+                      <span class="home-recent-feed-panel__fresh-sep" aria-hidden="true">
+                        {' · '}
+                      </span>
+                      <time class="home-recent-feed-panel__fresh-date" datetime={buyerSharesFreshIso}>
+                        {formatIsoDate(buyerSharesFreshIso)}
+                      </time>
+                    </p>
+                  ) : null
+                }
+              </div>
               {
                 buyerSharesRecent.englishArticlesNote ? (
                   <p class="home-recent-buyer-shares__lang-note">{buyerSharesRecent.englishArticlesNote}</p>
@@ -162,16 +206,19 @@ function formatIsoDate(iso: string): string {
               }
               <ol class="home-recent-buyer-shares__list">
                 {
-                  recentBuyerShares.map((pick) => (
+                  recentBuyerShares.map((pick, si) => (
                     <li class="home-recent-buyer-shares__item">
                       <a
                         class="home-recent-buyer-shares__link"
-                        href={pick.redditUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${pick.title} — opens Reddit in a new tab`}
+                        href={`${buyerSharesIndexHref}#${pick.id}`}
+                        aria-label={`${pick.title} — view summary on our Buyer shares page`}
                       >
-                        <span class="home-recent-buyer-shares__title">{pick.title}</span>
+                        <span class="home-recent-buyer-shares__title-line">
+                          <span class="home-recent-buyer-shares__title">{pick.title}</span>
+                          {si === 0 ? (
+                            <span class="home-feed-new-badge" aria-hidden="true">{buyerSharesRecent.newBadge}</span>
+                          ) : null}
+                        </span>
                         <span class="home-recent-buyer-shares__sub">{pick.redditLabel}</span>
                         {pick.addedAt ? (
                           <time class="home-recent-buyer-shares__date" datetime={pick.addedAt}>
@@ -253,7 +300,7 @@ function formatIsoDate(iso: string): string {
         <h2 id="cta-heading">{c.ctaHeading}</h2>
         <p class="section-intro">
           {c.ctaIntro}{' — '}
-          <a href={`${browseMlRoot}/spreadsheet/kakobuy`} target="_blank" rel="noopener noreferrer">
+          <a href={browseMlRoot} target="_blank" rel="noopener noreferrer">
             {c.sheetLinkLabel}
           </a>
           {c.ctaIntroSuffix ?? ''}
@@ -358,11 +405,62 @@ function formatIsoDate(iso: string): string {
 
   .home-recent-blog__heading,
   .home-recent-buyer-shares__heading {
-    margin: 0 0 0.65rem;
+    margin: 0;
     font-size: clamp(1.05rem, 2.6vw, 1.2rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text);
+  }
+
+  .home-recent-feed-panel__mast {
+    margin-bottom: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .home-recent-feed-panel__fresh {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+  }
+
+  .home-recent-feed-panel__fresh-label {
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .home-recent-feed-panel__fresh-date {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .home-recent-blog__title-line,
+  .home-recent-buyer-shares__title-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  .home-feed-new-badge {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.14rem 0.42rem;
+    border-radius: 4px;
+    background: rgba(255, 30, 111, 0.12);
+    color: var(--accent-dark, #e91362);
+    border: 1px solid rgba(255, 30, 111, 0.22);
+    line-height: 1;
   }
 
   .home-recent-blog__lang-note,

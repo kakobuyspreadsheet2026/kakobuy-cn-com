@@ -25,7 +25,7 @@ const copy = hydrateNewsCopy(raw, {
   howToUrl: getRelativeLocaleUrl(locale, 'how-to-buy'),
   kakobuyHomeUrl: 'https://kakobuy.com/',
   homeCuratedUrl: `${getRelativeLocaleUrl(locale, '')}#curated-directory`,
-  mlCatalogUrl: `${ml}/spreadsheet/kakobuy`,
+  mlCatalogUrl: ml,
   excerptCount: officialKakobuyNoticeExcerpts.length,
   carouselTapUrls: homeCategoryBannerTapUrls(locale),
 });

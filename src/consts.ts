@@ -1,7 +1,7 @@
 export const ml = 'https://maisonlooks.com/en';
 
-/** English catalogue base URL for Kakobuy Spreadsheet browse (site primary locale). */
-export const mlSpreadsheetKakobuy = `${ml}/spreadsheet/kakobuy`;
+/** MaisonLooks EN locale root — outbound spreadsheet/catalog CTAs use this URL (not `/spreadsheet/kakobuy`). Name retained for imports. */
+export const mlSpreadsheetKakobuy = ml;
 
 /** Site branding (aligned with `<meta property="og:site_name">` and JSON-LD). */
 export const siteName = 'Kakobuy Spreadsheet Hub';
