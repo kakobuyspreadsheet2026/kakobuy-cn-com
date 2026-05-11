@@ -1,5 +1,12 @@
 [
   {
+    "slug": "qc-websites-landscape",
+    "title": "QC websites in the wild: what exists, what it proves, and what it cannot replace",
+    "published": "2026-05-11",
+    "description": "FindQC, UUFinds, the Finds.ly sunset, spreadsheets, Discord bots—and why JadeShip-style catalogues are not QC portals next to Kakobuy warehouse photos.",
+    "lang": "en"
+  },
+  {
     "slug": "kakobuy-spreadsheet-to-parcel-checklist",
     "title": "Kakobuy Spreadsheet → parcel: the link-forward checklist",
     "published": "2026-05-09",

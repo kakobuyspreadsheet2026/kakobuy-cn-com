@@ -1,0 +1,120 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/qc-websites-landscape';
+const publishedISO = '2026-05-11';
+---
+
+<BlogArticleShell
+  title="QC websites explained: types, limits, and how they relate to Kakobuy workflows | kakobuy-cn.com"
+  description="Dedicated QC finders (FindQC, UUFinds), retired tools like Findsly, spreadsheets, and agent consoles—why Kakobuy warehouse QC still beats third-party galleries."
+  canonicalPath={canonicalPath}
+  headline="QC websites in the wild: what exists, what it proves, and what it cannot replace"
+  publishedISO={publishedISO}
+  displayDate="11 May 2026"
+>
+  <p class="blog-lede" slot="lede">
+    People land on <strong>QC websites</strong> from Reddit threads, Discord pins, or vague bookmarks—“some database where you punch in a code and see photos.” The tooling varies enormously:
+    community-maintained spreadsheets, standalone galleries indexed by seller batch or SKU identifiers, and of course the <strong>official QC panels inside agents such as Kakobuy</strong>. This article is a sober orientation—not a directory promising completeness—meant for shoppers who already paste Spreadsheet rows into Kakobuy and want clarity before approving warehouse shots.
+  </p>
+
+  <h2>Vocabulary first: three different meanings of “QC” online</h2>
+  <p>
+    Online chatter collapses everything into one acronym. For Spreadsheet shoppers working through Kakobuy, it helps to separate layers:
+  </p>
+  <ul>
+    <li><strong>Warehouse QC</strong> — photographs taken after your seller’s parcel arrives at the agent’s domestic hub. This is what actually gates whether you accept goods before international freight.</li>
+    <li><strong>Community / aggregated QC</strong> — user-submitted or scraped imagery grouped by listing, batch, or ambiguous identifiers. Useful as priors; never binding.</li>
+    <li><strong>Factory or marketing QC</strong> — seller-produced glamour shots or QC certificates embedded in listings. Evidence of intent, not proof of what reached Hangzhou or Guangdong warehouses.</li>
+  </ul>
+  <p>
+    Our focused Kakobuy-centric primer stays on warehouse workflows—see <a href="/blog/kakobuy-spreadsheet-qc/">Kakobuy Spreadsheet QC</a>—but understanding the wider ecosystem explains why random screenshots feel persuasive yet mislead.
+  </p>
+
+  <h2>Why QC-themed websites exist at all</h2>
+  <p>
+    Shopping agents exploded alongside Taobao-class marketplaces, Weidian volatility, and spreadsheet-driven discovery. Buyers crave <strong>repeatable visual priors</strong>: “Has anyone seen navy stitching on this batch?” Third-party QC portals attempt to centralise those answers—sometimes elegantly, sometimes as stale dumps—because official consoles only show <em>your</em> inbound parcel once it exists.
+  </p>
+
+  <h2>Major archetypes you will encounter</h2>
+
+  <h3>1. Agent-native consoles (source of truth)</h3>
+  <p>
+    Kakobuy (and peers) expose QC inside signed-in accounts once logistics sync. These interfaces feel plain compared with flashy galleries, yet they bind to purchase IDs you control: timestamps, measurement prompts, retake workflows, dispute rails. No external QC website replaces this layer—at best it informs expectations before you click buy domestically.
+  </p>
+
+  <h3>2. Dedicated QC finder portals</h3>
+  <p>
+    These sites exist primarily to surface <strong>browseable QC imagery</strong> tied (loosely) to listing URLs, agent SKUs, or community identifiers—before your own parcel exists. They are not interchangeable with agent consoles; coverage gaps and stale batches are normal.
+  </p>
+  <ul>
+    <li>
+      <strong><a href="https://findqc.com/" target="_blank" rel="noopener noreferrer">FindQC</a></strong> — a prominent QC-image finder oriented around search-by-link workflows; policies, languages, and dataset freshness change over time, so spot-check anything safety-critical on Kakobuy itself.
+    </li>
+    <li>
+      <strong><a href="https://www.uufinds.com/" target="_blank" rel="noopener noreferrer">UUFinds</a></strong> — another QC-photo finder / spreadsheet-adjacent hub frequently cited alongside agents such as Kakobuy in community guides; treat mirrored domains or forks with extra scepticism.
+    </li>
+    <li>
+      <strong>Finds.ly (Findsly)</strong> — historically a heavily bookmarked QC-oriented finder; it <strong>shut down around mid‑2025</strong>. Independent community outlets (for example{' '}
+      <a href="https://academy.findqc.com/2025/06/25/pay-tribute-to-eli-and-finds-ly/" target="_blank" rel="noopener noreferrer">FindQC Academy’s tribute notes</a>) describe a voluntary wind-down after explosive growth rather than a Kakobuy-specific outage. Anything still branding itself “Findsly” today deserves URL-bar scrutiny—verify TLS, operator, and terms before typing credentials.
+    </li>
+  </ul>
+  <p>
+    <strong>Not QC portals:</strong> general catalogue / link hubs—<em>JadeShip included</em>—may sit beside QC culture in bookmarks, but they are fundamentally <strong>listing discovery &amp; metadata tooling</strong>, not warehouse photo consoles. Confusing the two sends shoppers hunting pixels on the wrong screen.
+  </p>
+
+  <h3>3. Spreadsheet-first ecosystems</h3>
+  <p>
+    Your Kakobuy Spreadsheet hub ritual often begins here: curated rows, outbound Maison Looks catalogue URLs, annotation columns for batch rumours. Some parallel spreadsheets embed thumbnail grids or hotlinks to mirrored folders. Strength: contextual commentary from curators you trust. Weakness: cells go stale the moment a seller swaps factory runs—always anchor decisions to dated captures.
+  </p>
+
+  <h3>4. Social galleries & Discord bots</h3>
+  <p>
+    Ephemeral feeds excel at surfacing <strong>fresh</strong> batches but terrible at archival accuracy. Bots that reply with cached QC packs may reference obsolete lighting or cropped angles. Use them for exploration; export mental notes back into your personal spreadsheet rather than treating bot output as authoritative truth.
+  </p>
+
+  <h3>5. Reverse-search & image-cluster experiments</h3>
+  <p>
+    A minority of tools cluster visually similar warehouse shots—sometimes helpful when chasing alternate colourways. False positives abound when lighting shifts or sellers reuse generic packaging. Never approve Kakobuy QC solely because a reverse hit “looks close enough.”
+  </p>
+
+  <h2>Quality signals when judging a QC portal</h2>
+  <ul>
+    <li><strong>Timestamp transparency:</strong> galleries without dates are nostalgia exhibits.</li>
+    <li><strong>Identifier hygiene:</strong> vague titles (“Batch A”) without linkage to listing URLs rot quickly.</li>
+    <li><strong>Moderation footprint:</strong> who removes fraudulent uploads? absent policies imply chaos.</li>
+    <li><strong>Latency:</strong> aggressive scraping can violate marketplace terms or distort colours—cross-check primary sources.</li>
+    <li><strong>Privacy posture:</strong> community QC sometimes leaks tracking codes or addresses—blur sensitive rows before sharing wins publicly.</li>
+  </ul>
+
+  <h2>Hard limits—what even “good” QC sites cannot do</h2>
+  <ol>
+    <li><strong>No contractual tie-in:</strong> third-party pixels do not unlock Kakobuy disputes—you need domestic-side evidence inside the agent workflow.</li>
+    <li><strong>Batch drift:</strong> factories revise trims silently; yesterday’s hero gallery contradicts tomorrow’s inbound carton.</li>
+    <li><strong>Selection bias:</strong> angry shoppers publish misses; satisfied buyers ghost—survivorship skews sentiment.</li>
+    <li><strong>Freight blind spots:</strong> QC imagery rarely reveals volumetric packaging choices that later explode DIM-weight quotes.</li>
+  </ol>
+
+  <h2>Mapping the workflow back to Kakobuy Spreadsheet discipline</h2>
+  <p>
+    Treat external QC browsing as <strong>pre-purchase research</strong>. Once you paste a canonical listing URL into Kakobuy—discipline covered across our <a href="/blog/kakobuy-taobao/">Taobao paste guide</a>, <a href="/blog/kakobuy-weidian/">Weidian notes</a>, and <a href="/blog/kakobuy-1688/">1688 realism brief</a>—the authoritative narrative shifts to inbound warehouse photography. Spreadsheets remain ideal for capturing seller promises <em>before</em> domestic payment; QC consoles capture reality <em>after</em>.
+  </p>
+  <p>
+    Need checklist framing end-to-end? Read <a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">Spreadsheet → parcel checklist</a> for where QC sits relative to consolidation and chargeable weight literacy.
+  </p>
+
+  <h2>Responsible use checklist</h2>
+  <ul>
+    <li>Save dated screenshots of listings alongside third-party QC references.</li>
+    <li>Prefer identifiers you can re-type into Kakobuy search bars without ambiguity.</li>
+    <li>Challenge sensational Discord captions with zoomed comparisons—not vibes.</li>
+    <li>When unsure, request retakes or clarification inside Kakobuy rather than outsourcing judgement to forums.</li>
+  </ul>
+
+  <h2>Closing stance</h2>
+  <p>
+    QC websites are neither scams nor oracles—they are <strong>distributed notebooks</strong> around an industrial-scale resale stack. Respect what they accelerate (discovery, batch literacy) and refuse what they pretend to guarantee (your personal inbound outcome). Pair outside research with signed-in Kakobuy tooling and the editorial scaffolding on <a href="/how-to-buy/">How to buy</a>; that combination stays closer to ground truth than any standalone gallery ever promises.
+  </p>
+</BlogArticleShell>
