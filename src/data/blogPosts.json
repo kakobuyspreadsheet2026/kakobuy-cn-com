@@ -1,5 +1,12 @@
 [
   {
+    "slug": "kakobuy-warehouse-storage-spreadsheet",
+    "title": "Kakobuy warehouse storage when your Spreadsheet won’t stop growing",
+    "published": "2026-05-12",
+    "description": "Staggered Spreadsheet buys, Kakobuy’s documented holding windows, QC clears, consolidation trade-offs—and why indefinite “ship later” collides with published forfeiture timelines.",
+    "lang": "en"
+  },
+  {
     "slug": "qc-websites-landscape",
     "title": "QC websites in the wild: what exists, what it proves, and what it cannot replace",
     "published": "2026-05-11",
