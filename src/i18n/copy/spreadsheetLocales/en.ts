@@ -6,7 +6,7 @@ export const en: SpreadsheetPageCopy = {
   description:
     'Read-first companion to the Kakobuy Spreadsheet browse: spreadsheet catalogue rails for Taobao / Weidian / 1688 listings, QC caveats, freight realism, column-by-column literacy, curated guides, and FAQs—discovery starts here, wallets stay on Kakobuy.',
   keywords:
-    'Kakobuy spreadsheet catalogue, Kakobuy spreadsheet browse, Weidian spreadsheet QC, Taobao agent links, shopping spreadsheet 2026, warehouse photography primer, curated marketplace URLs',
+    'Kakobuy spreadsheet catalogue, Kakobuy spreadsheet browse, third-party spreadsheet hubs comparison, Weidian spreadsheet QC, Taobao agent links, shopping spreadsheet 2026, warehouse photography primer, curated marketplace URLs',
   backHomeLabel: '← Back to home',
   h1: 'Kakobuy Spreadsheet',
   h2Hero: 'A living directory of marketplace shortcuts tuned for Kakobuy shoppers.',
@@ -144,7 +144,7 @@ If jargon still feels opaque, stack this primer with <a href="{howToUrl}">How to
     },
   ],
   resourcesTitle: 'On-domain companions for spreadsheet shoppers',
-  resourcesIntroHtml: `These long reads stay on kakobuy-cn.com so you screenshot less and understand more: QC literacy after warehouse uploads, Reddit-derived timelines, and a parcel checklist bridging spreadsheet optimism to freight invoices. Commerce still finalizes exclusively inside <strong><a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a></strong>—we never touch carts.`,
+  resourcesIntroHtml: `These long reads stay on kakobuy-cn.com so you screenshot less and understand more: QC literacy after warehouse uploads, Reddit-derived timelines, parcel logistics, and an editorial snapshot of other Kakobuy-facing curator websites—still distinct from this narration layer. Commerce still finalizes exclusively inside <strong><a href="{kakobuyUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a></strong>—we never touch carts.`,
   resourceCards: [
     {
       title: 'Warehouse QC after you paste a row',
@@ -157,6 +157,10 @@ If jargon still feels opaque, stack this primer with <a href="{howToUrl}">How to
     {
       title: 'From spreadsheet row to outbound label',
       bodyHtml: `Use <a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">Spreadsheet → parcel checklist</a> to sanity-check volumetrics, insurance toggles, and when QC retries beat approving bad panels.`,
+    },
+    {
+      title: 'Other Kakobuy spreadsheet hubs (neutral comparison)',
+      bodyHtml: `Search surfaces dozens of curator fronts—see our methodology-first <a href="/blog/kakobuy-spreadsheet-hubs-compared/">spreadsheet hubs compared guide</a> for friction signals, referral mechanics, and split-domain UX without endorsing operators.`,
     },
   ],
   marketplaceBridgeTitle: 'When your row resolves to Taobao, Weidian, or 1688',

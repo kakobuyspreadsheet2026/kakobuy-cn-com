@@ -15,12 +15,28 @@ interface Props {
   canonicalPath: string;
   headline: string;
   publishedISO: string;
+  /** When omitted, matches publishedISO (Schema.org `dateModified` + OG `article:modified_time`). */
+  modifiedISO?: string;
   displayDate: string;
   /** Optional share image path (e.g. `/og-foo.png`) or absolute HTTPS URL. */
   ogImage?: string;
+  /** Passed through to Schema.org `Article.keywords` when present (keep concise; avoid stuffing). */
+  structuredKeywords?: readonly string[];
 }
 
-const { title, description, canonicalPath, headline, publishedISO, displayDate, ogImage } = Astro.props;
+const {
+  title,
+  description,
+  canonicalPath,
+  headline,
+  publishedISO,
+  modifiedISO,
+  displayDate,
+  ogImage,
+  structuredKeywords,
+} = Astro.props;
+
+const modifiedIsoEffective = modifiedISO ?? publishedISO;
 
 const locale = 'en';
 const blogIndexHref = getRelativeLocaleUrl(locale, 'blog');
@@ -44,10 +60,11 @@ const articleLd = {
   headline,
   image: [shareImageUrl],
   datePublished: publishedISO,
-  dateModified: publishedISO,
+  dateModified: modifiedIsoEffective,
   author: { '@type': 'Organization', name: 'kakobuy-cn.com editorial' },
   publisher: { '@id': organizationId },
   description,
+  ...(structuredKeywords?.length ? { keywords: [...structuredKeywords] } : {}),
   inLanguage: HTML_LANG_BY_ROUTE.en,
   isPartOf: { '@id': websiteId },
   mainEntityOfPage: {
@@ -76,7 +93,7 @@ const breadcrumbLd = breadcrumbListLd([
   ogImage={ogImage}
   ogType="article"
   articlePublishedTime={publishedISO}
-  articleModifiedTime={publishedISO}
+  articleModifiedTime={modifiedIsoEffective}
   jsonLd={[articleLd, breadcrumbLd]}
 >
   <SiteHeader locale={locale} />
@@ -228,6 +245,36 @@ const breadcrumbLd = breadcrumbListLd([
   .prose-block :where(a) {
     font-weight: 600;
     color: var(--accent-dark, #0f766e);
+  }
+  .prose-block .blog-table-wrap {
+    overflow-x: auto;
+    margin: 0 0 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prose-block :where(table) {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .prose-block :where(caption) {
+    caption-side: bottom;
+    padding: 0.5rem 0 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: left;
+  }
+  .prose-block :where(th, td) {
+    border: 1px solid var(--border);
+    padding: 0.45rem 0.55rem;
+    vertical-align: top;
+    text-align: left;
+  }
+  .prose-block :where(th) {
+    font-weight: 700;
+    color: var(--text);
+    background: color-mix(in srgb, var(--border) 35%, transparent);
   }
 
   .blog-disclaimer {
