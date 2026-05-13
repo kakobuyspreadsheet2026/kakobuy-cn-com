@@ -1,5 +1,12 @@
 [
   {
+    "slug": "kakobuy-links-discovery-url-hygiene",
+    "title": "Finding Kakobuy links that survive paste: spreadsheets, hubs, and URL hygiene",
+    "published": "2026-05-15",
+    "description": "Maps Kakobuy links / finder / Polish link-list intents to paste-stable URLs—spreadsheet rows, curator hubs, catalogue browse UX, URL hygiene, QC vs warehouse truth, with pointers to coupons and freight companions.",
+    "lang": "en"
+  },
+  {
     "slug": "kakobuy-spreadsheet-hubs-compared",
     "title": "Five Kakobuy spreadsheet hubs compared—without picking a “winner”",
     "published": "2026-05-14",

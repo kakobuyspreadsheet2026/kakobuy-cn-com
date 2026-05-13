@@ -161,7 +161,7 @@ const buyerSharesFreshIso =
                       <a class="home-recent-blog__link" href={`/blog/${post.slug}/`}>
                         <span class="home-recent-blog__title-line">
                           <span class="home-recent-blog__title">{post.title}</span>
-                          {bi === 0 ? (
+                          {bi < 3 ? (
                             <span class="home-feed-new-badge" aria-hidden="true">{blogRecent.newBadge}</span>
                           ) : null}
                         </span>
@@ -215,7 +215,7 @@ const buyerSharesFreshIso =
                       >
                         <span class="home-recent-buyer-shares__title-line">
                           <span class="home-recent-buyer-shares__title">{pick.title}</span>
-                          {si === 0 ? (
+                          {si < 3 ? (
                             <span class="home-feed-new-badge" aria-hidden="true">{buyerSharesRecent.newBadge}</span>
                           ) : null}
                         </span>
