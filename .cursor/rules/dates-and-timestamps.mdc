@@ -1,0 +1,20 @@
+---
+description: Never invent dates/times—verify “today” and align JSON + Astro timestamps
+alwaysApply: true
+---
+
+# Dates and timestamps (no fabrication)
+
+## Hard rule
+
+- **Do not invent** `published` / `publishedISO` / `displayDate` / `addedAt` / `modifiedISO`, narrative lines like “snapshot taken on …”, or historical effective dates.
+- **Before assigning “today”** for this repo: prefer the **`Today's date:` field in the Cursor user info block** when present; if absent or you need shell certainty, run `date -u` or `date` in the project terminal and use **YYYY-MM-DD** consistently across paired files (`blogPosts.json`, matching `*.astro`, buyer-share JSON, etc.).
+- **Past editorial snapshots** in prose must match an actual source moment—either the user’s stated calendar day or the verified fetch/run date—not a plausible-looking placeholder.
+
+## If the correct date is unknown
+
+- **Ask** the user, or leave metadata unchanged—never guess “May 18” style filler.
+
+## Same-day ties
+
+- Listing order is handled by sort logic in code; **do not** fake staggered dates just to force ordering.

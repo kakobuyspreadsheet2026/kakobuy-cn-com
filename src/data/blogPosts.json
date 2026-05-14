@@ -1,8 +1,36 @@
 [
   {
+    "slug": "kakobuy-rehearsal-packaging-freight",
+    "title": "Kakobuy rehearsal packaging & freight estimates: why Spreadsheet hauls drift before parcels ship",
+    "published": "2026-05-14",
+    "description": "Rehearsal vs estimator guesses, volumetric chargeable weight and Spreadsheet budgeting—with Kakobuy forwarding + checklist links; fees verified only signed-in.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-sizing-spreadsheet-apparel",
+    "title": "Kakobuy Spreadsheet sizing: Taobao & Weidian charts, shoe conversions, and QC expectation-setting",
+    "published": "2026-05-13",
+    "description": "CN apparel chart literacy, cm foot traces vs EU/US sneakers, spreadsheet annotation habits—paired with Taobao/Weidian/QC guides without duplicating warehouse storage primers.",
+    "lang": "en"
+  },
+  {
+    "slug": "oopbuy-agent-user-experience-shell",
+    "title": "Oopbuy agent UX: what the public landing shell signals before you paste Taobao or Weidian",
+    "published": "2026-05-13",
+    "description": "Usability read of oopbuy.com first HTML—Vue+iView SPA spinner, Turnstile, pinch-zoom viewport, telemetry and Oopbuysheets keywords—with Kakobuy Spreadsheet discipline for comparing agents.",
+    "lang": "en"
+  },
+  {
+    "slug": "litbuy-agent-taobao-weidian-context",
+    "title": "Litbuy (LitBuy): Taobao, Weidian & 1688 agent claims—in context for Kakobuy Spreadsheet shoppers",
+    "published": "2026-05-14",
+    "description": "Independent snapshot from litbuy.com public HTML—Organization schema, QC/international shipping framing, languages & support email—and neutral lenses for Spreadsheet buyers comparing agents.",
+    "lang": "en"
+  },
+  {
     "slug": "kakobuy-links-discovery-url-hygiene",
     "title": "Finding Kakobuy links that survive paste: spreadsheets, hubs, and URL hygiene",
-    "published": "2026-05-15",
+    "published": "2026-05-14",
     "description": "Maps Kakobuy links / finder / Polish link-list intents to paste-stable URLs—spreadsheet rows, curator hubs, catalogue browse UX, URL hygiene, QC vs warehouse truth, with pointers to coupons and freight companions.",
     "lang": "en"
   },

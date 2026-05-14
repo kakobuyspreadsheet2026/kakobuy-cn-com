@@ -24,6 +24,14 @@ interface Props {
 
 const { locale, copy, homeHref, posts = [], breadcrumbUi } = Astro.props;
 
+/** Blog index lists posts newest-first; JSON array order is not authoritative for display. */
+const postsSorted =
+  posts.length === 0
+    ? []
+    : [...posts].sort(
+        (a, b) => b.published.localeCompare(a.published) || a.slug.localeCompare(b.slug),
+      );
+
 const aboutHref = getRelativeLocaleUrl(locale, 'about');
 const showEnglishBanner = locale !== 'en' && copy.blogEnglishBannerLead.length > 0;
 ---
@@ -75,7 +83,7 @@ const showEnglishBanner = locale !== 'en' && copy.blogEnglishBannerLead.length >
         {
           posts.length > 0 ? (
             <ul class="blog-post-list">
-              {posts.map((p) => (
+              {postsSorted.map((p) => (
                 <li class="blog-post-card">
                   <time class="blog-post-date" datetime={p.published}>
                     {p.published}

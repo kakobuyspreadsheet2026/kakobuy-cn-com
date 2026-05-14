@@ -8,8 +8,15 @@ export type BlogPostMeta = {
   lang?: string;
 };
 
+/** ISO date descending, then slug for stable ties (matches `/blog` list ordering). */
+export function sortBlogPostsNewestFirst<T extends BlogPostMeta>(list: readonly T[]): T[] {
+  return [...list].sort(
+    (a, b) => b.published.localeCompare(a.published) || a.slug.localeCompare(b.slug),
+  );
+}
+
 /** Newest first — reflects build-time data (`blogPosts.json`) whenever the site rebuilds. */
 export function getRecentBlogPosts(limit = 5): BlogPostMeta[] {
   const list = posts as BlogPostMeta[];
-  return [...list].sort((a, b) => b.published.localeCompare(a.published)).slice(0, limit);
+  return sortBlogPostsNewestFirst(list).slice(0, limit);
 }

@@ -1,0 +1,89 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-sizing-spreadsheet-apparel';
+const publishedISO = '2026-05-13';
+---
+
+<BlogArticleShell
+  title="Kakobuy Spreadsheet sizing: Taobao &amp; Weidian charts, shoe conversions, and QC expectation-setting | kakobuy-cn.com"
+  description="Long-tail sizing literacy for Kakobuy Spreadsheet buyers—decode CN apparel tables, cm foot traces vs EU/US sneaker sizes, measurement photos before warehouse QC, plus links to Taobao/Weidian paste guides."
+  canonicalPath={canonicalPath}
+  headline="Kakobuy Spreadsheet sizing: Taobao &amp; Weidian charts, shoe conversions, and QC expectation-setting"
+  publishedISO={publishedISO}
+  displayDate="13 May 2026"
+  structuredKeywords={[
+    'Kakobuy Spreadsheet sizing',
+    'Taobao size chart cm',
+    'Weidian shoe sizing EU',
+    'CN sizing conversion spreadsheet',
+    'Kakobuy QC measurements clothes',
+    'international shoe cm foot length',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Spreadsheet thumbnails rarely embed <strong>grading tables</strong>—yet disputes spike when shoulder widths or insole centimetres mismatch fantasy fits.
+    Because Kakobuy forwards what sellers ship, sizing literacy upstream beats screenshot apologies downstream.
+    This guide connects marketplace chart reading with warehouse QC habits already outlined in our <a href="/blog/kakobuy-spreadsheet-qc/">QC primer</a>, without pretending kakobuy-cn.com tailors garments remotely.
+  </p>
+
+  <h2>Decode the usual Taobao-style chart columns</h2>
+  <p>
+    Seller tables typically mix <strong>衣长 / 胸围 / 肩宽</strong> (length, bust, shoulder) in centimetres, occasionally layering &ldquo;建议体重&rdquo; weight bands meant for domestic shoppers—ignore those bands for muscular or tall frames abroad.
+    Always locate whether measurements assume <strong>flat garment</strong> or <strong>body circumference</strong>; confused bloggers routinely compare incomparable labels.
+    Pair this discipline with stable listing URLs from <a href="/blog/kakobuy-taobao/">Taobao paste hygiene</a> so variant IDs referencing &ldquo;Size 2/M&rdquo; still match the chart row you screenshot before paying agents.
+  </p>
+
+  <h2>Weidian albums &amp; ambiguity budgets</h2>
+  <p>
+    Micro-stores sometimes hide charts inside carousel slides or worse—seller chat screenshots—so Spreadsheet rows deserve explicit notes referencing <em>which album revision</em> blessed your pick.
+    Refer back to <a href="/blog/kakobuy-weidian/">Weidian URL drift guide</a>; sizing disputes spike when albums silently refresh silhouettes while URLs appear unchanged.
+  </p>
+
+  <h2>Sneaker sizing without mythology</h2>
+  <p>
+    CN listings frequently cite <strong>脚长 cm</strong> (foot trace length) mapped to arbitrary EU/US stamps that batch factories reinterpret each season.
+    Workflow that survives QC:
+  </p>
+  <ol>
+    <li>Trace both feet on paper wearing intended socks; measure longest axis in millimetres.</li>
+    <li>Compare against seller cm ladder—not hype resale charts from Reddit albums.</li>
+    <li>Add tolerance for toe stiffeners on boots versus knit runners.</li>
+    <li>Ask sellers for insole length photos when charts omit vertical depth data.</li>
+  </ol>
+  <p>
+    When warehouse photography arrives, overlay expectation quickly using grid overlays described philosophically in <a href="/blog/qc-websites-landscape/">QC tooling landscape</a>—community montages never substitute for Kakobuy inbound captures attached to your order line.
+  </p>
+
+  <h2>Spreadsheet annotation habits that scale</h2>
+  <ul>
+    <li>
+      <strong>Dual units:</strong> log both seller-native cm and your localized preference beside each row ID—future-you avoids frantic Discord archaeology.
+    </li>
+    <li>
+      <strong>Layer counts:</strong> note padded jackets versus tees when interpreting bust measurements; insulation steals interior circumference.
+    </li>
+    <li>
+      <strong>Revision hash:</strong> paste lightweight checksum (ISO date + screenshot filename) proving which chart governed checkout timing—pairs nicely with warehouse timelines from <a href="/blog/kakobuy-warehouse-storage-spreadsheet/">warehouse storage article</a>.
+    </li>
+  </ul>
+
+  <h2>Where Kakobuy still cannot rescue bad guesses</h2>
+  <p>
+    Agents measure parcels—not bodies—and QC imagery showcases factory output, not bespoke tailoring.
+    If sellers omit tolerance bands entirely, accept elevated rejection risk or pivot listings before domestic fulfilment locks yuan spends you regret later during parcel consolidation math tied to <a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">parcel checklist</a>.
+  </p>
+
+  <h2>Kakobuy-facing anchors worth bookmarking</h2>
+  <ul>
+    <li><a href="https://kakobuy.com/forwarding" target="_blank" rel="noopener noreferrer">Forwarding orientation</a></li>
+    <li><a href="https://kakobuy.com/tools/estimate" target="_blank" rel="noopener noreferrer">Shipping estimator</a> (once cubic weight stabilises)</li>
+    <li><a href="https://www.kakobuy.com/" target="_blank" rel="noopener noreferrer">Authenticated console</a> for dispute-grade imagery</li>
+  </ul>
+
+  <p>
+    <strong>Editorial independence:</strong> kakobuy-cn.com offers sizing literacy only; tailor legally compliant declarations using Kakobuy guidance plus licensed customs advisers when values exceed comfort thresholds.
+  </p>
+</BlogArticleShell>
