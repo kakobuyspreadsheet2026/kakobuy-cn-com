@@ -8,12 +8,23 @@ import { getBlogCopy } from '../../i18n/copy/blogPage';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { HTML_LANG_BY_ROUTE } from '../../i18n/config';
 import { breadcrumbListLd } from '../../lib/breadcrumbSchema';
+import {
+  blogListingCanonicalPath,
+  formatBlogListingPageTitle,
+  getBlogListingForPage,
+} from '../../lib/blogPagination';
 
 export const prerender = true;
 
 const locale = 'en';
-const canonicalPath = '/blog';
+const { posts: listingPosts, totalPages, currentPage } = getBlogListingForPage(blogPosts, 1);
+const canonicalPath = blogListingCanonicalPath('', currentPage);
 const copy = getBlogCopy(locale);
+const layoutTitle = formatBlogListingPageTitle(
+  copy.title,
+  currentPage,
+  copy.paginationTitleAffixBeforePipeTemplate,
+);
 const homeHref = getRelativeLocaleUrl(locale, '');
 
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
@@ -25,7 +36,7 @@ const webPageLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   '@id': `${pageUrl}#webpage`,
-  name: copy.title,
+  name: layoutTitle,
   url: pageUrl,
   description: copy.description,
   inLanguage: HTML_LANG_BY_ROUTE[locale],
@@ -39,7 +50,7 @@ const breadcrumbLd = breadcrumbListLd([
 ---
 
 <Layout
-  title={copy.title}
+  title={layoutTitle}
   description={copy.description}
   canonicalPath={canonicalPath}
   locale={locale}
@@ -50,7 +61,9 @@ const breadcrumbLd = breadcrumbListLd([
     locale={locale}
     copy={copy}
     homeHref={homeHref}
-    posts={blogPosts}
+    posts={listingPosts}
+    listingPage={currentPage}
+    totalListingPages={totalPages}
     breadcrumbUi={[
       { label: copy.breadcrumbHomeLabel, href: homeHref },
       { label: copy.h1 },

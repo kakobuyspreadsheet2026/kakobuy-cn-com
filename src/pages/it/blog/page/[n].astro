@@ -1,23 +1,29 @@
 ---
-import { absoluteCanonicalUrl } from '../../../lib/canonicalPath';
-import Layout from '../../../layouts/Layout.astro';
-import BlogPageBody from '../../../components/pages/BlogPageBody.astro';
-import blogPosts from '../../../data/blogPosts.json';
-import { siteStructuredDataIds } from '../../../consts';
-import { getBlogCopy } from '../../../i18n/copy/blogPage';
+import { absoluteCanonicalUrl } from '../../../../lib/canonicalPath';
+import Layout from '../../../../layouts/Layout.astro';
+import BlogPageBody from '../../../../components/pages/BlogPageBody.astro';
+import blogPosts from '../../../../data/blogPosts.json';
+import { siteStructuredDataIds } from '../../../../consts';
+import { getBlogCopy } from '../../../../i18n/copy/blogPage';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { HTML_LANG_BY_ROUTE } from '../../../i18n/config';
-import { breadcrumbListLd } from '../../../lib/breadcrumbSchema';
+import { HTML_LANG_BY_ROUTE } from '../../../../i18n/config';
+import { breadcrumbListLd } from '../../../../lib/breadcrumbSchema';
 import {
   blogListingCanonicalPath,
   formatBlogListingPageTitle,
   getBlogListingForPage,
-} from '../../../lib/blogPagination';
+  getBlogPaginationParamNs,
+} from '../../../../lib/blogPagination';
 
 export const prerender = true;
 
-const locale = 'es';
-const { posts: listingPosts, totalPages, currentPage } = getBlogListingForPage(blogPosts, 1);
+export function getStaticPaths() {
+  return getBlogPaginationParamNs(blogPosts.length).map((n) => ({ params: { n } }));
+}
+
+const locale = 'it';
+const pageNum = Number(Astro.params.n);
+const { posts: listingPosts, totalPages, currentPage } = getBlogListingForPage(blogPosts, pageNum);
 const canonicalPath = blogListingCanonicalPath(`/${locale}`, currentPage);
 const copy = getBlogCopy(locale);
 const layoutTitle = formatBlogListingPageTitle(

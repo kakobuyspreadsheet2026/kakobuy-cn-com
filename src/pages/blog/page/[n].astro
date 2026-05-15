@@ -12,13 +12,19 @@ import {
   blogListingCanonicalPath,
   formatBlogListingPageTitle,
   getBlogListingForPage,
+  getBlogPaginationParamNs,
 } from '../../../lib/blogPagination';
 
 export const prerender = true;
 
-const locale = 'es';
-const { posts: listingPosts, totalPages, currentPage } = getBlogListingForPage(blogPosts, 1);
-const canonicalPath = blogListingCanonicalPath(`/${locale}`, currentPage);
+export function getStaticPaths() {
+  return getBlogPaginationParamNs(blogPosts.length).map((n) => ({ params: { n } }));
+}
+
+const locale = 'en';
+const pageNum = Number(Astro.params.n);
+const { posts: listingPosts, totalPages, currentPage } = getBlogListingForPage(blogPosts, pageNum);
+const canonicalPath = blogListingCanonicalPath('', currentPage);
 const copy = getBlogCopy(locale);
 const layoutTitle = formatBlogListingPageTitle(
   copy.title,
