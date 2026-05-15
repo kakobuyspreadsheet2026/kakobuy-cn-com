@@ -22,6 +22,8 @@ interface Props {
   ogImage?: string;
   /** Passed through to Schema.org `Article.keywords` when present (keep concise; avoid stuffing). */
   structuredKeywords?: readonly string[];
+  /** Person name shown in byline and in Article structured data (`@type: Person`). Omit for generic editorial attribution. */
+  articleAuthor?: string;
 }
 
 const {
@@ -34,6 +36,7 @@ const {
   displayDate,
   ogImage,
   structuredKeywords,
+  articleAuthor,
 } = Astro.props;
 
 const modifiedIsoEffective = modifiedISO ?? publishedISO;
@@ -61,7 +64,9 @@ const articleLd = {
   image: [shareImageUrl],
   datePublished: publishedISO,
   dateModified: modifiedIsoEffective,
-  author: { '@type': 'Organization', name: 'kakobuy-cn.com editorial' },
+  author: articleAuthor
+    ? { '@type': 'Person', name: articleAuthor }
+    : { '@type': 'Organization', name: 'kakobuy-cn.com editorial' },
   publisher: { '@id': organizationId },
   description,
   ...(structuredKeywords?.length ? { keywords: [...structuredKeywords] } : {}),
@@ -121,7 +126,13 @@ const breadcrumbLd = breadcrumbListLd([
               <h1 class="simple-page-title">{headline}</h1>
               <p class="blog-piece-meta">
                 <time datetime={publishedISO}>{displayDate}</time>
-                <span> · Editorial · kakobuy-cn.com</span>
+                <span>
+                  {
+                    articleAuthor
+                      ? ` · By ${articleAuthor} · kakobuy-cn.com`
+                      : ` · Editorial · kakobuy-cn.com`
+                  }
+                </span>
               </p>
               <div class="blog-lede-wrap">
                 <slot name="lede" />
