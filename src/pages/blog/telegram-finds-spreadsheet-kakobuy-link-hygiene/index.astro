@@ -1,0 +1,48 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/telegram-finds-spreadsheet-kakobuy-link-hygiene';
+const publishedISO = '2026-05-18';
+---
+
+<BlogArticleShell
+  title="Telegram find channels &amp; Kakobuy Spreadsheet rows: link hygiene beyond Discord | kakobuy-cn.com"
+  description="Forward-graph Telegram mechanics—mobile redirects, t.me bridges, expiring media—and how curators normalize URLs before Kakobuy paste."
+  canonicalPath={canonicalPath}
+  headline="Telegram find channels &amp; Kakobuy Spreadsheet rows: link hygiene outside Discord"
+  publishedISO={publishedISO}
+  displayDate="18 May 2026"
+  structuredKeywords={[
+    'Telegram Kakobuy spreadsheet',
+    't.me link normalization',
+    'finds channel URL hygiene',
+    'mobile forwarding Taobao links',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Discord-centric guides dominate Kakobuy chatter, yet many curators still ingest forwards from <strong>Telegram</strong> shops and hunter channels—especially where creators mirror bilingual drops or bypass forum moderation latency.
+    Telegram&apos;s UX privileges frictionless forwarding, which also means <strong>wrapped redirects</strong>, locale-specific mobile gateways and expiring media payloads that rot spreadsheet rows faster than classic Discord pins.
+  </p>
+
+  <h2>Normalize before you paste into Kakobuy</h2>
+  <ul>
+    <li><strong>Strip tracking wrappers:</strong> unwrap nested redirects until you recover marketplace-stable HTTPS URLs—protocol recap in <a href="/blog/kakobuy-links-discovery-url-hygiene/">links hygiene essay</a>.</li>
+    <li><strong>Prefer desktop-class permalinks:</strong> mobile-only shortlinks frequently omit variant parameters essential for <a href="/blog/kakobuy-weidian/">Weidian</a> fidelity.</li>
+    <li><strong>Capture forwarded timestamps:</strong> Telegram edits messages silently; snapshot context cells noting channel + message date.</li>
+    <li><strong>Assume media vanishes:</strong> hosted videos/images may expire—mirror critical stills ethically or cite archival strategy from <a href="/blog/spreadsheet-row-archiving-vanished-listings/">listing mortality essay</a>.</li>
+  </ul>
+
+  <h2>Why this complements—not replaces—Discord literacy</h2>
+  <p>
+    Our <a href="/blog/kakobuy-discord/">Discord primer</a> still applies to raffle psychology and coupon rumours.
+    Telegram simply introduces distinct forwarding graphs; moderators should train helpers to log <strong>source channel identity</strong> because impersonation clones circulate faster during mega-sales chronicled in <a href="/blog/taobao-tmall-618-2026-spreadsheet-forwarding-rhythm/">618 rhythm essay</a>.
+  </p>
+
+  <h2>Primary-service references</h2>
+  <p>
+    Telegram publishes general FAQ/security guidance at <a href="https://telegram.org/faq" target="_blank" rel="noopener noreferrer">telegram.org/faq</a>; specific bot behaviours vary—never assume third-party scrapers respect ToS.
+    Kakobuy intake remains authoritative: if paste fails, escalate within Kakobuy support rather than spreadsheet vigilantes.
+  </p>
+</BlogArticleShell>

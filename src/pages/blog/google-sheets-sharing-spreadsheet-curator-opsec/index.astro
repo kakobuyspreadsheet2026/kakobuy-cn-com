@@ -1,0 +1,54 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/google-sheets-sharing-spreadsheet-curator-opsec';
+const publishedISO = '2026-05-19';
+---
+
+<BlogArticleShell
+  title="Google Sheets sharing for public Kakobuy finds: permissions &amp; abuse surfaces | kakobuy-cn.com"
+  description="Google Drive roles (viewer/commenter/editor), link-sharing traps, and curator habits—so Kakobuy spreadsheets stay readable without becoming vandalism playgrounds."
+  canonicalPath={canonicalPath}
+  headline="Google Sheets sharing for public Kakobuy finds: permissions &amp; abuse surfaces"
+  publishedISO={publishedISO}
+  displayDate="19 May 2026"
+  structuredKeywords={[
+    'Google Sheets permissions curator',
+    'public spreadsheet abuse',
+    'Kakobuy finds sheet security',
+    'Drive link sharing viewer editor',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Most Kakobuy community inventories live on Google Sheets because friction is low—but <strong>permission mistakes scale embarrassingly</strong> once a finds tab gains traction.
+    Google&apos;s official sharing documentation defines granular roles (viewer, commenter, editor, owner) plus inherited-folder quirks; curators who ignore those primitives invite phishing edits, affiliate-link swaps, or wholesale tab deletion.
+  </p>
+
+  <h2>What Google documents explicitly</h2>
+  <p>
+    According to <a href="https://support.google.com/docs/answer/2494822" target="_blank" rel="noopener noreferrer">Google Workspace Help → Share files from Google Drive</a>:
+  </p>
+  <ul>
+    <li><strong>Viewers</strong> read without commenting/editing by default; owners may restrict downloading/printing/copying via advanced settings.</li>
+    <li><strong>Commenters</strong> annotate without changing cell values—useful for moderated feedback loops.</li>
+    <li><strong>Editors</strong> mutate content and may share further unless owners disable that escalation.</li>
+    <li>Folders propagate permissions downward—giving editor rights at folder depth unlocks broad blast radius.</li>
+    <li>Performance guidance warns that enormous collaborator pools stress Docs/Sheets—curators should trim editors and archive stale tabs.</li>
+  </ul>
+
+  <h2>Hardening patterns for Kakobuy spreadsheets</h2>
+  <ul>
+    <li><strong>Split tiers:</strong> public viewer sheet + private maintainer workbook synced manually—reduces sabotage blast radius.</li>
+    <li><strong>Protected ranges:</strong> lock header rows & metadata columns; route edits through maintainers vetted after Discord tenure checks.</li>
+    <li><strong>Avoid finance columns on hot tabs:</strong> wallet phishing parallels <a href="/blog/kakobuy-top-up-payment-rails-exchange-rates/">top-up hygiene essay</a>.</li>
+    <li><strong>Schema governance:</strong> align structural policies with <a href="/blog/spreadsheet-column-schema-kakobuy-curators/">column schema guide</a>.</li>
+  </ul>
+
+  <h2>Humility</h2>
+  <p>
+    Google&apos;s policies evolve; screenshot this article&apos;s date if citing workflows.
+    Sheet security never replaces Kakobuy&apos;s own credential hygiene—two-factor authentication still belongs on buyer accounts, not GitHub gists.
+  </p>
+</BlogArticleShell>

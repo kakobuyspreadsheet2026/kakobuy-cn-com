@@ -1,0 +1,51 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/spreadsheet-column-schema-kakobuy-curators';
+const publishedISO = '2026-05-21';
+---
+
+<BlogArticleShell
+  title="Designing a Kakobuy Spreadsheet schema curators will still trust in six months | kakobuy-cn.com"
+  description="Practical column taxonomy—stable row IDs, marketplace typing, capture timestamps, domestic tracking slots—for Kakobuy-forward community sheets that survive drama."
+  canonicalPath={canonicalPath}
+  headline="Designing a Kakobuy Spreadsheet schema curators will still trust in six months"
+  publishedISO={publishedISO}
+  displayDate="21 May 2026"
+  structuredKeywords={[
+    'Kakobuy spreadsheet columns',
+    'curator schema Taobao Weidian',
+    'spreadsheet provenance fields',
+    'community buying spreadsheet template',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Viral Kakobuy spreadsheets die from schema drift: someone inserts a decorative GIF row, merges cells for aesthetics, or renames columns without version notes.
+    Serious curators borrow habits from data journalism—<strong>immutable identifiers</strong>, <strong>typed enums</strong>, and <strong>audit timestamps</strong>—so moderation teams can revert griefing without rebuilding six months of haul discourse from memory.
+  </p>
+
+  <h2>Columns worth standardising early</h2>
+  <ul>
+    <li><strong>row_uid:</strong> opaque slug (e.g., <code>2026w21-a8f3</code>) never reused even if listing resurrects.</li>
+    <li><strong>marketplace:</strong> constrained vocabulary aligning with our intake guides (<a href="/blog/kakobuy-taobao/">Taobao</a>, <a href="/blog/kakobuy-weidian/">Weidian</a>, <a href="/blog/kakobuy-1688/">1688</a>, Other).</li>
+    <li><strong>listing_url_verified:</strong> canonical HTTPS paste survivors per <a href="/blog/kakobuy-links-discovery-url-hygiene/">URL hygiene essay</a>.</li>
+    <li><strong>capture_ts_utc:</strong> last human verification—not “updated when vibes shifted.”</li>
+    <li><strong>variant_notes:</strong> free text but require delimiter-separated facts (colourway, batch chatter, size).</li>
+    <li><strong>risk_flags:</strong> enum for preorder, customs-sensitive categories, or screenshot-only sourcing.</li>
+  </ul>
+
+  <h2>Workflow rituals</h2>
+  <p>
+    Publish a <strong>CHANGELOG</strong> tab summarising column mutations—Google Sheets lacks git, but humans deserve release notes.
+    Freeze header rows, block structure edits from randos, and route destructive edits through maintainer accounts—pair with <a href="/blog/google-sheets-sharing-spreadsheet-curator-opsec/">permissions companion essay</a>.
+    When Discord drama alleges “secret batches,” demand Kakobuy QC pointers per <a href="/blog/kakobuy-spreadsheet-qc/">QC article</a> before mutating schema to chase rumours.
+  </p>
+
+  <h2>Anti-goals</h2>
+  <p>
+    Avoid embedding formulae that silently scrape live FX—broken IMPORTXML calls terrorise newcomers.
+    Prefer static nightly snapshots plus textual disclaimers referencing <a href="/blog/kakobuy-top-up-payment-rails-exchange-rates/">wallet rails primer</a> when discussing balances.
+  </p>
+</BlogArticleShell>

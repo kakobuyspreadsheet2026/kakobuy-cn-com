@@ -1,0 +1,53 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/eu-import-vat-landed-cost-spreadsheet-buyers';
+const publishedISO = '2026-05-22';
+---
+
+<BlogArticleShell
+  title="EU import VAT &amp; landed-cost columns for Kakobuy Spreadsheet buyers | kakobuy-cn.com"
+  description="European Commission VAT e-commerce portal on July 2021 reforms—€22 exemption removal, IOSS €150 path, special arrangements—and honest spreadsheet annotation."
+  canonicalPath={canonicalPath}
+  headline="EU import VAT &amp; landed-cost realism on Kakobuy Spreadsheet hauls"
+  publishedISO={publishedISO}
+  displayDate="22 May 2026"
+  structuredKeywords={[
+    'EU VAT ecommerce July 2021',
+    'IOSS low value imports',
+    'Kakobuy EU customs spreadsheet',
+    'landed cost forwarding VAT',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Kakobuy Spreadsheet curators outside the EU sometimes paste item subtotals in USD and assume readers can mentally convert to landed euros—post-<strong>1 July 2021</strong> EU VAT architecture punishes that laziness.
+    The European Commission&apos;s own VAT e-commerce portal documents why <strong>every import attracts VAT</strong>, how <strong>Import One Stop Shop (IOSS)</strong> handles certain ≤€150 distance sales when sellers participate, and why customs declarations persist even when VAT is prepaid—agents do not magically erase Member State mechanics.
+  </p>
+
+  <h2>Primary-source anchors (Commission wording)</h2>
+  <p>
+    The Taxation and Customs Union publishes the consolidated explainer at <a href="https://taxation-customs.ec.europa.eu/vat-e-commerce_en" target="_blank" rel="noopener noreferrer">taxation-customs.ec.europa.eu/vat-e-commerce_en</a>.
+    Bullets relevant to spreadsheet realism:
+  </p>
+  <ul>
+    <li>The previous <strong>€22 import VAT exemption</strong> for small consignments was <strong>removed</strong>; VAT applies from the first euro of customs value subject to applicable rules.</li>
+    <li><strong>IOSS</strong> simplifies VAT collection on distance imports of goods not exceeding <strong>€150</strong> when sellers/platforms register—customers should see VAT collected upstream.</li>
+    <li>Parallel <strong>special arrangements</strong> exist when IOSS is unused—often involving declarants or carriers advancing VAT with fees.</li>
+    <li>Marketplaces may become <strong>deemed suppliers</strong> in defined scenarios, shifting compliance obligations—buyers still experience this as line items, not philosophical debates.</li>
+  </ul>
+
+  <h2>How curators should annotate rows responsibly</h2>
+  <ul>
+    <li><strong>Split columns:</strong> goods subtotal, declared value intent (buyer-supplied), VAT assumption flag (IOSS vs non-IOSS unknown), brokerage/handling placeholders.</li>
+    <li><strong>Cite uncertainty:</strong> agent parcels frequently bundle multi-SKU consignments—your VAT hypothesis may differ from customs classification; cross-read <a href="/blog/kakobuy-customs-declared-value-primer/">declared value primer</a>.</li>
+    <li><strong>Never promise IOSS coverage</strong> unless you verified checkout artefacts—Kakobuy&apos;s stack evolves independently of Commission PDFs.</li>
+  </ul>
+
+  <h2>Non-advice clause</h2>
+  <p>
+    We summarise public EU tax communications, not individual filings.
+    For definitive liability, engage a tax adviser or your Member State customs helpline—spreadsheet aesthetics cannot substitute compliance work.
+  </p>
+</BlogArticleShell>

@@ -1,0 +1,57 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/spreadsheet-row-archiving-vanished-listings';
+const publishedISO = '2026-05-26';
+---
+
+<BlogArticleShell
+  title="Spreadsheet rows when listings vanish: archiving, snapshots &amp; provenance | kakobuy-cn.com"
+  description="Curator playbook for Kakobuy Spreadsheet longevity—frozen URLs that 404, screenshot traps, Wayback-style preservation ethics, and metadata columns that preserve buyer intent."
+  canonicalPath={canonicalPath}
+  headline="Spreadsheet rows when listings vanish: archiving, snapshots &amp; provenance"
+  publishedISO={publishedISO}
+  displayDate="26 May 2026"
+  structuredKeywords={[
+    'Kakobuy spreadsheet provenance',
+    'Taobao listing removed archive',
+    'curator spreadsheet metadata',
+    'Wayback Machine ecommerce listings',
+    'warehouse QC stale thumbnails',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Community Kakobuy spreadsheets are optimism archives: each row assumes tomorrow&apos;s buyer can reopen the same Taobao, Weidian or album URL and see the variant you meant.
+    When sellers delete listings, swap albums, or gate albums behind new tokens, the sheet becomes a graveyard of broken hyperlinks unless curators treat <strong>provenance</strong> as a first-class column—not an afterthought screenshot buried three Telegram forwards deep.
+  </p>
+
+  <h2>Why dead links break trust faster than wrong prices</h2>
+  <p>
+    A wrong price gets corrected in chat; a vanished listing turns the row into folklore.
+    Forwarding buyers still owe themselves diligence inside Kakobuy, but curators who publish public sheets should assume <strong>litigation-grade scepticism</strong>: readers will paste stale URLs, blame the sheet, then DM moderators anyway.
+    Mitigation is structural: pair every glamour thumbnail with <strong>immutable references</strong> you control—dates, domestic order IDs once known, and pointers back to our <a href="/blog/kakobuy-links-discovery-url-hygiene/">URL hygiene primer</a>.
+  </p>
+
+  <h2>Snapshot tooling without pretending you own the catalogue</h2>
+  <p>
+    The Internet Archive&apos;s <a href="https://help.archive.org/help/category/the-wayback-machine/" target="_blank" rel="noopener noreferrer">Wayback Machine documentation</a> explains how third-party snapshots can preserve historical web captures when publishers cooperate with archiving policies.
+    Results vary on marketplace pages—login walls, bot defences and personalised SKUs frequently block clean replay—so treat captures as <strong>supporting exhibits</strong>, not guarantees that Kakobuy&apos;s intake parser will accept an archived mirror URL.
+    When Wayback fails, fall back to dated exports: PDF receipts, seller chat logs, and Kakobuy order screens once the SKU exists.
+  </p>
+
+  <h2>Minimum viable metadata we recommend beside each row</h2>
+  <ul>
+    <li><strong>Captured-on timestamp</strong> in UTC—when a human last verified the listing alive.</li>
+    <li><strong>Marketplace enum</strong> (Taobao vs Weidian vs 1688 vs Yupoo-forward) so downstream buyers reach for <a href="/blog/kakobuy-taobao/">Taobao</a> / <a href="/blog/kakobuy-weidian/">Weidian</a> playbooks automatically.</li>
+    <li><strong>Variant fingerprint</strong>: colour word + size + seller shop ID + optional SKU digits—whatever survives partial listing edits.</li>
+    <li><strong>Warehouse QC pointer</strong> after purchase—because thumbnails rot but Kakobuy QC belongs to the buyer; see <a href="/blog/kakobuy-spreadsheet-qc/">Spreadsheet QC essay</a>.</li>
+  </ul>
+
+  <h2>Legal-adjacent humility</h2>
+  <p>
+    Archiving seller photography or verbatim listing copy may intersect with copyright or platform terms depending on jurisdiction—this hub does not dispense legal advice.
+    Our narrower claim is operational: <strong>document what you saw</strong>, cite when you saw it, and never mis-label a rehosted image as official Kakobuy marketing.
+  </p>
+</BlogArticleShell>

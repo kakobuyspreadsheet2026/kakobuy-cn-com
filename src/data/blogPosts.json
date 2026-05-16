@@ -1,5 +1,75 @@
 [
   {
+    "slug": "spreadsheet-row-archiving-vanished-listings",
+    "title": "Spreadsheet rows when listings vanish: archiving, snapshots & provenance",
+    "published": "2026-05-26",
+    "description": "Why curator spreadsheets rot when Taobao/Weidian albums disappear—Wayback-style snapshots, capture hygiene, row metadata and pairing warehouse QC without trusting stale thumbnails.",
+    "lang": "en"
+  },
+  {
+    "slug": "taobao-tmall-618-2026-spreadsheet-forwarding-rhythm",
+    "title": "Taobao & Tmall 618 (2026): how the published merchant rhythm hits Kakobuy Spreadsheet buyers",
+    "published": "2026-05-25",
+    "description": "April–May 2026 press reporting on Tmall 618 waves—parallel presale & spot phases—and what staggered domestic fulfilment means for agent warehouses, QC queues and spreadsheet ETA honesty.",
+    "lang": "en"
+  },
+  {
+    "slug": "double-11-logistics-interop-spreadsheet-buyers",
+    "title": "Double 11 logistics interoperability in China: why tracking semantics shifted for spreadsheet shoppers",
+    "published": "2026-05-24",
+    "description": "TechNode-grounded read of JD Logistics × Taobao/Tmall (2024) and Cainiao × JD integrations—what carrier choice blur means for domestic scan literacy beside Kakobuy rows.",
+    "lang": "en"
+  },
+  {
+    "slug": "spreadsheet-volumetric-chargeable-weight-basics",
+    "title": "Chargeable weight for Spreadsheet freight columns: volumetric vs scale basics",
+    "published": "2026-05-23",
+    "description": "Carrier-neutral dimensional-weight literacy—DHL-style cm³÷5000 framing—to budget Kakobuy parcels without confusing catalogue grams with billing kilograms.",
+    "lang": "en"
+  },
+  {
+    "slug": "eu-import-vat-landed-cost-spreadsheet-buyers",
+    "title": "EU import VAT & landed-cost realism on Kakobuy Spreadsheet hauls",
+    "published": "2026-05-22",
+    "description": "European Commission VAT e-commerce rules since July 2021—€22 de minimis removal, IOSS €150 lane, special arrangements—and how to annotate spreadsheet totals without pretending agents erase customs math.",
+    "lang": "en"
+  },
+  {
+    "slug": "spreadsheet-column-schema-kakobuy-curators",
+    "title": "Designing a Kakobuy Spreadsheet schema curators will still trust in six months",
+    "published": "2026-05-21",
+    "description": "Column-level conventions—stable IDs, marketplace type, variant fingerprints, capture dates, domestic-tracking slots—for Sheets that survive seller edits and hub drama.",
+    "lang": "en"
+  },
+  {
+    "slug": "yupoo-album-spreadsheet-kakobuy-intake",
+    "title": "Yupoo albums beside Kakobuy Spreadsheet rows: discovery vs checkout truth",
+    "published": "2026-05-20",
+    "description": "How seller-hosted photo albums function as look-books before agent paste—SKU drift, batch rhetoric, and why spreadsheet thumbnails never substitute Kakobuy warehouse QC.",
+    "lang": "en"
+  },
+  {
+    "slug": "google-sheets-sharing-spreadsheet-curator-opsec",
+    "title": "Google Sheets sharing for public Kakobuy finds: permissions & abuse surfaces",
+    "published": "2026-05-19",
+    "description": "Google Drive permission model (viewer/commenter/editor), link-sharing risks, and operational habits so a viral spreadsheet does not become vandalism bait—paired with Kakobuy wallet hygiene.",
+    "lang": "en"
+  },
+  {
+    "slug": "telegram-finds-spreadsheet-kakobuy-link-hygiene",
+    "title": "Telegram find channels & Kakobuy Spreadsheet rows: link hygiene outside Discord",
+    "published": "2026-05-18",
+    "description": "Forward-heavy Telegram workflows—t.me wrappers, mobile redirects, expiring media—and how curators should normalize URLs before anyone pastes into Kakobuy search.",
+    "lang": "en"
+  },
+  {
+    "slug": "mega-sale-split-arrivals-consolidation-spreadsheet",
+    "title": "Mega-sale split arrivals: when one Spreadsheet wave lands as many warehouse events",
+    "published": "2026-05-17",
+    "description": "Wave-style checkout during platform promos—paired with published merchant dispatch SLAs—why SKUs trickle into Kakobuy across days and how consolidation math interacts with storage clocks.",
+    "lang": "en"
+  },
+  {
     "slug": "kakobuy-net-finds-spreadsheet-lane",
     "title": "Kakobuy.net & the finds-spreadsheet lane: how it fits Kakobuy.com buying",
     "published": "2026-05-16",

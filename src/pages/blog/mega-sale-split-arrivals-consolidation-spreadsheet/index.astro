@@ -1,0 +1,48 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/mega-sale-split-arrivals-consolidation-spreadsheet';
+const publishedISO = '2026-05-17';
+---
+
+<BlogArticleShell
+  title="Mega-sale split arrivals: one Kakobuy Spreadsheet wave, many warehouse events | kakobuy-cn.com"
+  description="Why promo-wave checkouts fragment domestic fulfilment—using Tmall’s published 618 dispatch SLA as illustration—and how consolidation interacts with storage clocks."
+  canonicalPath={canonicalPath}
+  headline="Mega-sale split arrivals: when one Spreadsheet wave lands as many warehouse events"
+  publishedISO={publishedISO}
+  displayDate="17 May 2026"
+  structuredKeywords={[
+    'split shipment mega sale Taobao',
+    'Kakobuy consolidation timing',
+    'spreadsheet wave arrivals',
+    '618 warehouse stagger domestic',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Spreadsheet “waves” tempt buyers into imagining unified parcels: everyone clicks during the same influencer stream, therefore surely everything rides one domestic truck.
+    Marketplace mega-sales instead incentivise <strong>inventory stratification</strong>—presale deposits, regional warehouses, supplier tiers—so Kakobuy receives SKUs across multiple inbound scans even when psychologically you treated checkout as a single hype moment.
+  </p>
+
+  <h2>Merchant SLAs illustrate the fragmentation pressure</h2>
+  <p>
+    Sina Tech&apos;s reproduction of Tmall&apos;s <strong>2026 618</strong> merchant briefing emphasises tight dispatch clocks once shoppers pay promotional prices—notably <strong>48-hour shipping with pickup scans plus 24-hour logistics updates</strong> thereafter (see <a href="https://finance.sina.com.cn/tech/roll/2026-04-29/doc-inhwefve6787805.shtml" target="_blank" rel="noopener noreferrer">finance.sina.com.cn, 29 April 2026</a>).
+    Even disciplined merchants generate partial shipments when SKUs occupy separate hubs or rely on distinct 3PL lanes—the interoperability backdrop we summarised in <a href="/blog/double-11-logistics-interop-spreadsheet-buyers/">Double 11 logistics essay</a> compounds mixed-brand tracking feeds.
+  </p>
+
+  <h2>Spreadsheet annotations that survive split arrivals</h2>
+  <ul>
+    <li><strong>Order bucket IDs:</strong> map each mainland seller order to Kakobuy inbound numbers once visible.</li>
+    <li><strong>Arrival sequencing notes:</strong> record which SKUs freed storage timers first—critical beside <a href="/blog/kakobuy-warehouse-storage-spreadsheet/">warehouse storage primer</a>.</li>
+    <li><strong>Consolidation guardrails:</strong> pause international packing until priority QC clears across SKUs you intend to tape together—checklist tie-in via <a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">parcel checklist</a>.</li>
+    <li><strong>Domestic return overlap:</strong> if one split arrives defective while siblings succeed, revisit <a href="/blog/kakobuy-domestic-returns-before-international-ship/">domestic returns essay</a> before approving consolidated parcels.</li>
+  </ul>
+
+  <h2>Epistemic modesty</h2>
+  <p>
+    Without Kakobuy warehouse telemetry we cannot promise timelines—only explain why mega-sales routinely violate spreadsheet intuition.
+    Combine this framing with signed-in rehearsal quotes from <a href="/blog/kakobuy-rehearsal-packaging-freight/">rehearsal packaging article</a> before promising grams or cubic volumes to Discord crowds.
+  </p>
+</BlogArticleShell>

@@ -1,0 +1,49 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/spreadsheet-volumetric-chargeable-weight-basics';
+const publishedISO = '2026-05-23';
+---
+
+<BlogArticleShell
+  title="Chargeable weight for Kakobuy Spreadsheet freight columns: volumetric vs scale | kakobuy-cn.com"
+  description="DHL-documented dimensional-weight pattern (cm dimensions ÷ divisor) to explain why spreadsheet grams lie—paired with Kakobuy rehearsal & checklist links."
+  canonicalPath={canonicalPath}
+  headline="Chargeable weight for Spreadsheet freight columns: volumetric vs scale basics"
+  publishedISO={publishedISO}
+  displayDate="23 May 2026"
+  structuredKeywords={[
+    'volumetric weight formula',
+    'chargeable weight ecommerce forwarding',
+    'Kakobuy spreadsheet freight budget',
+    'dimensional weight divisor 5000',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Spreadsheet columns love copying <strong>listing weights</strong>—often net goods without volumetric pessimism.
+    International billing weights instead chase <strong>chargeable mass</strong>: the greater of scale weight or volumetric (dimensional) weight after whichever divisor your lane applies.
+    Mis-model that once and entire community budgets inherit fairy-tale landed costs.
+  </p>
+
+  <h2>DHL&apos;s public pattern (useful teaching scaffolding)</h2>
+  <p>
+    DHL&apos;s consumer help centre summarises volumetric weight as <code>(L × W × H) ÷ divisor</code> when dimensions are measured in centimetres, yielding kilograms after rounding rules described alongside their worked examples.
+    For many consumer-facing explainers DHL publishes a <strong>5,000</strong> cm³-per-kg divisor class—always confirm the exact divisor attached to <em>your</em> lane inside Kakobuy&apos;s quote UI because promotional tariffs and partner airlines vary.
+    Reference starting point: <a href="https://dct.dhl.com/help" target="_blank" rel="noopener noreferrer">DHL Commerce customer help → About Weight</a> and regional Discover articles such as <a href="https://www.dhl.com/discover/en-gb/ship-with-dhl/products-and-services/weight-and-dimensions" target="_blank" rel="noopener noreferrer">DHL UK weight &amp; dimensions</a>.
+  </p>
+
+  <h2>Translate maths into spreadsheet hygiene</h2>
+  <ul>
+    <li><strong>Separate columns:</strong> <em>Listing weight</em>, <em>Estimated volumetric kg</em>, <em>Assumed chargeable kg</em>, <em>Observed rehearsal kg</em>.</li>
+    <li><strong>Never let influencers overwrite rehearsal outputs:</strong> pair this primer with <a href="/blog/kakobuy-rehearsal-packaging-freight/">rehearsal packaging essay</a>.</li>
+    <li><strong>Remember consolidation:</strong> chargeable math interacts with how Kakobuy tapes boxes—your checklist lives in <a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">Spreadsheet → parcel article</a>.</li>
+  </ul>
+
+  <h2>Disclaimer</h2>
+  <p>
+    Carrier PDFs, fuel surcharges and remote area fees move weekly.
+    Treat spreadsheet formulae as pedagogy, not invoices—only Kakobuy&apos;s signed-in totals settle arguments.
+  </p>
+</BlogArticleShell>
