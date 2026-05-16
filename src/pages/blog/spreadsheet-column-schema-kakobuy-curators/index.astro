@@ -4,7 +4,7 @@ import BlogArticleShell from '../../../components/BlogArticleShell.astro';
 export const prerender = true;
 
 const canonicalPath = '/blog/spreadsheet-column-schema-kakobuy-curators';
-const publishedISO = '2026-05-21';
+const publishedISO = '2026-05-16';
 ---
 
 <BlogArticleShell
@@ -13,7 +13,7 @@ const publishedISO = '2026-05-21';
   canonicalPath={canonicalPath}
   headline="Designing a Kakobuy Spreadsheet schema curators will still trust in six months"
   publishedISO={publishedISO}
-  displayDate="21 May 2026"
+  displayDate="16 May 2026"
   structuredKeywords={[
     'Kakobuy spreadsheet columns',
     'curator schema Taobao Weidian',
@@ -28,7 +28,7 @@ const publishedISO = '2026-05-21';
 
   <h2>Columns worth standardising early</h2>
   <ul>
-    <li><strong>row_uid:</strong> opaque slug (e.g., <code>2026w21-a8f3</code>) never reused even if listing resurrects.</li>
+    <li><strong>row_uid:</strong> opaque slug (e.g., <code>kb-row-a8f3</code>) never reused even if listing resurrects.</li>
     <li><strong>marketplace:</strong> constrained vocabulary aligning with our intake guides (<a href="/blog/kakobuy-taobao/">Taobao</a>, <a href="/blog/kakobuy-weidian/">Weidian</a>, <a href="/blog/kakobuy-1688/">1688</a>, Other).</li>
     <li><strong>listing_url_verified:</strong> canonical HTTPS paste survivors per <a href="/blog/kakobuy-links-discovery-url-hygiene/">URL hygiene essay</a>.</li>
     <li><strong>capture_ts_utc:</strong> last human verification—not “updated when vibes shifted.”</li>
