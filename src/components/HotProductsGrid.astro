@@ -62,7 +62,7 @@ const displayProducts = (products as Product[]).slice(0, 20);
 <style>
   .hot-products-grid {
     padding: 4rem 0;
-    background: var(--bg);
+    background: var(--surface);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
@@ -115,7 +115,7 @@ const displayProducts = (products as Product[]).slice(0, 20);
     position: relative;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background: #f1f5f9;
+    background: var(--bg);
   }
 
   .img-container img {
@@ -133,13 +133,13 @@ const displayProducts = (products as Product[]).slice(0, 20);
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: var(--accent-dark);
     color: #fff;
-    padding: 0.25rem 0.6rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 0.4rem;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
+    box-shadow: 0 2px 8px rgba(233, 19, 98, 0.2);
   }
 
   .card-info {
