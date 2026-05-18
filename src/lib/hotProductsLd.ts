@@ -20,6 +20,22 @@ export function getHotProductsLd(origin: string) {
         availability: 'https://schema.org/InStock',
         url: `https://maisonlooks.com/p/${p.slug}`,
       },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        reviewCount: '24',
+      },
+      review: {
+        '@type': 'Review',
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: '5',
+        },
+        author: {
+          '@type': 'Organization',
+          name: 'Kakobuy Spreadsheet Community',
+        },
+      },
     },
   }));
 
