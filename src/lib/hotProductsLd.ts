@@ -19,6 +19,41 @@ export function getHotProductsLd(origin: string) {
         priceCurrency: 'USD',
         availability: 'https://schema.org/InStock',
         url: `https://maisonlooks.com/p/${p.slug}`,
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'USD',
+          },
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'US',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 1,
+              maxValue: 3,
+              unitCode: 'd',
+            },
+            transitTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 7,
+              maxValue: 15,
+              unitCode: 'd',
+            },
+          },
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'US',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnPeriod',
+          merchantReturnDays: 7,
+          returnMethod: 'https://schema.org/ReturnByMail',
+          returnFees: 'https://schema.org/FreeReturn',
+        },
       },
       aggregateRating: {
         '@type': 'AggregateRating',
