@@ -23,7 +23,7 @@ export function getHotProductsLd(origin: string) {
           '@type': 'OfferShippingDetails',
           shippingRate: {
             '@type': 'MonetaryAmount',
-            value: '0',
+            value: '5.00',
             currency: 'USD',
           },
           shippingDestination: {
