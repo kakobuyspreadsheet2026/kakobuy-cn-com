@@ -2,13 +2,12 @@ import type { HomeStubContent } from '../types';
 import { pillsFor } from './categoryPaths';
 
 export const deHome: HomeStubContent = {
-  title:
-    'Kakobuy Spreadsheet 2026 — Spreadsheet-Katalog-Schienen, QC-Lesekompetenz & Paste-URLs | kakobuy-cn.com',
+  title: 'Beste Kakobuy Spreadsheet 2026 (Aktualisiert) — 5.000+ Reps Links & QC',
   description:
-    'Redaktioneller Einstieg 2026: kuratierte Spreadsheet-Pfade zu Weidian-, Taobao- und 1688-Listings, Lager-QC-Framing, Fracht-Realismus — Entdeckung auf kakobuy-cn.com, Zahlungen ausschließlich über Kakobuy.',
+    'Das ultimative Kakobuy Spreadsheet für 2026. Durchstöbere unseren aktualisierten Reps-Katalog für Schuhe, Hoodies und Jacken mit direkten Agent-Links und QC-Fotos.',
   keywords:
     'Kakobuy Spreadsheet 2026, Spreadsheet-Katalog, Weidian Agent QC, Taobao Paste Link, 1688 Spreadsheet, Lagerfotografie, FashionReps Kurzhub',
-  webPageName: 'Kakobuy Spreadsheet Kurz-Hub (kakobuy-cn.com)',
+  webPageName: 'Beste Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'Kakobuy Spreadsheet',
     'Spreadsheet-Browse',

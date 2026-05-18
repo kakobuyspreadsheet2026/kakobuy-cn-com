@@ -3,13 +3,12 @@ import { mlSpreadsheetKakobuy } from '../../consts';
 import { pillsFor } from './categoryPaths';
 
 export const enHome: HomeStubContent = {
-  title:
-    'Kakobuy Spreadsheet Hub 2026 — Agent catalogue finder, QC literacy & shipping realism | kakobuy-cn.com',
+  title: 'Best Kakobuy Spreadsheet 2026 (Updated) — 5,000+ Reps Links & QC',
   description:
-    'Editorial Kakobuy Spreadsheet companion (2026): spreadsheet-indexed browse rails for Taobao / Weidian / 1688 listings, link hygiene tips, warehouse QC literacy, and freight-cost realism—education here, checkout always on kakobuy.com.',
+    'The ultimate Kakobuy Spreadsheet for 2026. Browse our updated reps catalogue for shoes, hoodies, and jackets with direct agent links and QC photos.',
   keywords:
     'Kakobuy spreadsheet 2026, Kakobuy Spreadsheet hub, Weidian agent spreadsheet, Taobao spreadsheet Kakobuy, warehouse QC guide, paste URL Kakobuy, FashionReps spreadsheet notes, shopping agent catalogue shortcuts, indexed spreadsheet browse',
-  webPageName: 'Kakobuy Spreadsheet editorial hub (2026) · kakobuy-cn.com',
+  webPageName: 'Best Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'Kakobuy Spreadsheet',
     'Indexed Kakobuy Spreadsheet catalogue',

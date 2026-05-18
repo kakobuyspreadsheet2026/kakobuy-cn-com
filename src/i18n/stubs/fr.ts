@@ -53,13 +53,12 @@ const fr = {
 } as const;
 
 export const frHome: HomeStubContent = {
-  title:
-    'Kakobuy Spreadsheet 2026 — rails catalogue spreadsheet, culture QC & URLs à coller | kakobuy-cn.com',
+  title: 'Meilleur Kakobuy Spreadsheet 2026 (Mis à jour) — 5 000+ Reps Links & QC',
   description:
-    "Passerelle éditoriale 2026 : jargon spreadsheet lisible, photos d'entrepôt mises en perspective, rappels fret réalistes — navigation sur kakobuy-cn.com, règlement sur Kakobuy uniquement.",
+    'Le Kakobuy Spreadsheet ultime pour 2026. Parcourez notre catalogue reps mis à jour pour chaussures, sweats et vestes avec liens directs et photos QC.',
   keywords:
     'Kakobuy Spreadsheet 2026, catalogue spreadsheet, Weidian agent, QC entrepôt, paste link Taobao, 1688 FashionReps',
-  webPageName: 'Hub lecture Kakobuy Spreadsheet (kakobuy-cn.com)',
+  webPageName: 'Meilleur Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'Kakobuy Spreadsheet',
     'catalogue spreadsheet',

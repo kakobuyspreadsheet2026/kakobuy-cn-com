@@ -53,13 +53,12 @@ const es = {
 } as const;
 
 export const esHome: HomeStubContent = {
-  title:
-    'Kakobuy Spreadsheet 2026 — raíles del catálogo indexado, lectura de QC y URLs para pegar | kakobuy-cn.com',
+  title: 'Mejor Kakobuy Spreadsheet 2026 (Actualizado) — 5.000+ Reps Links y QC',
   description:
-    'Puente editorial 2026 entre el browse del catálogo y Kakobuy: vocabulario de spreadsheet, alertas de fotografía en almacén y recordatorios de flete — descubre en kakobuy-cn.com, paga siempre en kakobuy.com.',
+    'La mejor Kakobuy Spreadsheet para 2026. Explora nuestro catálogo actualizado de reps para zapatillas, sudaderas y chaquetas con enlaces directos y fotos QC.',
   keywords:
     'Kakobuy Spreadsheet 2026, catálogo indexado, Weidian paste link, Taobao agente QC, 1688 spreadsheet, FashionReps haul hub',
-  webPageName: 'Hub editorial Kakobuy Spreadsheet (kakobuy-cn.com)',
+  webPageName: 'Mejor Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'Kakobuy Spreadsheet',
     'browse spreadsheet',

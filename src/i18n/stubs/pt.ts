@@ -55,13 +55,12 @@ const pillLabels = {
 } as const;
 
 export const ptHome: HomeStubContent = {
-  title:
-    'Kakobuy Spreadsheet 2026 — trilhos do catálogo indexado, leitura de QC e URLs para colar | kakobuy-cn.com',
+  title: 'Melhor Kakobuy Spreadsheet 2026 (Atualizado) — 5.000+ Reps Links & QC',
   description:
-    'Ponte editorial 2026: jargão de spreadsheet em português claro, fotos de armazém contextualizadas e honestidade sobre frete — navegue em kakobuy-cn.com, finalize no Kakobuy.',
+    'A melhor Kakobuy Spreadsheet para 2026. Navegue em nosso catálogo atualizado de reps para tênis, moletons e jaquetas com links diretos e fotos QC.',
   keywords:
     'Kakobuy Spreadsheet 2026, catálogo spreadsheet, Weidian agente, QC armazém, paste link Taobao, FashionReps PT-BR',
-  webPageName: 'Hub leitura Kakobuy Spreadsheet (kakobuy-cn.com)',
+  webPageName: 'Melhor Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'Kakobuy Spreadsheet',
     'catálogo indexado',
