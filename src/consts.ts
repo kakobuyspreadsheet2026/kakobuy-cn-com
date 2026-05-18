@@ -20,12 +20,10 @@ export const kakobuyTopBannerInnerMaxPx = 1920;
  * Kakobuy-style homepage hero background (official CDN asset referenced from kakobuy.com HTML).
  * Swap if you prefer a self-hosted image under `/public/`.
  */
-export const kakobuyHomeHeroBannerUrl =
-  'https://nstatic.kakobuy.com/banner/202602/22/ab3a65c9bec3db13c1ba90d790b76781.jpeg';
+export const kakobuyHomeHeroBannerUrl = '/hero-banner.jpg';
 
 /** Thin homepage promo strip above nav (same asset rules as kakobuy.com: img max-height 40px, max-width 100%). */
-export const kakobuyHomeTopStripBannerUrl =
-  'https://nstatic.kakobuy.com/banner/202605/07/d95c7e68b8c432b1ca1f18189308fb39.png';
+export const kakobuyHomeTopStripBannerUrl = '/top-strip-banner.png';
 
 /** Default Discord invite (TOP banner `/join/discord` redirect + floating dock). Override with `PUBLIC_KAKOBUY_DISCORD_URL` or `PUBLIC_FLOAT_DISCORD_URL`. */
 export const defaultKakobuyDiscordUrl = 'https://discord.com/invite/9hrqg53zgs';
