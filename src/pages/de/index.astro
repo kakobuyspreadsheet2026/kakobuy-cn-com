@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import LocaleHomeStub from '../../components/LocaleHomeStub.astro';
 import { deHome } from '../../i18n/stubs/de';
 import { kakobuyHomeHeroBannerUrl, siteStructuredDataIds } from '../../consts';
+import { getHotProductsLd } from '../../lib/hotProductsLd';
 
 export const prerender = true;
 
@@ -25,6 +26,8 @@ const webPageLd = {
   isPartOf: { '@id': websiteId },
   keywords: deHome.webPageKeywords,
 };
+
+const hotProductsLd = getHotProductsLd(origin);
 ---
 
 <Layout
@@ -33,7 +36,7 @@ const webPageLd = {
   description={deHome.description}
   canonicalPath={canonicalPath}
   i18nRouteSegment=""
-  jsonLd={webPageLd}
+  jsonLd={[webPageLd, hotProductsLd]}
   showDiscordTopBanner={false}
   lcpPreloadImages={[kakobuyHomeHeroBannerUrl]}
 >
