@@ -1,0 +1,201 @@
+---
+import products from '../data/api/featured-products.json';
+
+interface Product {
+  slug: string;
+  title: string;
+  category: string;
+  brand: string;
+  priceCny: string | number;
+  priceUsdEstimate: [number, number];
+  images: string[];
+  qcPhotoCount: number;
+}
+
+const displayProducts = (products as Product[]).slice(0, 20);
+---
+
+<section class="hot-products-grid">
+  <div class="wrap">
+    <header class="section-head">
+      <div class="tabs-row">
+        <button class="tab-btn active">
+          <span class="star-icon">★</span> Featured
+        </button>
+        <button class="tab-btn">
+          <span class="trending-icon">📈</span> Trending
+        </button>
+      </div>
+    </header>
+
+    <div class="products-grid">
+      {displayProducts.map((p) => (
+        <a href={`https://maisonlooks.com/p/${p.slug}`} target="_blank" rel="nofollow sponsored" class="product-card">
+          <div class="img-container">
+            <img 
+              src={p.images[0]} 
+              alt={`Kakobuy Spreadsheet find - ${p.title}`}
+              loading="lazy"
+              width="300"
+              height="300"
+            />
+          </div>
+          <div class="card-info">
+            <h3 class="prod-title">{p.title}</h3>
+            <div class="card-footer">
+              <span class="price">$ {p.priceUsdEstimate[0].toFixed(2)}</span>
+              <span class="featured-badge">
+                <span class="star">★</span> FEATURED
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="grid-footer">
+      <a href="/spreadsheet/" class="btn-more">Explore All 10,000+ Featured Items →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hot-products-grid {
+    padding: 4rem 0;
+    background: #0f1115; /* 深色背景 */
+    color: #fff;
+  }
+
+  .section-head {
+    margin-bottom: 2rem;
+  }
+
+  .tabs-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+
+  .tab-btn {
+    background: #1a1d23;
+    border: 1px solid #2d333b;
+    color: #94a3b8;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active {
+    background: #facc15;
+    color: #000;
+    border-color: #facc15;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background: #1a1d23;
+    border-radius: 1rem;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: #facc15;
+  }
+
+  .img-container {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #2d333b;
+  }
+
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-info {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .prod-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .featured-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #facc15;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .grid-footer {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .btn-more {
+    color: #facc15;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .btn-more:hover {
+    text-decoration: underline;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .hot-products-grid {
+      padding: 2rem 0;
+    }
+  }
+</style>
