@@ -90,10 +90,8 @@ const buyerSharesFreshIso =
             c.categoryPills.map((cat, ci) => (
               <a
                 class="cat-icon-link"
-                href={`${browseMlRoot}${cat.path}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${cat.label} — opens catalogue browse`}
+                href={getRelativeLocaleUrl(locale, `category/${cat.id}/`)}
+                aria-label={`${cat.label} — view curated spreadsheet`}
               >
                 <img
                   class="cat-icon-img"

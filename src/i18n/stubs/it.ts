@@ -190,4 +190,11 @@ export const itHome: HomeStubContent = {
     copyrightLine:
       '© 2026 kakobuy-cn.com — note da acquirente; ordini chiusi su Kakobuy.',
   },
+  categoryPage: {
+    titleTemplate: 'Migliore Kakobuy {uiName} Spreadsheet 2026 — Top Picks & QC',
+    descriptionTemplate: 'Sfoglia l’ultima Kakobuy {uiName} spreadsheet per il 2026. Selezione curata di {uiNameLower} premium con link diretti e foto QC verificate.',
+    introTemplate: 'Scopri i migliori {uiNameLower} selezionati per la community di Kakobuy. Tutti gli articoli sono verificati manualmente con link di acquisto attivi e riferimenti QC di magazzino.',
+    externalBtnTemplate: 'Visualizza il catalogo completo di {uiName} su MaisonLooks →',
+    noProducts: 'Ancora nessun prodotto trovato in questa categoria. Torna presto!',
+  },
 };

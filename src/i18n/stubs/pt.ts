@@ -192,4 +192,11 @@ export const ptHome: HomeStubContent = {
     copyrightLine:
       '© 2026 kakobuy-cn.com — notas de leitura; compras fechadas na Kakobuy.',
   },
+  categoryPage: {
+    titleTemplate: 'Melhor Kakobuy {uiName} Spreadsheet 2026 — Top Picks & QC',
+    descriptionTemplate: 'Navegue pela melhor planilha Kakobuy {uiName} para 2026. Seleção curada de {uiNameLower} premium com links diretos de agentes e fotos QC verificadas.',
+    introTemplate: 'Descubra os melhores {uiNameLower} selecionados para la comunidade Kakobuy. Todos os itens são verificados manualmente com links de compra ativos e referências de QC do armazém.',
+    externalBtnTemplate: 'Ver catálogo completo de {uiName} no MaisonLooks →',
+    noProducts: 'Nenhum produto encontrado nesta categoria ainda. Volte em breve!',
+  },
 };

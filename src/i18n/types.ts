@@ -56,4 +56,11 @@ export type HomeStubContent = {
     disclaimerHtml: string;
     copyrightLine: string;
   };
+  categoryPage: {
+    titleTemplate: string;
+    descriptionTemplate: string;
+    introTemplate: string;
+    externalBtnTemplate: string;
+    noProducts: string;
+  };
 };
