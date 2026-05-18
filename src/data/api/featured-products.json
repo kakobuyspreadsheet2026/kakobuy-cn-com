@@ -66,28 +66,6 @@
     "updatedAt": "2026-04-07T00:03:02.671Z"
   },
   {
-    "slug": "grey-tech-fleece-sweatpants-with-black-zipper-pockets-4ec739",
-    "title": "Unisex Grey Sweatpants with Zip Pockets",
-    "description": "Comfortable and stylish unisex sweatpants in a heather grey color. Featuring black zippered side pockets, an elastic waistband with adjustable drawstrings, and tapered cuffs for a sleek fit. Made from soft, breathable cotton material, perfect for casual wear or light workouts.",
-    "category": "trousers-pants",
-    "brand": "Other",
-    "priceCnyRange": [
-      142.56,
-      142.56
-    ],
-    "priceCny": "142.56",
-    "priceUsdEstimate": [
-      19.8,
-      19.8
-    ],
-    "images": [
-      "https://cdn.maisonlooks.com/products/file-1775463942858-344374638.webp"
-    ],
-    "qcPhotoCount": 0,
-    "hasTryOn": true,
-    "updatedAt": "2026-04-06T08:25:42.996Z"
-  },
-  {
     "slug": "gucci-gg-monogram-green-sweater-194123",
     "title": "Gucci Green GG Monogram Knit Sweater",
     "description": "This Gucci sweater features an all-over GG monogram pattern in a soft, olive green knit. It has a relaxed fit with ribbed cuffs and hem, offering both comfort and style.",
@@ -110,28 +88,6 @@
     "updatedAt": "2026-04-07T09:29:01.035Z"
   },
   {
-    "slug": "black-cross-applique-wide-leg-pants-08dc25",
-    "title": "Black Cross Applique Wide Leg Pants",
-    "description": "These black wide-leg pants feature a bold design with colorful cross appliques on the front and back. Made from a comfortable cotton blend, they offer a relaxed fit and are perfect for casual streetwear looks.",
-    "category": "jeans",
-    "brand": "Other",
-    "priceCnyRange": [
-      287.76,
-      287.76
-    ],
-    "priceCny": "287.76",
-    "priceUsdEstimate": [
-      39.97,
-      39.97
-    ],
-    "images": [
-      "https://cdn.maisonlooks.com/products/file-1775523921035-834295743.webp"
-    ],
-    "qcPhotoCount": 0,
-    "hasTryOn": true,
-    "updatedAt": "2026-04-07T01:05:21.180Z"
-  },
-  {
     "slug": "fendi-low-top-sneakers-in-beige-green-and-brown-bc8be1",
     "title": "Fendi Multi-Color Low Top Sneakers",
     "description": "These Fendi low-top sneakers feature a bold multi-color design with suede and leather panels in earthy tones. The iconic FF logo is prominently displayed on the side, complemented by contrasting green laces and a white rubber sole.",
@@ -152,50 +108,6 @@
     "qcPhotoCount": 0,
     "hasTryOn": true,
     "updatedAt": "2026-04-04T12:27:19.618Z"
-  },
-  {
-    "slug": "the-woo-black-hoodie-with-rose-print-97cdf5",
-    "title": "Black 'THE WOO-' Rose Print Hoodie",
-    "description": "This black hoodie features a bold white graphic print of 'THE WOO-' with a rose design. Made from soft cotton, it offers a relaxed fit and is perfect for casual streetwear looks.",
-    "category": "hoodies-sweatshirts",
-    "brand": "Other",
-    "priceCnyRange": [
-      189.6,
-      189.6
-    ],
-    "priceCny": "189.60",
-    "priceUsdEstimate": [
-      26.33,
-      26.33
-    ],
-    "images": [
-      "https://cdn.maisonlooks.com/products/file-1775307327318-342383148.webp"
-    ],
-    "qcPhotoCount": 0,
-    "hasTryOn": true,
-    "updatedAt": "2026-04-04T12:55:27.473Z"
-  },
-  {
-    "slug": "global-shop-tiger-print-denim-jeans-n08-light-blue-1a8e3f",
-    "title": "Global Shop Tiger Print Denim Jeans",
-    "description": "These wide-leg denim jeans feature a bold tiger print design on the back pocket, offering a unique and edgy streetwear style. Made from durable cotton denim, they are perfect for casual outings and make a statement with their distinctive graphic detail.",
-    "category": "jeans",
-    "brand": "Other",
-    "priceCnyRange": [
-      134.4,
-      134.4
-    ],
-    "priceCny": "134.40",
-    "priceUsdEstimate": [
-      18.67,
-      18.67
-    ],
-    "images": [
-      "https://cdn.maisonlooks.com/products/file-1775555936550-165239048.webp"
-    ],
-    "qcPhotoCount": 0,
-    "hasTryOn": true,
-    "updatedAt": "2026-04-07T09:58:56.739Z"
   },
   {
     "slug": "polo-ralph-lauren-black-slim-fit-sweatpants-0a503b",
@@ -306,28 +218,6 @@
     "qcPhotoCount": 0,
     "hasTryOn": true,
     "updatedAt": "2026-04-07T14:18:29.164Z"
-  },
-  {
-    "slug": "black-wide-leg-jeans-with-flame-snake-print-bfec0b",
-    "title": "Black Snake Flame Print Wide Leg Jeans",
-    "description": "These black wide-leg jeans feature a bold snake flame print on the left leg, offering a unique and edgy streetwear style. Made from durable denim with a relaxed fit, they are perfect for casual outings or pairing with graphic tees and sneakers.",
-    "category": "jeans",
-    "brand": "Other",
-    "priceCnyRange": [
-      118.8,
-      118.8
-    ],
-    "priceCny": "118.80",
-    "priceUsdEstimate": [
-      16.5,
-      16.5
-    ],
-    "images": [
-      "https://cdn.maisonlooks.com/products/file-1775523775221-899394966.webp"
-    ],
-    "qcPhotoCount": 0,
-    "hasTryOn": true,
-    "updatedAt": "2026-04-07T01:02:55.520Z"
   },
   {
     "slug": "air-jordan-4-retro-metallic-silver-sneakers-3fc266",
@@ -658,5 +548,115 @@
     "qcPhotoCount": 0,
     "hasTryOn": true,
     "updatedAt": "2026-04-06T23:36:13.309Z"
+  },
+  {
+    "slug": "celine-cross-embroidered-light-blue-jeans-471210",
+    "title": "Chrome Hearts Cross Embroidered Jeans",
+    "description": "Light blue denim jeans featuring intricate cross embroidery in leopard print and red, with bold lettering at the hem. High-waisted fit with a relaxed silhouette, perfect for a statement streetwear look.",
+    "category": "jeans",
+    "brand": "Chrome Hearts",
+    "priceCnyRange": [
+      340.56,
+      340.56
+    ],
+    "priceCny": "340.56",
+    "priceUsdEstimate": [
+      47.3,
+      47.3
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775379904159-995657032.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-05T09:05:04.349Z"
+  },
+  {
+    "slug": "fendi-denim-low-top-sneakers-in-blue-and-white-8bbe5c",
+    "title": "Fendi Blue Denim Low-top Sneakers",
+    "description": "These Fendi low-top sneakers feature a distressed denim upper with white leather accents and a frayed design. The iconic FF logo is prominently displayed on the side, combining casual style with luxury craftsmanship.",
+    "category": "sneakers",
+    "brand": "Fendi",
+    "priceCnyRange": [
+      646.8,
+      646.8
+    ],
+    "priceCny": "646.80",
+    "priceUsdEstimate": [
+      89.83,
+      89.83
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775239264872-58310592.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-03T18:01:05.068Z"
+  },
+  {
+    "slug": "rhude-black-track-pants-with-white-side-stripes-16420d",
+    "title": "Rhude Black Track Pants with White Stripes",
+    "description": "These Rhude track pants feature a sleek black design with bold white side stripes and a contrasting yellow drawstring. Made from soft, comfortable fabric, they offer a relaxed fit ideal for casual wear or athleisure.",
+    "category": "trousers-pants",
+    "brand": "Rhude",
+    "priceCnyRange": [
+      221.76,
+      221.76
+    ],
+    "priceCny": "221.76",
+    "priceUsdEstimate": [
+      30.8,
+      30.8
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775273397797-475904073.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-04T03:29:58.107Z"
+  },
+  {
+    "slug": "dior-cd-sneakers-in-black-grey-627943",
+    "title": "Dior CD Sneakers Black/White",
+    "description": "Elevate your style with these Dior CD sneakers, featuring a sleek black and white colorway. Crafted with premium materials, they offer both comfort and luxury. The iconic CD logo adds a distinctive touch to this modern sneaker design.",
+    "category": "sneakers",
+    "brand": "Dior",
+    "priceCnyRange": [
+      369.6,
+      369.6
+    ],
+    "priceCny": "369.60",
+    "priceUsdEstimate": [
+      51.33,
+      51.33
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775234106833-898131775.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-26T02:11:16.907Z"
+  },
+  {
+    "slug": "split-design-trap-t-shirt-in-21-black-grey-e8ed72",
+    "title": "Trapstar Bear Logo Split T-Shirt Black/Charcoal",
+    "description": "This Trapstar t-shirt features a bold split design with contrasting black and charcoal gray panels. The front showcases the iconic 'Bear' logo in white, combining a fierce panther graphic with the brand name. Made from soft cotton, it offers a relaxed fit and is perfect for casual streetwear looks.",
+    "category": "t-shirts",
+    "brand": "Trapstar",
+    "priceCnyRange": [
+      142.8,
+      142.8
+    ],
+    "priceCny": "142.80",
+    "priceUsdEstimate": [
+      19.83,
+      19.83
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775547529415-724533345.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-07T07:38:49.582Z"
   }
 ]
