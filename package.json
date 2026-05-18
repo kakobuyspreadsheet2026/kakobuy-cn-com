@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev --port 4788 --host",
-    "build": "astro build",
+    "prebuild": "node scripts/fetch-featured.mjs",
+    "build": "npm run prebuild && astro build",
     "preview": "astro preview --port 4173"
   },
   "dependencies": {

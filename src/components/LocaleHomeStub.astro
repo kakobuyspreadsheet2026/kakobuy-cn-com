@@ -2,6 +2,7 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import KakobuyHomeHero from './KakobuyHomeHero.astro';
 import SiteFooter from './SiteFooter.astro';
+import HotProductsTable from './HotProductsTable.astro';
 import HomeCategoryBanners from './HomeCategoryBanners.astro';
 import { defaultCommunityRedditUrl, ml } from '../consts';
 import { homeCategoryBannersWithHrefs } from '../lib/homeCategoryBannersWithHrefs';
@@ -129,6 +130,8 @@ const buyerSharesFreshIso =
             />
           </a>
         </div>
+
+        <HotProductsTable />
 
         <div class="home-feed-row">
           <nav class="home-feed-row__col home-recent-blog" aria-labelledby="recent-blog-heading">
