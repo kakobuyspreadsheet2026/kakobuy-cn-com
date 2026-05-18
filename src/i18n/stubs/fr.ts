@@ -4,51 +4,51 @@ import { pillsFor } from './categoryPaths';
 const fr = {
   shoes: {
     label: 'Chaussures',
-    alt: 'kakobuy spreadsheet — sneakers Weidian/Taobao avec QC lorsque visible',
+    alt: 'sneakers Weidian/Taobao avec QC lorsque visible',
   },
   't-shirts': {
     label: 'T-shirts',
-    alt: 'kakobuy spreadsheet — coupes boxy, délavages et graphiques',
+    alt: 'coupes boxy, délavages et graphiques',
   },
   pants: {
     label: 'Pantalons',
-    alt: 'kakobuy spreadsheet — denim, joggers et shorts prêts à coller',
+    alt: 'denim, joggers et shorts prêts à coller',
   },
   accessories: {
     label: 'Accessoires',
-    alt: 'kakobuy spreadsheet — ceintures, petits bijoux et détails',
+    alt: 'ceintures, petits bijoux et détails',
   },
   bags: {
     label: 'Sacs',
-    alt: 'kakobuy spreadsheet — sacoches, sacs à dos et cabas pour workflow agent',
+    alt: 'sacoches, sacs à dos et cabas pour workflow agent',
   },
   electronics: {
     label: 'Tech',
-    alt: 'kakobuy spreadsheet — gadgets et audio avec repère prix',
+    alt: 'gadgets et audio avec repère prix',
   },
   jackets: {
     label: 'Vestes',
-    alt: 'kakobuy spreadsheet — coupe-vent, doudounes et couches techniques',
+    alt: 'coupe-vent, doudounes et couches techniques',
   },
   hoodies: {
     label: 'Sweats',
-    alt: 'kakobuy spreadsheet — zips, crews et maille',
+    alt: 'zips, crews et maille',
   },
   headwear: {
     label: 'Casquettes',
-    alt: 'kakobuy spreadsheet — snapbacks, buckets et bonnets',
+    alt: 'snapbacks, buckets et bonnets',
   },
   jersey: {
     label: 'Jerseys',
-    alt: 'kakobuy spreadsheet — maillots mesh et sans manches',
+    alt: 'maillots mesh et sans manches',
   },
   perfume: {
     label: 'Beauté',
-    alt: 'kakobuy spreadsheet — parfums et beauty du catalogue',
+    alt: 'parfums et beauty du catalogue',
   },
   other: {
     label: 'Mix',
-    alt: 'kakobuy spreadsheet — liste fourre-tout et catégories hybrides',
+    alt: 'liste fourre-tout et catégories hybrides',
   },
 } as const;
 
@@ -71,7 +71,7 @@ export const frHome: HomeStubContent = {
     tagline: 'Le catalogue raconte ; Kakobuy encaisse',
     kicker: '2026 · Weidian · Taobao · 1688 · photos inbound',
     body:
-      'Accès express aux mêmes couloirs du catalogue que les feuilles partagées, traduits ici en français clair sur ce qu’il faut vérifier avant d’approuver un envoi. Aucun paiement sur ce domaine : votre session Kakobuy reste la source de vérité.',
+      'La découverte commence sur kakobuy-cn.com : parcourez les catégories et mots-clés, ouvrez des pages marketplace stables sur Taobao, Weidian et 1688, puis transmettez une URL propre à Kakobuy pour le paiement et la photographie d’entrepôt. Ce site n’est que la couche de navigation — le panier, les frais et les validations d’expédition restent dans votre session d’agent.',
     ctaBrowse: 'Ouvrir le catalogue spreadsheet →',
     ctaLogin: 'Se connecter sur Kakobuy',
     heroPlaneAlt:
@@ -92,87 +92,87 @@ export const frHome: HomeStubContent = {
   exploreKickerLead: 'Choisissez une catégorie, puis finalisez vos achats dans ',
   exploreKickerTrail: '',
   exploreIntro:
-    'Chaque chip ouvre la navigation indexée Kakobuy Spreadsheet (mix Taobao / Weidian / 1688 selon la voie). Capturez-y les URL SKU réelles, puis poursuivez dans votre compte Kakobuy pour paiements et photographie d’entrepôt.',
+    'Chaque bouton ouvre la navigation indexée (mix Taobao / Weidian / 1688 selon la voie). Capturez-y les URL SKU réelles, puis poursuivez dans votre compte Kakobuy pour les paiements et la photographie d’entrepôt.',
   exploreSub:
     'Les icônes ouvrent volontairement un nouvel onglet afin de garder cette page de référence à côté de votre session Kakobuy.',
   introH2:
     'Pourquoi les acheteurs Kakobuy Spreadsheet se soucient encore des URL en 2026',
   introP:
-    'Liens marketplace stables, prix lus avec scepticisme et clichés entrepôt battent captures hype — même lorsqu’elles viennent d’une ligne Kakobuy Spreadsheet. La référence suivante parcourt tout l’arc Kakobuy Spreadsheet sans prétendre tenir checkout.',
+    'Des liens marketplace stables, des prix lus avec scepticisme et des clichés d’entrepôt battent les captures d’écran hype — même lorsqu’elles proviennent d’une ligne curatée. Le guide suivant parcourt tout le processus d’achat sans prétendre gérer le paiement.',
   guideH2: 'Kakobuy Spreadsheet décrypté — manuel agent (édition 2026)',
   guideIntro:
-    'Voici une référence Kakobuy Spreadsheet reconstituée qui reflète comment le jargon hobby a évolué : ce qu’on appelle ligne Kakobuy Spreadsheet, pourquoi kakobuy-cn.com reste uniquement compagnon éditorial Kakobuy Spreadsheet, comment les URL survivent aux refontes marketplace, quand le QC compte et comment stress‑tester le « landed » avant de valider l’expédition. Politiques, factures et litiges restent chez Kakobuy — la couche Kakobuy Spreadsheet ne remplace jamais checkout.',
+    'Voici une référence reconstituée qui reflète l’évolution du jargon : ce qu’on appelle une ligne de Kakobuy Spreadsheet, pourquoi kakobuy-cn.com reste uniquement un compagnon éditorial, comment les URL survivent aux refontes des marketplaces, quand le QC compte et comment optimiser le coût final avant de valider l’expédition. Les politiques, factures et litiges restent chez l’agent — cette couche ne remplace jamais le paiement officiel.',
   sections: [
     {
       h3: '1. Ce que les hobbyistes veulent dire par « Kakobuy Spreadsheet »',
       paragraphs: [
-        'Sur les threads on utilise « Kakobuy Spreadsheet » (ou simplement « spreadsheet ») pour toute grille curatée — Google Sheets, exports Airtable ou skins catalogue — alignant des URL chinoises à côté de ragots batch, aides‑mémoire tailles, indices yuan/US et quelques stills QC vendeur. Voyez chaque ligne Kakobuy Spreadsheet comme waypoint sauvegardé, pas promesse magique de stock.',
-        'Nous adoptons volontairement ce vocabulaire : les pills Kakobuy Spreadsheet vous placent sur rails browse indexés Kakobuy Spreadsheet pour récolter SKU comme les vétérans Discord. Qu’on dise spreadsheet Weidian ou Taobao dans un classeur Kakobuy Spreadsheet, la mécanique reste identique — vous collez l’URL résolue dans Kakobuy, financez le segment domestique, attendez les clichés inbound puis approuvez le fret export.',
+        'Sur les forums, on utilise ce terme (ou simplement « spreadsheet ») pour toute grille curatée — Google Sheets, exports Airtable ou interfaces de catalogue — alignant des URL chinoises à côté de rumeurs sur les lots, d’aides‑mémoire pour les tailles, d’indices de prix et de quelques photos QC du vendeur. Considérez chaque ligne comme un point de repère sauvegardé, pas une promesse magique de stock.',
+        'Nous adoptons volontairement ce vocabulaire : les catégories vous placent sur des rails de navigation indexés pour récolter des SKU comme les vétérans de Discord. Qu’on parle de classeur Weidian ou Taobao, la mécanique reste identique — vous collez l’URL résolue dans Kakobuy, financez le segment domestique, attendez les clichés d’entrepôt puis approuvez l’expédition internationale.',
       ],
     },
     {
       h3:
         '2. Listes communautaires Kakobuy Spreadsheet vs. voix corporate Kakobuy · rôle de kakobuy-cn.com',
       paragraphs: [
-        'Peu de miroirs Kakobuy Spreadsheet portent un sceau corporate ; ce sont surtout digests bénévoles empilés sur le même folklore Kakobuy Spreadsheet que dans les threads haul. Saisies, remboursements, SKU interdits ou disputes passent toujours par Kakobuy et votre douane locale. Pour du texte niveau contrat, lisez la FAQ live Kakobuy et les politiques vendeur — pas les recap Discord d’un onglet Kakobuy Spreadsheet.',
-        'kakobuy-cn.com demeure à distance de chaque parcours checkout Kakobuy Spreadsheet : pas de paniers, wallets ni desk fulfilment. Tout ce qui ressemble à « ticket support » vit dans dashboards Kakobuy ou sellers tiers. Si checkout contradictoire avec un essai ici, le checkout prime — ce hub Kakobuy Spreadsheet contextualise seulement.',
+        'Peu de miroirs portent un sceau officiel ; ce sont surtout des résumés bénévoles basés sur le même folklore que dans les discussions de commandes. Les saisies, remboursements, SKU interdits ou litiges passent toujours par l’agent et votre douane locale. Pour des textes contractuels, lisez la FAQ en direct de l’agent et les politiques du vendeur — pas les captures Discord d’un onglet de partage.',
+        'kakobuy-cn.com demeure à distance de chaque parcours de paiement : pas de paniers, de portefeuilles ni de gestion de commandes. Tout ce qui ressemble à un « ticket support » vit dans les interfaces de l’agent ou chez les vendeurs tiers. Si le paiement officiel contredit un article ici, c’est le paiement qui prime — ce hub apporte seulement du contexte.',
       ],
     },
     {
       h3:
-        '3. Rythme opérationnel Kakobuy Spreadsheet — onglet catalogue → snapshots Kakobuy',
+        '3. Rythme opérationnel — onglet catalogue → snapshots Kakobuy',
       paragraphs: [
-        'Partez de la surface browse Kakobuy Spreadsheet reliée à ce hub, ouvrez une page SKU et copiez le HTTPS complet depuis la barre d’adresse — la même remise que tout tutoriel Kakobuy Spreadsheet suppose. Évitez wrappers qui retirent IDs variantes, cadres CDN nus ou racines boutique qui masquent options — ils créent commandes fantômes ensuite.',
-        'Chez Kakobuy suivez l’assistant coller‑lien de votre UI. Verrouillez couleur/taille/batch avant charges annexes et notez frais embarqués. Inbound domestique d’abord ; obsession QC pixels seulement après réception avant segments courier coûteux — volumétrie éclipse souvent le chiffre optimiste qui vivait dans la cellule Kakobuy Spreadsheet.',
+        'Partez de la surface de navigation reliée à ce hub, ouvrez une page SKU et copiez le lien HTTPS complet depuis la barre d’adresse — la même étape que tout tutoriel suppose. Évitez les redirections qui retirent les IDs de variantes, les cadres CDN nus ou les racines de boutique qui masquent les options — ils créent des commandes fantômes par la suite.',
+        'Chez Kakobuy, suivez l’assistant de collage de lien. Verrouillez la couleur, la taille et le lot avant les frais annexes et notez les frais de service inclus. Le transport domestique vient d’abord ; l’obsession pour les pixels QC ne vient qu’après réception, avant les segments de livraison coûteux — la volumétrie éclipse souvent le chiffre optimiste qui figurait dans la cellule du partage.',
       ],
     },
     {
       h3:
-        '4. Pourquoi agents routés battent DMs vendeurs désordonnées (toujours la fin Kakobuy Spreadsheet)',
+        '4. Pourquoi les agents organisés battent les messages directs (toujours l’objectif final)',
       paragraphs: [
-        'Les agents consolident sauts domestiques, packagent photo QC et exposent ticketing pour faire remonter problèmes avant export — voilà pourquoi workflows Kakobuy Spreadsheet finissent presque toujours dans boîte collage agent plutôt que DM vendeur. Cela n’efface pas roulette douanière — ça remplace transferts peer‑to‑peer chaotiques par tableaux auditable screenshot‑ables à côté de vos notes Kakobuy Spreadsheet.',
+        'Les agents consolident les trajets domestiques, gèrent les photos QC et exposent un système de tickets pour faire remonter les problèmes avant l’export — voilà pourquoi ces workflows finissent presque toujours dans la boîte de collage de l’agent plutôt que par message au vendeur. Cela n’efface pas la roulette douanière — cela remplace les transferts directs chaotiques par des tableaux de bord auditables à côté de vos notes.',
       ],
     },
     {
       h3:
-        '5. Gestion des liens quand drops se renomment à l’heure · garder lignes Kakobuy Spreadsheet honnêtes',
+        '5. Gestion des liens quand les stocks changent de nom — garder les lignes honnêtes',
       paragraphs: [
-        'Les marketplaces mutent URLs pour SEO, bans ou rebuild boutiques ; Kakobuy ne fige pas permaliens tiers. Les onglets Kakobuy Spreadsheet jamais rafraîchis accumulent fantômes. De bons curateurs Kakobuy Spreadsheet horodatent clics, signalent lignes mortes, annotent « needs verification ».',
-        'Privilégiez URL dont sélecteur variantes reflète encore chatter Discord ou commentaires Kakobuy Spreadsheet archivés. Datez captures hype pour savoir si référence QC précède dernier rewrite — splash drift plus vite que SKU ancre copiée depuis Kakobuy Spreadsheet.',
+        'Les marketplaces modifient les URL pour le SEO, les suspensions ou les refontes de boutiques ; l’agent ne peut pas figer les liens tiers. Les onglets jamais rafraîchis accumulent des liens morts. De bons curateurs horodatent les clics, signalent les lignes mortes et annotent « vérification nécessaire ».',
+        'Privilégiez les URL dont le sélecteur de variantes reflète encore les discussions ou les commentaires archivés. Datez vos captures pour savoir si une référence QC est antérieure à la dernière modification — les pages d’accueil changent plus vite que les liens SKU copiés depuis un classeur.',
       ],
     },
     {
-      h3: '6. Imagerie entrepôt vs. galeries marketing Kakobuy Spreadsheet',
+      h3: '6. Imagerie d’entrepôt vs. galeries marketing',
       paragraphs: [
-        'Une fois inbound libéré, Kakobuy photographie ce qui est arrivé physiquement. Ces clichés alimentent QC hobby — lumière dure, angles francs, plis imparfaits. Galeries listing restent direction artistique aspirationnelle ; sets entrepôt révèlent coutures décentrées, logos off‑center ou shifts teinte avant étiquettes internationales — ne confondez jamais miniature Kakobuy Spreadsheet brillante avec vérité entrepôt.',
-        'Si divergence matérielle avec récit vendeur ou légende Kakobuy Spreadsheet, pausez et ouvrez dispute/ticket Kakobuy avant freight outbound. Après passage DHL/FedEx/EMS remediation coûte cher — note Kakobuy Spreadsheet ne recoud pas mid‑flight.',
+        'Une fois le trajet domestique terminé, Kakobuy photographie ce qui est arrivé physiquement. Ces clichés alimentent le QC des passionnés — lumière dure, angles francs, plis imparfaits. Les galeries de l’annonce restent une direction artistique aspirationnelle ; les clichés d’entrepôt révèlent les coutures décentrées, les logos mal placés ou les écarts de teinte avant l’expédition internationale — ne confondez jamais une miniature brillante avec la vérité de l’entrepôt.',
+        'Si une divergence matérielle apparaît avec le récit du vendeur ou la légende du partage, faites une pause et ouvrez un litige auprès de l’agent avant l’envoi. Après le passage au transporteur international, toute correction coûte cher — une note dans un classeur ne recoud pas les coutures en plein vol.',
       ],
     },
     {
-      h3: '7. Prix ligne Kakobuy Spreadsheet vs. math landed réelle',
+      h3: '7. Prix affiché vs. coût final réel',
       paragraphs: [
-        'Tant qu’une ligne Kakobuy Spreadsheet n’énumère pas chaque surcharge, traitez prix visible comme indice item‑facing — pas devis landed pour votre code postal. Landed empile forwarding domestique, services agent, mesures optionnelles, billing volumétrique, clauses carburant, toggles assurance, spreads FX et exigences classe courier.',
-        'Chaussures massives, doudounes et bundles tech punissent poids DIM — tenez journal d’envois personnel à côté du Kakobuy Spreadsheet ; moyennes historiques battent arrondis de salon Discord.',
+        'Tant qu’une ligne n’énumère pas chaque supplément, considérez le prix visible comme une indication — pas un devis final pour votre code postal. Le coût total cumule le transport domestique, les services de l’agent, les mesures optionnelles, la facturation volumétrique, les clauses carburant, les options d’assurance, les taux de change et les exigences du transporteur.',
+        'Les chaussures massives, les doudounes et les produits high-tech sont pénalisés par le poids volumétrique — tenez un journal d’envois personnel à côté de vos listes ; vos moyennes historiques battront toujours les arrondis des forums.',
       ],
     },
     {
-      h3: '8. Évaluer curateurs Kakobuy Spreadsheet, batches et ragots pairs',
+      h3: '8. Évaluer les curateurs, les lots et les avis pairs',
       paragraphs: [
-        'Même éditeurs Kakobuy Spreadsheet brillants retardent réalité marketplace : batches meurent, matériaux pivotent, verdicts « GL » vieillissent. Croisez listings vivants, preuves Reddit fraîches et politiques retour avant nostalgie ligne Kakobuy Spreadsheet.',
-        'Servez‑vous de ce hub Kakobuy Spreadsheet comme boussole, pas autopilote. Silhouettes trop bon marché suggèrent batches tournés, listings leurres ou grilles taille mal lues — collez prudemment, QC agressif et respectez timers disputes Kakobuy même quand Kakobuy Spreadsheet dit le contraire.',
+        'Même les éditeurs les plus brillants sont en retard sur la réalité du marché : les lots disparaissent, les matériaux changent, les verdicts « GL » vieillissent. Croisez les annonces en direct, les preuves récentes sur les réseaux et les politiques de retour avant de vous fier à la nostalgie d’une ligne de partage.',
+        'Servez‑vous de ce hub comme d’une boussole, pas d’un autopilote. Des prix anormalement bas suggèrent souvent des lots modifiés, des annonces leurres ou des grilles de tailles mal lues — collez avec prudence, soyez exigeant sur le QC et respectez les délais de litige de l’agent même si le classeur dit le contraire.',
       ],
     },
     {
-      h3: '9. Pièges Kakobuy Spreadsheet récurrents',
+      h3: '9. Pièges récurrents',
       paragraphs: [
-        'Tailles lettre sans tableau mm/cm ; ignorer poids vêtements avant volumétrie ; traiter clones « inspired » comme jumeaux 1:1 parce qu’une cellule Kakobuy Spreadsheet l’a dit ; valider QC sur miniature illisible ; citer colonne Kakobuy Spreadsheet unique comme prix landed taxes incluses pour votre code postal.',
+        'Se fier aux tailles en lettres sans tableau de mesures ; ignorer le poids des vêtements avant la volumétrie ; traiter des clones comme des jumeaux identiques parce qu’une cellule l’a dit ; valider un QC sur une miniature illisible ; citer une seule colonne comme prix final taxes incluses pour votre zone.',
       ],
     },
     {
       h3:
-        '10. Bibliothèques communautaires Kakobuy Spreadsheet honnêtes saison après saison',
+        '10. Des bibliothèques communautaires honnêtes saison après saison',
       paragraphs: [
-        'Segmentez onglets par vertical, figez en‑têtes, notez IDs batch et planifiez audits URL — surtout après mega‑refresh « rewrite 2026 ». Documents Kakobuy Spreadsheet vivants surpassent dumps screenshot : supprimez hyperlinks morts, codez couleur SKU suspects et racontez remplacements pour lecteur Kakobuy Spreadsheet suivant.',
+        'Segmentez les onglets par thématique, figez les en‑têtes, notez les IDs de lots et planifiez des audits d’URL — surtout après les grandes mises à jour. Des documents vivants valent mieux que des captures d’écran : supprimez les liens morts, marquez les SKU suspects et expliquez les remplacements pour le prochain lecteur.',
       ],
     },
   ],
