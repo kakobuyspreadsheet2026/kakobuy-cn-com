@@ -38,12 +38,6 @@ export const deHome: HomeStubContent = {
   redditAria: 'r/kakobuy Diskussion (Reddit, neuer Tab)',
   redditSnooAlt:
     'kakobuy spreadsheet · Reddit-Maskottchen — r/kakobuy Hauls, QC und Agent-Tipps',
-  introH2: 'Warum Kakobuy Spreadsheet‑Shoppers 2026 noch auf URLs achten',
-  introP:
-    'Stabile Marktplatz‑Links, skeptische Preise und Lagerfotos schlagen hype Screenshots — selbst wenn sie aus einer kuratierten Zeile stammen. Der folgende Primer führt durch den kompletten Kaufprozess ohne zu suggerieren, dass wir Checkout von dieser Domain aus übernehmen.',
-  guideH2: 'Kakobuy Spreadsheet entschlüsselt — Agent‑Leitfaden (Ausgabe 2026)',
-  guideIntro:
-    'Das Folgende ist eine neu aufgebaute Referenz, die widerspiegelt, wie sich die Hobby‑Sprache entwickelt hat: was eine Kakobuy Spreadsheet‑Zeile meint, warum kakobuy-cn.com nur ein redaktioneller Begleiter bleibt, wie URLs Marktplatz‑Umbauten überstehen, wann QC wichtig wird und wie du Landed‑Spend stress‑testest, bevor du „Versand“ klickst. Richtlinien, Rechnungen und Streitfälle verbleiben in Kakobuy — diese Ebene ersetzt niemals den Checkout.',
   sections: [
     {
       h3: '1. Was ist ein Kakobuy Spreadsheet?',

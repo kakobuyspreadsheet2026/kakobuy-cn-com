@@ -89,13 +89,6 @@ export const itHome: HomeStubContent = {
   redditAria: 'Community r/kakobuy (Reddit, nuova scheda)',
   redditSnooAlt:
     'kakobuy spreadsheet · Snoo Reddit r/kakobuy — haul, QC spreadsheet e confronti agent',
-  introH2:
-    'Perché agli acquirenti Kakobuy Spreadsheet importano ancora gli URL nel 2026',
-  introP:
-    'Link marketplace stabili, prezzi letti con scetticismo e foto in magazzino battono gli screenshot hype — anche quando provengono da una riga curata. La guida seguente copre l’intero processo d’acquisto senza fingere di gestire il pagamento.',
-  guideH2: 'Kakobuy Spreadsheet decodificato — manuale agent (edizione 2026)',
-  guideIntro:
-    'Qui trovi una reference Kakobuy Spreadsheet ricostruita che rispecchia come è evoluto il linguaggio hobby: cosa intendono per riga Kakobuy Spreadsheet, perché kakobuy-cn.com resta solo compagno editoriale Kakobuy Spreadsheet, come gli URL sopravvivono al churn dei marketplace, quando il QC conta e come stress‑testare la spesa landed prima di premere “ship”. Policy, fatture e dispute restano dentro Kakobuy — il livello Kakobuy Spreadsheet non sostituisce mai checkout.',
   sections: [
     {
       h3: '1. Cos\'è un Kakobuy Spreadsheet?',
@@ -107,7 +100,7 @@ export const itHome: HomeStubContent = {
     {
       h3: '2. Come acquistare?',
       paragraphs: [
-        'Il processo è semplice: trova un articolo nel nostro catalogo, copia il link HTTPS e incollalo nella barra di ricerca di Kakobuy. Lì potrai scegliere taglia, colore e completare l\'acquisto.',
+        'Il processo è simple: trova un articolo nel nostro catalogo, copia il link HTTPS e incollalo nella barra di ricerca di Kakobuy. Lì potrai scegliere taglia, colore e completare l\'acquisto.',
       ],
     },
     {

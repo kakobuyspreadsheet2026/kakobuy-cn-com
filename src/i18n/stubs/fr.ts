@@ -89,13 +89,6 @@ export const frHome: HomeStubContent = {
   redditAria: 'Communauté r/kakobuy (Reddit, nouvel onglet)',
   redditSnooAlt:
     'kakobuy spreadsheet · Snoo Reddit — r/kakobuy haul, QC spreadsheets et agents',
-  introH2:
-    'Pourquoi les acheteurs Kakobuy Spreadsheet se soucient encore des URL en 2026',
-  introP:
-    'Des liens marketplace stables, des prix lus avec scepticisme et des clichés d’entrepôt battent les captures d’écran hype — même lorsqu’elles proviennent d’une ligne curatée. Le guide suivant parcourt tout le processus d’achat sans prétendre gérer le paiement.',
-  guideH2: 'Kakobuy Spreadsheet décrypté — manuel agent (édition 2026)',
-  guideIntro:
-    'Voici une référence reconstituée qui reflète l’évolution du jargon : ce qu’on appelle une ligne de Kakobuy Spreadsheet, pourquoi kakobuy-cn.com reste uniquement un compagnon éditorial, comment les URL survivent aux refontes des marketplaces, quand le QC compte et comment optimiser le coût final avant de valider l’expédition. Les politiques, factures et litiges restent chez l’agent — cette couche ne remplace jamais le paiement officiel.',
   sections: [
     {
       h3: '1. Qu\'est-ce qu\'un Kakobuy Spreadsheet ?',

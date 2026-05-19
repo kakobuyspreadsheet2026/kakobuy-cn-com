@@ -91,19 +91,12 @@ export const ptHome: HomeStubContent = {
   redditAria: 'Comunidade r/kakobuy (Reddit, nova aba)',
   redditSnooAlt:
     'kakobuy spreadsheet · Snoo Reddit r/kakobuy — debates de haul, QC spreadsheet e agents',
-  introH2:
-    'Por qué compradores Kakobuy Spreadsheet ainda ligam para URLs em 2026',
-  introP:
-    'Links estáveis de marketplace, preços tratados com ceticismo e fotos de armazém superam prints hypados — mesmo quando vêm de uma linha curada. O guia abaixo cobre o arco inteiro do processo de compra sem fingir que este domínio opera o pagamento.',
-  guideH2: 'Kakobuy Spreadsheet decodificado — primer do agente (edição 2026)',
-  guideIntro:
-    'Abaixo está uma referência reconstruída que espelha como o jargão hobby evoluiu: o que chamam de linha de Kakobuy Spreadsheet, por que kakobuy-cn.com permanece apenas um companheiro editorial, como URLs sobrevivem à rotatividade dos marketplaces, quando QC importa e como otimizar o gasto final antes de tocar em “enviar”。 Políticas, faturas e disputas ficam dentro do agente — esta camada nunca substitui o pagamento oficial.',
   sections: [
     {
       h3: '1. O que é uma Kakobuy Spreadsheet?',
       paragraphs: [
         'Na comunidade, uma "spreadsheet" é uma grade curada de links (Taobao, Weidian, 1688) com informações de lotes e fotos QC. É um atalho para encontrar os melhores produtos rapidamente.',
-        'Nossa plataforma transforma essas listas estáticas em uma experiência interativa. Use nossas categorias para encontrar artigos verificados.',
+        'Nuestra plataforma transforma essas listas estáticas em uma experiência interativa. Use nossas categorias para encontrar artigos verificados.',
       ],
     },
     {

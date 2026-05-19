@@ -236,18 +236,25 @@ const buyerSharesFreshIso =
   <section class="band-alt guide" aria-labelledby="guide-heading" id="kakobuy-spreadsheet-guide">
     <div class="wrap">
       <div class="page-mast">
-        <h2 id="guide-heading">{c.guideH2}</h2>
-        <p class="section-intro">{c.guideIntro}</p>
-        {
-          c.sections.map((sec) => (
-            <div class="guide-block-stub">
-              <h3>{sec.h3}</h3>
-              {sec.paragraphs.map((p) => (
-                <p>{p}</p>
-              ))}
-            </div>
-          ))
-        }
+        <div class="guide-accordion">
+          {
+            c.sections.map((sec) => (
+              <details class="guide-details">
+                <summary class="guide-summary">
+                  <h3>{sec.h3}</h3>
+                  <span class="guide-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-9"/></svg>
+                  </span>
+                </summary>
+                <div class="guide-content">
+                  {sec.paragraphs.map((p) => (
+                    <p>{p}</p>
+                  ))}
+                </div>
+              </details>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>
@@ -312,6 +319,73 @@ const buyerSharesFreshIso =
 
   .home-main-centered .guide h3 + p + p {
     margin-top: 0.65rem;
+  }
+
+  /* Guide Accordion */
+  .guide-accordion {
+    margin-top: 2rem;
+    text-align: left;
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .guide-details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .guide-details[open] {
+    border-color: var(--accent-dark);
+  }
+
+  .guide-summary {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  .guide-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .guide-summary h3 {
+    margin: 0 !important;
+    font-size: 1.15rem !important;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .guide-icon {
+    color: var(--muted);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .guide-details[open] .guide-icon {
+    transform: rotate(180deg);
+    color: var(--accent-dark);
+  }
+
+  .guide-content {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .guide-content p {
+    margin: 0;
+  }
+
+  .guide-content p + p {
+    margin-top: 1rem;
   }
 
   /* exploreKicker splitter may leave dangling text — keep simple underline link */
