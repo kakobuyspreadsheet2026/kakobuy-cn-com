@@ -8,15 +8,35 @@ import {
   mlSpreadsheetKakobuy,
 } from '../consts';
 
+import type { HomeStubContent } from '../i18n/types';
+
 interface Props {
   locale?: string;
+  content?: HomeStubContent['hero'];
 }
 
-const { locale: localeProp } = Astro.props;
+const { locale: localeProp, content } = Astro.props;
 const locale =
   typeof localeProp === 'string' && localeProp.length > 0
     ? localeProp
     : (Astro.currentLocale ?? 'en');
+
+// Fallback to hardcoded English if content not provided (though we should always provide it)
+const c = content ?? {
+  h1: 'Kakobuy Spreadsheet · 2026 desk',
+  tagline: 'Find listings here—buy and QC on Kakobuy',
+  kicker: '2026 · Kakobuy Spreadsheet · indexed catalogue · Taobao · Weidian · 1688',
+  body:
+    'Kakobuy Spreadsheet discovery starts on kakobuy-cn.com: scan categories and keywords, open durable marketplace pages across Taobao, Weidian & 1688, then hand a clean listing URL to Kakobuy for checkout and warehouse photography. kakobuy-cn.com is only the browse layer—carting, fees, and shipment approvals stay in your Kakobuy session.',
+  ctaBrowse: 'Open Kakobuy Spreadsheet catalogue →',
+  ctaLogin: 'Continue on Kakobuy',
+  heroPlaneAlt: 'kakobuy spreadsheet — hero art',
+  searchAria: 'search spreadsheet',
+  searchPlaceholder: 'Search products, brands, styles...',
+  searchByImage: 'Search by Image',
+  searchSubmit: 'Search',
+  searchByImageAria: 'search by image',
+};
 ---
 
 <section id="top" class="kb-home" aria-label="Kakobuy Spreadsheet hub hero">
@@ -30,38 +50,38 @@ const locale =
     class="kb-banner"
     style={`--kb-hero-photo: url(${JSON.stringify(kakobuyHomeHeroBannerUrl)})`}
     role="img"
-    aria-label="kakobuy spreadsheet · hero art · Kakobuy Spreadsheet hub illustration"
+    aria-label={c.heroPlaneAlt}
   >
     <div class="kb-banner__inner wrap">
       <h1 class="kb-banner__h1">
-        <span class="kb-banner__line">Kakobuy Spreadsheet · 2026 desk</span>
-        <span class="kb-banner__tagline">Find listings here—buy and QC on Kakobuy</span>
-        <span class="kb-banner__meta"
-          >2026 · Kakobuy Spreadsheet · indexed catalogue · Taobao · Weidian · 1688</span
-        >
+        <span class="kb-banner__line">{c.h1}</span>
+        <span class="kb-banner__tagline">{c.tagline}</span>
+        <span class="kb-banner__meta">{c.kicker}</span>
       </h1>
       <p class="kb-banner__desc">
-        <strong>Kakobuy Spreadsheet</strong> discovery starts on kakobuy-cn.com: scan categories and keywords, open durable marketplace pages across{' '}
-        <strong>Taobao, Weidian &amp; 1688</strong>, then hand a clean listing URL to{' '}
-        <a class="kb-banner__inline-link" href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer"
-          >Kakobuy</a
-        >
-        {' '}for checkout and <strong>warehouse photography</strong>. kakobuy-cn.com is only the browse layer—carting, fees, and
-        shipment approvals stay in your Kakobuy session.
+        {c.body}
       </p>
-      <MaisonLooksSearchBar mlBase={ml} variant="kakobuyHero" />
+      <MaisonLooksSearchBar
+        mlBase={ml}
+        variant="kakobuyHero"
+        placeholder={c.searchPlaceholder}
+        searchAria={c.searchAria}
+        searchSubmitLabel={c.searchSubmit}
+        searchByImageLabel={c.searchByImage}
+        searchByImageAria={c.searchByImageAria}
+      />
       <div class="kb-banner__ctas">
         <a
           class="kb-banner__cta kb-banner__cta--primary"
           href={mlSpreadsheetKakobuy}
           target="_blank"
-          rel="noopener noreferrer">Open Kakobuy Spreadsheet catalogue →</a
+          rel="noopener noreferrer">{c.ctaBrowse}</a
         >
         <a
           class="kb-banner__cta kb-banner__cta--ghost"
           href="https://kakobuy.com/"
           target="_blank"
-          rel="noopener noreferrer">Continue on Kakobuy</a
+          rel="noopener noreferrer">{c.ctaLogin}</a
         >
       </div>
     </div>

@@ -68,10 +68,10 @@ export const itHome: HomeStubContent = {
   ],
   hero: {
     h1: 'Kakobuy Spreadsheet 2026',
-    tagline: 'Il foglio community diventa interfaccia — Kakobuy incassa',
-    kicker: '2026 · Weidian · Taobao · 1688 · foto reali',
+    tagline: 'Trova le migliori reps. Acquista su Kakobuy.',
+    kicker: 'Taobao · Weidian · 1688 · Foto QC',
     body:
-      'La scoperta inizia su kakobuy-cn.com: esplora categorie e parole chiave, apri pagine marketplace stabili su Taobao, Weidian e 1688, quindi trasmetti un URL pulito a Kakobuy per il pagamento e la fotografia in magazzino. Questo sito è solo lo strato di navigazione — il carrello, le commissioni e le approvazioni di spedizione rimangono nella tua sessione agente.',
+      'Accedi a oltre 5.000 reps di alta qualità con link verificati e foto QC professionali. Forniamo i dati, Kakobuy gestisce il resto.',
     ctaBrowse: 'Apri catalogo spreadsheet →',
     ctaLogin: 'Accedi a Kakobuy',
     heroPlaneAlt:
@@ -89,12 +89,6 @@ export const itHome: HomeStubContent = {
   redditAria: 'Community r/kakobuy (Reddit, nuova scheda)',
   redditSnooAlt:
     'kakobuy spreadsheet · Snoo Reddit r/kakobuy — haul, QC spreadsheet e confronti agent',
-  exploreKickerLead: 'Entra per categoria e completa gli acquisti dentro ',
-  exploreKickerTrail: '',
-  exploreIntro:
-    'Ogni pulsante apre la navigazione indicizzata (mix Taobao / Weidian / 1688 a seconda della corsia). Copia gli URL SKU reali lì, quindi prosegui nel tuo account Kakobuy per i pagamenti e la fotografia in magazzino.',
-  exploreSub:
-    'Le icone aprono nuova scheda di proposito così tieni questa pagina accanto alla sessione Kakobuy.',
   introH2:
     'Perché agli acquirenti Kakobuy Spreadsheet importano ancora gli URL nel 2026',
   introP:
@@ -104,75 +98,28 @@ export const itHome: HomeStubContent = {
     'Qui trovi una reference Kakobuy Spreadsheet ricostruita che rispecchia come è evoluto il linguaggio hobby: cosa intendono per riga Kakobuy Spreadsheet, perché kakobuy-cn.com resta solo compagno editoriale Kakobuy Spreadsheet, come gli URL sopravvivono al churn dei marketplace, quando il QC conta e come stress‑testare la spesa landed prima di premere “ship”. Policy, fatture e dispute restano dentro Kakobuy — il livello Kakobuy Spreadsheet non sostituisce mai checkout.',
   sections: [
     {
-      h3: '1. Cosa intendono gli hobbyisti con “Kakobuy Spreadsheet”',
+      h3: '1. Cos\'è un Kakobuy Spreadsheet?',
       paragraphs: [
-        'Nei forum si usa questo termine (o solo “spreadsheet”) per qualsiasi griglia curata — Google Sheets, export Airtable o interfacce catalogo — che allinea URL marketplace cinesi accanto a gossip sui lotti, cheat sheet per le taglie, suggerimenti sui prezzi e qualche foto QC del venditore. Considera ogni riga come un punto di riferimento salvato, non una promessa magica di inventario.',
-        'Usiamo apposta quel vocabolario: le categorie ti portano su binari di navigazione indicizzati per raccogliere SKU come i veterani di Discord. Che si tratti di un foglio Weidian o Taobao, la meccanica non cambia — incolli l’URL risolto su Kakobuy, finanzi la tratta domestica, attendi le foto in magazzino e solo dopo approvi la spedizione internazionale.',
+        'Nella community, uno "spreadsheet" è una lista curata di link (Taobao, Weidian, 1688) con informazioni sui lotti e foto QC. È una scorciatoia per trovare rapidamente i migliori prodotti.',
+        'La nostra piattaforma trasforma queste liste statiche in un\'esperienza interattiva. Usa le nostre categorie per trovare articoli verificati.',
       ],
     },
     {
-      h3:
-        '2. Liste community Kakobuy Spreadsheet vs. voce corporate Kakobuy · ruolo di kakobuy-cn.com',
+      h3: '2. Come acquistare?',
       paragraphs: [
-        'Pochi mirror portano un sigillo ufficiale ; quasi tutti sono riassunti volontari basati sullo stesso folklore che vedi nelle discussioni sugli acquisti. Sequestri, rimborsi, SKU vietati o dispute passano sempre per l’agente e la tua dogana locale. Per testi di tipo contrattuale, leggi le FAQ in tempo reale dell’agente e le policy del venditore — non i riassunti Discord di una scheda di condivisione.',
-        'kakobuy-cn.com rimane a distanza da ogni percorso di pagamento: niente carrelli, portafogli o gestione ordini. Tutto ciò che suona come “ticket di supporto” vive nei dashboard dell’agente o presso venditori terzi. Se il pagamento ufficiale contraddice un articolo qui, vince il pagamento — questo hub spiega solo il contesto.',
+        'Il processo è semplice: trova un articolo nel nostro catalogo, copia il link HTTPS e incollalo nella barra di ricerca di Kakobuy. Lì potrai scegliere taglia, colore e completare l\'acquisto.',
       ],
     },
     {
-      h3:
-        '3. Ritmo operativo — tab catalogo → snapshot Kakobuy',
+      h3: '3. Controllo Qualità (QC)',
       paragraphs: [
-        'Parti dalla superficie di navigazione collegata a questo hub, apri la pagina dello SKU e copia l’URL HTTPS completo dalla barra — lo stesso passaggio che ogni tutorial presuppone. Evita i wrapper che rimuovono gli ID delle varianti, i frame CDN nudi o le radici dei negozi che nascondono le opzioni — creano ordini fantasma in seguito.',
-        'Dentro Kakobuy, segui l’assistente per incollare i link. Blocca colore/taglia/lotto prima delle commissioni e nota i costi di servizio inclusi nel pagamento. Prima la spedizione domestica; l’ossessione per i pixel del QC viene solo dopo la ricezione, prima dei segmenti di corriere internazionale costosi — il peso volumetrico supera quasi sempre la cifra ottimistica che figurava nella cella del foglio.',
+        'Una volta che il tuo articolo arriva in magazzino, riceverai foto QC professionali. Controllale attentamente per verificare la qualità prima di approvare la spedizione internazionale.',
       ],
     },
     {
-      h3:
-        '4. Perché gli agenti organizzati battono i messaggi diretti (resta comunque l’obiettivo finale)',
+      h3: '4. Costi e Spedizione',
       paragraphs: [
-        'Gli agenti consolidano i passaggi domestici, gestiscono le foto QC e offrono un sistema di ticket affinché i problemi emergano prima dell’esportazione — ecco perché questi workflow finiscono quasi sempre nella casella di incolla dell’agente invece che nei messaggi al venditore. Non cancella la roulette doganale — sostituisce trasferimenti peer-to-peer caotici con dashboard verificabili tramite screenshot accanto alle tue note.',
-      ],
-    },
-    {
-      h3:
-        '5. Cura dei link quando i drop cambiano nome ogni ora — mantieni oneste le righe',
-      paragraphs: [
-        'I marketplace modificano gli URL per SEO, ban o ricostruzioni dei negozi; l’agente non può congelare i link di terze parti. Le schede mai aggiornate accumulano link morti. I buoni curatori inseriscono la data del click, segnalano le righe inattive e annotano “richiede verifica”.',
-        'Preferisci URL il cui selettore di varianti rispecchia ancora le discussioni o i commenti archiviati. Archivia la data accanto agli screenshot per sapere se un riferimento QC è precedente all’ultima modifica — le pagine di benvenuto cambiano più velocemente degli SKU copiati da un foglio.',
-      ],
-    },
-    {
-      h3: '6. Immagini in magazzino vs. gallerie marketing',
-      paragraphs: [
-        'Una volta completato il tragitto domestico, Kakobuy fotografa ciò che è arrivato fisicamente. Quei fotogrammi sono il QC di cui discute la community — luce dura, angoli sinceri, pieghe imperfette. Le gallery dei prodotti restano una direzione artistica aspirazionale; i set in magazzino mostrano cuciture decentrate, loghi fuori asse o variazioni di colore prima delle etichette internazionali — non confondere una miniatura brillante con la verità del magazzino.',
-        'Se l’immagine diverge materialmente dal racconto del venditore o dalla descrizione nel foglio, fai una pausa e apri una disputa con l’agente prima di approvare la spedizione. Dopo il passaggio al corriere internazionale, rimediare costa — una nota nel foglio non ricuce le cuciture in volo.',
-      ],
-    },
-    {
-      h3: '7. Prezzo visualizzato vs. matematica finale reale',
-      paragraphs: [
-        'Finché una riga non elenca ogni supplemento, considera il prezzo visibile come un’indicazione — non un preventivo finale per il tuo CAP. Il costo totale somma spedizione domestica, servizi dell’agente, misurazioni opzionali, fatturazione volumetrica, clausole carburante, opzioni assicurative, tassi di cambio e ciò che richiede il corriere.',
-        'Calzature voluminose, piumini e bundle tecnologici sono penalizzati dal peso volumetrico — tieni un diario delle spedizioni personale accanto al foglio; le tue medie storiche battono gli arrotondamenti delle chat.',
-      ],
-    },
-    {
-      h3: '8. Valutare i curatori, i lotti e i pareri della community',
-      paragraphs: [
-        'Anche gli editor più brillanti sono in ritardo rispetto al marketplace: i lotti si esauriscono, i materiali cambiano, i verdetti “GL” invecchiano. Incrocia i prodotti attivi, le prove recenti su Reddit e le policy di reso prima di affidarti alla nostalgia di una riga datata.',
-        'Usa questo hub come bussola, non come autopilota. Silhouette sospettosamente economiche spesso implicano lotti modificati, inserzioni civetta o taglie lette male — incolla con cautela, esigi il QC e rispetta i tempi di disputa dell’agente anche quando il foglio dice il contrario.',
-      ],
-    },
-    {
-      h3: '9. Tranelli ricorrenti',
-      paragraphs: [
-        'Fidarsi delle taglie in lettere senza tabelle mm/cm; ignorare il peso del capo prima della volumetria; leggere cloni come gemelli identici perché una cella lo dice; approvare il QC su una miniatura illeggibile; citare una singola colonna come prezzo finale tasse incluse per il proprio CAP.',
-      ],
-    },
-    {
-      h3:
-        '10. Biblioteche comunitarie oneste stagione dopo stagione',
-      paragraphs: [
-        'Segmenta le schede per categoria, blocca le intestazioni, annota gli ID dei lotti e pianifica audit degli URL — soprattutto dopo i grandi aggiornamenti. I documenti vivi battono i dump di screenshot: elimina i link morti, contrassegna gli SKU sospetti e spiega le sostituzioni per il prossimo lettore.',
+        'Il costo totale include la spedizione nazionale, le commissioni dell\'agente e il trasporto internazionale. Il peso volumetrico è fondamentale per calcolare il costo finale della spedizione.',
       ],
     },
   ],

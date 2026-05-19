@@ -75,7 +75,7 @@ const buyerSharesFreshIso =
     : '';
 ---
 
-<KakobuyHomeHero locale={locale} />
+<KakobuyHomeHero locale={locale} content={c.hero} />
 
 <main class="home-main-centered">
   <HotProductsGrid />
@@ -108,14 +108,6 @@ const buyerSharesFreshIso =
             ))
           }
         </div>
-
-        <p class="category-explore-kicker">
-          {c.exploreKickerLead}
-          <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">Kakobuy</a>
-          {c.exploreKickerTrail}
-        </p>
-        <p class="category-explore-intro">{c.exploreIntro}</p>
-        <p class="category-explore-sub">{c.exploreSub}</p>
 
         <div class="category-below-icon">
           <a class="category-below-icon-link" href={redditHref} target="_blank" rel="noopener noreferrer" aria-label={c.redditAria}>
@@ -237,41 +229,6 @@ const buyerSharesFreshIso =
             </div>
           </nav>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section
-    id="spreadsheet-hub"
-    class="home-spreadsheet-promo"
-    aria-labelledby="home-spreadsheet-promo-heading"
-  >
-    <div class="wrap">
-      <div class="page-mast">
-        <h2 id="home-spreadsheet-promo-heading" class="home-spreadsheet-promo__title">
-          {spreadsheetPromo.title}
-        </h2>
-        <p class="section-intro home-spreadsheet-promo__intro">{spreadsheetPromo.body}</p>
-        <ul class="home-spreadsheet-promo__bullets">
-          {spreadsheetPromo.bullets.map((line) => (
-            <li class="home-spreadsheet-promo__bullet">{line}</li>
-          ))}
-        </ul>
-        <div class="cta-row home-spreadsheet-promo__ctas">
-          <a class="btn btn-primary" href={spreadsheetExplainerHref}>
-            {spreadsheetPromo.ctaSpreadsheet}
-          </a>
-          <a class="btn btn-ghost" href={howToBuyHref}>{spreadsheetPromo.ctaHowToBuy}</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="intro-heading">
-    <div class="wrap">
-      <div class="page-mast">
-        <h2 id="intro-heading">{c.introH2}</h2>
-        <p class="section-intro">{c.introP}</p>
       </div>
     </div>
   </section>

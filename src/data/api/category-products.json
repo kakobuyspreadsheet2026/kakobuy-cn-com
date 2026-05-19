@@ -12561,22 +12561,44 @@
       "updatedAt": "2026-05-13T11:47:35.095Z"
     },
     {
-      "slug": "black-and-green-striped-socks-with-clover-logo-c24517",
-      "title": "Unisex Black & Green Striped Socks",
-      "description": "Classic unisex socks featuring a black base with green and white horizontal stripes. Made from soft cotton material, perfect for everyday wear.",
+      "slug": "chrome-hearts-red-lip-print-crew-socks-6d12ab",
+      "title": "Red Lip Print Crew Socks",
+      "description": "Vibrant red crew socks featuring a playful black and white lip print pattern. Made from soft cotton, these socks are perfect for adding a bold, quirky touch to any casual outfit. Ideal for everyday wear or as a fun gift.",
       "category": "socks-hosiery",
-      "brand": "Burberry",
+      "brand": "Chrome Hearts",
       "priceCnyRange": [
-        39,
-        39
+        38.9,
+        38.9
       ],
-      "priceCny": "39.00",
+      "priceCny": "38.90",
       "priceUsdEstimate": [
-        5.42,
-        5.42
+        5.4,
+        5.4
       ],
       "images": [
-        "https://cdn.maisonlooks.com/products/file-1775543439292-163860317.webp"
+        "https://cdn.maisonlooks.com/products/file-1775458055310-924805534.webp"
+      ],
+      "qcPhotoCount": 0,
+      "hasTryOn": false,
+      "updatedAt": "2026-04-25T12:10:38.421Z"
+    },
+    {
+      "slug": "carhartt-wip-blue-moon-socks-in-ink-blue-9adf12",
+      "title": "Blue Solid Embroidered Socks",
+      "description": "Vibrant blue solid socks featuring a small embroidered logo on the ankle. Made from soft cotton, these socks offer comfort and style for everyday wear. Perfect for pairing with sneakers or casual outfits.",
+      "category": "socks-hosiery",
+      "brand": "Carhartt WIP",
+      "priceCnyRange": [
+        35,
+        35
+      ],
+      "priceCny": "35.00",
+      "priceUsdEstimate": [
+        4.86,
+        4.86
+      ],
+      "images": [
+        "https://cdn.maisonlooks.com/products/file-1775227770654-968303852.webp"
       ],
       "qcPhotoCount": 0,
       "hasTryOn": false,
@@ -12649,44 +12671,22 @@
       "updatedAt": "2026-04-25T12:10:38.421Z"
     },
     {
-      "slug": "chrome-hearts-red-lip-print-crew-socks-6d12ab",
-      "title": "Red Lip Print Crew Socks",
-      "description": "Vibrant red crew socks featuring a playful black and white lip print pattern. Made from soft cotton, these socks are perfect for adding a bold, quirky touch to any casual outfit. Ideal for everyday wear or as a fun gift.",
+      "slug": "burberry-black-yellow-striped-socks-a2acef",
+      "title": "Black & Yellow Striped Socks with Logo Detail",
+      "description": "Classic black socks featuring bold yellow horizontal stripes and a small embroidered logo detail on the calf. Made from soft cotton for comfort and durability, suitable for casual or sporty outfits.",
       "category": "socks-hosiery",
-      "brand": "Chrome Hearts",
+      "brand": "Burberry",
       "priceCnyRange": [
-        38.9,
-        38.9
+        39,
+        39
       ],
-      "priceCny": "38.90",
+      "priceCny": "39.00",
       "priceUsdEstimate": [
-        5.4,
-        5.4
+        5.42,
+        5.42
       ],
       "images": [
-        "https://cdn.maisonlooks.com/products/file-1775458055310-924805534.webp"
-      ],
-      "qcPhotoCount": 0,
-      "hasTryOn": false,
-      "updatedAt": "2026-04-25T12:10:38.421Z"
-    },
-    {
-      "slug": "carhartt-wip-blue-moon-socks-in-ink-blue-9adf12",
-      "title": "Blue Solid Embroidered Socks",
-      "description": "Vibrant blue solid socks featuring a small embroidered logo on the ankle. Made from soft cotton, these socks offer comfort and style for everyday wear. Perfect for pairing with sneakers or casual outfits.",
-      "category": "socks-hosiery",
-      "brand": "Carhartt WIP",
-      "priceCnyRange": [
-        35,
-        35
-      ],
-      "priceCny": "35.00",
-      "priceUsdEstimate": [
-        4.86,
-        4.86
-      ],
-      "images": [
-        "https://cdn.maisonlooks.com/products/file-1775227770654-968303852.webp"
+        "https://cdn.maisonlooks.com/products/file-1775465492185-604602267.webp"
       ],
       "qcPhotoCount": 0,
       "hasTryOn": false,
@@ -12913,28 +12913,6 @@
       "updatedAt": "2026-05-13T14:22:12.580Z"
     },
     {
-      "slug": "burberry-black-yellow-striped-socks-a2acef",
-      "title": "Black & Yellow Striped Socks with Logo Detail",
-      "description": "Classic black socks featuring bold yellow horizontal stripes and a small embroidered logo detail on the calf. Made from soft cotton for comfort and durability, suitable for casual or sporty outfits.",
-      "category": "socks-hosiery",
-      "brand": "Burberry",
-      "priceCnyRange": [
-        39,
-        39
-      ],
-      "priceCny": "39.00",
-      "priceUsdEstimate": [
-        5.42,
-        5.42
-      ],
-      "images": [
-        "https://cdn.maisonlooks.com/products/file-1775465492185-604602267.webp"
-      ],
-      "qcPhotoCount": 0,
-      "hasTryOn": false,
-      "updatedAt": "2026-04-25T12:10:38.421Z"
-    },
-    {
       "slug": "chrome-hearts-white-black-socks-659436",
       "title": "Chrome Hearts White & Black Logo Socks",
       "description": "Classic white socks with black toe, heel, and cuff featuring the iconic Chrome Hearts logo and clover emblem. Made from soft cotton for comfort and durability.",
@@ -12955,6 +12933,28 @@
       "qcPhotoCount": 0,
       "hasTryOn": false,
       "updatedAt": "2026-04-07T05:51:46.739Z"
+    },
+    {
+      "slug": "black-and-green-striped-socks-with-clover-logo-c24517",
+      "title": "Unisex Black & Green Striped Socks",
+      "description": "Classic unisex socks featuring a black base with green and white horizontal stripes. Made from soft cotton material, perfect for everyday wear.",
+      "category": "socks-hosiery",
+      "brand": "Burberry",
+      "priceCnyRange": [
+        39,
+        39
+      ],
+      "priceCny": "39.00",
+      "priceUsdEstimate": [
+        5.42,
+        5.42
+      ],
+      "images": [
+        "https://cdn.maisonlooks.com/products/file-1775543439292-163860317.webp"
+      ],
+      "qcPhotoCount": 0,
+      "hasTryOn": false,
+      "updatedAt": "2026-04-25T12:10:38.421Z"
     }
   ],
   "suits": [
