@@ -1,9 +1,9 @@
 import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
 
 export const en: SpreadsheetPageCopy = {
-  title: 'Best Kakobuy Spreadsheet 2026 — 10,000+ Verified Reps Links & QC',
+  title: 'Best Kakobuy Spreadsheet 2026 — 5,000+ Verified Reps Links & QC',
   description:
-    'The ultimate Kakobuy Spreadsheet for 2026. Access our curated database of 10,000+ verified Taobao, Weidian, and 1688 links with direct agent buy buttons and warehouse QC photos.',
+    'The ultimate Kakobuy Spreadsheet for 2026. Access our curated database of 5,000+ verified Taobao, Weidian, and 1688 links with direct agent buy buttons and warehouse QC photos.',
   keywords:
     'Best Kakobuy spreadsheet, Kakobuy spreadsheet 2026, Weidian spreadsheet, Taobao agent spreadsheet, reps spreadsheet, Kakobuy QC photos, shopping agent links',
   backHomeLabel: '← Back to home',
