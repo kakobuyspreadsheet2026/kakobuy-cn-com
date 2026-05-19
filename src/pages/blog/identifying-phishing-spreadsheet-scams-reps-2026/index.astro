@@ -1,0 +1,52 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/identifying-phishing-spreadsheet-scams-reps-2026';
+const publishedISO = '2026-05-18';
+---
+
+<BlogArticleShell
+  title="Spotting the 'Slaughterhouse': 2026 Phishing Spreadsheet Scams | kakobuy-cn.com"
+  description="Security alert exposing common redirect traps and fake spreadsheet hubs designed to steal Kakobuy login credentials and wallet balances."
+  canonicalPath={canonicalPath}
+  headline="Spotting the 'Slaughterhouse': Identifying phishing spreadsheet sites in 2026"
+  publishedISO={publishedISO}
+  displayDate="18 May 2026"
+  structuredKeywords={[
+    'spreadsheet phishing scams',
+    'fake Kakobuy links',
+    'dashenseo scam redirect',
+    'protecting agent account',
+    'reps security alert 2026',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    As the popularity of Kakobuy grows, so does the sophistication of scammers. In 2026, we are seeing a surge in <strong>"Slaughterhouse" sites</strong>—fake spreadsheets that look identical to community favorites but are designed to hijack your session and drain your wallet.
+  </p>
+
+  <h2>The "Dashen" Redirect Trap</h2>
+  <p>
+    A common tactic involves using Google Sites or low-cost domains (like <code>.cc</code> or <code>.top</code>) that promise "10,000+ Best Finds." When you click a link, instead of going to a marketplace, you are redirected through a series of trackers (e.g., <code>daohang3.dashenseo.cc</code>) that attempt to capture your browser cookies.
+  </p>
+
+  <h2>How to spot a fake spreadsheet</h2>
+  <ol>
+    <li><strong>The "Login Wall":</strong> If a spreadsheet asks you to "Sign in with Kakobuy" to see the links, <strong>CLOSE THE TAB.</strong> Real spreadsheets never need your login.</li>
+    <li><strong>URL Mismatch:</strong> Always check the address bar. If you think you are on <code>kakobuy-cn.com</code> but the URL says <code>kakobuy-finds-free.net</code>, it's a scam.</li>
+    <li><strong>Forced Redirects:</strong> If clicking a shoe link takes you to a "VPN Download" or "Verify you are human" page first, your data is being harvested.</li>
+  </ol>
+
+  <h2>What to do if you clicked</h2>
+  <p>
+    If you suspect you've used a compromised link:
+    1. Change your Kakobuy password immediately.
+    2. Enable <strong>Two-Factor Authentication (2FA)</strong> in your user settings.
+    3. Clear your browser cache and cookies.
+  </p>
+
+  <p>
+    <strong>Stay Safe:</strong> Only use spreadsheets from trusted community hubs. For more on safe sharing, see our <a href="/blog/google-sheets-sharing-spreadsheet-curator-opsec/">Google Sheets opsec guide</a>.
+  </p>
+</BlogArticleShell>
