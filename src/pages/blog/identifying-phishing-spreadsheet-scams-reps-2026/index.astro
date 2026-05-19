@@ -9,7 +9,7 @@ const publishedISO = '2026-05-18';
 
 <BlogArticleShell
   title="Spotting the 'Slaughterhouse': 2026 Phishing Spreadsheet Scams | kakobuy-cn.com"
-  description="Security alert exposing common redirect traps and fake spreadsheet hubs designed to steal Kakobuy login credentials and wallet balances."
+  description="Security alert exposing the 'Dashen' redirect traps, fake 'Login Walls', and malicious spreadsheet hubs designed to steal Kakobuy credentials and wallet balances."
   canonicalPath={canonicalPath}
   headline="Spotting the 'Slaughterhouse': Identifying phishing spreadsheet sites in 2026"
   publishedISO={publishedISO}
@@ -23,30 +23,62 @@ const publishedISO = '2026-05-18';
   ]}
 >
   <p class="blog-lede" slot="lede">
-    As the popularity of Kakobuy grows, so does the sophistication of scammers. In 2026, we are seeing a surge in <strong>"Slaughterhouse" sites</strong>—fake spreadsheets that look identical to community favorites but are designed to hijack your session and drain your wallet.
+    In the world of reps, a "Slaughterhouse" (杀猪盘) isn't just a metaphor—it's a multi-million dollar industry. In 2026, scammers have moved beyond simple fake links to building entire <strong>phishing spreadsheet ecosystems</strong>. These sites look identical to community favorites but are engineered to hijack your session and drain your Kakobuy wallet.
   </p>
 
   <h2>The "Dashen" Redirect Trap</h2>
   <p>
-    A common tactic involves using Google Sites or low-cost domains (like <code>.cc</code> or <code>.top</code>) that promise "10,000+ Best Finds." When you click a link, instead of going to a marketplace, you are redirected through a series of trackers (e.g., <code>daohang3.dashenseo.cc</code>) that attempt to capture your browser cookies.
+    The most common scam in 2026 involves using high-authority domains like Google Sites (e.g., <code>sites.google.com/view/...</code>) to host a "Best Finds" list. When you click a product link, you are silently bounced through a series of malicious redirects, often involving <code>daohang3.dashenseo.cc</code> or similar domains.
+  </p>
+  <p>
+    <strong>The Goal:</strong> These redirects attempt to capture your <strong>Browser Cookies</strong>. If successful, the scammer can "clone" your logged-in session on Kakobuy without ever needing your password.
   </p>
 
-  <h2>How to spot a fake spreadsheet</h2>
+  <h2>Three Red Flags of a 2026 Scam Site</h2>
   <ol>
-    <li><strong>The "Login Wall":</strong> If a spreadsheet asks you to "Sign in with Kakobuy" to see the links, <strong>CLOSE THE TAB.</strong> Real spreadsheets never need your login.</li>
-    <li><strong>URL Mismatch:</strong> Always check the address bar. If you think you are on <code>kakobuy-cn.com</code> but the URL says <code>kakobuy-finds-free.net</code>, it's a scam.</li>
-    <li><strong>Forced Redirects:</strong> If clicking a shoe link takes you to a "VPN Download" or "Verify you are human" page first, your data is being harvested.</li>
+    <li><strong>The "Login Wall":</strong> If a spreadsheet asks you to "Connect your Kakobuy account" or "Sign in to see QC photos," <strong>LEAVE IMMEDIATELY.</strong> Real spreadsheets like ours never require your agent credentials.</li>
+    <li><strong>The "VPN/Human Verification" Pop-up:</strong> Scammers often force you to click a "Verify you are human" button that actually installs a malicious browser extension or triggers a cookie-theft script.</li>
+    <li><strong>Suspicious Domain Suffixes:</strong> Be wary of sites ending in <code>.top</code>, <code>.cc</code>, <code>.xyz</code>, or <code>.win</code> that claim to be "Official Kakobuy Partners." Kakobuy does not have official partners outside its verified social channels.</li>
   </ol>
 
-  <h2>What to do if you clicked</h2>
-  <p>
-    If you suspect you've used a compromised link:
-    1. Change your Kakobuy password immediately.
-    2. Enable <strong>Two-Factor Authentication (2FA)</strong> in your user settings.
-    3. Clear your browser cache and cookies.
-  </p>
+  <h2>Anatomy of a Safe vs. Malicious Link</h2>
+  <div class="blog-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Safe Link (e.g. kakobuy-cn.com)</th>
+          <th>Scam Link (e.g. dashenseo)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Direct Target</td>
+          <td><code>https://weidian.com/...</code></td>
+          <td><code>https://daohang.xxx.cc/jump?url=...</code></td>
+        </tr>
+        <tr>
+          <td>Intermediate Bounces</td>
+          <td>Zero</td>
+          <td>3 to 5 hidden redirects</td>
+        </tr>
+        <tr>
+          <td>Data Requested</td>
+          <td>None</td>
+          <td>Session Cookies / Login Tokens</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>How to Protect Your Account</h2>
+  <ul>
+    <li><strong>Enable 2FA:</strong> Two-Factor Authentication is your only defense if your cookies are stolen. Enable it now in your Kakobuy security settings.</li>
+    <li><strong>Check the URL:</strong> Always verify you are on <code>kakobuy-cn.com</code> or the official <code>kakobuy.com</code> before interacting with any sensitive data.</li>
+    <li><strong>Report Abuse:</strong> If you find a scam site hosted on Google Sites, use the "Report Abuse" button at the bottom. This helps the community take down these "Slaughterhouses."</li>
+  </ul>
 
   <p>
-    <strong>Stay Safe:</strong> Only use spreadsheets from trusted community hubs. For more on safe sharing, see our <a href="/blog/google-sheets-sharing-spreadsheet-curator-opsec/">Google Sheets opsec guide</a>.
+    <strong>Stay Vigilant:</strong> For more on safe sharing habits, read our <a href="/blog/google-sheets-sharing-spreadsheet-curator-opsec/">Google Sheets opsec guide</a>.
   </p>
 </BlogArticleShell>

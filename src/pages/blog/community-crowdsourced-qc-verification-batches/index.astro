@@ -19,30 +19,68 @@ const publishedISO = '2026-05-18';
     'verify reps batch quality',
     'QC database 2026',
     'community quality control',
-    'Kakobuy warehouse photo sharing',
+    'batch consistency check',
   ]}
 >
   <p class="blog-lede" slot="lede">
-    In the early days, you only saw your own QC photos after you paid. In 2026, the game is <strong>Crowdsourced Verification</strong>. By using shared databases of warehouse photos, you can see what a seller shipped to 50 other people <em>before</em> you even paste the link into Kakobuy.
+    In the early days, you only saw your own QC photos after you paid. In 2026, the game is <strong>Crowdsourced Verification</strong>. By using shared databases of warehouse arrivals, you can see exactly what a seller shipped to 50 other people <em>before</em> you even paste the link into Kakobuy. This is how you avoid "Bait & Switch" and ensure your batch is genuine.
   </p>
 
-  <h2>The power of "Batch Consistency"</h2>
+  <h2>The Concept of "Batch Drift"</h2>
   <p>
-    Sellers often claim to have "M Batch" or "LJR," but quality can drift between restocks. Crowdsourced QC allows you to track these drifts in real-time. If the last 10 people who bought from a specific spreadsheet row received shoes with wonky stitching, you know to skip that link.
+    Sellers often claim to have "LJR" or "GX" batch, but quality can drift between restocks. A seller might have a perfect batch in March, but by May, they've switched to a cheaper factory while keeping the same listing. Crowdsourced QC allows you to track these drifts in real-time.
   </p>
 
-  <h2>How to use the 2026 QC Repositories</h2>
+  <h2>How to Use the 2026 QC Repositories</h2>
   <p>
-    Most modern spreadsheets now include a <strong>"QC Link"</strong> column. This doesn't take you to a seller's studio photo; it takes you to a community-maintained gallery of actual warehouse arrivals. Hubs like <a href="/blog/qc-websites-landscape/">QC Websites Landscape</a> are essential tools for this workflow.
+    Most modern spreadsheets now include a <strong>"QC Link"</strong> column. This doesn't take you to a seller's studio photo; it takes you to a community-maintained gallery of actual warehouse arrivals.
   </p>
-
-  <h2>Red Flags to watch for</h2>
   <ul>
-    <li><strong>The "Ghost Batch":</strong> If a seller claims a high-end batch but the crowdsourced photos show mid-tier flaws, they are "Bait & Switching."</li>
-    <li><strong>Outdated Photos:</strong> If the only available QC photos are from 2024, the current stock may be entirely different.</li>
+    <li><strong>FindQC & UUFinds:</strong> These 2026-era portals scrape agent warehouses to show you the most recent 100 arrivals for any given URL.</li>
+    <li><strong>Discord Bot Integration:</strong> Use bots in the <a href="/blog/kakobuy-discord/">Kakobuy Discord</a> to pull HD photos of specific items by pasting the marketplace link.</li>
+    <li><strong>The "GL" Consensus:</strong> If the last 10 community photos for a link all show the same stitching flaw, that's a "Batch Flaw"—decide if you can live with it before buying.</li>
   </ul>
 
+  <h2>Red Flags in Crowdsourced Data</h2>
+  <div class="blog-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>What it Means</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Photos are &gt; 6 months old</td>
+          <td>Stock has likely changed</td>
+          <td>Ask agent for "Stock Check"</td>
+        </tr>
+        <tr>
+          <td>Mixed quality in same month</td>
+          <td>Seller is mixing batches</td>
+          <td>High Risk - Avoid</td>
+        </tr>
+        <tr>
+          <td>No photos available</td>
+          <td>New seller or low volume</td>
+          <td>Use <a href="/blog/kakobuy-rehearsal-packaging-freight/">Rehearsal</a> for extra QC</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>The "Expert" Workflow</h2>
+  <ol>
+    <li>Find a link on a <a href="/spreadsheet/">trusted spreadsheet</a>.</li>
+    <li>Copy the URL into a QC database (like FindQC).</li>
+    <li>Filter for "Last 30 Days."</li>
+    <li>If the "GL" rate is high, proceed to Kakobuy.</li>
+    <li>Once your own photos arrive, compare them against the community average.</li>
+  </ol>
+
   <p>
-    <strong>Expert Move:</strong> Before clicking "Ship," compare your personal photos against the community average. If yours are worse, use the <a href="/blog/kakobuy-domestic-returns-before-international-ship/">domestic return process</a> immediately.
+    <strong>Summary:</strong> Don't be the first person to test a new batch. Let the community's data protect your wallet. For a broader look at the tools available, check our <a href="/blog/qc-websites-landscape/">QC websites landscape</a>.
   </p>
 </BlogArticleShell>
