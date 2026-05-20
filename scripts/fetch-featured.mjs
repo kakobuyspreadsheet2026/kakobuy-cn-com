@@ -22,21 +22,21 @@ async function fetchAllData() {
 
     // 2. Fetch Featured Products (for homepage)
     console.log('Fetching featured products...');
-    const outfitRes = await fetch(`${API_BASE}/outfits?featured=true&limit=50`, {
+    const outfitRes = await fetch(`${API_BASE}/outfits?featured=true&limit=100`, {
       headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
     });
     const outfitJson = await outfitRes.json();
     const featuredSlugs = [...new Set((outfitJson.data || []).flatMap(o => o.productSlugs))];
     
     const featuredProducts = [];
-    for (const slug of featuredSlugs.slice(0, 40)) {
-      if (featuredProducts.length >= 30) break;
+    for (const slug of featuredSlugs.slice(0, 100)) {
+      if (featuredProducts.length >= 60) break;
       const res = await fetch(`${API_BASE}/products/${slug}`, {
         headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
       });
       if (res.ok) {
         const prod = await res.json();
-        if (prod.brand && prod.brand.toLowerCase() !== 'other') {
+        if (prod.brand && prod.brand.toLowerCase() !== 'other' && prod.brand.toLowerCase() !== 'unknown') {
           featuredProducts.push(prod);
         }
       }
