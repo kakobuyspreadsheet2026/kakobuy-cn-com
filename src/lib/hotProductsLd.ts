@@ -49,7 +49,7 @@ export function getHotProductsLd(origin: string) {
         hasMerchantReturnPolicy: {
           '@type': 'MerchantReturnPolicy',
           applicableCountry: 'US',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnPeriod',
+          returnPolicyCategory: 'MerchantReturnFiniteReturnPeriod',
           merchantReturnDays: 7,
           returnMethod: 'https://schema.org/ReturnByMail',
           returnFees: 'https://schema.org/FreeReturn',
