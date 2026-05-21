@@ -13,6 +13,7 @@ import {
   formatBlogListingPageTitle,
   getBlogListingForPage,
   getBlogPaginationParamNs,
+  getBlogPaginationRelUrls,
 } from '../../../../lib/blogPagination';
 
 export const prerender = true;
@@ -38,6 +39,8 @@ const { websiteId } = siteStructuredDataIds(origin);
 const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 const homeAbs = new URL(homeHref, Astro.site).href;
 
+const { prevUrl, nextUrl } = getBlogPaginationRelUrls(origin, `/${locale}`, currentPage, totalPages);
+
 const webPageLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
@@ -62,6 +65,8 @@ const breadcrumbLd = breadcrumbListLd([
   locale={locale}
   i18nRouteSegment="blog"
   jsonLd={[webPageLd, breadcrumbLd]}
+  prevUrl={prevUrl}
+  nextUrl={nextUrl}
 >
   <BlogPageBody
     locale={locale}

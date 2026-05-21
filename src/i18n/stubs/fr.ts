@@ -68,7 +68,6 @@ export const frHome: HomeStubContent = {
   ],
   hero: {
     h1: 'Kakobuy Spreadsheet 2026',
-    tagline: 'Trouvez les meilleures reps. Achetez sur Kakobuy.',
     kicker: 'Taobao · Weidian · 1688 · Photos QC',
     body:
       'Accédez à plus de 5 000 reps de haute qualité avec des liens vérifiés et des photos QC professionnelles. Nous fournissons les données, Kakobuy s’occupe du reste.',

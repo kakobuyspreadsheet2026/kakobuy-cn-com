@@ -19,7 +19,6 @@ export type HomeStubContent = {
   webPageKeywords: string[];
   hero: {
     h1: string;
-    tagline: string;
     kicker: string;
     body: string;
     ctaBrowse: string;
@@ -35,10 +34,6 @@ export type HomeStubContent = {
   exploreTitle: string;
   redditAria: string;
   redditSnooAlt: string;
-  exploreKickerLead: string;
-  exploreKickerTrail: string;
-  exploreIntro: string;
-  exploreSub: string;
   introH2: string;
   introP: string;
   guideH2: string;

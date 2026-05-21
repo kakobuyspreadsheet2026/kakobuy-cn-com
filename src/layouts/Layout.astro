@@ -61,6 +61,10 @@ interface Props {
   showDiscordTopBanner?: boolean;
   /** Absolute image URLs for `<link rel="preload" as="image">` (e.g. homepage hero background). */
   lcpPreloadImages?: readonly string[];
+  /** Optional pagination previous link URL (absolute or relative-to-root) */
+  prevUrl?: string;
+  /** Optional pagination next link URL (absolute or relative-to-root) */
+  nextUrl?: string;
 }
 
 const {
@@ -78,6 +82,8 @@ const {
   jsonLd,
   showDiscordTopBanner = true,
   lcpPreloadImages,
+  prevUrl,
+  nextUrl,
 } = Astro.props;
 
 const canonicalPathNormalized = canonicalPathWithTrailingSlash(canonicalPath);
@@ -214,6 +220,8 @@ const ga4MeasurementId =
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {prevUrl ? <link rel="prev" href={prevUrl} /> : null}
+    {nextUrl ? <link rel="next" href={nextUrl} /> : null}
     {
       filteredHreflang.map(({ hreflang, href }) => (
         <link rel="alternate" hreflang={hreflang} href={href} />

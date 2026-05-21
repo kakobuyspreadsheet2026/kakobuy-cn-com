@@ -51,3 +51,39 @@ export function blogListingCanonicalPath(localePrefix: '' | `/${string}`, page: 
   if (page <= 1) return base;
   return `${base}/page/${page}`;
 }
+
+/**
+ * Calculates absolute-canonical URLs for rel="prev" and rel="next" links
+ * @param origin The site origin (e.g. Astro.site?.origin)
+ * @param localePrefix The locale prefix (e.g. "" or "/de")
+ * @param currentPage Current page number
+ * @param totalPages Total pages count
+ */
+export function getBlogPaginationRelUrls(
+  origin: string,
+  localePrefix: '' | `/${string}`,
+  currentPage: number,
+  totalPages: number,
+): {
+  prevUrl?: string;
+  nextUrl?: string;
+} {
+  const cleanOrigin = origin.replace(/\/$/, '');
+  const base = localePrefix ? `${localePrefix}/blog` : '/blog';
+
+  let prevUrl: string | undefined;
+  if (currentPage > 1) {
+    if (currentPage === 2) {
+      prevUrl = `${cleanOrigin}${base}/`;
+    } else {
+      prevUrl = `${cleanOrigin}${base}/page/${currentPage - 1}/`;
+    }
+  }
+
+  let nextUrl: string | undefined;
+  if (currentPage < totalPages) {
+    nextUrl = `${cleanOrigin}${base}/page/${currentPage + 1}/`;
+  }
+
+  return { prevUrl, nextUrl };
+}

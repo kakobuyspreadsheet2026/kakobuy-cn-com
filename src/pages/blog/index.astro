@@ -12,6 +12,7 @@ import {
   blogListingCanonicalPath,
   formatBlogListingPageTitle,
   getBlogListingForPage,
+  getBlogPaginationRelUrls,
 } from '../../lib/blogPagination';
 
 export const prerender = true;
@@ -31,6 +32,8 @@ const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { websiteId } = siteStructuredDataIds(origin);
 const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 const homeAbs = new URL(homeHref, Astro.site).href;
+
+const { prevUrl, nextUrl } = getBlogPaginationRelUrls(origin, '', currentPage, totalPages);
 
 const webPageLd = {
   '@context': 'https://schema.org',
@@ -56,6 +59,8 @@ const breadcrumbLd = breadcrumbListLd([
   locale={locale}
   i18nRouteSegment="blog"
   jsonLd={[webPageLd, breadcrumbLd]}
+  prevUrl={prevUrl}
+  nextUrl={nextUrl}
 >
   <BlogPageBody
     locale={locale}
