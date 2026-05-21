@@ -64,7 +64,7 @@ async function fetchAllData() {
     for (const cat of categories) {
       console.log(`  Processing category: ${cat.slug}...`);
       
-      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=50`, {
+      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=120`, {
         headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
       });
 
@@ -87,7 +87,7 @@ async function fetchAllData() {
         let brandIdx = 0;
         const brandCounters = {};
         
-        while (diversified.length < 20 && brands.length > 0) {
+        while (diversified.length < 50 && brands.length > 0) {
           const brand = brands[brandIdx % brands.length];
           brandCounters[brand] = (brandCounters[brand] || 0);
           
@@ -97,12 +97,12 @@ async function fetchAllData() {
           }
           
           brandIdx++;
-          if (brandIdx > brands.length * 20) break; 
+          if (brandIdx > brands.length * 50) break; 
         }
 
-        if (diversified.length < 20) {
+        if (diversified.length < 50) {
           for (const item of rawData) {
-            if (diversified.length >= 20) break;
+            if (diversified.length >= 50) break;
             if (!diversified.find(d => d.slug === item.slug)) {
               diversified.push(item);
             }
@@ -122,7 +122,7 @@ async function fetchAllData() {
     for (const child of electronicsChildren) {
       catProducts['electronics'].push(...(catProducts[child] || []));
     }
-    catProducts['electronics'] = catProducts['electronics'].slice(0, 20);
+    catProducts['electronics'] = catProducts['electronics'].slice(0, 50);
 
     // B. Clothing (Aggregate from children)
     const clothingChildren = categories.filter(c => c.parentSlug === 'clothing').map(c => c.slug);
@@ -130,13 +130,13 @@ async function fetchAllData() {
     for (const child of clothingChildren) {
       catProducts['clothing'].push(...(catProducts[child] || []));
     }
-    catProducts['clothing'] = catProducts['clothing'].slice(0, 20);
+    catProducts['clothing'] = catProducts['clothing'].slice(0, 50);
 
     // C. Jersey (Search in all fetched products)
     catProducts['jersey'] = allFetchedProducts
       .filter(p => p.title.toLowerCase().includes('jersey'))
       .filter((v, i, a) => a.findIndex(t => t.slug === v.slug) === i) // Unique
-      .slice(0, 20);
+      .slice(0, 50);
 
     // Fallback for featured products if still empty
     if (featuredProducts.length === 0) {
