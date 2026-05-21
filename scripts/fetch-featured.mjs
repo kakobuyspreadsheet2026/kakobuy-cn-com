@@ -5,6 +5,39 @@ const API_BASE = 'https://api.maisonlooks.com/public/v1';
 const API_KEY = 'ml_pub_40a7fda08f34b8e6c37b22748469f5d5';
 const DATA_DIR = './src/data/api';
 
+function isRenderableProduct(item) {
+  return (
+    Array.isArray(item?.priceUsdEstimate) &&
+    typeof item.priceUsdEstimate[0] === 'number' &&
+    Boolean(item.images?.[0])
+  );
+}
+
+/** Round-robin merge child category pools into one diversified list. */
+function aggregateVirtualCategory(catProducts, childSlugs, limit = 50) {
+  const pools = childSlugs.map((slug) => (catProducts[slug] || []).filter(isRenderableProduct));
+  const result = [];
+  const seen = new Set();
+  let idx = 0;
+
+  while (result.length < limit) {
+    let added = false;
+    for (const pool of pools) {
+      const item = pool[idx];
+      if (item && !seen.has(item.slug)) {
+        result.push(item);
+        seen.add(item.slug);
+        added = true;
+        if (result.length >= limit) break;
+      }
+    }
+    if (!added) break;
+    idx++;
+  }
+
+  return result;
+}
+
 async function fetchAllData() {
   console.log('Starting full data fetch from MaisonLooks API with brand diversity...');
   
@@ -49,7 +82,7 @@ async function fetchAllData() {
         if (res.ok) {
           const prod = await res.json();
           const brand = prod.brand || 'Other';
-          if (brand.toLowerCase() !== 'other' && brand.toLowerCase() !== 'unknown') {
+          if (brand.toLowerCase() !== 'other' && brand.toLowerCase() !== 'unknown' && isRenderableProduct(prod)) {
             featuredProducts.push(prod);
           }
         }
@@ -109,32 +142,32 @@ async function fetchAllData() {
           }
         }
 
-        catProducts[cat.slug] = diversified;
+        catProducts[cat.slug] = diversified.filter(isRenderableProduct);
       }
     }
 
-    // 4. Handle "Virtual" Categories (Electronics, Clothing, Jersey)
+    // 4. Handle "Virtual" Categories (Electronics, Clothing, Accessories, Jersey)
     console.log('Handling virtual categories...');
+
+    const accessoriesExcludedChildren = new Set(['bags-backpacks', 'headwear']);
+    const accessoriesChildren = categories
+      .filter((c) => c.parentSlug === 'accessories' && !accessoriesExcludedChildren.has(c.slug))
+      .map((c) => c.slug);
+    catProducts['accessories'] = aggregateVirtualCategory(catProducts, accessoriesChildren, 50);
+    console.log(`  Accessories virtual pool: ${catProducts['accessories'].length} items from [${accessoriesChildren.join(', ')}]`);
 
     // A. Electronics (Aggregate from children)
     const electronicsChildren = categories.filter(c => c.parentSlug === 'electronics').map(c => c.slug);
-    catProducts['electronics'] = [];
-    for (const child of electronicsChildren) {
-      catProducts['electronics'].push(...(catProducts[child] || []));
-    }
-    catProducts['electronics'] = catProducts['electronics'].slice(0, 50);
+    catProducts['electronics'] = aggregateVirtualCategory(catProducts, electronicsChildren, 50);
 
     // B. Clothing (Aggregate from children)
     const clothingChildren = categories.filter(c => c.parentSlug === 'clothing').map(c => c.slug);
-    catProducts['clothing'] = [];
-    for (const child of clothingChildren) {
-      catProducts['clothing'].push(...(catProducts[child] || []));
-    }
-    catProducts['clothing'] = catProducts['clothing'].slice(0, 50);
+    catProducts['clothing'] = aggregateVirtualCategory(catProducts, clothingChildren, 50);
 
     // C. Jersey (Search in all fetched products)
     catProducts['jersey'] = allFetchedProducts
       .filter(p => p.title.toLowerCase().includes('jersey'))
+      .filter(isRenderableProduct)
       .filter((v, i, a) => a.findIndex(t => t.slug === v.slug) === i) // Unique
       .slice(0, 50);
 

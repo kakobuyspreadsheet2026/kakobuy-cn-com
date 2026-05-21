@@ -8,6 +8,7 @@ import categories from '../../data/api/categories.json';
 import categoryProducts from '../../data/api/category-products.json';
 import { enHome } from '../../i18n/stubs/en';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { filterRenderableCatalogProducts } from '../../lib/catalogProducts';
 
 export const prerender = true;
 
@@ -60,7 +61,7 @@ const { apiSlug, uiName } = Astro.props;
 const locale = 'en';
 const content = enHome;
 const canonicalPath = `/category/${slug}`;
-const products = categoryProducts[apiSlug] || [];
+const products = filterRenderableCatalogProducts(categoryProducts[apiSlug] || []);
 
 const uiNameLower = uiName.toLowerCase();
 const title = content.categoryPage.titleTemplate
