@@ -3,6 +3,7 @@ import ProductRatingStars from './ProductRatingStars.astro';
 import { productAggregateRating } from '../lib/productAggregateRating';
 import { formatProductUpdatedAt } from '../lib/formatProductUpdatedAt';
 import { productDetailHref } from '../lib/productDetailRoutes';
+import { englishAltFragment } from '../lib/productImageAlt';
 import type { CatalogProduct } from '../lib/catalogProducts';
 
 type CategoryCatalogProduct = CatalogProduct & {
@@ -36,7 +37,7 @@ const { locale, uiCategorySlug, uiName, products } = Astro.props;
           <div class="img-container">
             <img
               src={p.images[0]}
-              alt={`Kakobuy Spreadsheet - ${uiName} - ${p.title}`}
+              alt={`Kakobuy Spreadsheet - ${uiName} - ${englishAltFragment(p.title)}`}
               loading="lazy"
             />
             {p.qcPhotoCount > 0 && <span class="qc-badge">+{p.qcPhotoCount} QC</span>}

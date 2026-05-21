@@ -1,5 +1,6 @@
 ---
 import products from '../data/api/featured-products.json';
+import { englishAltFragment } from '../lib/productImageAlt';
 
 interface Product {
   slug: string;
@@ -27,7 +28,7 @@ const displayProducts = (products as Product[]).slice(0, 60);
           <div class="img-container">
             <img 
               src={p.images[0]} 
-              alt={`Kakobuy Spreadsheet find - ${p.title}`}
+              alt={`Kakobuy Spreadsheet find - ${englishAltFragment(p.title)}`}
               loading="lazy"
               width="300"
               height="300"

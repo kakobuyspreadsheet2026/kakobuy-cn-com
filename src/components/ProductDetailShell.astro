@@ -6,6 +6,7 @@ import SiteFooter from './SiteFooter.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { marketplacePlatformName } from '../lib/productSourceUrl';
 import { productDetailHref } from '../lib/productDetailRoutes';
+import { englishAltFragment } from '../lib/productImageAlt';
 import { formatProductUpdatedAt } from '../lib/formatProductUpdatedAt';
 import { productAggregateRating } from '../lib/productAggregateRating';
 import { productSchemaIdentifiers } from '../lib/productSchemaIdentifiers';
@@ -162,7 +163,7 @@ const productLd = {
           <div class="main-image-wrapper">
             <img
               src={mainImageUrl}
-              alt={`${p.brand} ${p.title} - Kakobuy Spreadsheet Row`}
+              alt={`${englishAltFragment(p.brand)} ${englishAltFragment(p.title)} - Kakobuy Spreadsheet Row`}
               class="main-img"
               width="800"
               height="800"
@@ -284,7 +285,7 @@ const productLd = {
               return (
               <a href={productDetailHref(locale, relatedCategory, rp.slug)} class="related-card">
                 <div class="related-img-wrapper">
-                  <img src={rp.images[0]} alt={`${rp.brand} ${rp.title} - Related`} class="related-img" />
+                  <img src={rp.images[0]} alt={`${englishAltFragment(rp.brand)} ${englishAltFragment(rp.title)} - Related`} class="related-img" />
                   {rp.qcPhotoCount > 0 && (
                     <span class="related-qc-badge">+{rp.qcPhotoCount} QC</span>
                   )}
