@@ -4,6 +4,7 @@ import path from 'node:path';
 const API_BASE = 'https://api.maisonlooks.com/public/v1';
 const API_KEY = 'ml_pub_40a7fda08f34b8e6c37b22748469f5d5';
 const DATA_DIR = './src/data/api';
+const CATEGORY_PRODUCT_LIMIT = 30;
 
 function isRenderableProduct(item) {
   return (
@@ -14,7 +15,7 @@ function isRenderableProduct(item) {
 }
 
 /** Round-robin merge child category pools into one diversified list. */
-function aggregateVirtualCategory(catProducts, childSlugs, limit = 50) {
+function aggregateVirtualCategory(catProducts, childSlugs, limit = CATEGORY_PRODUCT_LIMIT) {
   const pools = childSlugs.map((slug) => (catProducts[slug] || []).filter(isRenderableProduct));
   const result = [];
   const seen = new Set();
@@ -97,7 +98,7 @@ async function fetchAllData() {
     for (const cat of categories) {
       console.log(`  Processing category: ${cat.slug}...`);
       
-      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=50`, {
+      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=${CATEGORY_PRODUCT_LIMIT}`, {
         headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
       });
 
@@ -120,7 +121,7 @@ async function fetchAllData() {
         let brandIdx = 0;
         const brandCounters = {};
         
-        while (diversified.length < 50 && brands.length > 0) {
+        while (diversified.length < CATEGORY_PRODUCT_LIMIT && brands.length > 0) {
           const brand = brands[brandIdx % brands.length];
           brandCounters[brand] = (brandCounters[brand] || 0);
           
@@ -130,19 +131,19 @@ async function fetchAllData() {
           }
           
           brandIdx++;
-          if (brandIdx > brands.length * 50) break; 
+          if (brandIdx > brands.length * CATEGORY_PRODUCT_LIMIT) break; 
         }
 
-        if (diversified.length < 50) {
+        if (diversified.length < CATEGORY_PRODUCT_LIMIT) {
           for (const item of rawData) {
-            if (diversified.length >= 50) break;
+            if (diversified.length >= CATEGORY_PRODUCT_LIMIT) break;
             if (!diversified.find(d => d.slug === item.slug)) {
               diversified.push(item);
             }
           }
         }
 
-        catProducts[cat.slug] = diversified.filter(isRenderableProduct);
+        catProducts[cat.slug] = diversified.filter(isRenderableProduct).slice(0, CATEGORY_PRODUCT_LIMIT);
       }
     }
 
@@ -153,23 +154,23 @@ async function fetchAllData() {
     const accessoriesChildren = categories
       .filter((c) => c.parentSlug === 'accessories' && !accessoriesExcludedChildren.has(c.slug))
       .map((c) => c.slug);
-    catProducts['accessories'] = aggregateVirtualCategory(catProducts, accessoriesChildren, 50);
+    catProducts['accessories'] = aggregateVirtualCategory(catProducts, accessoriesChildren, CATEGORY_PRODUCT_LIMIT);
     console.log(`  Accessories virtual pool: ${catProducts['accessories'].length} items from [${accessoriesChildren.join(', ')}]`);
 
     // A. Electronics (Aggregate from children)
     const electronicsChildren = categories.filter(c => c.parentSlug === 'electronics').map(c => c.slug);
-    catProducts['electronics'] = aggregateVirtualCategory(catProducts, electronicsChildren, 50);
+    catProducts['electronics'] = aggregateVirtualCategory(catProducts, electronicsChildren, CATEGORY_PRODUCT_LIMIT);
 
     // B. Clothing (Aggregate from children)
     const clothingChildren = categories.filter(c => c.parentSlug === 'clothing').map(c => c.slug);
-    catProducts['clothing'] = aggregateVirtualCategory(catProducts, clothingChildren, 50);
+    catProducts['clothing'] = aggregateVirtualCategory(catProducts, clothingChildren, CATEGORY_PRODUCT_LIMIT);
 
     // C. Jersey (Search in all fetched products)
     catProducts['jersey'] = allFetchedProducts
       .filter(p => p.title.toLowerCase().includes('jersey'))
       .filter(isRenderableProduct)
       .filter((v, i, a) => a.findIndex(t => t.slug === v.slug) === i) // Unique
-      .slice(0, 50);
+      .slice(0, CATEGORY_PRODUCT_LIMIT);
 
     // Fallback for featured products if still empty
     if (featuredProducts.length === 0) {
