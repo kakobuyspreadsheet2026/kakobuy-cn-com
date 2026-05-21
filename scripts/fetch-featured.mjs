@@ -20,9 +20,18 @@ const SOURCE_URLS_FILE = path.join(DATA_DIR, 'product-source-urls.json');
 const PRODUCT_SIZES_FILE = path.join(DATA_DIR, 'product-sizes.json');
 const SOURCE_URL_CONCURRENCY = 20;
 
+const REFRESH_CATALOG =
+  process.env.REFRESH_CATALOG === '1' || process.env.REFRESH_CATALOG === 'true';
 /** When unset/false, keep committed `featured-products.json` (homepage Editor's Pick grid). */
 const REFRESH_FEATURED =
-  process.env.REFRESH_FEATURED === '1' || process.env.REFRESH_FEATURED === 'true';
+  REFRESH_CATALOG ||
+  process.env.REFRESH_FEATURED === '1' ||
+  process.env.REFRESH_FEATURED === 'true';
+/** When unset/false, keep committed `category-products.json` (category grids + spreadsheet PDP pool). */
+const REFRESH_CATEGORIES =
+  REFRESH_CATALOG ||
+  process.env.REFRESH_CATEGORIES === '1' ||
+  process.env.REFRESH_CATEGORIES === 'true';
 
 const UI_TO_API_CATEGORY = {
   shoes: 'sneakers',
@@ -57,6 +66,35 @@ async function apiFetch(url, timeoutMs = API_TIMEOUT_MS) {
     }
   }
   return null;
+}
+
+async function readJsonFile(fileName, fallback = null) {
+  try {
+    return JSON.parse(await fs.readFile(path.join(DATA_DIR, fileName), 'utf8'));
+  } catch {
+    return fallback;
+  }
+}
+
+function countUiGridProducts(catProducts) {
+  const slugs = new Set();
+  for (const apiSlug of Object.values(UI_TO_API_CATEGORY)) {
+    for (const product of catProducts[apiSlug] || []) {
+      if (isRenderableProduct(product)) slugs.add(product.slug);
+    }
+  }
+  return slugs.size;
+}
+
+async function logPinnedCatalog() {
+  const featured = await readJsonFile('featured-products.json', []);
+  const catProducts = await readJsonFile('category-products.json', {});
+  console.log(
+    `  Homepage featured: ${featured.length} items in featured-products.json`,
+  );
+  console.log(
+    `  Category / PDP pool: ${countUiGridProducts(catProducts)} unique UI products in category-products.json`,
+  );
 }
 
 async function cacheProductPageMeta(catProducts) {
@@ -136,10 +174,20 @@ async function cacheProductPageMeta(catProducts) {
 }
 
 async function fetchAllData() {
-  console.log('Starting full data fetch from MaisonLooks API with brand diversity...');
-  
+  console.log('Starting catalog prebuild...');
+
   try {
     await fs.mkdir(DATA_DIR, { recursive: true });
+
+    if (!REFRESH_FEATURED && !REFRESH_CATEGORIES) {
+      console.log(
+        'Catalog data pinned — skipping MaisonLooks product API (set REFRESH_CATALOG=1 to refresh all).',
+      );
+      await logPinnedCatalog();
+      return;
+    }
+
+    console.log('Starting MaisonLooks API fetch with brand diversity...');
 
     // 1. Fetch Categories
     console.log('Fetching categories...');
@@ -150,18 +198,10 @@ async function fetchAllData() {
 
     // 2. Fetch Featured Products (homepage) — pinned unless REFRESH_FEATURED=1
     if (!REFRESH_FEATURED) {
-      try {
-        const pinned = JSON.parse(
-          await fs.readFile(path.join(DATA_DIR, 'featured-products.json'), 'utf8'),
-        );
-        console.log(
-          `Featured products pinned: keeping ${pinned.length} items from featured-products.json (set REFRESH_FEATURED=1 to refresh from API).`,
-        );
-      } catch {
-        console.log(
-          'Featured products pinned: no featured-products.json yet — homepage grid will be empty until you commit one or run with REFRESH_FEATURED=1.',
-        );
-      }
+      const pinned = await readJsonFile('featured-products.json', []);
+      console.log(
+        `Featured products pinned: keeping ${pinned.length} items from featured-products.json (set REFRESH_FEATURED=1 to refresh from API).`,
+      );
     } else {
       console.log('Fetching featured products (REFRESH_FEATURED=1)...');
       let featuredSlugs = [];
@@ -205,20 +245,24 @@ async function fetchAllData() {
       }
     }
 
+    if (!REFRESH_CATEGORIES) {
+      const pinned = await readJsonFile('category-products.json', {});
+      console.log(
+        `Category products pinned: keeping ${countUiGridProducts(pinned)} UI products from category-products.json (set REFRESH_CATEGORIES=1 to refresh from API).`,
+      );
+      console.log('Catalog prebuild finished (category pools pinned).');
+      return;
+    }
+
     // 3. Fetch Products for each Category (with Brand Diversity)
     console.log('Fetching products for each category (diversifying brands)...');
-    let catProducts = {};
-    try {
-      catProducts = JSON.parse(await fs.readFile(path.join(DATA_DIR, 'category-products.json'), 'utf8'));
-    } catch {
-      // first run
-    }
+    let catProducts = (await readJsonFile('category-products.json')) || {};
     const allFetchedProducts = [];
     const rawCategoryPools = {};
 
     for (const cat of categories) {
       console.log(`  Processing category: ${cat.slug}...`);
-      
+
       const prodRes = await apiFetch(`${API_BASE}/products?category=${cat.slug}&limit=${CATEGORY_FETCH_POOL}`);
 
       if (prodRes?.ok) {
@@ -246,21 +290,18 @@ async function fetchAllData() {
     }
     console.log(`  Accessories virtual pool: ${(catProducts['accessories'] || []).length} items from [${accessoriesChildren.join(', ')}]`);
 
-    // A. Electronics (Aggregate from children)
     const electronicsChildren = categories.filter(c => c.parentSlug === 'electronics').map(c => c.slug);
     const electronicsPool = aggregateVirtualCategory(rawCategoryPools, electronicsChildren, CATEGORY_PRODUCT_LIMIT);
     if (electronicsPool.length > 0) {
       catProducts['electronics'] = electronicsPool;
     }
 
-    // B. Clothing (Aggregate from children)
     const clothingChildren = categories.filter(c => c.parentSlug === 'clothing').map(c => c.slug);
     const clothingPool = aggregateVirtualCategory(rawCategoryPools, clothingChildren, CATEGORY_PRODUCT_LIMIT);
     if (clothingPool.length > 0) {
       catProducts['clothing'] = clothingPool;
     }
 
-    // C. Jersey (Search in all fetched products)
     const jerseyPool = diversifyByBrand(
       allFetchedProducts.filter((p) => p.title.toLowerCase().includes('jersey')),
       CATEGORY_PRODUCT_LIMIT,
@@ -269,7 +310,6 @@ async function fetchAllData() {
       catProducts['jersey'] = jerseyPool;
     }
 
-    // Shoes UI silo: merge all footwear subcategories for broader brand mix
     const shoesChildren = categories
       .filter((c) => c.parentSlug === 'shoes')
       .map((c) => c.slug);

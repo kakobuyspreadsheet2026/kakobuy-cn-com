@@ -66,6 +66,50 @@
     "updatedAt": "2026-04-07T00:03:02.671Z"
   },
   {
+    "slug": "gucci-gg-monogram-green-sweater-194123",
+    "title": "Gucci Green GG Monogram Knit Sweater",
+    "description": "This Gucci sweater features an all-over GG monogram pattern in a soft, olive green knit. It has a relaxed fit with ribbed cuffs and hem, offering both comfort and style.",
+    "category": "sweaters-knits",
+    "brand": "Gucci",
+    "priceCnyRange": [
+      434.28,
+      434.28
+    ],
+    "priceCny": "434.28",
+    "priceUsdEstimate": [
+      60.32,
+      60.32
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775554140873-518977058.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-07T09:29:01.035Z"
+  },
+  {
+    "slug": "fendi-low-top-sneakers-in-beige-green-and-brown-bc8be1",
+    "title": "Fendi Multi-Color Low Top Sneakers",
+    "description": "These Fendi low-top sneakers feature a bold multi-color design with suede and leather panels in earthy tones. The iconic FF logo is prominently displayed on the side, complemented by contrasting green laces and a white rubber sole.",
+    "category": "sneakers",
+    "brand": "Fendi",
+    "priceCnyRange": [
+      646.8,
+      646.8
+    ],
+    "priceCny": "646.80",
+    "priceUsdEstimate": [
+      89.83,
+      89.83
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775305639284-545895296.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-04T12:27:19.618Z"
+  },
+  {
     "slug": "polo-ralph-lauren-black-slim-fit-sweatpants-0a503b",
     "title": "Polo Ralph Lauren Black Slim Fit Sweatpants",
     "description": "Classic black slim-fit sweatpants from Polo Ralph Lauren featuring a comfortable elastic waistband with adjustable drawstrings, side pockets, and the iconic embroidered Pony logo on the left thigh. Made from soft cotton fabric, perfect for casual wear.",
@@ -702,6 +746,28 @@
     "qcPhotoCount": 0,
     "hasTryOn": true,
     "updatedAt": "2026-04-04T16:39:56.400Z"
+  },
+  {
+    "slug": "louis-vuitton-monogram-print-crewneck-sweatshirt-in-cream-a66513",
+    "title": "Louis Vuitton Monogram Print Crewneck Sweatshirt",
+    "description": "This Louis Vuitton sweatshirt features a classic crewneck design with an all-over monogram print. Made from soft cotton, it offers a relaxed fit and is perfect for casual, everyday wear.",
+    "category": "hoodies-sweatshirts",
+    "brand": "Louis Vuitton",
+    "priceCnyRange": [
+      273.6,
+      273.6
+    ],
+    "priceCny": "273.60",
+    "priceUsdEstimate": [
+      38,
+      38
+    ],
+    "images": [
+      "https://cdn.maisonlooks.com/products/file-1775474817576-964816004.webp"
+    ],
+    "qcPhotoCount": 0,
+    "hasTryOn": true,
+    "updatedAt": "2026-04-25T11:33:27.801Z"
   },
   {
     "slug": "a-bathing-ape-red-bape-head-polo-shirt-98ad9a",
