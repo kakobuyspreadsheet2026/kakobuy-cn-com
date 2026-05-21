@@ -20,6 +20,10 @@ const SOURCE_URLS_FILE = path.join(DATA_DIR, 'product-source-urls.json');
 const PRODUCT_SIZES_FILE = path.join(DATA_DIR, 'product-sizes.json');
 const SOURCE_URL_CONCURRENCY = 20;
 
+/** When unset/false, keep committed `featured-products.json` (homepage Editor's Pick grid). */
+const REFRESH_FEATURED =
+  process.env.REFRESH_FEATURED === '1' || process.env.REFRESH_FEATURED === 'true';
+
 const UI_TO_API_CATEGORY = {
   shoes: 'sneakers',
   't-shirts': 't-shirts',
@@ -144,35 +148,60 @@ async function fetchAllData() {
     const categories = await catRes.json();
     await fs.writeFile(path.join(DATA_DIR, 'categories.json'), JSON.stringify(categories, null, 2));
 
-    // 2. Fetch Featured Products (for homepage)
-    console.log('Fetching featured products...');
-    let featuredSlugs = [];
-    try {
-      const outfitRes = await apiFetch(`${API_BASE}/outfits?featured=true&limit=50`);
-      if (outfitRes.ok) {
-        const outfitJson = await outfitRes.json();
-        featuredSlugs = [...new Set((outfitJson.data || []).flatMap(o => o.productSlugs))];
-      } else {
-        console.log(`Outfit API error: ${outfitRes.status}`);
+    // 2. Fetch Featured Products (homepage) — pinned unless REFRESH_FEATURED=1
+    if (!REFRESH_FEATURED) {
+      try {
+        const pinned = JSON.parse(
+          await fs.readFile(path.join(DATA_DIR, 'featured-products.json'), 'utf8'),
+        );
+        console.log(
+          `Featured products pinned: keeping ${pinned.length} items from featured-products.json (set REFRESH_FEATURED=1 to refresh from API).`,
+        );
+      } catch {
+        console.log(
+          'Featured products pinned: no featured-products.json yet — homepage grid will be empty until you commit one or run with REFRESH_FEATURED=1.',
+        );
       }
-    } catch (e) {
-      console.log('Outfit API failed:', e.message);
-    }
+    } else {
+      console.log('Fetching featured products (REFRESH_FEATURED=1)...');
+      let featuredSlugs = [];
+      try {
+        const outfitRes = await apiFetch(`${API_BASE}/outfits?featured=true&limit=50`);
+        if (outfitRes.ok) {
+          const outfitJson = await outfitRes.json();
+          featuredSlugs = [...new Set((outfitJson.data || []).flatMap(o => o.productSlugs))];
+        } else {
+          console.log(`Outfit API error: ${outfitRes.status}`);
+        }
+      } catch (e) {
+        console.log('Outfit API failed:', e.message);
+      }
 
-    const featuredProducts = [];
-    
-    if (featuredSlugs.length > 0) {
-      console.log(`Found ${featuredSlugs.length} featured slugs from outfits.`);
-      for (const slug of featuredSlugs.slice(0, 100)) {
-        if (featuredProducts.length >= 60) break;
-        const res = await apiFetch(`${API_BASE}/products/${slug}`);
-        if (res?.ok) {
-          const prod = await res.json();
-          const brand = prod.brand || 'Other';
-          if (brand.toLowerCase() !== 'other' && brand.toLowerCase() !== 'unknown' && isRenderableProduct(prod)) {
-            featuredProducts.push(prod);
+      const featuredProducts = [];
+
+      if (featuredSlugs.length > 0) {
+        console.log(`Found ${featuredSlugs.length} featured slugs from outfits.`);
+        for (const slug of featuredSlugs.slice(0, 100)) {
+          if (featuredProducts.length >= 60) break;
+          const res = await apiFetch(`${API_BASE}/products/${slug}`);
+          if (res?.ok) {
+            const prod = await res.json();
+            const brand = prod.brand || 'Other';
+            if (brand.toLowerCase() !== 'other' && brand.toLowerCase() !== 'unknown' && isRenderableProduct(prod)) {
+              featuredProducts.push(prod);
+            }
           }
         }
+      }
+
+      if (featuredProducts.length > 0) {
+        console.log(`Successfully prepared ${featuredProducts.length} featured products.`);
+        await fs.writeFile(
+          path.join(DATA_DIR, 'featured-products.json'),
+          JSON.stringify(featuredProducts, null, 2),
+        );
+      } else {
+        console.log('No featured products fetched — keeping existing featured-products.json.');
       }
     }
 
@@ -265,26 +294,6 @@ async function fetchAllData() {
         .map(([brand, count]) => `${brand}(${count})`)
         .join(', ');
       console.log(`  UI ${uiSlug}: ${items.length} items, ${Object.keys(brandCounts).length} brands — ${top}`);
-    }
-
-    // Fallback for featured products if still empty
-    if (featuredProducts.length === 0) {
-      console.log('Featured products still empty, picking from categories...');
-      const fallbackPool = [];
-      for (const catSlug in catProducts) {
-        fallbackPool.push(...catProducts[catSlug]);
-      }
-      // Shuffle and take 60
-      if (fallbackPool.length > 0) {
-        featuredProducts.push(...fallbackPool.sort(() => 0.5 - Math.random()).slice(0, 60));
-      }
-    }
-    
-    if (featuredProducts.length > 0) {
-      console.log(`Successfully prepared ${featuredProducts.length} featured products.`);
-      await fs.writeFile(path.join(DATA_DIR, 'featured-products.json'), JSON.stringify(featuredProducts, null, 2));
-    } else {
-      console.log('No featured products found, skipping file write to preserve existing data.');
     }
 
     if (Object.keys(catProducts).length > 0) {
