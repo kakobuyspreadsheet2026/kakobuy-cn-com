@@ -37,6 +37,12 @@ const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 
 const targetPasteUrl = `https://maisonlooks.com/p/${p.slug}`;
 
+// Build category pool for related recommendations (Build-time helper)
+const categoryProductPool = categoryProducts[p.category] || [];
+const relatedProducts = categoryProductPool
+  .filter((item: any) => item.slug !== p.slug)
+  .slice(0, 4);
+
 // Fetch original Weidian/Taobao/1688 sourceUrl from MaisonLooks during build time
 let sourceUrl = targetPasteUrl; // fallback
 try {
@@ -233,6 +239,33 @@ const productLd = {
           </div>
         </div>
       </div>
+
+      <!-- Category Related Recommendations -->
+      {relatedProducts.length > 0 && (
+        <section class="related-section">
+          <h2 class="related-title">You May Also Like — Related {p.category.replace('-', ' ')} Finds</h2>
+          <div class="related-grid">
+            {relatedProducts.map((rp: any) => (
+              <a href={getRelativeLocaleUrl(locale, `product/${rp.slug}/`)} class="related-card">
+                <div class="related-img-wrapper">
+                  <img src={rp.images[0]} alt={`${rp.brand} ${rp.title} - Related`} class="related-img" />
+                  {rp.qcPhotoCount > 0 && (
+                    <span class="related-qc-badge">+{rp.qcPhotoCount} QC</span>
+                  )}
+                </div>
+                <div class="related-card-info">
+                  <span class="related-brand">{rp.brand}</span>
+                  <h3 class="related-prod-title">{rp.title}</h3>
+                  <div class="related-card-footer">
+                    <span class="related-price">$ {rp.priceUsdEstimate[0].toFixed(2)}</span>
+                    <span class="related-featured">★ FEATURED</span>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   </main>
 
@@ -569,5 +602,135 @@ const productLd = {
     filter: brightness(1.05);
     transform: translateY(-1px);
     box-shadow: 0 10px 24px rgba(233, 19, 98, 0.22);
+  }
+
+  /* Related Section */
+  .related-section {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+  }
+
+  .related-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 2rem;
+    text-transform: capitalize;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .related-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  .related-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .related-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px rgba(255, 30, 111, 0.05);
+  }
+
+  .related-img-wrapper {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .related-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  .related-card:hover .related-img {
+    transform: scale(1.03);
+  }
+
+  .related-qc-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--accent-dark);
+    color: #fff;
+    padding: 0.15rem 0.42rem;
+    border-radius: 0.35rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  .related-card-info {
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .related-brand {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .related-prod-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    margin: 0 0 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  .related-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 0.5rem;
+    margin-top: auto;
+  }
+
+  .related-price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .related-featured {
+    font-size: 0.55rem;
+    font-weight: 800;
+    color: #eab308;
+    background: #fefce8;
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    border: 1px solid #fef08a;
   }
 </style>
