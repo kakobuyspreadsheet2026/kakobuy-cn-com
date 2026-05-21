@@ -54,6 +54,11 @@ const BLOG_CATALOG_MAP: Record<string, readonly string[]> = {
   'kakobuy-4k-qc-video-inspection-guide': ['shoes', 'hoodies', 'jackets'],
   'community-crowdsourced-qc-verification-batches': ['shoes', 'jersey', 'hoodies'],
   'qc-websites-landscape': ['shoes', 'bags', 'electronics'],
+  'shipping-branded-vs-unbranded-spreadsheet-restrictions': ['shoes', 'jackets', 'bags'],
+  'decoding-spreadsheet-batch-prices-discrepancies': ['shoes', 'hoodies', 't-shirts'],
+  'spotting-red-flag-sellers-community-spreadsheets': ['shoes', 't-shirts', 'accessories'],
+  'mathematics-of-volumetric-weight-spreadsheet-freight': ['jackets', 'bags', 'hoodies'],
+  'rehearsal-packaging-spreadsheet-power-users-guide': ['shoes', 'jackets', 'pants'],
 };
 
 export function getBlogCatalogCategories(canonicalPath: string): string[] {

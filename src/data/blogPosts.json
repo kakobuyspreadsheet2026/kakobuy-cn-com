@@ -1,5 +1,40 @@
 [
   {
+    "slug": "shipping-branded-vs-unbranded-spreadsheet-restrictions",
+    "title": "Shipping Branded vs. Unbranded: How Spreadsheet Curators Decode Route Restrictions",
+    "published": "2026-05-22",
+    "description": "A detailed analysis of how shipping lines treat branded and unbranded goods on Kakobuy, and why spreadsheet logistics tags dictate your customs success.",
+    "lang": "en"
+  },
+  {
+    "slug": "decoding-spreadsheet-batch-prices-discrepancies",
+    "title": "Decoding Batch Discrepancies: Why a '¥200 Batch' and a '¥400 Batch' Look Identical in Google Sheets",
+    "published": "2026-05-22",
+    "description": "Understanding batch grading in Kakobuy spreadsheets. Why identical-looking items have massive price gaps, and how to verify material and mold quality through QC.",
+    "lang": "en"
+  },
+  {
+    "slug": "spotting-red-flag-sellers-community-spreadsheets",
+    "title": "Spotting Red Flag Sellers in Community Google Sheets: An Operational Audit",
+    "published": "2026-05-22",
+    "description": "How to identify unreliable or overpriced marketplace shops listed on public spreadsheets using return rates, bait-and-switch signs, and QC history.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-shipping-insurance-seizure-protection-guide",
+    "title": "Shipping Insurance Demystified: Protecting Your Kakobuy Haul from Customs Seizures",
+    "published": "2026-05-22",
+    "description": "How Kakobuy’s shipping insurance works in 2026. Understanding seizure compensation, lost package claims, and choosing secure routes.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-vs-joyabuy-vs-cnfans-2026-comparison",
+    "title": "Kakobuy vs. Joyabuy vs. CNFans: The 2026 Shopping Agent Fee & Speed Showdown",
+    "published": "2026-05-22",
+    "description": "A non-biased, data-backed comparison of 2026's top shipping agents. Comparing purchasing speeds, warehouse fees, and international freight options.",
+    "lang": "en"
+  },
+  {
     "slug": "browser-extensions-link-rot-prevention",
     "title": "Fighting Link Rot: Essential Browser Tools for 2026 Spreadsheet Curators",
     "published": "2026-05-20",
