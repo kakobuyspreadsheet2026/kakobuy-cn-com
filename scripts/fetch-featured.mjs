@@ -64,7 +64,7 @@ async function fetchAllData() {
     for (const cat of categories) {
       console.log(`  Processing category: ${cat.slug}...`);
       
-      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=120`, {
+      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=50`, {
         headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
       });
 
