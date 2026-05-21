@@ -39,6 +39,38 @@ function aggregateVirtualCategory(catProducts, childSlugs, limit = CATEGORY_PROD
   return result;
 }
 
+async function pinDetailProducts(catProducts, allFetchedProducts) {
+  let detailSlugs = [];
+  try {
+    detailSlugs = JSON.parse(
+      await fs.readFile(path.join(DATA_DIR, '..', 'productDetailSlugs.json'), 'utf8'),
+    );
+  } catch {
+    return;
+  }
+
+  for (const slug of detailSlugs) {
+    let product = allFetchedProducts.find((p) => p.slug === slug);
+    if (!product) {
+      try {
+        const res = await fetch(`${API_BASE}/products/${slug}`, {
+          headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' },
+        });
+        if (res.ok) product = await res.json();
+      } catch {
+        // keep going if a hero PDP slug cannot be refreshed
+      }
+    }
+
+    if (!product || !isRenderableProduct(product)) continue;
+
+    const cat = product.category;
+    const list = (catProducts[cat] || []).filter((p) => p.slug !== slug);
+    catProducts[cat] = [product, ...list].slice(0, CATEGORY_PRODUCT_LIMIT);
+    console.log(`  Pinned detail product at top of ${cat}: ${slug}`);
+  }
+}
+
 async function fetchAllData() {
   console.log('Starting full data fetch from MaisonLooks API with brand diversity...');
   
@@ -171,6 +203,8 @@ async function fetchAllData() {
       .filter(isRenderableProduct)
       .filter((v, i, a) => a.findIndex(t => t.slug === v.slug) === i) // Unique
       .slice(0, CATEGORY_PRODUCT_LIMIT);
+
+    await pinDetailProducts(catProducts, allFetchedProducts);
 
     // Fallback for featured products if still empty
     if (featuredProducts.length === 0) {
