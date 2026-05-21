@@ -9,6 +9,7 @@ import categoryProducts from '../../../data/api/category-products.json';
 import { deHome } from '../../../i18n/stubs/de';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { filterRenderableCatalogProducts } from '../../../lib/catalogProducts';
+import { hasProductDetailPage, productCardHref } from '../../../lib/productDetailRoutes';
 
 export const prerender = true;
 
@@ -172,8 +173,16 @@ const itemListLd = {
         </header>
 
         <div class="products-grid">
-          {products.map((p) => (
-            <a href={`https://maisonlooks.com/p/${p.slug}`} target="_blank" rel="nofollow sponsored" class="product-card">
+          {products.map((p) => {
+            const externalUrl = `https://maisonlooks.com/p/${p.slug}`;
+            const href = productCardHref(locale, p.slug, externalUrl);
+            const isInternal = hasProductDetailPage(p.slug);
+            return (
+            <a
+              href={href}
+              class="product-card"
+              {...(!isInternal ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
+            >
               <div class="img-container">
                 <img 
                   src={p.images[0]} 
@@ -193,7 +202,8 @@ const itemListLd = {
                 </div>
               </div>
             </a>
-          ))}
+            );
+          })}
         </div>
 
         {products.length === 0 && (

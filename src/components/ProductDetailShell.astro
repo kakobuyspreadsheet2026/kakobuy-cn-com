@@ -1,142 +1,110 @@
 ---
-import { absoluteCanonicalUrl } from '../../lib/canonicalPath';
-import Layout from '../../layouts/Layout.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import { siteStructuredDataIds } from '../../consts';
-import featuredProducts from '../../data/api/featured-products.json';
-import categoryProducts from '../../data/api/category-products.json';
+import { absoluteCanonicalUrl } from '../lib/canonicalPath';
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getCategoryUiLabel, getCategoryUiSlug } from '../lib/categorySlugMapping';
+import { marketplacePlatformName } from '../lib/productSourceUrl';
+import { productCardHref, hasProductDetailPage } from '../lib/productDetailRoutes';
 
-export const prerender = true;
+export type ProductDetailRecord = {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  brand: string;
+  priceCny?: string;
+  priceUsdEstimate: [number, number];
+  images: string[];
+  qcPhotoCount: number;
+};
 
-export function getStaticPaths() {
-  const allProductsMap = new Map();
-  
-  // Collect all unique products from featured and categories
-  featuredProducts.forEach(p => allProductsMap.set(p.slug, p));
-  
-  Object.values(categoryProducts).forEach((list: any) => {
-    list.forEach((p: any) => allProductsMap.set(p.slug, p));
-  });
-  
-  return Array.from(allProductsMap.values()).map(p => ({
-    params: { slug: p.slug },
-    props: { product: p }
-  }));
+interface Props {
+  product: ProductDetailRecord;
+  sourceUrl: string;
+  relatedProducts?: ProductDetailRecord[];
+  canonicalPath: string;
 }
 
-const { slug } = Astro.params;
-const { product: p } = Astro.props;
+const { product: p, sourceUrl, relatedProducts = [], canonicalPath } = Astro.props;
 
 const locale = 'en';
-const canonicalPath = `/product/${slug}`;
-const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
-const { websiteId } = siteStructuredDataIds(origin);
 const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
-
 const targetPasteUrl = `https://maisonlooks.com/p/${p.slug}`;
+const platformName = marketplacePlatformName(sourceUrl);
+const categoryUiSlug = getCategoryUiSlug(p.category);
+const categoryUiLabel = getCategoryUiLabel(p.category);
 
-// Build category pool for related recommendations (Build-time helper)
-const categoryProductPool = categoryProducts[p.category] || [];
-const relatedProducts = categoryProductPool
-  .filter((item: any) => item.slug !== p.slug)
-  .slice(0, 4);
-
-// Fetch original Weidian/Taobao/1688 sourceUrl from MaisonLooks during build time
-let sourceUrl = targetPasteUrl; // fallback
-try {
-  const res = await fetch(`https://maisonlooks.com/en/p/${p.slug}`);
-  if (res.ok) {
-    const html = await res.text();
-    const match = html.match(/sourceUrl\\*"\s*:\s*\\*"https?:\/\/([^"\\]+)/);
-    if (match) {
-      sourceUrl = "https://" + match[1].replace(/\\u0026/g, "&").replace(/\\/g, "");
-    }
-  }
-} catch (e: any) {
-  console.error(`Failed to fetch sourceUrl for ${p.slug}:`, e.message);
-}
-
-const isWeidian = sourceUrl.includes('weidian.com');
-const isTaobao = sourceUrl.includes('taobao.com') || sourceUrl.includes('tmall.com');
-const is1688 = sourceUrl.includes('1688.com');
-
-let platformName = 'Marketplace';
-if (isWeidian) platformName = 'Weidian';
-else if (isTaobao) platformName = 'Taobao';
-else if (is1688) platformName = '1688';
-
-// Product Schema
 const productLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   '@id': `${pageUrl}#product`,
-  'name': p.title,
-  'image': p.images[0],
-  'description': p.description,
-  'brand': {
+  name: p.title,
+  image: p.images[0],
+  description: p.description,
+  brand: {
     '@type': 'Brand',
-    'name': p.brand
+    name: p.brand,
   },
-  'offers': {
+  offers: {
     '@type': 'Offer',
-    'price': p.priceUsdEstimate[0],
-    'priceCurrency': 'USD',
-    'url': targetPasteUrl,
-    'availability': 'https://schema.org/InStock',
-    'shippingDetails': {
+    price: p.priceUsdEstimate[0],
+    priceCurrency: 'USD',
+    url: targetPasteUrl,
+    availability: 'https://schema.org/InStock',
+    shippingDetails: {
       '@type': 'OfferShippingDetails',
-      'shippingRate': {
+      shippingRate: {
         '@type': 'MonetaryAmount',
-        'value': '5.00',
-        'currency': 'USD'
+        value: '5.00',
+        currency: 'USD',
       },
-      'shippingDestination': {
+      shippingDestination: {
         '@type': 'DefinedRegion',
-        'addressCountry': 'US'
+        addressCountry: 'US',
       },
-      'deliveryTime': {
+      deliveryTime: {
         '@type': 'ShippingDeliveryTime',
-        'handlingTime': {
+        handlingTime: {
           '@type': 'QuantitativeValue',
-          'minValue': 1,
-          'maxValue': 3,
-          'unitCode': 'd'
+          minValue: 1,
+          maxValue: 3,
+          unitCode: 'd',
         },
-        'transitTime': {
+        transitTime: {
           '@type': 'QuantitativeValue',
-          'minValue': 7,
-          'maxValue': 15,
-          'unitCode': 'd'
-        }
-      }
+          minValue: 7,
+          maxValue: 15,
+          unitCode: 'd',
+        },
+      },
     },
-    'hasMerchantReturnPolicy': {
+    hasMerchantReturnPolicy: {
       '@type': 'MerchantReturnPolicy',
-      'applicableCountry': 'US',
-      'returnPolicyCategory': 'https://schema.org/MerchantReturnFiniteReturnPeriod',
-      'merchantReturnDays': 7,
-      'returnMethod': 'https://schema.org/ReturnByMail',
-      'returnFees': 'https://schema.org/FreeReturn'
-    }
-  },
-  'aggregateRating': {
-    '@type': 'AggregateRating',
-    'ratingValue': '4.9',
-    'reviewCount': '24'
-  },
-  'review': {
-    '@type': 'Review',
-    'reviewRating': {
-      '@type': 'Rating',
-      'ratingValue': '5'
+      applicableCountry: 'US',
+      returnPolicyCategory: 'MerchantReturnFiniteReturnPeriod',
+      merchantReturnDays: 7,
+      returnMethod: 'ReturnByMail',
+      returnFees: 'FreeReturn',
     },
-    'author': {
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '24',
+  },
+  review: {
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: '5',
+    },
+    author: {
       '@type': 'Organization',
-      'name': 'Kakobuy Spreadsheet Community'
-    }
-  }
+      name: 'Kakobuy Spreadsheet Community',
+    },
+  },
 };
 ---
 
@@ -151,16 +119,13 @@ const productLd = {
 
   <main class="product-detail-page">
     <div class="wrap">
-      <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href={getRelativeLocaleUrl(locale, '')}>Home</a> / 
-        <a href={getRelativeLocaleUrl(locale, `category/${p.category}`)} class="capitalize">{p.category.replace('-', ' ')}</a> / 
+        <a href={getRelativeLocaleUrl(locale, '')}>Home</a> /
+        <a href={getRelativeLocaleUrl(locale, `category/${categoryUiSlug}/`)}>{categoryUiLabel}</a> /
         <span>{p.title}</span>
       </nav>
 
-      <!-- Main Columns -->
       <div class="product-container">
-        <!-- Left: Image Gallery -->
         <div class="product-gallery">
           <div class="main-image-wrapper">
             <img src={p.images[0]} alt={`${p.brand} ${p.title} - Kakobuy Spreadsheet Row`} class="main-img" />
@@ -171,7 +136,6 @@ const productLd = {
           <p class="gallery-caption">Verified actual listing photography</p>
         </div>
 
-        <!-- Right: Hardcore Spreadsheet Metadata -->
         <div class="product-info-panel">
           <div class="brand-badge-wrap">
             <span class="brand-tag">{p.brand}</span>
@@ -182,19 +146,17 @@ const productLd = {
 
           <h1 class="product-title">{p.title}</h1>
 
-          <!-- Price Display -->
           <div class="price-section">
             <div class="price-usd">$ {p.priceUsdEstimate[0].toFixed(2)}</div>
             <div class="price-cny">≈ ¥ {p.priceCny || (p.priceUsdEstimate[0] * 7.2).toFixed(2)} CNY</div>
           </div>
 
-          <!-- Spreadsheet Specs Card -->
           <div class="specs-card">
             <h2 class="specs-card-title">Spreadsheet Row Metadata (2026)</h2>
             <div class="specs-grid">
               <div class="spec-row">
                 <span class="spec-label">Item Category</span>
-                <span class="spec-value capitalize">{p.category.replace('-', ' ')}</span>
+                <span class="spec-value">{categoryUiLabel}</span>
               </div>
               <div class="spec-row">
                 <span class="spec-label">Recomm. Batch</span>
@@ -211,9 +173,7 @@ const productLd = {
             </div>
           </div>
 
-          <!-- Tooling Call-to-Actions -->
           <div class="action-buttons">
-            <!-- Copy & Paste Flow -->
             <div class="copy-flow-card">
               <p class="copy-instructions">Copy this {platformName} link to purchase on Kakobuy:</p>
               <div class="copy-input-group">
@@ -225,28 +185,28 @@ const productLd = {
               </div>
             </div>
 
-            <!-- Double CTAs -->
             <div class="dual-ctas">
               <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-agent-gate">
                 Open Kakobuy Platform ↗
               </a>
-              {p.hasTryOn && (
-                <a href={targetPasteUrl} target="_blank" rel="nofollow sponsored" class="btn btn-primary btn-try-on">
-                  Buy Now 🛍️
-                </a>
-              )}
+              <a href={targetPasteUrl} target="_blank" rel="nofollow sponsored" class="btn btn-primary btn-try-on">
+                Buy Now 🛍️
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Category Related Recommendations -->
       {relatedProducts.length > 0 && (
         <section class="related-section">
-          <h2 class="related-title">You May Also Like — Related {p.category.replace('-', ' ')} Finds</h2>
+          <h2 class="related-title">You May Also Like — Related {categoryUiLabel} Finds</h2>
           <div class="related-grid">
-            {relatedProducts.map((rp: any) => (
-              <a href={getRelativeLocaleUrl(locale, `product/${rp.slug}/`)} class="related-card">
+            {relatedProducts.map((rp) => (
+              <a
+                href={productCardHref(locale, rp.slug, `https://maisonlooks.com/p/${rp.slug}`)}
+                class="related-card"
+                {...(!hasProductDetailPage(rp.slug) ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
+              >
                 <div class="related-img-wrapper">
                   <img src={rp.images[0]} alt={`${rp.brand} ${rp.title} - Related`} class="related-img" />
                   {rp.qcPhotoCount > 0 && (
@@ -288,11 +248,11 @@ const productLd = {
         try {
           await navigator.clipboard.writeText(copyInput.value);
           copyBtnText.textContent = 'Copied!';
-          copyBtn.style.background = '#10b981'; // Green on success
+          copyBtn.style.background = '#10b981';
           copyBtn.style.borderColor = '#10b981';
           setTimeout(() => {
             copyBtnText.textContent = `Copy ${platformName} Link`;
-            copyBtn.style.background = ''; // Revert to CSS
+            copyBtn.style.background = '';
             copyBtn.style.borderColor = '';
           }, 2000);
         } catch (err) {
@@ -325,10 +285,6 @@ const productLd = {
     color: var(--accent-dark);
   }
 
-  .capitalize {
-    text-transform: capitalize;
-  }
-
   .product-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -343,7 +299,6 @@ const productLd = {
     }
   }
 
-  /* Left: Gallery */
   .product-gallery {
     display: flex;
     flex-direction: column;
@@ -386,7 +341,6 @@ const productLd = {
     color: var(--muted);
   }
 
-  /* Right: Info Panel */
   .product-info-panel {
     display: flex;
     flex-direction: column;
@@ -464,7 +418,6 @@ const productLd = {
     font-weight: 600;
   }
 
-  /* Specs Card */
   .specs-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -510,7 +463,6 @@ const productLd = {
     color: var(--accent-dark);
   }
 
-  /* Copy Flow & CTAs */
   .action-buttons {
     display: flex;
     flex-direction: column;
@@ -604,7 +556,6 @@ const productLd = {
     box-shadow: 0 10px 24px rgba(233, 19, 98, 0.22);
   }
 
-  /* Related Section */
   .related-section {
     margin-top: 4rem;
     border-top: 1px solid var(--border);
@@ -617,7 +568,6 @@ const productLd = {
     letter-spacing: -0.02em;
     color: var(--text);
     margin-bottom: 2rem;
-    text-transform: capitalize;
   }
 
   .related-grid {

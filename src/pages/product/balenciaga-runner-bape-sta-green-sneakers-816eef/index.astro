@@ -1,0 +1,29 @@
+---
+import ProductDetailShell from '../../../components/ProductDetailShell.astro';
+import categoryProducts from '../../../data/api/category-products.json';
+import { filterRenderableCatalogProducts } from '../../../lib/catalogProducts';
+import { resolveProductSourceUrl } from '../../../lib/productSourceUrl';
+
+export const prerender = true;
+
+const slug = 'balenciaga-runner-bape-sta-green-sneakers-816eef';
+const canonicalPath = `/product/${slug}`;
+
+const sneakers = filterRenderableCatalogProducts(categoryProducts.sneakers || []);
+const product = sneakers.find((item) => item.slug === slug) ?? sneakers[0];
+
+if (!product) {
+  throw new Error('Shoes prototype product data is missing from category-products.json');
+}
+
+const relatedProducts = sneakers.filter((item) => item.slug !== product.slug).slice(0, 4);
+const fallbackUrl = `https://maisonlooks.com/p/${product.slug}`;
+const sourceUrl = await resolveProductSourceUrl(product.slug, fallbackUrl);
+---
+
+<ProductDetailShell
+  product={product}
+  sourceUrl={sourceUrl}
+  relatedProducts={relatedProducts}
+  canonicalPath={canonicalPath}
+/>
