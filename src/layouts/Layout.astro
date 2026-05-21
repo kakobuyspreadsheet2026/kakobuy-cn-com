@@ -129,14 +129,30 @@ function inferSegmentFromCanonical(pathOnly: string):
   return '';
 }
 
-const i18nRouteSegment =
-  segmentProp !== undefined ? segmentProp : inferSegmentFromCanonical(new URL(canonical).pathname);
+/** Path passed to `getAbsoluteLocaleUrlList` for hreflang alternates (may include slug, e.g. `category/shoes`). */
+function inferHreflangListPath(pathOnly: string): string | undefined {
+  let segs = pathOnly.replace(/\/$/, '').split('/').filter(Boolean);
+  if (segs[0] && (ROUTE_LOCALES as readonly string[]).includes(segs[0])) {
+    segs = segs.slice(1);
+  }
+  if (segs[0] === 'category' && segs[1]) {
+    return `category/${segs[1]}`;
+  }
+  const segment = inferSegmentFromCanonical(pathOnly);
+  return segment === '' ? undefined : segment;
+}
 
-const i18nListPath =
-  i18nRouteSegment === '' || i18nRouteSegment === undefined ? undefined : i18nRouteSegment;
+const canonicalPathname = new URL(canonical).pathname;
+
+const hreflangListPath =
+  segmentProp !== undefined
+    ? segmentProp === ''
+      ? undefined
+      : segmentProp
+    : inferHreflangListPath(canonicalPathname);
 
 const astroLocaleCodes = toCodes(i18n.locales);
-const hreflangUrls = getAbsoluteLocaleUrlList(i18nListPath);
+const hreflangUrls = getAbsoluteLocaleUrlList(hreflangListPath);
 
 const ogImageAbs =
   ogImage && /^https?:\/\//i.test(ogImage)

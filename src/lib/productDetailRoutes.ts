@@ -1,12 +1,13 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { absoluteCanonicalUrl } from './canonicalPath';
 
+/** PDP routes are EN-only (`/spreadsheet/{category}/{slug}/`); ignore page locale for hrefs. */
 export function productDetailHref(
-  locale: string,
+  _locale: string,
   categorySlug: string,
   slug: string,
 ): string {
-  return getRelativeLocaleUrl(locale, `spreadsheet/${categorySlug}/${slug}/`);
+  return getRelativeLocaleUrl('en', `spreadsheet/${categorySlug}/${slug}/`);
 }
 
 export function productDetailAbsoluteUrl(
