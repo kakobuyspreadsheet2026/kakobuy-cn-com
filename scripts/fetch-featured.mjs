@@ -1,73 +1,133 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {
+  CATEGORY_PRODUCT_LIMIT,
+  diversifyByBrand,
+  aggregateVirtualCategory,
+  isRenderableProduct,
+  normalizeBrand,
+} from './lib/catalogDiversify.mjs';
+import {
+  parseMaisonLooksAvailableSizes,
+  parseMaisonLooksSourceUrl,
+} from './lib/parseMaisonLooksPage.mjs';
 
 const API_BASE = 'https://api.maisonlooks.com/public/v1';
 const API_KEY = 'ml_pub_40a7fda08f34b8e6c37b22748469f5d5';
 const DATA_DIR = './src/data/api';
-const CATEGORY_PRODUCT_LIMIT = 30;
+const CATEGORY_FETCH_POOL = 100;
+const SOURCE_URLS_FILE = path.join(DATA_DIR, 'product-source-urls.json');
+const PRODUCT_SIZES_FILE = path.join(DATA_DIR, 'product-sizes.json');
+const SOURCE_URL_CONCURRENCY = 20;
 
-function isRenderableProduct(item) {
-  return (
-    Array.isArray(item?.priceUsdEstimate) &&
-    typeof item.priceUsdEstimate[0] === 'number' &&
-    Boolean(item.images?.[0])
-  );
+const UI_TO_API_CATEGORY = {
+  shoes: 'sneakers',
+  't-shirts': 't-shirts',
+  pants: 'trousers-pants',
+  accessories: 'accessories',
+  bags: 'bags-backpacks',
+  electronics: 'electronics',
+  jackets: 'jackets',
+  hoodies: 'hoodies-sweatshirts',
+  headwear: 'headwear',
+  jersey: 'jersey',
+  perfume: 'perfume',
+  other: 'clothing',
+};
+
+const API_TIMEOUT_MS = 60000;
+
+async function apiFetch(url, timeoutMs = API_TIMEOUT_MS) {
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    try {
+      return await fetch(url, {
+        headers: { 'X-API-Key': API_KEY, Accept: 'application/json' },
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+    } catch (error) {
+      if (attempt === 2) {
+        console.log(`  Request failed: ${url} (${error.message})`);
+        return null;
+      }
+      console.log(`  Retry ${attempt}/2: ${url}`);
+    }
+  }
+  return null;
 }
 
-/** Round-robin merge child category pools into one diversified list. */
-function aggregateVirtualCategory(catProducts, childSlugs, limit = CATEGORY_PRODUCT_LIMIT) {
-  const pools = childSlugs.map((slug) => (catProducts[slug] || []).filter(isRenderableProduct));
-  const result = [];
-  const seen = new Set();
-  let idx = 0;
-
-  while (result.length < limit) {
-    let added = false;
-    for (const pool of pools) {
-      const item = pool[idx];
-      if (item && !seen.has(item.slug)) {
-        result.push(item);
-        seen.add(item.slug);
-        added = true;
-        if (result.length >= limit) break;
-      }
+async function cacheProductPageMeta(catProducts) {
+  const slugs = new Set();
+  for (const apiSlug of Object.values(UI_TO_API_CATEGORY)) {
+    for (const product of catProducts[apiSlug] || []) {
+      if (isRenderableProduct(product)) slugs.add(product.slug);
     }
-    if (!added) break;
-    idx++;
   }
 
-  return result;
-}
-
-async function pinDetailProducts(catProducts, allFetchedProducts) {
-  let detailSlugs = [];
+  let sourceUrls = {};
+  let productSizes = {};
   try {
-    detailSlugs = JSON.parse(
-      await fs.readFile(path.join(DATA_DIR, '..', 'productDetailSlugs.json'), 'utf8'),
-    );
+    sourceUrls = JSON.parse(await fs.readFile(SOURCE_URLS_FILE, 'utf8'));
   } catch {
-    return;
+    // start fresh when cache file does not exist yet
+  }
+  try {
+    productSizes = JSON.parse(await fs.readFile(PRODUCT_SIZES_FILE, 'utf8'));
+  } catch {
+    // start fresh when cache file does not exist yet
   }
 
-  for (const slug of detailSlugs) {
-    let product = allFetchedProducts.find((p) => p.slug === slug);
-    if (!product) {
-      try {
-        const res = await fetch(`${API_BASE}/products/${slug}`, {
-          headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' },
-        });
-        if (res.ok) product = await res.json();
-      } catch {
-        // keep going if a hero PDP slug cannot be refreshed
+  const missing = [...slugs].filter(
+    (slug) => !sourceUrls[slug] || !Array.isArray(productSizes[slug]),
+  );
+  console.log(
+    `Caching marketplace page meta: ${missing.length} to fetch, ${slugs.size - missing.length} cached (${slugs.size} UI products).`,
+  );
+
+  async function fetchPageMeta(slug, attempt = 1) {
+    try {
+      const res = await fetch(`https://maisonlooks.com/en/p/${slug}`);
+      if (!res.ok) {
+        if (attempt < 2) {
+          await new Promise((resolve) => setTimeout(resolve, 400));
+          return fetchPageMeta(slug, attempt + 1);
+        }
+        return;
+      }
+      const html = await res.text();
+      const sourceUrl = parseMaisonLooksSourceUrl(html);
+      if (sourceUrl) sourceUrls[slug] = sourceUrl;
+      const sizes = parseMaisonLooksAvailableSizes(html);
+      if (sizes.length === 0 && attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 400));
+        return fetchPageMeta(slug, attempt + 1);
+      }
+      productSizes[slug] = sizes;
+    } catch {
+      if (attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 400));
+        return fetchPageMeta(slug, attempt + 1);
       }
     }
+  }
 
-    if (!product || !isRenderableProduct(product)) continue;
+  for (let i = 0; i < missing.length; i += SOURCE_URL_CONCURRENCY) {
+    const batch = missing.slice(i, i + SOURCE_URL_CONCURRENCY);
+    await Promise.all(batch.map(fetchPageMeta));
+    console.log(`  Page meta progress: ${Math.min(i + batch.length, missing.length)}/${missing.length}`);
+  }
 
-    const cat = product.category;
-    const list = (catProducts[cat] || []).filter((p) => p.slug !== slug);
-    catProducts[cat] = [product, ...list].slice(0, CATEGORY_PRODUCT_LIMIT);
-    console.log(`  Pinned detail product at top of ${cat}: ${slug}`);
+  if (Object.keys(sourceUrls).length > 0) {
+    await fs.writeFile(SOURCE_URLS_FILE, JSON.stringify(sourceUrls, null, 2));
+  } else {
+    console.log('No source URLs cached, skipping product-source-urls.json write.');
+  }
+
+  if (Object.keys(productSizes).length > 0) {
+    await fs.writeFile(PRODUCT_SIZES_FILE, JSON.stringify(productSizes, null, 2));
+    const withSizes = Object.values(productSizes).filter((sizes) => sizes.length > 0).length;
+    console.log(`  Saved product sizes for ${Object.keys(productSizes).length} slugs (${withSizes} with options).`);
+  } else {
+    console.log('No product sizes cached, skipping product-sizes.json write.');
   }
 }
 
@@ -79,10 +139,8 @@ async function fetchAllData() {
 
     // 1. Fetch Categories
     console.log('Fetching categories...');
-    const catRes = await fetch(`${API_BASE}/categories`, {
-      headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
-    });
-    if (!catRes.ok) throw new Error(`Category API error: ${catRes.status}`);
+    const catRes = await apiFetch(`${API_BASE}/categories`);
+    if (!catRes?.ok) throw new Error(`Category API error: ${catRes?.status ?? 'network'}`);
     const categories = await catRes.json();
     await fs.writeFile(path.join(DATA_DIR, 'categories.json'), JSON.stringify(categories, null, 2));
 
@@ -90,9 +148,7 @@ async function fetchAllData() {
     console.log('Fetching featured products...');
     let featuredSlugs = [];
     try {
-      const outfitRes = await fetch(`${API_BASE}/outfits?featured=true&limit=50`, {
-        headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
-      });
+      const outfitRes = await apiFetch(`${API_BASE}/outfits?featured=true&limit=50`);
       if (outfitRes.ok) {
         const outfitJson = await outfitRes.json();
         featuredSlugs = [...new Set((outfitJson.data || []).flatMap(o => o.productSlugs))];
@@ -109,10 +165,8 @@ async function fetchAllData() {
       console.log(`Found ${featuredSlugs.length} featured slugs from outfits.`);
       for (const slug of featuredSlugs.slice(0, 100)) {
         if (featuredProducts.length >= 60) break;
-        const res = await fetch(`${API_BASE}/products/${slug}`, {
-          headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
-        });
-        if (res.ok) {
+        const res = await apiFetch(`${API_BASE}/products/${slug}`);
+        if (res?.ok) {
           const prod = await res.json();
           const brand = prod.brand || 'Other';
           if (brand.toLowerCase() !== 'other' && brand.toLowerCase() !== 'unknown' && isRenderableProduct(prod)) {
@@ -124,58 +178,29 @@ async function fetchAllData() {
 
     // 3. Fetch Products for each Category (with Brand Diversity)
     console.log('Fetching products for each category (diversifying brands)...');
-    const catProducts = {};
+    let catProducts = {};
+    try {
+      catProducts = JSON.parse(await fs.readFile(path.join(DATA_DIR, 'category-products.json'), 'utf8'));
+    } catch {
+      // first run
+    }
     const allFetchedProducts = [];
+    const rawCategoryPools = {};
 
     for (const cat of categories) {
       console.log(`  Processing category: ${cat.slug}...`);
       
-      const prodRes = await fetch(`${API_BASE}/products?category=${cat.slug}&limit=${CATEGORY_PRODUCT_LIMIT}`, {
-        headers: { 'X-API-Key': API_KEY, 'Accept': 'application/json' }
-      });
+      const prodRes = await apiFetch(`${API_BASE}/products?category=${cat.slug}&limit=${CATEGORY_FETCH_POOL}`);
 
-      if (prodRes.ok) {
+      if (prodRes?.ok) {
         const json = await prodRes.json();
         const rawData = json.data || [];
         allFetchedProducts.push(...rawData);
-        
-        // Diversity Logic: Group by brand, take max 3 per brand
-        const brandGroups = {};
-        for (const item of rawData) {
-          const brand = item.brand || 'Other';
-          if (!brandGroups[brand]) brandGroups[brand] = [];
-          brandGroups[brand].push(item);
-        }
-
-        const diversified = [];
-        const brands = Object.keys(brandGroups).filter(b => b.toLowerCase() !== 'other' && b.toLowerCase() !== 'unknown');
-        
-        let brandIdx = 0;
-        const brandCounters = {};
-        
-        while (diversified.length < CATEGORY_PRODUCT_LIMIT && brands.length > 0) {
-          const brand = brands[brandIdx % brands.length];
-          brandCounters[brand] = (brandCounters[brand] || 0);
-          
-          if (brandGroups[brand].length > brandCounters[brand]) {
-            diversified.push(brandGroups[brand][brandCounters[brand]]);
-            brandCounters[brand]++;
-          }
-          
-          brandIdx++;
-          if (brandIdx > brands.length * CATEGORY_PRODUCT_LIMIT) break; 
-        }
-
-        if (diversified.length < CATEGORY_PRODUCT_LIMIT) {
-          for (const item of rawData) {
-            if (diversified.length >= CATEGORY_PRODUCT_LIMIT) break;
-            if (!diversified.find(d => d.slug === item.slug)) {
-              diversified.push(item);
-            }
-          }
-        }
-
-        catProducts[cat.slug] = diversified.filter(isRenderableProduct).slice(0, CATEGORY_PRODUCT_LIMIT);
+        rawCategoryPools[cat.slug] = rawData.filter(isRenderableProduct);
+        catProducts[cat.slug] = diversifyByBrand(rawData, CATEGORY_PRODUCT_LIMIT);
+      } else {
+        console.log(`  Skipping ${cat.slug}: API error ${prodRes?.status ?? 'network'}, keeping cached products.`);
+        rawCategoryPools[cat.slug] = (catProducts[cat.slug] || []).filter(isRenderableProduct);
       }
     }
 
@@ -186,25 +211,61 @@ async function fetchAllData() {
     const accessoriesChildren = categories
       .filter((c) => c.parentSlug === 'accessories' && !accessoriesExcludedChildren.has(c.slug))
       .map((c) => c.slug);
-    catProducts['accessories'] = aggregateVirtualCategory(catProducts, accessoriesChildren, CATEGORY_PRODUCT_LIMIT);
-    console.log(`  Accessories virtual pool: ${catProducts['accessories'].length} items from [${accessoriesChildren.join(', ')}]`);
+    const accessoriesPool = aggregateVirtualCategory(rawCategoryPools, accessoriesChildren, CATEGORY_PRODUCT_LIMIT);
+    if (accessoriesPool.length > 0) {
+      catProducts['accessories'] = accessoriesPool;
+    }
+    console.log(`  Accessories virtual pool: ${(catProducts['accessories'] || []).length} items from [${accessoriesChildren.join(', ')}]`);
 
     // A. Electronics (Aggregate from children)
     const electronicsChildren = categories.filter(c => c.parentSlug === 'electronics').map(c => c.slug);
-    catProducts['electronics'] = aggregateVirtualCategory(catProducts, electronicsChildren, CATEGORY_PRODUCT_LIMIT);
+    const electronicsPool = aggregateVirtualCategory(rawCategoryPools, electronicsChildren, CATEGORY_PRODUCT_LIMIT);
+    if (electronicsPool.length > 0) {
+      catProducts['electronics'] = electronicsPool;
+    }
 
     // B. Clothing (Aggregate from children)
     const clothingChildren = categories.filter(c => c.parentSlug === 'clothing').map(c => c.slug);
-    catProducts['clothing'] = aggregateVirtualCategory(catProducts, clothingChildren, CATEGORY_PRODUCT_LIMIT);
+    const clothingPool = aggregateVirtualCategory(rawCategoryPools, clothingChildren, CATEGORY_PRODUCT_LIMIT);
+    if (clothingPool.length > 0) {
+      catProducts['clothing'] = clothingPool;
+    }
 
     // C. Jersey (Search in all fetched products)
-    catProducts['jersey'] = allFetchedProducts
-      .filter(p => p.title.toLowerCase().includes('jersey'))
-      .filter(isRenderableProduct)
-      .filter((v, i, a) => a.findIndex(t => t.slug === v.slug) === i) // Unique
-      .slice(0, CATEGORY_PRODUCT_LIMIT);
+    const jerseyPool = diversifyByBrand(
+      allFetchedProducts.filter((p) => p.title.toLowerCase().includes('jersey')),
+      CATEGORY_PRODUCT_LIMIT,
+    );
+    if (jerseyPool.length > 0) {
+      catProducts['jersey'] = jerseyPool;
+    }
 
-    await pinDetailProducts(catProducts, allFetchedProducts);
+    // Shoes UI silo: merge all footwear subcategories for broader brand mix
+    const shoesChildren = categories
+      .filter((c) => c.parentSlug === 'shoes')
+      .map((c) => c.slug);
+    const shoesPool = aggregateVirtualCategory(rawCategoryPools, shoesChildren, CATEGORY_PRODUCT_LIMIT);
+    if (shoesPool.length > 0) {
+      catProducts['sneakers'] = shoesPool;
+      console.log(`  Shoes virtual pool: ${shoesPool.length} items from [${shoesChildren.join(', ')}]`);
+    }
+
+    await cacheProductPageMeta(catProducts);
+
+    for (const [uiSlug, apiSlug] of Object.entries(UI_TO_API_CATEGORY)) {
+      const items = catProducts[apiSlug] || [];
+      const brandCounts = {};
+      for (const item of items) {
+        const brand = normalizeBrand(item.brand);
+        brandCounts[brand] = (brandCounts[brand] || 0) + 1;
+      }
+      const top = Object.entries(brandCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 4)
+        .map(([brand, count]) => `${brand}(${count})`)
+        .join(', ');
+      console.log(`  UI ${uiSlug}: ${items.length} items, ${Object.keys(brandCounts).length} brands — ${top}`);
+    }
 
     // Fallback for featured products if still empty
     if (featuredProducts.length === 0) {
@@ -228,6 +289,10 @@ async function fetchAllData() {
 
     if (Object.keys(catProducts).length > 0) {
       await fs.writeFile(path.join(DATA_DIR, 'category-products.json'), JSON.stringify(catProducts, null, 2));
+      await fs.writeFile(
+        path.join(DATA_DIR, 'category-products-raw.json'),
+        JSON.stringify(rawCategoryPools, null, 2),
+      );
     } else {
       console.log('No category products found, skipping file write to preserve existing data.');
     }

@@ -4,6 +4,8 @@ import Layout from '../layouts/Layout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import BlogEndCta from './BlogEndCta.astro';
+import BlogCatalogCrossLinks from './BlogCatalogCrossLinks.astro';
+import { getBlogCatalogCategories } from '../lib/blogCatalogCrossLinkMap';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { defaultOgImagePath, siteStructuredDataIds } from '../consts';
 import { HTML_LANG_BY_ROUTE } from '../i18n/config';
@@ -86,6 +88,8 @@ const breadcrumbLd = breadcrumbListLd([
   { name: 'Blog', url: blogAbs },
   { name: headline, url: pageUrl },
 ]);
+
+const catalogCategories = getBlogCatalogCategories(canonicalPath);
 ---
 
 <Layout
@@ -141,6 +145,7 @@ const breadcrumbLd = breadcrumbListLd([
 
             <div class="blog-body prose-block">
               <slot />
+              <BlogCatalogCrossLinks categories={catalogCategories} />
               <BlogEndCta locale={locale} />
               <p class="blog-disclaimer">
                 <strong>Disclaimer:</strong> kakobuy-cn.com publishes independent editorial notes for Kakobuy Spreadsheet shoppers—browse bridges,

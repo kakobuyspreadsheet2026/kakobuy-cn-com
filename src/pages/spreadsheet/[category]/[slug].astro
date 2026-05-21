@@ -1,0 +1,43 @@
+---
+import ProductDetailShell from '../../../components/ProductDetailShell.astro';
+import categoryProducts from '../../../data/api/category-products.json';
+import sourceUrls from '../../../data/api/product-source-urls.json';
+import { getProductAvailableSizes } from '../../../lib/productSizes';
+import {
+  buildProductUiCategoryIndex,
+  collectUiCategoryProductEntries,
+  getUiCategoryProductPool,
+} from '../../../lib/catalogUiCategories';
+import { pickRelatedProducts } from '../../../lib/pickRelatedProducts';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return collectUiCategoryProductEntries().map(({ product, uiCategorySlug }) => ({
+    params: { category: uiCategorySlug, slug: product.slug },
+    props: { product, uiCategorySlug },
+  }));
+}
+
+const { product: p, uiCategorySlug } = Astro.props;
+
+const canonicalPath = `/spreadsheet/${uiCategorySlug}/${p.slug}`;
+const fallbackUrl = `https://maisonlooks.com/p/${p.slug}`;
+const sourceUrl =
+  (sourceUrls as Record<string, string>)[p.slug] ?? fallbackUrl;
+const availableSizes = getProductAvailableSizes(p.slug);
+
+const categoryProductPool = getUiCategoryProductPool(uiCategorySlug);
+const relatedProducts = pickRelatedProducts(categoryProductPool, p.slug);
+const productUiCategoryIndex = Object.fromEntries(buildProductUiCategoryIndex());
+---
+
+<ProductDetailShell
+  product={p}
+  sourceUrl={sourceUrl}
+  availableSizes={availableSizes}
+  relatedProducts={relatedProducts}
+  uiCategorySlug={uiCategorySlug}
+  productUiCategoryIndex={productUiCategoryIndex}
+  canonicalPath={canonicalPath}
+/>

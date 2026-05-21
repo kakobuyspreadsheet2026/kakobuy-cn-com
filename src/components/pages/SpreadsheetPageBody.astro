@@ -1,7 +1,14 @@
 ---
 import SiteHeader from '../SiteHeader.astro';
 import SiteFooter from '../SiteFooter.astro';
+import SpreadsheetCategoryBrowse from '../SpreadsheetCategoryBrowse.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { SpreadsheetPageCopy } from '../../i18n/copy/spreadsheetPage';
+import {
+  getSpreadsheetBrowseCategories,
+  PREVIEW_CARD_CATEGORY_SLUG,
+} from '../../lib/spreadsheetCatalogLinks';
+import { productDetailHref } from '../../lib/productDetailRoutes';
 
 interface Props {
   locale: string;
@@ -13,6 +20,10 @@ interface Props {
 }
 
 const { locale, copy, homeHref, howToHref, newsHref, sheetUrl } = Astro.props;
+
+const browseBySlug = Object.fromEntries(
+  getSpreadsheetBrowseCategories().map((cat) => [cat.slug, cat]),
+);
 ---
 
 <SiteHeader locale={locale} />
@@ -56,7 +67,13 @@ const { locale, copy, homeHref, howToHref, newsHref, sheetUrl } = Astro.props;
     </div>
   </section>
 
-  <section class="band-alt ssp-section" id="ssp-preview" aria-labelledby="ssp-preview-heading">
+  <section class="band-alt ssp-section" id="ssp-browse" aria-labelledby="ssp-browse-heading">
+    <div class="wrap ssp-browse-wrap">
+      <SpreadsheetCategoryBrowse locale={locale} />
+    </div>
+  </section>
+
+  <section class="ssp-section" id="ssp-preview" aria-labelledby="ssp-preview-heading">
     <div class="wrap">
       <h2 id="ssp-preview-heading" class="ssp-block-title">{copy.previewTitle}</h2>
       <p class="section-intro ssp-prose-tight" set:html={copy.previewIntroHtml} />
@@ -68,16 +85,57 @@ const { locale, copy, homeHref, howToHref, newsHref, sheetUrl } = Astro.props;
       </p>
       <div class="ssp-card-grid">
         {
-          copy.previewCards.map((c) => (
-            <article class="ssp-card">
-              <h3 class="ssp-card-title">{c.title}</h3>
-              <p class="ssp-card-meta">
-                <span class="ssp-card-cat">{c.category}</span>
-                <span class="ssp-card-price">{c.priceHint}</span>
-              </p>
-              <p class="ssp-card-tags">{c.tagsLine}</p>
-            </article>
-          ))
+          copy.previewCards.map((c) => {
+            const categorySlug = PREVIEW_CARD_CATEGORY_SLUG[c.category];
+            const lane = categorySlug ? browseBySlug[categorySlug] : undefined;
+            const categoryHref = categorySlug
+              ? getRelativeLocaleUrl(locale, `category/${categorySlug}/`)
+              : null;
+            const sampleHref =
+              categorySlug && lane?.sampleSlug
+                ? productDetailHref(locale, categorySlug, lane.sampleSlug)
+                : null;
+
+            return (
+              <article class="ssp-card">
+                <h3 class="ssp-card-title">
+                  {
+                    sampleHref ? (
+                      <a href={sampleHref} class="ssp-card-link">
+                        {c.title}
+                      </a>
+                    ) : categoryHref ? (
+                      <a href={categoryHref} class="ssp-card-link">
+                        {c.title}
+                      </a>
+                    ) : (
+                      c.title
+                    )
+                  }
+                </h3>
+                <p class="ssp-card-meta">
+                  {
+                    categoryHref ? (
+                      <a href={categoryHref} class="ssp-card-cat ssp-card-link">
+                        {c.category}
+                      </a>
+                    ) : (
+                      <span class="ssp-card-cat">{c.category}</span>
+                    )
+                  }
+                  <span class="ssp-card-price">{c.priceHint}</span>
+                </p>
+                <p class="ssp-card-tags">{c.tagsLine}</p>
+                {
+                  categoryHref && (
+                    <p class="ssp-card-more">
+                      <a href={categoryHref}>Browse {c.category} lane →</a>
+                    </p>
+                  )
+                }
+              </article>
+            );
+          })
         }
       </div>
     </div>
@@ -396,6 +454,48 @@ const { locale, copy, homeHref, howToHref, newsHref, sheetUrl } = Astro.props;
     font-size: 0.78rem;
     line-height: 1.45;
     color: var(--muted);
+  }
+
+  .ssp-card-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ssp-card-link:hover {
+    color: var(--oob-pink, #ff1e6f);
+    text-decoration: underline;
+  }
+
+  .ssp-card-more {
+    margin: 0.55rem 0 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .ssp-card-more a {
+    color: var(--oob-pink, #ff1e6f);
+    text-decoration: none;
+  }
+
+  .ssp-card-more a:hover {
+    text-decoration: underline;
+  }
+
+  .ssp-browse-wrap {
+    max-width: 72rem;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .ssp-browse-wrap :global(.ssp-category-browse) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .ssp-browse-wrap :global(.ssp-category-browse__title),
+  .ssp-browse-wrap :global(.ssp-category-browse__intro) {
+    text-align: center;
   }
 
   .ssp-why-grid {

@@ -1,4 +1,4 @@
-type CatalogProduct = {
+export type CatalogProduct = {
   priceUsdEstimate?: [number, number] | null;
   images?: string[] | null;
 };

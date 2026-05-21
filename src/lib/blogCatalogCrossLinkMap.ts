@@ -1,0 +1,63 @@
+/** UI category slugs to surface at the bottom of each blog article. */
+const DEFAULT_CATEGORIES = ['shoes', 't-shirts', 'hoodies'] as const;
+
+const BLOG_CATALOG_MAP: Record<string, readonly string[]> = {
+  'annual-reps-shopping-calendar-2026': ['shoes', 'jackets', 'hoodies'],
+  'browser-extensions-link-rot-prevention': ['shoes', 't-shirts', 'accessories'],
+  'group-haul-consolidation-freight-savings': ['bags', 'jackets', 'hoodies'],
+  'web-spreadsheets-vs-whatsapp-sellers-safety': ['shoes', 't-shirts', 'hoodies'],
+  'secure-payment-methods-kakobuy-2026': ['shoes', 'electronics', 'bags'],
+  'kakobuy-vip-tier-loyalty-program-worth-it': ['shoes', 't-shirts', 'perfume'],
+  'kakobuy-eco-friendly-green-haul-shipping': ['bags', 'jackets', 'electronics'],
+  'timing-the-reps-hype-cycle-spreadsheets': ['shoes', 'hoodies', 't-shirts'],
+  'kakobuy-app-vs-web-2026-comparison': ['shoes', 'electronics', 'accessories'],
+  'evolution-of-reps-spreadsheets-excel-to-web': ['shoes', 't-shirts', 'hoodies'],
+  'winter-puffer-jacket-shipping-volumetric-hacks': ['jackets', 'hoodies', 'pants'],
+  'weidian-vs-taobao-price-index-2026-report': ['shoes', 't-shirts', 'accessories'],
+  'identifying-phishing-spreadsheet-scams-reps-2026': ['shoes', 't-shirts', 'hoodies'],
+  'canada-cbsa-customs-declaration-spreadsheet-guide': ['jackets', 'shoes', 'bags'],
+  'shipping-electronics-batteries-iata-2026-rules': ['electronics', 'accessories'],
+  'eu-ets-shipping-carbon-tax-kakobuy-haul': ['jackets', 'bags', 'electronics'],
+  'ai-search-discovery-kakobuy-spreadsheet-reps': ['shoes', 't-shirts', 'hoodies'],
+  'us-customs-de-minimis-exemption-kakobuy-spreadsheet': ['shoes', 't-shirts', 'accessories'],
+  'yupoo-album-spreadsheet-kakobuy-intake': ['shoes', 'hoodies', 'bags'],
+  'telegram-finds-spreadsheet-kakobuy-link-hygiene': ['shoes', 't-shirts', 'accessories'],
+  'taobao-tmall-618-2026-spreadsheet-forwarding-rhythm': ['t-shirts', 'shoes', 'electronics'],
+  'spreadsheet-volumetric-chargeable-weight-basics': ['jackets', 'bags', 'hoodies'],
+  'spreadsheet-row-archiving-vanished-listings': ['shoes', 't-shirts', 'hoodies'],
+  'spreadsheet-column-schema-kakobuy-curators': ['shoes', 't-shirts', 'pants'],
+  'mega-sale-split-arrivals-consolidation-spreadsheet': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-net-finds-spreadsheet-lane': ['shoes', 't-shirts', 'accessories'],
+  'google-sheets-sharing-spreadsheet-curator-opsec': ['shoes', 'hoodies', 't-shirts'],
+  'eu-import-vat-landed-cost-spreadsheet-buyers': ['shoes', 'perfume', 'electronics'],
+  'double-11-logistics-interop-spreadsheet-buyers': ['shoes', 't-shirts', 'electronics'],
+  'china-public-holidays-agent-forwarding-2026': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-customs-declared-value-primer': ['shoes', 'bags', 'jackets'],
+  'kakobuy-coupons': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-rehearsal-packaging-freight': ['jackets', 'bags', 'shoes'],
+  'kakobuy-1688': ['t-shirts', 'pants', 'other'],
+  'kakobuy-taobao': ['t-shirts', 'shoes', 'accessories'],
+  'kakobuy-weidian': ['shoes', 'hoodies', 'bags'],
+  'kakobuy-discord': ['shoes', 'jersey', 'hoodies'],
+  'kakobuy-spreadsheet-reddit': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-spreadsheet-to-parcel-checklist': ['shoes', 'hoodies', 'jackets'],
+  'kakobuy-spreadsheet-hubs-compared': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-links-discovery-url-hygiene': ['shoes', 'accessories', 't-shirts'],
+  'oopbuy-agent-user-experience-shell': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-top-up-payment-rails-exchange-rates': ['electronics', 'shoes', 'bags'],
+  'reverse-image-search-taobao-weidian-listings': ['shoes', 't-shirts', 'accessories'],
+  'kakobuy-domestic-returns-before-international-ship': ['shoes', 't-shirts', 'hoodies'],
+  'kakobuy-warehouse-storage-spreadsheet': ['shoes', 'jackets', 'bags'],
+  'litbuy-agent-taobao-weidian-context': ['shoes', 't-shirts', 'accessories'],
+  'kakobuy-sizing-spreadsheet-apparel': ['shoes', 't-shirts', 'pants', 'hoodies'],
+  'kakobuy-spreadsheet-qc': ['shoes', 'hoodies', 'jackets'],
+  'kakobuy-4k-qc-video-inspection-guide': ['shoes', 'hoodies', 'jackets'],
+  'community-crowdsourced-qc-verification-batches': ['shoes', 'jersey', 'hoodies'],
+  'qc-websites-landscape': ['shoes', 'bags', 'electronics'],
+};
+
+export function getBlogCatalogCategories(canonicalPath: string): string[] {
+  const slug = canonicalPath.replace(/^\/blog\//, '').replace(/\/$/, '');
+  const mapped = BLOG_CATALOG_MAP[slug];
+  return mapped ? [...mapped] : [...DEFAULT_CATEGORIES];
+}

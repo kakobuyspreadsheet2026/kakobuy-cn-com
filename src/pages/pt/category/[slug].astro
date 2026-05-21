@@ -3,13 +3,15 @@ import { absoluteCanonicalUrl } from '../../../lib/canonicalPath';
 import Layout from '../../../layouts/Layout.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
+import CategoryProductCatalog from '../../../components/CategoryProductCatalog.astro';
 import { siteStructuredDataIds } from '../../../consts';
 import categories from '../../../data/api/categories.json';
 import categoryProducts from '../../../data/api/category-products.json';
 import { ptHome } from '../../../i18n/stubs/pt';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { filterRenderableCatalogProducts } from '../../../lib/catalogProducts';
-import { hasProductDetailPage, productCardHref } from '../../../lib/productDetailRoutes';
+import { productDetailHref, productDetailAbsoluteUrl } from '../../../lib/productDetailRoutes';
+import { productSchemaRatingFields } from '../../../lib/productAggregateRating';
 
 export const prerender = true;
 
@@ -81,7 +83,7 @@ const itemListLd = {
         '@type': 'Offer',
         'price': p.priceUsdEstimate[0],
         'priceCurrency': 'USD',
-        'url': `https://maisonlooks.com/p/${p.slug}`,
+        'url': productDetailAbsoluteUrl(locale, slug, p.slug, Astro.site),
         'availability': 'https://schema.org/InStock',
         'shippingDetails': {
           '@type': 'OfferShippingDetails',
@@ -119,22 +121,7 @@ const itemListLd = {
           'returnFees': 'https://schema.org/FreeReturn'
         }
       },
-      'aggregateRating': {
-        '@type': 'AggregateRating',
-        'ratingValue': '4.9',
-        'reviewCount': '24'
-      },
-      'review': {
-        '@type': 'Review',
-        'reviewRating': {
-          '@type': 'Rating',
-          'ratingValue': '5'
-        },
-        'author': {
-          '@type': 'Organization',
-          'name': 'Kakobuy Spreadsheet Community'
-        }
-      }
+      ...productSchemaRatingFields(p.slug),
     }
   }))
 };
@@ -172,39 +159,12 @@ const itemListLd = {
           </div>
         </header>
 
-        <div class="products-grid">
-          {products.map((p) => {
-            const externalUrl = `https://maisonlooks.com/p/${p.slug}`;
-            const href = productCardHref(locale, p.slug, externalUrl);
-            const isInternal = hasProductDetailPage(p.slug);
-            return (
-            <a
-              href={href}
-              class="product-card"
-              {...(!isInternal ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
-            >
-              <div class="img-container">
-                <img 
-                  src={p.images[0]} 
-                  alt={`Kakobuy ${uiName} find - ${p.title}`}
-                  loading="lazy"
-                />
-                {p.qcPhotoCount > 0 && (
-                  <span class="qc-badge">+{p.qcPhotoCount} QC</span>
-                )}
-              </div>
-              <div class="card-info">
-                <span class="brand-name">{p.brand}</span>
-                <h3 class="prod-title">{p.title}</h3>
-                <div class="card-footer">
-                  <span class="price">$ {p.priceUsdEstimate[0].toFixed(2)}</span>
-                  <span class="featured-tag">★ FEATURED</span>
-                </div>
-              </div>
-            </a>
-            );
-          })}
-        </div>
+        <CategoryProductCatalog
+          locale={locale}
+          uiCategorySlug={slug}
+          uiName={uiName}
+          products={products}
+        />
 
         {products.length === 0 && (
           <p class="no-products">{content.categoryPage.noProducts}</p>

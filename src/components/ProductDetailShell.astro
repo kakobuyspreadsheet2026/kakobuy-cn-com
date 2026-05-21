@@ -4,9 +4,13 @@ import Layout from '../layouts/Layout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { getCategoryUiLabel, getCategoryUiSlug } from '../lib/categorySlugMapping';
 import { marketplacePlatformName } from '../lib/productSourceUrl';
-import { productCardHref, hasProductDetailPage } from '../lib/productDetailRoutes';
+import { productDetailHref } from '../lib/productDetailRoutes';
+import { formatProductUpdatedAt } from '../lib/formatProductUpdatedAt';
+import { productAggregateRating } from '../lib/productAggregateRating';
+import { productSchemaIdentifiers } from '../lib/productSchemaIdentifiers';
+import ProductRatingStars from './ProductRatingStars.astro';
+import { isSizeRelevantCategory } from '../lib/productSizes';
 
 export type ProductDetailRecord = {
   slug: string;
@@ -18,30 +22,51 @@ export type ProductDetailRecord = {
   priceUsdEstimate: [number, number];
   images: string[];
   qcPhotoCount: number;
+  updatedAt?: string;
 };
 
 interface Props {
   product: ProductDetailRecord;
   sourceUrl: string;
+  availableSizes?: string[];
   relatedProducts?: ProductDetailRecord[];
+  uiCategorySlug: string;
+  productUiCategoryIndex?: Record<string, string>;
   canonicalPath: string;
 }
 
-const { product: p, sourceUrl, relatedProducts = [], canonicalPath } = Astro.props;
+const {
+  product: p,
+  sourceUrl,
+  availableSizes = [],
+  relatedProducts = [],
+  uiCategorySlug,
+  productUiCategoryIndex = {},
+  canonicalPath,
+} = Astro.props;
 
 const locale = 'en';
 const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 const targetPasteUrl = `https://maisonlooks.com/p/${p.slug}`;
 const platformName = marketplacePlatformName(sourceUrl);
-const categoryUiSlug = getCategoryUiSlug(p.category);
-const categoryUiLabel = getCategoryUiLabel(p.category);
+const categoryUiLabel =
+  uiCategorySlug.charAt(0).toUpperCase() + uiCategorySlug.slice(1).replace('-', ' ');
+const productDescription = p.description?.trim() ?? '';
+const lastUpdatedLabel = formatProductUpdatedAt(p.updatedAt);
+const aggregateRating = productAggregateRating(p.slug);
+const showSizingGuide = isSizeRelevantCategory(uiCategorySlug);
+const { sku, mpn } = productSchemaIdentifiers(p.slug);
+const mainImageUrl = p.images[0];
 
 const productLd = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   '@id': `${pageUrl}#product`,
   name: p.title,
-  image: p.images[0],
+  url: pageUrl,
+  sku,
+  mpn,
+  image: mainImageUrl,
   description: p.description,
   brand: {
     '@type': 'Brand',
@@ -52,7 +77,9 @@ const productLd = {
     price: p.priceUsdEstimate[0],
     priceCurrency: 'USD',
     url: targetPasteUrl,
+    itemCondition: 'https://schema.org/NewCondition',
     availability: 'https://schema.org/InStock',
+    priceValidUntil: '2026-12-31',
     shippingDetails: {
       '@type': 'OfferShippingDetails',
       shippingRate: {
@@ -91,20 +118,21 @@ const productLd = {
   },
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '24',
+    ratingValue: aggregateRating.ratingValue,
+    reviewCount: String(aggregateRating.reviewCount),
   },
   review: {
     '@type': 'Review',
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: '5',
+      ratingValue: aggregateRating.reviewRatingValue,
     },
     author: {
       '@type': 'Organization',
       name: 'Kakobuy Spreadsheet Community',
     },
   },
+  ...(p.updatedAt ? { dateModified: p.updatedAt } : {}),
 };
 ---
 
@@ -113,6 +141,9 @@ const productLd = {
   description={`Find direct Kakobuy buying link for ${p.brand} ${p.title}. Check estimated price $${p.priceUsdEstimate[0].toFixed(2)} and warehouse QC status on our updated 2026 spreadsheet.`}
   canonicalPath={canonicalPath}
   locale={locale}
+  hreflangLocales={['en']}
+  hreflangMirrorsCanonical
+  lcpPreloadImages={[mainImageUrl]}
   jsonLd={productLd}
 >
   <SiteHeader locale={locale} />
@@ -121,19 +152,53 @@ const productLd = {
     <div class="wrap">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href={getRelativeLocaleUrl(locale, '')}>Home</a> /
-        <a href={getRelativeLocaleUrl(locale, `category/${categoryUiSlug}/`)}>{categoryUiLabel}</a> /
+        <a href={getRelativeLocaleUrl(locale, 'spreadsheet/')}>Spreadsheet</a> /
+        <a href={getRelativeLocaleUrl(locale, `category/${uiCategorySlug}/`)}>{categoryUiLabel}</a> /
         <span>{p.title}</span>
       </nav>
 
       <div class="product-container">
         <div class="product-gallery">
           <div class="main-image-wrapper">
-            <img src={p.images[0]} alt={`${p.brand} ${p.title} - Kakobuy Spreadsheet Row`} class="main-img" />
+            <img
+              src={mainImageUrl}
+              alt={`${p.brand} ${p.title} - Kakobuy Spreadsheet Row`}
+              class="main-img"
+              width="800"
+              height="800"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
             {p.qcPhotoCount > 0 && (
               <span class="qc-badge">+{p.qcPhotoCount} Real QC Photos</span>
             )}
           </div>
           <p class="gallery-caption">Verified actual listing photography</p>
+
+          {(availableSizes.length > 0) && (
+            <div class="product-gallery-details">
+              <section class="product-sizes" aria-labelledby="product-sizes-heading">
+                <h2 id="product-sizes-heading" class="product-sizes-title">Available sizes</h2>
+                <p class="product-sizes-note">
+                  Seller-reported options from the listing — pick the matching variant when you paste into Kakobuy.
+                </p>
+                <ul class="size-pill-list">
+                  {availableSizes.map((size) => (
+                    <li>
+                      <span class="size-pill">{size}</span>
+                    </li>
+                  ))}
+                </ul>
+                {showSizingGuide && (
+                  <p class="product-sizes-help">
+                    Need cm / EU conversion help? See our{' '}
+                    <a href="/blog/kakobuy-sizing-spreadsheet-apparel/">Spreadsheet sizing guide</a>.
+                  </p>
+                )}
+              </section>
+            </div>
+          )}
         </div>
 
         <div class="product-info-panel">
@@ -145,11 +210,24 @@ const productLd = {
           </div>
 
           <h1 class="product-title">{p.title}</h1>
+          <p class="product-kicker">Kakobuy Spreadsheet · 2026 · {categoryUiLabel}</p>
+
+          <ProductRatingStars
+            ratingValue={aggregateRating.ratingValue}
+            reviewCount={aggregateRating.reviewCount}
+          />
 
           <div class="price-section">
             <div class="price-usd">$ {p.priceUsdEstimate[0].toFixed(2)}</div>
             <div class="price-cny">≈ ¥ {p.priceCny || (p.priceUsdEstimate[0] * 7.2).toFixed(2)} CNY</div>
           </div>
+
+          {productDescription && (
+            <section class="product-description" aria-labelledby="product-description-heading">
+              <h2 id="product-description-heading" class="product-description-title">About This Find</h2>
+              <p class="product-description-text">{productDescription}</p>
+            </section>
+          )}
 
           <div class="specs-card">
             <h2 class="specs-card-title">Spreadsheet Row Metadata (2026)</h2>
@@ -167,8 +245,8 @@ const productLd = {
                 <span class="spec-value">{p.qcPhotoCount > 0 ? `${p.qcPhotoCount} Photos Captured` : 'Standard Inspection'}</span>
               </div>
               <div class="spec-row">
-                <span class="spec-label">Last Checked</span>
-                <span class="spec-value">2 hours ago (Sync Active)</span>
+                <span class="spec-label">Last Updated</span>
+                <span class="spec-value">{lastUpdatedLabel ?? 'Pending sync'}</span>
               </div>
             </div>
           </div>
@@ -201,12 +279,10 @@ const productLd = {
         <section class="related-section">
           <h2 class="related-title">You May Also Like — Related {categoryUiLabel} Finds</h2>
           <div class="related-grid">
-            {relatedProducts.map((rp) => (
-              <a
-                href={productCardHref(locale, rp.slug, `https://maisonlooks.com/p/${rp.slug}`)}
-                class="related-card"
-                {...(!hasProductDetailPage(rp.slug) ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
-              >
+            {relatedProducts.map((rp) => {
+              const relatedCategory = productUiCategoryIndex[rp.slug] ?? uiCategorySlug;
+              return (
+              <a href={productDetailHref(locale, relatedCategory, rp.slug)} class="related-card">
                 <div class="related-img-wrapper">
                   <img src={rp.images[0]} alt={`${rp.brand} ${rp.title} - Related`} class="related-img" />
                   {rp.qcPhotoCount > 0 && (
@@ -222,7 +298,8 @@ const productLd = {
                   </div>
                 </div>
               </a>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}
@@ -302,7 +379,15 @@ const productLd = {
   .product-gallery {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+  }
+
+  .product-gallery-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1.25rem;
   }
 
   .main-image-wrapper {
@@ -339,6 +424,7 @@ const productLd = {
     margin-top: 0.75rem;
     font-size: 0.8rem;
     color: var(--muted);
+    text-align: center;
   }
 
   .product-info-panel {
@@ -398,6 +484,13 @@ const productLd = {
     color: var(--text);
   }
 
+  .product-kicker {
+    margin: -0.5rem 0 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
   .price-section {
     display: flex;
     align-items: baseline;
@@ -416,6 +509,89 @@ const productLd = {
     font-size: 0.95rem;
     color: var(--muted);
     font-weight: 600;
+  }
+
+  .product-sizes {
+    margin-top: 0;
+    padding: 1rem 1.05rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .product-sizes-title {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .product-sizes-note {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .size-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .size-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    padding: 0.38rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  .product-sizes-help {
+    margin: 0.75rem 0 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .product-sizes-help a {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .product-sizes-help a:hover {
+    text-decoration: underline;
+  }
+
+  .product-description {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .product-description-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin: 0 0 0.65rem;
+  }
+
+  .product-description-text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--muted);
   }
 
   .specs-card {

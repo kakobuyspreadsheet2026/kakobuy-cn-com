@@ -1,20 +1,19 @@
-import productDetailSlugs from '../data/productDetailSlugs.json';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { absoluteCanonicalUrl } from './canonicalPath';
 
-const DETAIL_SLUGS = new Set(productDetailSlugs);
-
-export function hasProductDetailPage(slug: string): boolean {
-  return DETAIL_SLUGS.has(slug);
-}
-
-export function productDetailHref(locale: string, slug: string): string {
-  return getRelativeLocaleUrl(locale, `product/${slug}/`);
-}
-
-export function productCardHref(
+export function productDetailHref(
   locale: string,
+  categorySlug: string,
   slug: string,
-  externalUrl: string,
 ): string {
-  return hasProductDetailPage(slug) ? productDetailHref(locale, slug) : externalUrl;
+  return getRelativeLocaleUrl(locale, `spreadsheet/${categorySlug}/${slug}/`);
+}
+
+export function productDetailAbsoluteUrl(
+  locale: string,
+  categorySlug: string,
+  slug: string,
+  site: URL | string | undefined,
+): string {
+  return absoluteCanonicalUrl(productDetailHref(locale, categorySlug, slug), site);
 }

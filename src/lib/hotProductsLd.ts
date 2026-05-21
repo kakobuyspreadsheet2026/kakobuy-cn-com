@@ -1,4 +1,5 @@
 import products from '../data/api/featured-products.json';
+import { productSchemaRatingFields } from './productAggregateRating';
 
 export function getHotProductsLd(origin: string) {
   const itemListElement = products.slice(0, 20).map((p, index) => ({
@@ -55,22 +56,7 @@ export function getHotProductsLd(origin: string) {
           returnFees: 'FreeReturn',
         },
       },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '24',
-      },
-      review: {
-        '@type': 'Review',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-        },
-        author: {
-          '@type': 'Organization',
-          name: 'Kakobuy Spreadsheet Community',
-        },
-      },
+      ...productSchemaRatingFields(p.slug),
     },
   }));
 
