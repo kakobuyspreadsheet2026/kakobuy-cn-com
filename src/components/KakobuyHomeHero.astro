@@ -2,7 +2,9 @@
 import SiteHeader from './SiteHeader.astro';
 import MaisonLooksSearchBar from './MaisonLooksSearchBar.astro';
 import KakobuyThinTopStrip from './KakobuyThinTopStrip.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import {
+  kakobuyHomeHeroBannerUrl,
   ml,
   mlSpreadsheetKakobuy,
 } from '../consts';
@@ -36,6 +38,8 @@ const c = content ?? {
   searchSubmit: 'Search',
   searchByImageAria: 'search by image',
 };
+
+const spreadsheetHref = getRelativeLocaleUrl(locale, 'spreadsheet');
 ---
 
 <section id="top" class="kb-home" aria-label="Kakobuy Spreadsheet hub hero">
@@ -45,21 +49,9 @@ const c = content ?? {
     <SiteHeader embedded locale={locale} />
   </div>
 
-  <div class="kb-mobile-head wrap">
-    <h1 class="kb-mobile-head__h1">{c.h1}</h1>
-    <MaisonLooksSearchBar
-      mlBase={ml}
-      variant="kakobuyHero"
-      placeholder={c.searchPlaceholder}
-      searchAria={c.searchAria}
-      searchSubmitLabel={c.searchSubmit}
-      searchByImageLabel={c.searchByImage}
-      searchByImageAria={c.searchByImageAria}
-    />
-  </div>
-
   <div
     class="kb-banner"
+    style={`--kb-hero-photo: url(${JSON.stringify(kakobuyHomeHeroBannerUrl)})`}
     role="img"
     aria-label={c.heroPlaneAlt}
   >
@@ -94,6 +86,15 @@ const c = content ?? {
           rel="noopener noreferrer">{c.ctaLogin}</a
         >
       </div>
+      <div class="kb-mobile-ctas">
+        <a class="kb-mobile-cta kb-mobile-cta--primary" href={spreadsheetHref}>spreadsheet</a>
+        <a
+          class="kb-mobile-cta kb-mobile-cta--ghost"
+          href="https://kakobuy.com/"
+          target="_blank"
+          rel="noopener noreferrer">kakobuy</a
+        >
+      </div>
     </div>
   </div>
 </section>
@@ -113,49 +114,8 @@ const c = content ?? {
     margin-bottom: 0;
   }
 
-  .kb-mobile-head {
-    display: none;
-  }
-
-  @media (max-width: 640px) {
-    .kb-home__mast :global(.oob-site-header--embedded) {
-      background: var(--surface);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .kb-banner {
-      display: none;
-    }
-
-    .kb-mobile-head {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.85rem;
-      padding: 0.85rem 0 1.1rem;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .kb-mobile-head__h1 {
-      margin: 0;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      color: var(--text);
-      text-align: center;
-    }
-
-    .kb-mobile-head :global(.ml-search-bar) {
-      width: 100%;
-    }
-  }
-
   .kb-banner {
-    /* Photo stacking: top overlay → bottom photo (WebP with JPEG fallback) */
+    /* Photo URL from inline --kb-hero-photo; stacking order = top overlay → bottom photo */
     background-color: #3d4558;
     background-image:
       radial-gradient(
@@ -175,29 +135,7 @@ const c = content ?? {
         rgba(22, 26, 40, 0.18) 48%,
         rgba(14, 16, 26, 0.34) 100%
       ),
-      url('/hero-banner.jpg');
-    background-image:
-      radial-gradient(
-        ellipse 135% 95% at 50% -18%,
-        rgba(255, 248, 236, 0.42) 0%,
-        rgba(255, 236, 210, 0.14) 42%,
-        transparent 68%
-      ),
-      radial-gradient(
-        ellipse 70% 55% at 82% 38%,
-        rgba(255, 220, 180, 0.18) 0%,
-        transparent 58%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(32, 38, 54, 0.06) 0%,
-        rgba(22, 26, 40, 0.18) 48%,
-        rgba(14, 16, 26, 0.34) 100%
-      ),
-      image-set(
-        url('/hero-banner.webp') type('image/webp'),
-        url('/hero-banner.jpg') type('image/jpeg')
-      );
+      var(--kb-hero-photo);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -226,29 +164,7 @@ const c = content ?? {
           rgba(18, 22, 36, 0.42) 45%,
           rgba(10, 12, 22, 0.62) 100%
         ),
-        url('/hero-banner.jpg');
-      background-image:
-        radial-gradient(
-          ellipse 130% 90% at 50% -16%,
-          rgba(255, 248, 236, 0.52) 0%,
-          rgba(255, 236, 210, 0.22) 46%,
-          transparent 72%
-        ),
-        radial-gradient(
-          ellipse 75% 50% at 85% 40%,
-          rgba(255, 210, 160, 0.26) 0%,
-          transparent 62%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(22, 28, 44, 0.07) 0%,
-          rgba(18, 22, 36, 0.42) 45%,
-          rgba(10, 12, 22, 0.62) 100%
-        ),
-        image-set(
-          url('/hero-banner.webp') type('image/webp'),
-          url('/hero-banner.jpg') type('image/jpeg')
-        );
+        var(--kb-hero-photo);
       background-position:
         center,
         center,
@@ -390,5 +306,91 @@ const c = content ?? {
   .kb-banner :global(.ml-search-bar) {
     width: 100%;
     margin-inline: auto;
+  }
+
+  /* Mobile-only CTAs — separate class so desktop `.kb-banner__ctas` is untouched */
+  .kb-mobile-ctas {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .kb-home__mast :global(.oob-site-header--embedded) {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: saturate(140%) blur(10px);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
+    }
+
+    .kb-banner {
+      background-color: #f7f2ec;
+      background-image:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 248, 242, 0.35) 100%),
+        url('/hero-banner-mobile.jpg');
+      background-image:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 248, 242, 0.35) 100%),
+        image-set(
+          url('/hero-banner-mobile.webp') type('image/webp'),
+          url('/hero-banner-mobile.jpg') type('image/jpeg')
+        );
+      color: var(--text);
+      padding: clamp(1.25rem, 4vw, 1.75rem) 0 clamp(1.5rem, 5vw, 2.25rem);
+    }
+
+    .kb-banner__line {
+      font-size: clamp(1.45rem, 6vw, 1.85rem);
+      color: #141820;
+      text-shadow: none;
+    }
+
+    .kb-banner__meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: #5c6478;
+      text-shadow: none;
+    }
+
+    .kb-banner__desc {
+      font-size: 0.875rem;
+      color: #3a4150;
+      text-shadow: none;
+    }
+
+    .kb-banner__ctas {
+      display: none;
+    }
+
+    .kb-mobile-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+    }
+
+    .kb-mobile-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.15rem;
+      padding: 0.32rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .kb-mobile-cta--primary {
+      background: #fc6536;
+      color: #fff;
+      border: 1.5px solid transparent;
+      box-shadow: 0 4px 14px rgba(252, 101, 54, 0.18);
+    }
+
+    .kb-mobile-cta--ghost {
+      background: rgba(255, 255, 255, 0.72);
+      color: #1a1f2b;
+      border: 1.5px solid rgba(26, 31, 43, 0.18);
+    }
   }
 </style>

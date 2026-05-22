@@ -590,6 +590,14 @@ const redditDockIcon = '/icons/reddit-snoo.png';
     opacity: 0.85;
   }
 
+  @media (min-width: 641px) {
+    .floating-dock-tray {
+      top: auto;
+      bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+      transform: none;
+    }
+  }
+
   @media (max-width: 640px) {
     .floating-dock-mobile-hide {
       display: flex;

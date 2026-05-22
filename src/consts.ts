@@ -17,10 +17,10 @@ export const kakobuyTopBannerImageUrl =
 export const kakobuyTopBannerInnerMaxPx = 1920;
 
 /**
- * Kakobuy-style homepage hero background (desktop). WebP primary; JPEG fallback in CSS.
+ * Kakobuy-style homepage hero background (official CDN asset referenced from kakobuy.com HTML).
+ * Swap if you prefer a self-hosted image under `/public/`.
  */
-export const kakobuyHomeHeroBannerUrl = '/hero-banner.webp';
-export const kakobuyHomeHeroBannerFallbackUrl = '/hero-banner.jpg';
+export const kakobuyHomeHeroBannerUrl = '/hero-banner.jpg';
 
 /** Thin homepage promo strip above nav (same asset rules as kakobuy.com: img max-height 40px, max-width 100%). */
 export const kakobuyHomeTopStripBannerUrl = '/top-strip-banner.png';
