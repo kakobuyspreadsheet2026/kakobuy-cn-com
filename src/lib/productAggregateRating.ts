@@ -27,23 +27,5 @@ export function productAggregateRating(slug: string): {
 
 /** JSON-LD aggregateRating + review fields shared by PDP, category ItemList, and homepage. */
 export function productSchemaRatingFields(slug: string) {
-  const rating = productAggregateRating(slug);
-  return {
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: rating.ratingValue,
-      reviewCount: String(rating.reviewCount),
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: rating.reviewRatingValue,
-      },
-      author: {
-        '@type': 'Organization',
-        name: 'Kakobuy Spreadsheet Community',
-      },
-    },
-  };
+  return {};
 }

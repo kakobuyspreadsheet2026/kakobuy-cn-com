@@ -117,22 +117,6 @@ const productLd = {
       returnFees: 'FreeReturn',
     },
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: aggregateRating.ratingValue,
-    reviewCount: String(aggregateRating.reviewCount),
-  },
-  review: {
-    '@type': 'Review',
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: aggregateRating.reviewRatingValue,
-    },
-    author: {
-      '@type': 'Organization',
-      name: 'Kakobuy Spreadsheet Community',
-    },
-  },
   ...(p.updatedAt ? { dateModified: p.updatedAt } : {}),
 };
 ---

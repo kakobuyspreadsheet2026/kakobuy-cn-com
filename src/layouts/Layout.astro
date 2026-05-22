@@ -251,7 +251,7 @@ const ga4MeasurementId =
       import.meta.env.PROD ? (
         <>
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`} />
-          <script is:inline define:vars={{ ga4MeasurementId }}>
+          <script defer is:inline define:vars={{ ga4MeasurementId }}>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
               dataLayer.push(arguments);
@@ -306,9 +306,17 @@ const ga4MeasurementId =
       ))
     }
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     {ld.map((node) => (
       <script type="application/ld+json" set:html={JSON.stringify(node)} />

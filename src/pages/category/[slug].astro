@@ -13,6 +13,7 @@ import { filterRenderableCatalogProducts } from '../../lib/catalogProducts';
 import { productDetailAbsoluteUrl } from '../../lib/productDetailRoutes';
 import { productSchemaRatingFields } from '../../lib/productAggregateRating';
 import { getCategorySeoCopy } from '../../lib/categorySeoCopy';
+import { breadcrumbListLd } from '../../lib/breadcrumbSchema';
 
 export const prerender = true;
 
@@ -77,6 +78,11 @@ const externalBtnText = content.categoryPage.externalBtnTemplate
 const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { websiteId } = siteStructuredDataIds(origin);
 const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
+
+const breadcrumbLd = breadcrumbListLd([
+  { name: 'Home', url: `${origin}/` },
+  { name: uiName, url: pageUrl },
+]);
 
 const itemListLd = {
   '@context': 'https://schema.org',
@@ -144,7 +150,7 @@ const itemListLd = {
   description={description}
   canonicalPath={canonicalPath}
   locale={locale}
-  jsonLd={itemListLd}
+  jsonLd={[itemListLd, breadcrumbLd]}
 >
   <SiteHeader locale={locale} />
 
