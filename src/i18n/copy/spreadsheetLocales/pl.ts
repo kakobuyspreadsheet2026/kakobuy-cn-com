@@ -6,7 +6,7 @@ export const pl: SpreadsheetPageCopy = {
   description:
     'Tekstowy towarzysz przeglądarki spreadsheetu Kakobuy: tory katalogu dla Taobao / Weidian / 1688, urealnienie QC i frachtu, czytanie kolumna po kolumnie, wybrane poradniki i FAQ — odkrywanie zaczyna się tutaj, portfele zostają w Kakobuy.',
   keywords:
-    'Kakobuy spreadsheet katalog, przegląd Kakobuy Spreadsheet, Weidian spreadsheet QC, linki agenta Taobao, arkusz zakupowy 2026, wprowadzenie do zdjęć magazynowych, kuratorowane URL marketplace',
+    'katalog produktowy chiny, sprawdzone linki repliki, jak zamawiac przez agenta, oryginalne zdjecia qc, weidian taobao arkusz',
   backHomeLabel: '← Wróć na stronę główną',
   h1: 'Kakobuy Spreadsheet',
   h2Hero:

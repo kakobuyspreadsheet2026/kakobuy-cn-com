@@ -53,18 +53,18 @@ const pl = {
 } as const;
 
 export const plHome: HomeStubContent = {
-  title: 'Najlepszy Kakobuy Spreadsheet 2026 (Aktualizacja) — 5 000+ Reps Links & QC',
+  title: 'Najlepszy Kakobuy Spreadsheet Polska 2026 — 5 000+ Reps Links & QC',
   description:
     'Najlepszy Kakobuy Spreadsheet na 2026 rok. Przeglądaj nasz zaktualizowany katalog reps dla butów, bluz i kurtek z bezpośrednimi linkami i zdjęciami QC.',
   keywords:
-    'Kakobuy Spreadsheet 2026, indeksowany katalog spreadsheet, Weidian agent, QC magazyn, paste link Taobao, FashionReps PL',
+    'kakobuy opinie, kakobuy poradnik, repliki ubran buty, jak zamawiac z chin, paczka clo poradnik, tania wysylka agent',
   webPageName: 'Najlepszy Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
-    'Kakobuy Spreadsheet',
-    'indeksowany katalog',
-    'Weidian UE',
-    'QC zdjęcia',
-    'agent zakupy',
+    'baza replik',
+    'poradnik agenta zakupowego',
+    'zweryfikowane linki',
+    'zdjęcia kontroli jakości',
+    'asystent wysyłki',
   ],
   hero: {
     h1: 'Kakobuy Spreadsheet 2026',

@@ -2,18 +2,18 @@ import type { HomeStubContent } from '../types';
 import { pillsFor } from './categoryPaths';
 
 export const deHome: HomeStubContent = {
-  title: 'Beste Kakobuy Spreadsheet 2026 (Aktualisiert) — 5.000+ Reps Links & QC',
+  title: 'Kakobuy Spreadsheet Deutschland 2026 — 5.000+ Reps Links & QC',
   description:
     'Das ultimative Kakobuy Spreadsheet für 2026. Durchstöbere unseren aktualisierten Reps-Katalog für Schuhe, Hoodies und Jacken mit direkten Agent-Links und QC-Fotos.',
   keywords:
-    'Kakobuy Spreadsheet 2026, Spreadsheet-Katalog, Weidian Agent QC, Taobao Paste Link, 1688 Spreadsheet, Lagerfotografie, FashionReps Kurzhub',
+    'kakobuy anleitung, kakobuy erfahrungen, designer reps deutschland, replika kleidung, zoll deklaration, guenstiger versand chinas',
   webPageName: 'Beste Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
-    'Kakobuy Spreadsheet',
-    'Spreadsheet-Browse',
+    'Reps Verzeichnis',
+    'Agenten Einkaufsratgeber',
     'Weidian Kurator',
-    'QC Magazin',
-    'paste workflow',
+    'QC Lagerfotos',
+    'China Versandhelfer',
   ],
   hero: {
     h1: 'Kakobuy Spreadsheet 2026',
@@ -33,7 +33,7 @@ export const deHome: HomeStubContent = {
       'kakobuy spreadsheet · Katalog-Bildsuche in neuem Tab — gleicher Stack wie Spreadsheet-Browse',
   },
   categoriesAria: 'Kategorie-Kacheln zum Spreadsheet-Browse',
-  exploreTitle: 'Browse Kakobuy Spreadsheet lanes by category',
+  exploreTitle: 'Kakobuy Spreadsheet nach Kategorie durchsuchen',
   redditAria: 'r/kakobuy Diskussion (Reddit, neuer Tab)',
   redditSnooAlt:
     'kakobuy spreadsheet · Reddit-Maskottchen — r/kakobuy Hauls, QC und Agent-Tipps',

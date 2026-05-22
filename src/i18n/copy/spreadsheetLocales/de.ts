@@ -6,7 +6,7 @@ export const de: SpreadsheetPageCopy = {
   description:
     'Lese-orientierter Begleiter zum Kakobuy-Spreadsheet-Browse: Spreadsheet-Katalogschienen für Taobao / Weidian / 1688, QC-Realität, Fracht ohne Rosinen, spaltenweise Lesekompetenz, kuratierte Guides und FAQs — Entdeckung startet hier, Zahlungen laufen über Kakobuy.',
   keywords:
-    'Kakobuy spreadsheet katalog, Kakobuy Spreadsheet browse, Weidian QC spreadsheet, Taobao agent links, Einkauf spreadsheet 2026, Lagerfotografie primer, kuratierte marketplace URLs',
+    'reps produkt katalog deutschland, weidian taobao links liste, einkaufsliste zollrechner, qualitaetskontrolle warehouse fotos, agenten einkaufsliste',
   backHomeLabel: '← Zur Startseite',
   h1: 'Kakobuy Spreadsheet',
   h2Hero: 'Ein lebendes Verzeichnis von Marktplatz-Shortcuts für Kakobuy-Käufer.',

@@ -69,7 +69,7 @@ const canonicalPath = `/category/${slug}`;
 const products = filterRenderableCatalogProducts(categoryProducts[apiSlug] || []);
 
 const uiNameLower = uiName.toLowerCase();
-const { title, description } = getCategorySeoCopy(slug, uiName);
+const { title, description } = getCategorySeoCopy(slug, uiName, locale);
 const introText = content.categoryPage.introTemplate
   .replace('{uiNameLower}', uiNameLower);
 const externalBtnText = content.categoryPage.externalBtnTemplate

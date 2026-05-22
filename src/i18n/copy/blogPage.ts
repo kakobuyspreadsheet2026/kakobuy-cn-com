@@ -46,7 +46,7 @@ const byLocale: Record<RouteLocale, BlogPageCopy> = {
   en,
   de: {
     ...en,
-    title: 'Blog · Kakobuy Spreadsheet Hub | kakobuy-cn.com',
+    title: 'Blog · Kakobuy-Einkaufsführer & Tipps | kakobuy-cn.com',
     description:
       'Längere Redaktionsartikel zu Kakobuy Spreadsheet, Beschaffung, Lager-QC und Fracht — im gleichen Rhythmus wie die englische Ausgabe.',
     keywords:
@@ -66,7 +66,7 @@ const byLocale: Record<RouteLocale, BlogPageCopy> = {
   },
   pt: {
     ...en,
-    title: 'Blog · Kakobuy Spreadsheet hub | kakobuy-cn.com',
+    title: 'Blog · Guias de Compra & Dicas Kakobuy | kakobuy-cn.com',
     description:
       'Posts editoriais longos sobre fluxos Kakobuy Spreadsheet, sourcing, QC em armazém e frete com pé no chão.',
     keywords: 'Blog Kakobuy Spreadsheet, guias agente, sourcing spreadsheet',
@@ -85,7 +85,7 @@ const byLocale: Record<RouteLocale, BlogPageCopy> = {
   },
   es: {
     ...en,
-    title: 'Blog · Kakobuy Spreadsheet hub | kakobuy-cn.com',
+    title: 'Blog · Guías de Compra & Consejos Kakobuy | kakobuy-cn.com',
     description:
       'Artículos editoriales largos sobre flujos Kakobuy Spreadsheet, sourcing, QC en almacén y flete realista.',
     keywords: 'Blog Kakobuy Spreadsheet, guías agente, sourcing spreadsheet',
@@ -104,7 +104,7 @@ const byLocale: Record<RouteLocale, BlogPageCopy> = {
   },
   fr: {
     ...en,
-    title: 'Blog · Kakobuy Spreadsheet hub | kakobuy-cn.com',
+    title: 'Blog · Guides d\'achat & Astuces Kakobuy | kakobuy-cn.com',
     description:
       'Articles éditoriaux longs sur les workflows Kakobuy Spreadsheet, le sourcing, le QC entrepôt et le fret au réel.',
     keywords: 'Blog Kakobuy Spreadsheet, guides agent, sourcing spreadsheet',
@@ -123,7 +123,7 @@ const byLocale: Record<RouteLocale, BlogPageCopy> = {
   },
   it: {
     ...en,
-    title: 'Blog · Kakobuy Spreadsheet hub | kakobuy-cn.com',
+    title: 'Blog · Guide all\'acquisto & Consigli Kakobuy | kakobuy-cn.com',
     description:
       'Articoli editoriali lunghi su workflow Kakobuy Spreadsheet, sourcing, QC in magazzino e spedizioni realistiche.',
     keywords: 'Blog Kakobuy Spreadsheet, guide agent, sourcing spreadsheet',
@@ -142,7 +142,7 @@ const byLocale: Record<RouteLocale, BlogPageCopy> = {
   },
   pl: {
     ...en,
-    title: 'Blog · Kakobuy Spreadsheet hub | kakobuy-cn.com',
+    title: 'Blog · Poradniki zakupowe & Wskazówki Kakobuy | kakobuy-cn.com',
     description:
       'Dłuższe artykuły redakcyjne o workflow Kakobuy Spreadsheet, sourcingu, QC w magazynie i realnym frachcie.',
     keywords: 'Blog Kakobuy Spreadsheet, poradniki agent, sourcing spreadsheet',

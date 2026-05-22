@@ -59,14 +59,14 @@ export const ptHome: HomeStubContent = {
   description:
     'A melhor Kakobuy Spreadsheet para 2026. Navegue em nosso catálogo atualizado de reps para tênis, moletons e jaquetas com links diretos e fotos QC.',
   keywords:
-    'Kakobuy Spreadsheet 2026, catálogo spreadsheet, Weidian agente, QC armazém, paste link Taobao, FashionReps PT-BR',
+    'diretório Kakobuy, catálogo de réplicas, links Weidian, guia de controle de qualidade Taobao, despachante de compras na China',
   webPageName: 'Melhor Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
-    'Kakobuy Spreadsheet',
-    'catálogo indexado',
-    'Weidian BR',
-    'QC warehouse',
-    'agente China',
+    'diretório de réplicas',
+    'guia de agente de compras',
+    'links verificados',
+    'fotos de controle de qualidade',
+    'assistente de envios',
   ],
   hero: {
     h1: 'Kakobuy Spreadsheet 2026',

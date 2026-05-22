@@ -13,6 +13,7 @@ import { filterRenderableCatalogProducts } from '../../../lib/catalogProducts';
 import { productDetailHref, productDetailAbsoluteUrl } from '../../../lib/productDetailRoutes';
 import { productSchemaRatingFields } from '../../../lib/productAggregateRating';
 import { breadcrumbListLd } from '../../../lib/breadcrumbSchema';
+import { getCategorySeoCopy } from '../../../lib/categorySeoCopy';
 
 export const prerender = true;
 
@@ -53,11 +54,7 @@ const canonicalPath = `/${locale}/category/${slug}`;
 const products = filterRenderableCatalogProducts(categoryProducts[apiSlug] || []);
 
 const uiNameLower = uiName.toLowerCase();
-const title = content.categoryPage.titleTemplate
-  .replace('{uiName}', uiName);
-const description = content.categoryPage.descriptionTemplate
-  .replace('{uiName}', uiName)
-  .replace('{uiNameLower}', uiNameLower);
+const { title, description } = getCategorySeoCopy(slug, uiName, locale);
 const introText = content.categoryPage.introTemplate
   .replace('{uiNameLower}', uiNameLower);
 const externalBtnText = content.categoryPage.externalBtnTemplate

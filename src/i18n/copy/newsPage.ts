@@ -110,7 +110,7 @@ const en: NewsCopy = {
   description:
     'Editorial briefing for Kakobuy Spreadsheet shoppers: how the paste path fits together, warehouse QC framing, freight realities, mirrored Kakobuy notices for context, and agent walk-throughs you can read offline—billing and parcels still happen only on kakobuy.com.',
   keywords:
-    'Kakobuy spreadsheet briefing, Spreadsheet catalogue primer, mirrored Kakobuy FAQ snippets, warehouse QC photography, FashionReps spreadsheet freight primer, shopping agent paste workflow, Kakobuy Spreadsheet news desk',
+    'kakobuy tutorials, reps shopping guides, warehouse qc primer, agent shipping rules, weidian taobao help, shopping catalog reviews',
   backHomeLabel: '← Back to home',
   h1: 'News & guides',
   topIntroHtml: `Need the playbook spelled out? Start with the <a href="{guideUrl}" target="_blank" rel="noopener noreferrer">Kakobuy Spreadsheet buying guide</a>. Want crowd timelines? <a href="{buyerUrl}">Buyer shares</a> collects haul stories and transit anecdotes. Service fees, surcharges, and courier roster churn constantly—your signed-in <a href="{kakobuyHomeUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a> console is the tie-breaker. kakobuy-cn.com never rings up a cart; you settle invoices through Kakobuy itself.`,
@@ -227,7 +227,7 @@ const de: NewsCopy = {
   description:
     'Unabhängiger Schreibtisch für Nutzer von Spreadsheet-Katalog und Kakobuy: wie Copy-Paste-Flows zusammenspielen, welche Lager-QC bedeutet, welche Fracht-Realitäten drohen, plus gespiegelte Kakobuy-Hinweise und Brokertipps nur zum Lesen — gebucht wird weiterhin exklusiv auf kakobuy.com.',
   keywords:
-    'Kakobuy Spreadsheet Redaktion, Spreadsheet-Katalog-Primer, gespiegelte Kakobuy FAQ, Lagerfotografie QC, FashionReps Fracht Realismus, Agent Paste Workflow, Spreadsheet Newsdesk',
+    'kakobuy deutschland hilfe, replika zoll leitfaden, versandkosten berechnen agent, wareneingang qc fotos, taobao weidian bestellen',
   backHomeLabel: '← Zur Startseite',
   h1: 'News & Anleitungen',
   topIntroHtml: `Ausführliche Anleitung? Starte beim <a href="{guideUrl}" target="_blank" rel="noopener noreferrer">Kakobuy Spreadsheet Einkaufsguide</a>. Community-Ton und Zeitachsen findest du unter <a href="{buyerUrl}">Käufer-Stimmen</a>. Zuschläge, Dienstleistungsgebühren und Kurierportfolios wechseln ständig — dein eingeloggtes <a href="{kakobuyHomeUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a>-Backend entscheidet Streitfragen. kakobuy-cn.com führt keinen Warenkorb; Rechnungen begleichst du bei Kakobuy.`,
@@ -812,7 +812,7 @@ const pl: NewsCopy = {
   description:
     'Niezależny briefing dla osób łączących przeglądarkę spreadsheet z Kakobuy: jak układa się flow linków, jak czytać QC magazynowe bez różowych okularów, jak myśleć o frachcie, plus zwierciadlane komunikaty Kakobuy i poradniki agentskie tylko do czytania — rozliczenia i paczki zostają wyłącznie na kakobuy.com.',
   keywords:
-    'desk redakcyjny Kakobuy Spreadsheet, primer katalogu spreadsheet, FAQ Kakobuy lustro, fotografia QC magazyn, fracht realistyczny FashionReps, workflow paste agent, newsdesk spreadsheet',
+    'kakobuy polska pomoc, przewodnik clo repliki, paczka z chin przesylka, jak sprawdzic zdjecia qc, zamawianie taobao weidian',
   backHomeLabel: '← Wróć na stronę główną',
   h1: 'Aktualności i poradniki',
   topIntroHtml: `Potrzebujesz pełnego podręcznika? Zacznij od <a href="{guideUrl}" target="_blank" rel="noopener noreferrer">poradnika zakupów Kakobuy Spreadsheet</a>. Głosy społeczności i oś czasu znajdziesz w <a href="{buyerUrl}">Głosy kupujących</a>. Opłaty serwisowe, dopłaty i oferty kurierów zmieniają się bez ostrzeżenia — rozstrzyga zalogowany panel <a href="{kakobuyHomeUrl}" target="_blank" rel="noopener noreferrer">Kakobuy</a>. kakobuy-cn.com nie otwiera koszyka; płacisz w obrębie Kakobuy.`,
