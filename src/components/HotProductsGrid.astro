@@ -30,6 +30,7 @@ const displayProducts = (products as Product[]).slice(0, 60);
               src={p.images[0]} 
               alt={`Kakobuy Spreadsheet find - ${englishAltFragment(p.title)}`}
               loading="lazy"
+              decoding="async"
               width="300"
               height="300"
             />

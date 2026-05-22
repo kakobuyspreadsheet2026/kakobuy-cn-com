@@ -39,6 +39,9 @@ const { locale, uiCategorySlug, uiName, products } = Astro.props;
               src={p.images[0]}
               alt={`Kakobuy Spreadsheet - ${uiName} - ${englishAltFragment(p.title)}`}
               loading="lazy"
+              decoding="async"
+              width="300"
+              height="300"
             />
             {p.qcPhotoCount > 0 && <span class="qc-badge">+{p.qcPhotoCount} QC</span>}
           </div>

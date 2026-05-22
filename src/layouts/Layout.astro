@@ -299,10 +299,17 @@ const ga4MeasurementId =
     <link rel="dns-prefetch" href="https://nstatic.kakobuy.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.maisonlooks.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.maisonlooks.com" />
     {
       lcpPreloadImages?.map((href) => (
-        <link rel="preload" as="image" href={href} fetchpriority="high" />
+        <link
+          rel="preload"
+          as="image"
+          href={href}
+          fetchpriority="high"
+          media="(min-width: 641px)"
+        />
       ))
     }
     <link

@@ -11,9 +11,9 @@ import { enHome } from '../../i18n/stubs/en';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { filterRenderableCatalogProducts } from '../../lib/catalogProducts';
 import { productDetailAbsoluteUrl } from '../../lib/productDetailRoutes';
-import { productSchemaRatingFields } from '../../lib/productAggregateRating';
 import { getCategorySeoCopy } from '../../lib/categorySeoCopy';
 import { breadcrumbListLd } from '../../lib/breadcrumbSchema';
+import { catalogItemListLd } from '../../lib/catalogItemListLd';
 
 export const prerender = true;
 
@@ -84,65 +84,9 @@ const breadcrumbLd = breadcrumbListLd([
   { name: uiName, url: pageUrl },
 ]);
 
-const itemListLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  'name': title,
-  'numberOfItems': products.length,
-  'itemListElement': products.map((p, i) => ({
-    '@type': 'ListItem',
-    'position': i + 1,
-    'item': {
-      '@type': 'Product',
-      'name': p.title,
-      'image': p.images[0],
-      'brand': { '@type': 'Brand', 'name': p.brand },
-      'offers': {
-        '@type': 'Offer',
-        'price': p.priceUsdEstimate[0],
-        'priceCurrency': 'USD',
-        'url': productDetailAbsoluteUrl(locale, slug, p.slug, Astro.site),
-        'availability': 'https://schema.org/InStock',
-        'shippingDetails': {
-          '@type': 'OfferShippingDetails',
-          'shippingRate': {
-            '@type': 'MonetaryAmount',
-            'value': '5.00',
-            'currency': 'USD'
-          },
-          'shippingDestination': {
-            '@type': 'DefinedRegion',
-            'addressCountry': 'US'
-          },
-          'deliveryTime': {
-            '@type': 'ShippingDeliveryTime',
-            'handlingTime': {
-              '@type': 'QuantitativeValue',
-              'minValue': 1,
-              'maxValue': 3,
-              'unitCode': 'd'
-            },
-            'transitTime': {
-              '@type': 'QuantitativeValue',
-              'minValue': 7,
-              'maxValue': 15,
-              'unitCode': 'd'
-            }
-          }
-        },
-        'hasMerchantReturnPolicy': {
-          '@type': 'MerchantReturnPolicy',
-          'applicableCountry': 'US',
-          'returnPolicyCategory': 'MerchantReturnFiniteReturnPeriod',
-          'merchantReturnDays': 7,
-          'returnMethod': 'ReturnByMail',
-          'returnFees': 'FreeReturn'
-        }
-      },
-      ...productSchemaRatingFields(p.slug),
-    }
-  }))
-};
+const itemListLd = catalogItemListLd(title, products, (p) =>
+  productDetailAbsoluteUrl(locale, slug, p.slug, Astro.site),
+);
 ---
 
 <Layout

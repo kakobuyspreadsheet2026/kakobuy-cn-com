@@ -99,8 +99,8 @@ const buyerSharesFreshIso =
                   alt={cat.imgAlt}
                   width="84"
                   height="84"
-                  loading={ci < 6 ? 'eager' : 'lazy'}
-                  fetchpriority={ci < 2 ? 'high' : undefined}
+                  loading={ci < 3 ? 'eager' : 'lazy'}
+                  fetchpriority={ci === 0 ? 'high' : undefined}
                   decoding="async"
                 />
                 <span class="cat-icon-label">{cat.label}</span>
