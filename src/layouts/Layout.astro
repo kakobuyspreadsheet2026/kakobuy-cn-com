@@ -377,11 +377,17 @@ const ga4MeasurementId =
         padding-left: max(var(--page-gutter-x), env(safe-area-inset-left, 0px));
         padding-right: max(var(--page-gutter-x), env(safe-area-inset-right, 0px));
       }
-      /* Desktop: keep the fixed quick-links bar out of product grids / main copy */
+      /* Desktop: symmetric side gutters so cards stay centered; room for the quick-links dock */
       @media (min-width: 641px) {
         .wrap {
+          --page-dock-inline-gutter: 2.5rem;
+          padding-left: calc(
+            max(var(--page-gutter-x), env(safe-area-inset-left, 0px)) +
+              var(--page-dock-inline-gutter)
+          );
           padding-right: calc(
-            max(var(--page-gutter-x), env(safe-area-inset-right, 0px)) + 4.5rem
+            max(var(--page-gutter-x), env(safe-area-inset-right, 0px)) +
+              var(--page-dock-inline-gutter)
           );
         }
       }
