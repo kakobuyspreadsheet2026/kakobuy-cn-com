@@ -3,7 +3,7 @@ import { absoluteCanonicalUrl } from '../../lib/canonicalPath';
 import Layout from '../../layouts/Layout.astro';
 import LocaleHomeStub from '../../components/LocaleHomeStub.astro';
 import { deHome } from '../../i18n/stubs/de';
-import { kakobuyHomeHeroBannerUrl, siteStructuredDataIds } from '../../consts';
+import { kakobuyHomeHeroBannerUrl, kakobuyHomeHeroMobileBannerUrl, siteStructuredDataIds } from '../../consts';
 import { getHotProductsLd } from '../../lib/hotProductsLd';
 
 export const prerender = true;
@@ -39,6 +39,7 @@ const hotProductsLd = getHotProductsLd(origin);
   jsonLd={[webPageLd, hotProductsLd]}
   showDiscordTopBanner={false}
   lcpPreloadImages={[kakobuyHomeHeroBannerUrl]}
+  mobileLcpPreloadImages={[kakobuyHomeHeroMobileBannerUrl]}
 >
   <LocaleHomeStub content={deHome} />
 </Layout>

@@ -22,6 +22,12 @@ export const kakobuyTopBannerInnerMaxPx = 1920;
  */
 export const kakobuyHomeHeroBannerUrl = '/hero-banner.jpg';
 
+/** Lightweight mobile-only homepage hero background (see `KakobuyHomeHero.astro`). */
+export const kakobuyHomeHeroMobileBannerUrl = '/hero-banner-mobile.webp';
+
+/** Self-hosted Inter variable font (latin + latin-ext). */
+export const interLatinFontUrl = '/fonts/inter-latin-wght-normal.woff2';
+
 /** Thin homepage promo strip above nav (same asset rules as kakobuy.com: img max-height 40px, max-width 100%). */
 export const kakobuyHomeTopStripBannerUrl = '/top-strip-banner.png';
 

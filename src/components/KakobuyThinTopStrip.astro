@@ -2,11 +2,12 @@
 import { kakobuyHomeTopStripBannerUrl, ml } from '../consts';
 
 interface Props {
-  /** Pass on homepage hero so LCP / fetchpriority matches hero strip. */
+  /** When true, the strip image loads eagerly (desktop homepage). Hidden on mobile via CSS. */
   priority?: boolean;
 }
 
 const { priority = false } = Astro.props;
+const stripLoading = priority ? 'eager' : 'lazy';
 ---
 
 <div class="kb-thin-top-strip">
@@ -21,7 +22,7 @@ const { priority = false } = Astro.props;
       class="kb-thin-top-strip__img"
       src={kakobuyHomeTopStripBannerUrl}
       alt="kakobuy spreadsheet - Kakobuy promo strip - opens spreadsheet catalogue"
-      loading="eager"
+      loading={stripLoading}
       decoding="async"
       fetchpriority={priority ? 'high' : undefined}
       referrerpolicy="no-referrer"

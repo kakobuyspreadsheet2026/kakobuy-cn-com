@@ -2,7 +2,7 @@
 import { absoluteCanonicalUrl } from '../lib/canonicalPath';
 import Layout from '../layouts/Layout.astro';
 import LocaleHomeStub from '../components/LocaleHomeStub.astro';
-import { siteStructuredDataIds, kakobuyHomeHeroBannerUrl } from '../consts';
+import { siteStructuredDataIds, kakobuyHomeHeroBannerUrl, kakobuyHomeHeroMobileBannerUrl } from '../consts';
 import { enHome } from '../i18n/stubs/en';
 import { getHotProductsLd } from '../lib/hotProductsLd';
 
@@ -39,6 +39,7 @@ const hotProductsLd = getHotProductsLd(origin);
   jsonLd={[webPageLd, hotProductsLd]}
   showDiscordTopBanner={false}
   lcpPreloadImages={[kakobuyHomeHeroBannerUrl]}
+  mobileLcpPreloadImages={[kakobuyHomeHeroMobileBannerUrl]}
 >
   <LocaleHomeStub content={enHome} />
 </Layout>

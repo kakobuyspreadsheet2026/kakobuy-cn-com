@@ -13,21 +13,33 @@ interface Product {
   qcPhotoCount: number;
 }
 
+/** Desktop keeps the full grid; mobile defers cards beyond this count until "Show more". */
+const MOBILE_INITIAL_COUNT = 24;
+
 const displayProducts = (products as Product[]).slice(0, 60);
+const mobileDeferredCount = Math.max(0, displayProducts.length - MOBILE_INITIAL_COUNT);
 ---
 
-<section class="hot-products-grid">
+<section class="hot-products-grid" data-hot-products-grid>
   <div class="wrap">
     <header class="section-head">
       <h2 class="section-title">Editor's Pick: Trending Finds</h2>
     </header>
 
     <div class="products-grid">
-      {displayProducts.map((p) => (
-        <a href={`https://maisonlooks.com/p/${p.slug}`} target="_blank" rel="nofollow sponsored" class="product-card">
+      {displayProducts.map((p, index) => (
+        <a
+          href={`https://maisonlooks.com/p/${p.slug}`}
+          target="_blank"
+          rel="nofollow sponsored"
+          class:list={[
+            'product-card',
+            index >= MOBILE_INITIAL_COUNT && 'product-card--mobile-deferred',
+          ]}
+        >
           <div class="img-container">
-            <img 
-              src={p.images[0]} 
+            <img
+              src={p.images[0]}
               alt={`Kakobuy Spreadsheet find - ${englishAltFragment(p.title)}`}
               loading="lazy"
               decoding="async"
@@ -51,12 +63,49 @@ const displayProducts = (products as Product[]).slice(0, 60);
         </a>
       ))}
     </div>
-    
+
+    {
+      mobileDeferredCount > 0 && (
+        <div class="hot-products-grid__mobile-more">
+          <button
+            type="button"
+            class="btn btn-ghost hot-products-grid__show-more"
+            data-hot-products-show-more
+            aria-expanded="false"
+          >
+            Show {mobileDeferredCount} more finds
+          </button>
+        </div>
+      )
+    }
+
     <div class="grid-footer">
       <a href="/spreadsheet/" class="btn btn-ghost">Explore All 5,000+ Featured Items →</a>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    const MOBILE_MQ = '(max-width: 640px)';
+
+    function bindShowMore() {
+      const root = document.querySelector('[data-hot-products-grid]');
+      const btn = document.querySelector('[data-hot-products-show-more]');
+      if (!root || !btn || btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+
+      btn.addEventListener('click', () => {
+        root.classList.add('hot-products-grid--expanded');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.hidden = true;
+      });
+    }
+
+    bindShowMore();
+    document.addEventListener('astro:page-load', bindShowMore);
+  })();
+</script>
 
 <style>
   .hot-products-grid {
@@ -101,7 +150,7 @@ const displayProducts = (products as Product[]).slice(0, 60);
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
   }
 
   .product-card:hover {
@@ -187,7 +236,7 @@ const displayProducts = (products as Product[]).slice(0, 60);
   .featured-tag {
     font-size: 0.625rem;
     font-weight: 800;
-    color: #eab308; /* 保持星星的金色感，但文字用深色 */
+    color: #eab308;
     display: flex;
     align-items: center;
     gap: 0.2rem;
@@ -195,6 +244,12 @@ const displayProducts = (products as Product[]).slice(0, 60);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     border: 1px solid #fef08a;
+  }
+
+  .hot-products-grid__mobile-more {
+    display: none;
+    margin-top: 1.35rem;
+    text-align: center;
   }
 
   .grid-footer {
@@ -208,21 +263,38 @@ const displayProducts = (products as Product[]).slice(0, 60);
       grid-template-columns: repeat(2, 1fr);
       gap: 0.85rem;
     }
+
     .hot-products-grid {
       padding: 2.5rem 0;
     }
+
     .card-info {
       padding: 0.85rem;
     }
+
     .prod-title {
       font-size: 0.85rem;
       margin-bottom: 0.75rem;
     }
+
     .price {
       font-size: 0.95rem;
     }
+
     .featured-tag {
       padding: 0.15rem 0.35rem;
+    }
+
+    .hot-products-grid__mobile-more {
+      display: block;
+    }
+
+    .hot-products-grid:not(.hot-products-grid--expanded) .product-card--mobile-deferred {
+      display: none;
+    }
+
+    .hot-products-grid--expanded .hot-products-grid__mobile-more {
+      display: none;
     }
   }
 </style>
