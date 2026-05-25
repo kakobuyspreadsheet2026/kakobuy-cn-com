@@ -55,6 +55,8 @@ export type HomeStubContent = {
     titleTemplate: string;
     descriptionTemplate: string;
     introTemplate: string;
+    homeHubBackLink: string;
+    introToggleLabel: string;
     externalBtnTemplate: string;
     noProducts: string;
   };

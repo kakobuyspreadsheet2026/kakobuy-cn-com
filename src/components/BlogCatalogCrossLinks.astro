@@ -1,10 +1,16 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import {
+  BLOG_HUB_LINK_LABELS,
+  getBlogHubLinkKind,
+  getBlogHubLinkSegment,
+} from '../lib/blogCatalogCrossLinkMap';
 import { getSpreadsheetBrowseCategories } from '../lib/spreadsheetCatalogLinks';
 import { productDetailHref } from '../lib/productDetailRoutes';
 
 interface Props {
   locale?: string;
+  canonicalPath: string;
   /** UI category slugs to highlight, e.g. ['shoes', 'hoodies']. */
   categories: string[];
   title?: string;
@@ -12,6 +18,7 @@ interface Props {
 
 const {
   locale = 'en',
+  canonicalPath,
   categories: categorySlugs,
   title = 'Browse related Kakobuy Spreadsheet picks',
 } = Astro.props;
@@ -19,6 +26,12 @@ const {
 const lanes = getSpreadsheetBrowseCategories().filter((cat) =>
   categorySlugs.includes(cat.slug),
 );
+
+const hubKind = getBlogHubLinkKind(canonicalPath);
+const homeHref = getRelativeLocaleUrl(locale, '');
+const howToBuyHref = getRelativeLocaleUrl(locale, 'how-to-buy/');
+const primaryHubHref = getRelativeLocaleUrl(locale, getBlogHubLinkSegment(hubKind));
+const primaryHubLabel = BLOG_HUB_LINK_LABELS[hubKind];
 ---
 
 {
@@ -43,10 +56,30 @@ const lanes = getSpreadsheetBrowseCategories().filter((cat) =>
         ))}
       </ul>
       <p class="blog-catalog-links__foot">
-        Full hub:{' '}
-        <a href={getRelativeLocaleUrl(locale, 'spreadsheet/')}>Kakobuy Spreadsheet guide</a>
-        {' · '}
-        <a href={getRelativeLocaleUrl(locale, '')}>Home catalogue</a>
+        {
+          hubKind === 'home' ? (
+            <>
+              Browse{' '}
+              <a href={primaryHubHref}>{primaryHubLabel}</a>
+              {' · '}
+              <a href={howToBuyHref}>How to buy</a>
+            </>
+          ) : hubKind === 'spreadsheet' ? (
+            <>
+              Full hub:{' '}
+              <a href={primaryHubHref}>{primaryHubLabel}</a>
+              {' · '}
+              <a href={homeHref}>Home catalogue</a>
+            </>
+          ) : (
+            <>
+              Next step:{' '}
+              <a href={primaryHubHref}>{primaryHubLabel}</a>
+              {' · '}
+              <a href={homeHref}>Kakobuy Spreadsheet home</a>
+            </>
+          )
+        }
       </p>
     </aside>
   )

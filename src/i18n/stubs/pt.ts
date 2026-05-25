@@ -55,12 +55,12 @@ const pillLabels = {
 } as const;
 
 export const ptHome: HomeStubContent = {
-  title: 'Melhor Kakobuy Spreadsheet 2026 (Atualizado) — 5.000+ Reps Links & QC',
+  title: 'Kakobuy Spreadsheet 2026 — 5.000+ links e fotos QC',
   description:
-    'A melhor Kakobuy Spreadsheet para 2026. Navegue em nosso catálogo atualizado de reps para tênis, moletons e jaquetas com links diretos e fotos QC.',
+    'Hub independente Kakobuy Spreadsheet para 2026: mais de 5.000 finds Taobao, Weidian e 1688 com fotos QC. Categorias, guias paste-link, compre via Kakobuy.',
   keywords:
     'diretório Kakobuy, catálogo de réplicas, links Weidian, guia de controle de qualidade Taobao, despachante de compras na China',
-  webPageName: 'Melhor Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
+  webPageName: 'Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'diretório de réplicas',
     'guia de agente de compras',
@@ -135,7 +135,9 @@ export const ptHome: HomeStubContent = {
     titleTemplate: 'Melhor Kakobuy {uiName} Spreadsheet 2026 — Top Picks & QC',
     descriptionTemplate: 'Navegue pela melhor planilha Kakobuy {uiName} para 2026. Seleção curada de {uiNameLower} premium com links diretos de agentes e fotos QC verificadas.',
     introTemplate: 'Descubra os melhores {uiNameLower} selecionados para la comunidade Kakobuy. Todos os itens são verificados manualmente com links de compra ativos e referências de QC do armazém.',
-    externalBtnTemplate: 'Ver catálogo completo de {uiName} no MaisonLooks →',
+    homeHubBackLink: '← Hub Kakobuy Spreadsheet',
+    introToggleLabel: 'Sobre esta categoria',
+    externalBtnTemplate: '{uiName} no MaisonLooks →',
     noProducts: 'Nenhum produto encontrado nesta categoria ainda. Volte em breve!',
   },
 };

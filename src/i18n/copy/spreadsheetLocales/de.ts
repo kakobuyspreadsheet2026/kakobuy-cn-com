@@ -1,10 +1,9 @@
 import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
 
 export const de: SpreadsheetPageCopy = {
-  title:
-    'Kakobuy Spreadsheet Katalog — indexierte Schienen, QC-Kompetenz & paste-fertige URLs | kakobuy-cn.com',
+  title: 'Kakobuy Spreadsheet nutzen — Links einfügen & QC-Guide',
   description:
-    'Lese-orientierter Begleiter zum Kakobuy-Spreadsheet-Browse: Spreadsheet-Katalogschienen für Taobao / Weidian / 1688, QC-Realität, Fracht ohne Rosinen, spaltenweise Lesekompetenz, kuratierte Guides und FAQs — Entdeckung startet hier, Zahlungen laufen über Kakobuy.',
+    'Schritt-für-Schritt Kakobuy Spreadsheet Guide für 2026: Schienen durchsuchen, Taobao-, Weidian- oder 1688-URLs kopieren, QC-Erwartungen setzen und Links in Kakobuy einfügen.',
   keywords:
     'reps produkt katalog deutschland, weidian taobao links liste, einkaufsliste zollrechner, qualitaetskontrolle warehouse fotos, agenten einkaufsliste',
   backHomeLabel: '← Zur Startseite',

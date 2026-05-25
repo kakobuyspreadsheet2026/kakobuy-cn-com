@@ -3,12 +3,12 @@ import { mlSpreadsheetKakobuy } from '../../consts';
 import { pillsFor } from './categoryPaths';
 
 export const enHome: HomeStubContent = {
-  title: 'Best Kakobuy Spreadsheet 2026 (Updated) — 5,000+ Reps Links & QC',
+  title: 'Kakobuy Spreadsheet 2026 — 5,000+ Links & QC Photos',
   description:
-    'The ultimate Kakobuy Spreadsheet for 2026. Browse our updated reps catalogue for shoes, hoodies, and jackets with direct agent links and QC photos.',
+    'Independent Kakobuy Spreadsheet hub for 2026: browse 5,000+ Taobao, Weidian & 1688 finds with QC photos. Categories, paste-link guides, shop via Kakobuy.',
   keywords:
     'kakobuy directory, curated reps catalogue, warehouse qc guides, shopping agent resources, taobao links, weidian finds list',
-  webPageName: 'Best Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
+  webPageName: 'Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'reps directory',
     'agent shopping guide',
@@ -131,7 +131,9 @@ export const enHome: HomeStubContent = {
     titleTemplate: 'Best Kakobuy {uiName} Spreadsheet 2026 — Top Picks & QC',
     descriptionTemplate: 'Browse the ultimate Kakobuy {uiName} spreadsheet for 2026. Curated selection of premium {uiNameLower} with direct agent links and verified QC photos.',
     introTemplate: 'Discover the best {uiNameLower} curated for the Kakobuy community. All items are manually verified with active buying links and warehouse QC references.',
-    externalBtnTemplate: 'View Full {uiName} Catalogue on MaisonLooks →',
+    homeHubBackLink: '← Kakobuy Spreadsheet hub',
+    introToggleLabel: 'About this category',
+    externalBtnTemplate: '{uiName} on MaisonLooks →',
     noProducts: 'No products found in this category yet. Check back soon!',
   },
 };

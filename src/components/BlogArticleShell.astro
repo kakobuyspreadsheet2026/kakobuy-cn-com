@@ -145,8 +145,11 @@ const catalogCategories = getBlogCatalogCategories(canonicalPath);
 
             <div class="blog-body prose-block">
               <slot />
-              <BlogCatalogCrossLinks categories={catalogCategories} />
-              <BlogEndCta locale={locale} />
+              <BlogCatalogCrossLinks
+                canonicalPath={canonicalPath}
+                categories={catalogCategories}
+              />
+              <BlogEndCta locale={locale} canonicalPath={canonicalPath} />
               <p class="blog-disclaimer">
                 <strong>Disclaimer:</strong> kakobuy-cn.com publishes independent editorial notes for Kakobuy Spreadsheet shoppers—browse bridges,
                 explainers, and mirrored notices—not checkout, warehousing, or dispute outcomes on kakobuy.com. Features and policies change; rely on your

@@ -88,32 +88,26 @@ type NavItem = { label: string; href: string; external: boolean };
 
 const t = headerNavTexts(locale);
 
-const categoryLinks: NavItem[] = [
-  { label: 'Shoes', href: `${ml}/c/shoes`, external: true },
-  { label: 'Jackets', href: `${ml}/search?q=${encodeURIComponent('jacket')}`, external: true },
-  { label: 'T-Shirts', href: `${ml}/search?q=${encodeURIComponent('t-shirt')}`, external: true },
-  { label: 'Hoodies/Sweaters', href: `${ml}/search?q=hoodie`, external: true },
-  {
-    label: 'Pants/Shorts',
-    href: `${ml}/search?q=${encodeURIComponent('pants shorts')}`,
-    external: true,
-  },
-  {
-    label: 'Headwear',
-    href: `${ml}/search?q=${encodeURIComponent('cap hat')}`,
-    external: true,
-  },
-  { label: 'Accessories', href: `${ml}/c/accessories`, external: true },
-  { label: 'Jersey', href: `${ml}/search?q=jersey`, external: true },
-  {
-    label: 'Bags',
-    href: `${ml}/search?q=${encodeURIComponent('bag backpack')}`,
-    external: true,
-  },
-  { label: 'Perfume', href: `${ml}/c/beauty`, external: true },
-  { label: 'Electronics', href: `${ml}/c/electronics`, external: true },
-  { label: 'Other stuff', href: `${ml}/products`, external: true },
-];
+const categoryNavSlugs = [
+  { label: 'Shoes', slug: 'shoes' },
+  { label: 'Jackets', slug: 'jackets' },
+  { label: 'T-Shirts', slug: 't-shirts' },
+  { label: 'Hoodies/Sweaters', slug: 'hoodies' },
+  { label: 'Pants/Shorts', slug: 'pants' },
+  { label: 'Headwear', slug: 'headwear' },
+  { label: 'Accessories', slug: 'accessories' },
+  { label: 'Jersey', slug: 'jersey' },
+  { label: 'Bags', slug: 'bags' },
+  { label: 'Perfume', slug: 'perfume' },
+  { label: 'Electronics', slug: 'electronics' },
+  { label: 'Other stuff', slug: 'other' },
+] as const;
+
+const categoryLinks: NavItem[] = categoryNavSlugs.map(({ label, slug }) => ({
+  label,
+  href: getRelativeLocaleUrl(locale, `category/${slug}/`),
+  external: false,
+}));
 
 const navBarLinks: NavItem[] = [
   { label: t.howToBuy, href: getRelativeLocaleUrl(locale, 'how-to-buy'), external: false },
@@ -159,35 +153,87 @@ const localeShort = routeLocale.toUpperCase();
     />
   </a>
 
-  <details class="oob-nav-dd oob-nav-dd--categories">
+  <div class="oob-nav-mobile-links oob-hide-desktop">
+    <details class="oob-nav-dd oob-nav-dd--categories">
+      <summary class="oob-nav-dd-trigger" aria-label={`${t.categories}: Kakobuy Spreadsheet browse menu`}>
+        {t.categories}
+      </summary>
+      <div class="oob-nav-dd-panel">
+        <a
+          class="oob-nav-dd-link oob-nav-dd-link--external oob-nav-dd-link--external-first"
+          href={ml}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Browse full catalogue on MaisonLooks →
+        </a>
+        {
+          categoryLinks.map((item) => (
+            <a
+              class:list={[
+                'oob-nav-dd-link',
+                {
+                  'oob-nav-dd-link--accent':
+                    pathnameNorm === norm(item.href) ||
+                    pathnameNorm.startsWith(`${norm(item.href)}`),
+                },
+              ]}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+
+    <a
+      class:list={[
+        'oob-nav-link',
+        'oob-nav-blog-mobile',
+        {
+          'oob-nav-link--accent':
+            pathnameNorm === blogNorm || pathnameNorm.startsWith(`${blogNorm}/`),
+        },
+      ]}
+      href={blogHref}
+    >
+      {t.blog}
+    </a>
+  </div>
+
+  <details class="oob-nav-dd oob-nav-dd--categories oob-hide-mobile">
     <summary class="oob-nav-dd-trigger" aria-label={`${t.categories}: Kakobuy Spreadsheet browse menu`}>
       {t.categories}
     </summary>
     <div class="oob-nav-dd-panel">
+      <a
+        class="oob-nav-dd-link oob-nav-dd-link--external oob-nav-dd-link--external-first"
+        href={ml}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Browse full catalogue on MaisonLooks →
+      </a>
       {
         categoryLinks.map((item) => (
-          <a class="oob-nav-dd-link" href={item.href} target="_blank" rel="noopener noreferrer">
+          <a
+            class:list={[
+              'oob-nav-dd-link',
+              {
+                'oob-nav-dd-link--accent':
+                  pathnameNorm === norm(item.href) ||
+                  pathnameNorm.startsWith(`${norm(item.href)}`),
+              },
+            ]}
+            href={item.href}
+          >
             {item.label}
           </a>
         ))
       }
     </div>
   </details>
-
-  <a
-    class:list={[
-      'oob-nav-link',
-      'oob-nav-blog-mobile',
-      'oob-hide-desktop',
-      {
-        'oob-nav-link--accent':
-          pathnameNorm === blogNorm || pathnameNorm.startsWith(`${blogNorm}/`),
-      },
-    ]}
-    href={blogHref}
-  >
-    {t.blog}
-  </a>
 
   <div class="oob-nav-links-desktop oob-hide-mobile">
     {
@@ -343,8 +389,57 @@ const localeShort = routeLocale.toUpperCase();
   }
 
   .oob-nav-dd--categories {
-    flex-shrink: 1;
+    flex: 0 1 auto;
     min-width: 0;
+  }
+
+  .oob-nav-mobile-links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .oob-nav-mobile-links .oob-nav-dd--categories {
+    flex: 1 1 auto;
+    min-width: 0;
+    position: relative;
+  }
+
+  @media (max-width: 767px) {
+    .oob-nav-mobile-links .oob-nav-dd--categories[open] {
+      z-index: 100;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .oob-site-logo--kakobuy {
+      height: 1.6rem;
+      max-width: min(5.25rem, 28vw);
+    }
+
+    .oob-nav-link--brand {
+      flex: 0 1 auto;
+      min-width: 0;
+      padding-right: 0.25rem;
+    }
+
+    .oob-nav-dd--categories .oob-nav-dd-trigger {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .oob-nav-blog-mobile {
+      flex-shrink: 0;
+      padding-left: 0.35rem;
+      padding-right: 0.4rem;
+      min-height: 2.45rem;
+      font-size: 0.78rem;
+    }
   }
 
   .oob-nav-dd--locale .oob-nav-dd-panel {
@@ -355,6 +450,27 @@ const localeShort = routeLocale.toUpperCase();
   .oob-nav-dd-link--current {
     background: rgba(13, 148, 136, 0.1);
     color: var(--accent-dark, #0f766e);
+  }
+
+  .oob-nav-dd-link--external {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .oob-nav-dd-link--external-first {
+    margin-bottom: 0.35rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .oob-nav-dd-link--external:hover {
+    color: var(--accent-dark, #0f766e);
+    background: rgba(255, 30, 111, 0.06);
+  }
+
+  .oob-nav-dd-link--accent {
+    color: var(--oob-pink, #ff1e6f);
   }
 
   /* Mobile: language capsule + round menu (reference layout) */
@@ -468,13 +584,24 @@ const localeShort = routeLocale.toUpperCase();
     color: var(--oob-pink, #ff1e6f);
   }
 
-  @media (max-width: 767px) {
-    .oob-nav-blog-mobile {
-      padding-left: 0.48rem;
-      padding-right: 0.52rem;
-      min-height: 2.45rem;
-      font-size: 0.78rem;
-      flex-shrink: 0;
+  @media (max-width: 389px) {
+    .oob-site-logo--kakobuy {
+      height: 1.5rem;
+      max-width: min(4.75rem, 26vw);
+    }
+
+    .oob-nav-mobile-links {
+      gap: 0.25rem;
+    }
+
+    .oob-nav-m-lang > summary {
+      padding: 0.3rem 0.5rem 0.3rem 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .oob-nav-m-menu > summary {
+      width: 2.4rem;
+      height: 2.4rem;
     }
   }
 

@@ -1,11 +1,11 @@
 import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
 
 export const en: SpreadsheetPageCopy = {
-  title: 'Kakobuy Spreadsheet Hub — Taobao, Weidian, 1688 QC & Paste Links',
+  title: 'How to Use the Kakobuy Spreadsheet — Paste Links & QC Guide',
   description:
-    'Kakobuy Spreadsheet hub for 2026: how to browse lanes, lift listing URLs, set QC expectations, and paste Taobao, Weidian, or 1688 links into Kakobuy before international shipping.',
+    'Step-by-step Kakobuy Spreadsheet guide for 2026: browse lanes, copy Taobao, Weidian, or 1688 listing URLs, set QC expectations, and paste links into Kakobuy before shipping.',
   keywords:
-    'Kakobuy Spreadsheet hub, Taobao Weidian 1688 paste links, Kakobuy QC guide, spreadsheet workflow 2026, shopping agent intake links, warehouse QC literacy, reps spreadsheet how-to',
+    'how to use Kakobuy Spreadsheet, paste Taobao Weidian 1688 links, Kakobuy QC guide, spreadsheet workflow 2026, shopping agent intake links, warehouse QC literacy, reps spreadsheet tutorial',
   backHomeLabel: '← Back to home',
   h1: 'Kakobuy Spreadsheet',
   h2Hero: 'A living directory of marketplace shortcuts tuned for Kakobuy shoppers.',

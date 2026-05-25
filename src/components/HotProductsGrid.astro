@@ -1,6 +1,9 @@
 ---
 import products from '../data/api/featured-products.json';
+import { ml } from '../consts';
+import { buildProductUiCategoryIndex } from '../lib/catalogUiCategories';
 import { englishAltFragment } from '../lib/productImageAlt';
+import { productDetailHref } from '../lib/productDetailRoutes';
 
 interface Product {
   slug: string;
@@ -16,7 +19,10 @@ interface Product {
 /** Desktop keeps the full grid; mobile defers cards beyond this count until "Show more". */
 const MOBILE_INITIAL_COUNT = 24;
 
-const displayProducts = (products as Product[]).slice(0, 60);
+const productUiCategoryIndex = buildProductUiCategoryIndex();
+const displayProducts = (products as Product[])
+  .filter((p) => productUiCategoryIndex.has(p.slug))
+  .slice(0, 60);
 const mobileDeferredCount = Math.max(0, displayProducts.length - MOBILE_INITIAL_COUNT);
 ---
 
@@ -27,41 +33,43 @@ const mobileDeferredCount = Math.max(0, displayProducts.length - MOBILE_INITIAL_
     </header>
 
     <div class="products-grid">
-      {displayProducts.map((p, index) => (
-        <a
-          href={`https://maisonlooks.com/p/${p.slug}`}
-          target="_blank"
-          rel="nofollow sponsored"
-          class:list={[
-            'product-card',
-            index >= MOBILE_INITIAL_COUNT && 'product-card--mobile-deferred',
-          ]}
-        >
-          <div class="img-container">
-            <img
-              src={p.images[0]}
-              alt={`Kakobuy Spreadsheet find - ${englishAltFragment(p.title)}`}
-              loading="lazy"
-              decoding="async"
-              width="300"
-              height="300"
-            />
-            {p.qcPhotoCount > 0 && (
-              <span class="qc-badge">+{p.qcPhotoCount} QC</span>
-            )}
-          </div>
-          <div class="card-info">
-            <span class="brand-name">{p.brand}</span>
-            <h3 class="prod-title">{p.title}</h3>
-            <div class="card-footer">
-              <span class="price">$ {p.priceUsdEstimate[0].toFixed(2)}</span>
-              <span class="featured-tag">
-                <span class="star">★</span> FEATURED
-              </span>
+      {displayProducts.map((p, index) => {
+        const uiCategorySlug = productUiCategoryIndex.get(p.slug)!;
+
+        return (
+          <a
+            href={productDetailHref('en', uiCategorySlug, p.slug)}
+            class:list={[
+              'product-card',
+              index >= MOBILE_INITIAL_COUNT && 'product-card--mobile-deferred',
+            ]}
+          >
+            <div class="img-container">
+              <img
+                src={p.images[0]}
+                alt={`Kakobuy Spreadsheet find - ${englishAltFragment(p.title)}`}
+                loading="lazy"
+                decoding="async"
+                width="300"
+                height="300"
+              />
+              {p.qcPhotoCount > 0 && (
+                <span class="qc-badge">+{p.qcPhotoCount} QC</span>
+              )}
             </div>
-          </div>
-        </a>
-      ))}
+            <div class="card-info">
+              <span class="brand-name">{p.brand}</span>
+              <h3 class="prod-title">{p.title}</h3>
+              <div class="card-footer">
+                <span class="price">$ {p.priceUsdEstimate[0].toFixed(2)}</span>
+                <span class="featured-tag">
+                  <span class="star">★</span> FEATURED
+                </span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
     </div>
 
     {
@@ -80,7 +88,14 @@ const mobileDeferredCount = Math.max(0, displayProducts.length - MOBILE_INITIAL_
     }
 
     <div class="grid-footer">
-      <a href="/spreadsheet/" class="btn btn-ghost">Explore All 5,000+ Featured Items →</a>
+      <a
+        href={ml}
+        class="btn btn-ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Explore All 5,000+ Featured Items →
+      </a>
     </div>
   </div>
 </section>

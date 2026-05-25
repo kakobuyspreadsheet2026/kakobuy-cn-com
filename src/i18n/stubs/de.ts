@@ -2,12 +2,12 @@ import type { HomeStubContent } from '../types';
 import { pillsFor } from './categoryPaths';
 
 export const deHome: HomeStubContent = {
-  title: 'Kakobuy Spreadsheet Deutschland 2026 — 5.000+ Reps Links & QC',
+  title: 'Kakobuy Spreadsheet 2026 — 5.000+ Links & QC-Fotos',
   description:
-    'Das ultimative Kakobuy Spreadsheet für 2026. Durchstöbere unseren aktualisierten Reps-Katalog für Schuhe, Hoodies und Jacken mit direkten Agent-Links und QC-Fotos.',
+    'Unabhängiger Kakobuy Spreadsheet Hub für 2026: 5.000+ Taobao-, Weidian- & 1688-Finds mit QC-Fotos. Kategorien, Paste-Link-Guides, einkaufen über Kakobuy.',
   keywords:
     'kakobuy anleitung, kakobuy erfahrungen, designer reps deutschland, replika kleidung, zoll deklaration, guenstiger versand chinas',
-  webPageName: 'Beste Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
+  webPageName: 'Kakobuy Spreadsheet 2026 · kakobuy-cn.com',
   webPageKeywords: [
     'Reps Verzeichnis',
     'Agenten Einkaufsratgeber',
@@ -131,7 +131,9 @@ export const deHome: HomeStubContent = {
     titleTemplate: 'Beste Kakobuy {uiName} Spreadsheet 2026 — Top Picks & QC',
     descriptionTemplate: 'Durchstöbere das ultimative Kakobuy {uiName} Spreadsheet für 2026. Kuratierte Auswahl an Premium-{uiNameLower} mit direkten Agent-Links und verifizierten QC-Fotos.',
     introTemplate: 'Entdecke die besten {uiNameLower}, die für die Kakobuy-Community kuratiert wurden. Alle Artikel sind manuell verifiziert mit aktiven Kauflinks und Lager-QC-Referenzen.',
-    externalBtnTemplate: 'Vollständigen {uiName}-Katalog auf MaisonLooks ansehen →',
+    homeHubBackLink: '← Kakobuy Spreadsheet Hub',
+    introToggleLabel: 'Über diese Kategorie',
+    externalBtnTemplate: '{uiName} auf MaisonLooks →',
     noProducts: 'In dieser Kategorie wurden noch keine Produkte gefunden. Schau bald wieder vorbei!',
   },
 };

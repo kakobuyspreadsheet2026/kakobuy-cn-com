@@ -11,6 +11,7 @@ import {
   parseMaisonLooksAvailableSizes,
   parseMaisonLooksSourceUrl,
 } from './lib/parseMaisonLooksPage.mjs';
+import { mergeFeaturedIntoCategoryProducts, mergeFeaturedPdpData } from './merge-featured-pdp.mjs';
 
 const API_BASE = 'https://api.maisonlooks.com/public/v1';
 const API_KEY = 'ml_pub_40a7fda08f34b8e6c37b22748469f5d5';
@@ -184,6 +185,7 @@ async function fetchAllData() {
         'Catalog data pinned — skipping MaisonLooks product API (set REFRESH_CATALOG=1 to refresh all).',
       );
       await logPinnedCatalog();
+      await mergeFeaturedPdpData();
       return;
     }
 
@@ -317,6 +319,15 @@ async function fetchAllData() {
     if (shoesPool.length > 0) {
       catProducts['sneakers'] = shoesPool;
       console.log(`  Shoes virtual pool: ${shoesPool.length} items from [${shoesChildren.join(', ')}]`);
+    }
+
+    const featuredPinned = await readJsonFile('featured-products.json', []);
+    if (featuredPinned.length > 0) {
+      const mergeResult = mergeFeaturedIntoCategoryProducts(featuredPinned, catProducts);
+      catProducts = mergeResult.merged;
+      console.log(
+        `merge-featured-pdp: merged ${mergeResult.featuredCount} featured items (${mergeResult.added} new, ${mergeResult.moved} re-prioritized).`,
+      );
     }
 
     await cacheProductPageMeta(catProducts);

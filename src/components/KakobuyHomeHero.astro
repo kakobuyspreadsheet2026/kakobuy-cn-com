@@ -2,7 +2,6 @@
 import SiteHeader from './SiteHeader.astro';
 import MaisonLooksSearchBar from './MaisonLooksSearchBar.astro';
 import KakobuyThinTopStrip from './KakobuyThinTopStrip.astro';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import {
   kakobuyHomeHeroBannerUrl,
   ml,
@@ -39,7 +38,6 @@ const c = content ?? {
   searchByImageAria: 'search by image',
 };
 
-const spreadsheetHref = getRelativeLocaleUrl(locale, 'spreadsheet');
 ---
 
 <section id="top" class="kb-home" aria-label="Kakobuy Spreadsheet hub hero">
@@ -87,7 +85,12 @@ const spreadsheetHref = getRelativeLocaleUrl(locale, 'spreadsheet');
         >
       </div>
       <div class="kb-mobile-ctas">
-        <a class="kb-mobile-cta kb-mobile-cta--primary" href={spreadsheetHref}>spreadsheet</a>
+        <a
+          class="kb-mobile-cta kb-mobile-cta--primary"
+          href={ml}
+          target="_blank"
+          rel="noopener noreferrer">spreadsheet</a
+        >
         <a
           class="kb-mobile-cta kb-mobile-cta--ghost"
           href="https://kakobuy.com/"

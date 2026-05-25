@@ -5,6 +5,7 @@ import LocaleHomeStub from '../../components/LocaleHomeStub.astro';
 import { deHome } from '../../i18n/stubs/de';
 import { kakobuyHomeHeroBannerUrl, kakobuyHomeHeroMobileBannerUrl, siteStructuredDataIds } from '../../consts';
 import { getHotProductsLd } from '../../lib/hotProductsLd';
+import { homeFaqPageLd } from '../../lib/homeFaqLd';
 
 export const prerender = true;
 
@@ -28,6 +29,7 @@ const webPageLd = {
 };
 
 const hotProductsLd = getHotProductsLd(origin);
+const faqLd = homeFaqPageLd(pageUrl, deHome.sections);
 ---
 
 <Layout
@@ -36,7 +38,7 @@ const hotProductsLd = getHotProductsLd(origin);
   description={deHome.description}
   canonicalPath={canonicalPath}
   i18nRouteSegment=""
-  jsonLd={[webPageLd, hotProductsLd]}
+  jsonLd={[webPageLd, hotProductsLd, faqLd]}
   showDiscordTopBanner={false}
   lcpPreloadImages={[kakobuyHomeHeroBannerUrl]}
   mobileLcpPreloadImages={[kakobuyHomeHeroMobileBannerUrl]}

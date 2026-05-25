@@ -3,6 +3,7 @@ import { absoluteCanonicalUrl } from '../../../lib/canonicalPath';
 import Layout from '../../../layouts/Layout.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import SiteFooter from '../../../components/SiteFooter.astro';
+import CategoryIntroBlock from '../../../components/CategoryIntroBlock.astro';
 import CategoryProductCatalog from '../../../components/CategoryProductCatalog.astro';
 import { siteStructuredDataIds } from '../../../consts';
 import categories from '../../../data/api/categories.json';
@@ -91,9 +92,12 @@ const itemListLd = catalogItemListLd(title, products, (p) =>
             <a href={getRelativeLocaleUrl(locale, '')}>Home</a> / <span>{uiName}</span>
           </nav>
           <h1 class="simple-page-title">{uiName} Spreadsheet 2026</h1>
-          <p class="section-intro">
-            {introText}
-          </p>
+          <CategoryIntroBlock
+            locale={locale}
+            homeHubBackLink={content.categoryPage.homeHubBackLink}
+            introToggleLabel={content.categoryPage.introToggleLabel}
+            introText={introText}
+          />
           <div class="header-actions">
             <a 
               href={`https://maisonlooks.com/c/${apiSlug}`} 

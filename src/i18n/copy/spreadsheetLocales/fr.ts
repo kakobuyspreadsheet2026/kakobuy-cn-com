@@ -1,10 +1,9 @@
 import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
 
 export const fr: SpreadsheetPageCopy = {
-  title:
-    'Catalogue Kakobuy Spreadsheet — couloirs indexés, culture QC & URLs prêtes à coller | kakobuy-cn.com',
+  title: 'Utiliser Kakobuy Spreadsheet — guide liens et QC',
   description:
-    'Compagnon lecture-first du browse Kakobuy Spreadsheet : rails catalogue pour fiches Taobao / Weidian / 1688, avertissements QC, fret réaliste, lecture colonne par colonne, guides curés et FAQ — la découverte commence ici, le portefeuille reste sur Kakobuy.',
+    'Guide pas à pas Kakobuy Spreadsheet pour 2026 : parcourir les couloirs, copier des URLs Taobao, Weidian ou 1688, calibrer le QC et coller les liens dans Kakobuy avant expédition.',
   keywords:
     'catalogue Kakobuy spreadsheet, navigation Kakobuy Spreadsheet, QC spreadsheet Weidian, liens agent Taobao, feuille shopping 2026, primer photo entrepôt, URLs marketplace curées',
   backHomeLabel: '← Retour à l’accueil',

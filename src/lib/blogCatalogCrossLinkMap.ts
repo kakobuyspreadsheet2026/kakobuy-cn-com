@@ -1,6 +1,60 @@
 /** UI category slugs to surface at the bottom of each blog article. */
 const DEFAULT_CATEGORIES = ['shoes', 't-shirts', 'hoodies'] as const;
 
+/** End-of-article hub CTA target. Default is homepage catalogue. */
+export type BlogHubLinkKind = 'home' | 'spreadsheet' | 'how-to-buy';
+
+/** Spreadsheet workflow / curation essays — keep linking to `/spreadsheet/`. */
+const SPREADSHEET_GUIDE_SLUGS = new Set<string>([
+  'browser-extensions-link-rot-prevention',
+  'web-spreadsheets-vs-whatsapp-sellers-safety',
+  'evolution-of-reps-spreadsheets-excel-to-web',
+  'identifying-phishing-spreadsheet-scams-reps-2026',
+  'yupoo-album-spreadsheet-kakobuy-intake',
+  'telegram-finds-spreadsheet-kakobuy-link-hygiene',
+  'spreadsheet-volumetric-chargeable-weight-basics',
+  'spreadsheet-row-archiving-vanished-listings',
+  'spreadsheet-column-schema-kakobuy-curators',
+  'google-sheets-sharing-spreadsheet-curator-opsec',
+  'kakobuy-spreadsheet-hubs-compared',
+  'decoding-spreadsheet-batch-prices-discrepancies',
+  'spotting-red-flag-sellers-community-spreadsheets',
+  'qc-websites-landscape',
+  'community-crowdsourced-qc-verification-batches',
+]);
+
+/** Paste-link / intake walkthroughs — link to `/how-to-buy/`. */
+const HOW_TO_BUY_SLUGS = new Set<string>([
+  'kakobuy-taobao',
+  'kakobuy-weidian',
+  'kakobuy-1688',
+  'kakobuy-spreadsheet-to-parcel-checklist',
+  'kakobuy-links-discovery-url-hygiene',
+]);
+
+export const BLOG_HUB_LINK_LABELS: Record<BlogHubLinkKind, string> = {
+  home: 'Kakobuy Spreadsheet home',
+  spreadsheet: 'Kakobuy Spreadsheet guide',
+  'how-to-buy': 'How to buy guide',
+};
+
+export function blogSlugFromCanonical(canonicalPath: string): string {
+  return canonicalPath.replace(/^\/blog\//, '').replace(/\/$/, '');
+}
+
+export function getBlogHubLinkKind(canonicalPath: string): BlogHubLinkKind {
+  const slug = blogSlugFromCanonical(canonicalPath);
+  if (HOW_TO_BUY_SLUGS.has(slug)) return 'how-to-buy';
+  if (SPREADSHEET_GUIDE_SLUGS.has(slug)) return 'spreadsheet';
+  return 'home';
+}
+
+export function getBlogHubLinkSegment(kind: BlogHubLinkKind): '' | 'spreadsheet/' | 'how-to-buy/' {
+  if (kind === 'spreadsheet') return 'spreadsheet/';
+  if (kind === 'how-to-buy') return 'how-to-buy/';
+  return '';
+}
+
 const BLOG_CATALOG_MAP: Record<string, readonly string[]> = {
   'annual-reps-shopping-calendar-2026': ['shoes', 'jackets', 'hoodies'],
   'browser-extensions-link-rot-prevention': ['shoes', 't-shirts', 'accessories'],
@@ -62,7 +116,7 @@ const BLOG_CATALOG_MAP: Record<string, readonly string[]> = {
 };
 
 export function getBlogCatalogCategories(canonicalPath: string): string[] {
-  const slug = canonicalPath.replace(/^\/blog\//, '').replace(/\/$/, '');
+  const slug = blogSlugFromCanonical(canonicalPath);
   const mapped = BLOG_CATALOG_MAP[slug];
   return mapped ? [...mapped] : [...DEFAULT_CATEGORIES];
 }
