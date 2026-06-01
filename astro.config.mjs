@@ -14,6 +14,17 @@ export default defineConfig({
         new URL('/news/openstar-recruit/', site).href,
         new URL('/promotions/kakobuy-may-2026/', site).href,
       ],
+      filter: (page) => {
+        const url = new URL(page);
+        const path = url.pathname;
+        // Exclude product detail pages: /spreadsheet/[category]/[slug]/
+        // Note: /spreadsheet/ itself should stay.
+        const segs = path.split('/').filter(Boolean);
+        if (segs[0] === 'spreadsheet' && segs.length >= 3) {
+          return false;
+        }
+        return true;
+      },
     }),
   ],
   compressHTML: true,

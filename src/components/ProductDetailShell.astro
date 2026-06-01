@@ -34,6 +34,7 @@ interface Props {
   uiCategorySlug: string;
   productUiCategoryIndex?: Record<string, string>;
   canonicalPath: string;
+  noindex?: boolean;
 }
 
 const {
@@ -44,6 +45,7 @@ const {
   uiCategorySlug,
   productUiCategoryIndex = {},
   canonicalPath,
+  noindex = false,
 } = Astro.props;
 
 const locale = 'en';
@@ -130,6 +132,7 @@ const productLd = {
   hreflangMirrorsCanonical
   lcpPreloadImages={[mainImageUrl]}
   jsonLd={productLd}
+  noindex={noindex}
 >
   <SiteHeader locale={locale} />
 

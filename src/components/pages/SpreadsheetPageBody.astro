@@ -278,8 +278,21 @@ const browseBySlug = Object.fromEntries(
   }
 
   .ssp-back {
-    margin: 0 0 0.5rem;
-    font-size: 0.875rem;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--accent-soft);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 30, 111, 0.12);
+  }
+  .ssp-back a {
+    text-decoration: none;
+    color: var(--accent-dark);
+  }
+  .ssp-back a:hover {
+    text-decoration: underline;
   }
 
   .ssp-h2 {

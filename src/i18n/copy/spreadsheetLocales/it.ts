@@ -1,13 +1,13 @@
 import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
 
 export const it: SpreadsheetPageCopy = {
-  title: 'Come usare Kakobuy Spreadsheet — guida link e QC',
+  title: 'Come usare Kakobuy Spreadsheet (Guida 2026) — kakobuy-cn.com',
   description:
-    'Guida passo passo Kakobuy Spreadsheet per il 2026: esplora le lane, copia URL Taobao, Weidian o 1688, imposta aspettative QC e incolla i link in Kakobuy prima della spedizione.',
+    'Tutorial completo su come usare Kakobuy Spreadsheet nel 2026: trova i link, copia gli URL Taobao/Weidian e incollali in Kakobuy per QC e spedizione.',
   keywords:
-    'catalogo Kakobuy spreadsheet, browse Kakobuy Spreadsheet, QC spreadsheet Weidian, link agente Taobao, foglio shopping 2026, primer foto magazzino, URL marketplace curate',
-  backHomeLabel: '← Torna alla home',
-  h1: 'Kakobuy Spreadsheet',
+    'come usare Kakobuy Spreadsheet, tutorial Kakobuy 2026, incollare link Taobao Kakobuy, guida spreadsheet Weidian, aiuto agente di acquisto',
+  backHomeLabel: '← Torna alla Home (Directory Completa)',
+  h1: 'Come usare Kakobuy Spreadsheet',
   h2Hero: 'Un repertorio vivo di scorciatoie marketplace tarate sugli acquirenti Kakobuy.',
   subhead:
     'Scorri sneakers, outerwear, accessori, borse, elettronica e binari strani nel catalogo collegato, estrai URL prodotto e passale a Kakobuy per routing domestico, foto inbound e scelta courier.',

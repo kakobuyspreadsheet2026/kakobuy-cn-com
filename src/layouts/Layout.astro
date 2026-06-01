@@ -68,6 +68,8 @@ interface Props {
   prevUrl?: string;
   /** Optional pagination next link URL (absolute or relative-to-root) */
   nextUrl?: string;
+  /** When true, emits <meta name="robots" content="noindex, follow">. */
+  noindex?: boolean;
 }
 
 const {
@@ -88,6 +90,7 @@ const {
   mobileLcpPreloadImages,
   prevUrl,
   nextUrl,
+  noindex = false,
 } = Astro.props;
 
 const canonicalPathNormalized = canonicalPathWithTrailingSlash(canonicalPath);
@@ -234,6 +237,7 @@ const ga4MeasurementId =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : null}
     {import.meta.env.DEV ? (
       <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     ) : null}

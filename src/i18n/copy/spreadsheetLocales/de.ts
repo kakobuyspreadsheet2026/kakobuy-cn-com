@@ -1,13 +1,13 @@
 import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
 
 export const de: SpreadsheetPageCopy = {
-  title: 'Kakobuy Spreadsheet nutzen — Links einfügen & QC-Guide',
+  title: 'Kakobuy Spreadsheet nutzen (2026 Guide) — kakobuy-cn.com',
   description:
-    'Schritt-für-Schritt Kakobuy Spreadsheet Guide für 2026: Schienen durchsuchen, Taobao-, Weidian- oder 1688-URLs kopieren, QC-Erwartungen setzen und Links in Kakobuy einfügen.',
+    'Vollständige Anleitung zur Nutzung des Kakobuy Spreadsheets im Jahr 2026: Marktplatz-Links finden, Taobao/Weidian-URLs kopieren und bei Kakobuy für QC und Versand einfügen.',
   keywords:
-    'reps produkt katalog deutschland, weidian taobao links liste, einkaufsliste zollrechner, qualitaetskontrolle warehouse fotos, agenten einkaufsliste',
-  backHomeLabel: '← Zur Startseite',
-  h1: 'Kakobuy Spreadsheet',
+    'Kakobuy Spreadsheet nutzen, Kakobuy Anleitung 2026, Taobao Links einfügen Kakobuy, Weidian Spreadsheet Guide, Einkaufsagent Hilfe',
+  backHomeLabel: '← Zurück zur Startseite (Vollständiges Verzeichnis)',
+  h1: 'So nutzt du das Kakobuy Spreadsheet',
   h2Hero: 'Ein lebendes Verzeichnis von Marktplatz-Shortcuts für Kakobuy-Käufer.',
   subhead:
     'Scanne Sneaker, Outerwear, Accessories, Bags, Elektronik und Nischen-Lanes im verlinkten Katalog, hebe Listing-URLs hervor und übergebe sie an Kakobuy für domestic Routing, Warehouse-Fotos und Outbound-Courier.',
