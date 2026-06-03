@@ -13,6 +13,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { filterRenderableCatalogProducts } from '../../lib/catalogProducts';
 import { productDetailAbsoluteUrl } from '../../lib/productDetailRoutes';
 import { getCategorySeoCopy } from '../../lib/categorySeoCopy';
+import { CATEGORY_EXTRA_CONTENT_EN } from '../../lib/categoryExtraContent';
 import { breadcrumbListLd } from '../../lib/breadcrumbSchema';
 import { catalogItemListLd } from '../../lib/catalogItemListLd';
 
@@ -71,6 +72,7 @@ const products = filterRenderableCatalogProducts(categoryProducts[apiSlug] || []
 
 const uiNameLower = uiName.toLowerCase();
 const { title, description } = getCategorySeoCopy(slug, uiName, locale);
+const extraContent = CATEGORY_EXTRA_CONTENT_EN[slug];
 const introText = content.categoryPage.introTemplate
   .replace('{uiNameLower}', uiNameLower);
 const externalBtnText = content.categoryPage.externalBtnTemplate
@@ -135,6 +137,12 @@ const itemListLd = catalogItemListLd(title, products, (p) =>
         {products.length === 0 && (
           <p class="no-products">{content.categoryPage.noProducts}</p>
         )}
+
+        {extraContent && (
+          <div class="category-extra-content prose-block">
+            <div class="extra-content-inner" set:html={extraContent} />
+          </div>
+        )}
       </div>
     </section>
   </main>
@@ -196,6 +204,24 @@ const itemListLd = catalogItemListLd(title, products, (p) =>
   .no-products {
     text-align: center;
     padding: 4rem 0;
+    color: var(--muted);
+  }
+
+  .category-extra-content {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+  .extra-content-inner :global(h2) {
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+  .extra-content-inner :global(p) {
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
     color: var(--muted);
   }
 </style>
