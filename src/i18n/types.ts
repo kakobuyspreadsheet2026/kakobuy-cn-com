@@ -34,10 +34,13 @@ export type HomeStubContent = {
   exploreTitle: string;
   redditAria: string;
   redditSnooAlt: string;
-  introH2: string;
-  introP: string;
-  guideH2: string;
-  guideIntro: string;
+  /** Visible hub explainer above the product grid (optional per locale). */
+  hubIntro?: {
+    title: string;
+    paragraphs: readonly string[];
+  };
+  guideH2?: string;
+  guideIntro?: string;
   sections: GuideSectionStub[];
   ctaHeading: string;
   ctaIntro: string;

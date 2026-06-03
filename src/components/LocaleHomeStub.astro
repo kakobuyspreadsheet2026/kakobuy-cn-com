@@ -11,6 +11,7 @@ import { getRecentBuyerShares } from '../lib/recentBuyerShares';
 import { getHomeRecentBlogCopy } from '../i18n/copy/homeRecentBlog';
 import { getHomeRecentBuyerSharesCopy } from '../i18n/copy/homeRecentBuyerShares';
 import { getHomeSpreadsheetPromoCopy } from '../i18n/copy/homeSpreadsheetPromo';
+import { getHomeHubIntroCopy } from '../i18n/copy/homeHubIntro';
 import { HTML_LANG_BY_ROUTE, ROUTE_LOCALES, type RouteLocale } from '../i18n/config';
 import type { HomeStubContent } from '../i18n/types';
 
@@ -55,6 +56,8 @@ const buyerSharesIndexHref = getRelativeLocaleUrl(locale, 'buyer-shares');
 const spreadsheetExplainerHref = getRelativeLocaleUrl(locale, 'spreadsheet');
 const howToBuyHref = getRelativeLocaleUrl(locale, 'how-to-buy');
 const spreadsheetPromo = getHomeSpreadsheetPromoCopy(locale);
+const hubIntro = getHomeHubIntroCopy(locale);
+const brandsGuideHref = '/blog/kakobuy-spreadsheet-brands-catalog-2026/';
 
 const blogDateLocale = routeLocale === 'pt' ? 'pt-BR' : HTML_LANG_BY_ROUTE[routeLocale];
 
@@ -233,13 +236,41 @@ const buyerSharesFreshIso =
     </div>
   </section>
 
+  <section class="band-alt home-spreadsheet-promo" aria-labelledby="spreadsheet-promo-heading">
+    <div class="wrap">
+      <div class="page-mast home-spreadsheet-promo__card">
+        <h2 id="spreadsheet-promo-heading" class="home-spreadsheet-promo__title">{spreadsheetPromo.title}</h2>
+        <p class="home-spreadsheet-promo__body">{spreadsheetPromo.body}</p>
+        <ul class="home-spreadsheet-promo__bullets">
+          {spreadsheetPromo.bullets.map((b) => (
+            <li>{b}</li>
+          ))}
+        </ul>
+        <p class="home-spreadsheet-promo__cta">
+          <a class="btn btn-primary" href={spreadsheetExplainerHref}>{spreadsheetPromo.ctaSpreadsheet}</a>
+          <a class="btn btn-ghost" href={howToBuyHref}>{spreadsheetPromo.ctaHowToBuy}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="band-alt guide" aria-labelledby="guide-heading" id="kakobuy-spreadsheet-guide">
     <div class="wrap">
       <div class="page-mast">
+        {
+          c.guideH2 ? (
+            <>
+              <h2 id="guide-heading" class="guide-section-title">{c.guideH2}</h2>
+              {c.guideIntro ? <p class="section-intro guide-section-lede">{c.guideIntro}</p> : null}
+            </>
+          ) : (
+            <h2 id="guide-heading" class="visually-hidden">Guide</h2>
+          )
+        }
         <div class="guide-accordion">
           {
-            c.sections.map((sec) => (
-              <details class="guide-details">
+            c.sections.map((sec, si) => (
+              <details class="guide-details" open={si === 0 ? true : undefined}>
                 <summary class="guide-summary">
                   <h3>{sec.h3}</h3>
                   <span class="guide-icon">
@@ -282,6 +313,24 @@ const buyerSharesFreshIso =
       </div>
     </div>
   </section>
+
+  <section class="band-alt home-hub-intro" aria-labelledby="home-hub-intro-heading">
+    <div class="wrap">
+      <div class="page-mast home-hub-intro__inner">
+        <h2 id="home-hub-intro-heading" class="home-hub-intro__title">{hubIntro.title}</h2>
+        {hubIntro.paragraphs.map((p) => (
+          <p class="home-hub-intro__p">{p}</p>
+        ))}
+        <p class="home-hub-intro__links">
+          <a href={howToBuyHref}>How to buy</a>
+          <span aria-hidden="true"> · </span>
+          <a href={spreadsheetExplainerHref}>Spreadsheet tutorial</a>
+          <span aria-hidden="true"> · </span>
+          <a href={brandsGuideHref}>Brand catalogue guide (2026)</a>
+        </p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <SiteFooter
@@ -319,6 +368,113 @@ const buyerSharesFreshIso =
 
   .home-main-centered .guide h3 + p + p {
     margin-top: 0.65rem;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .home-hub-intro__inner {
+    max-width: 48rem;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .home-hub-intro__title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+  }
+
+  .home-hub-intro__p {
+    margin: 0 0 1rem;
+    font-size: 0.975rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .home-hub-intro__p:last-of-type {
+    margin-bottom: 1.15rem;
+  }
+
+  .home-hub-intro__links {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .home-hub-intro__links a {
+    color: var(--accent-dark);
+    text-decoration: none;
+  }
+
+  .home-hub-intro__links a:hover {
+    text-decoration: underline;
+  }
+
+  .home-spreadsheet-promo__card {
+    max-width: 48rem;
+    margin-inline: auto;
+    text-align: left;
+    padding: clamp(1.15rem, 3vw, 1.5rem);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+  }
+
+  .home-spreadsheet-promo__title {
+    margin: 0 0 0.65rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+  }
+
+  .home-spreadsheet-promo__body {
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .home-spreadsheet-promo__bullets {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .home-spreadsheet-promo__bullets li {
+    margin-bottom: 0.35rem;
+  }
+
+  .home-spreadsheet-promo__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .guide-section-title {
+    margin-bottom: 0.65rem;
+  }
+
+  .guide-section-lede {
+    margin-bottom: 1.5rem;
+    max-width: 42rem;
   }
 
   /* Guide Accordion */

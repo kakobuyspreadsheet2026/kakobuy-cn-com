@@ -20,7 +20,7 @@ export const enHome: HomeStubContent = {
     h1: 'Kakobuy Spreadsheet 2026',
     kicker: 'Taobao · Weidian · 1688 · QC Photos',
     body:
-      'Access 5,000+ high-quality reps with verified marketplace links and professional QC photos. We provide the data, Kakobuy handles the rest.',
+      'Access 5,000+ high-quality reps with verified Kakobuy spreadsheet links and professional QC photos. We provide the data, Kakobuy handles the rest.',
     ctaBrowse: 'Open Kakobuy Spreadsheet browse →',
     ctaLogin: 'Sign in on Kakobuy',
     heroPlaneAlt:
@@ -38,29 +38,36 @@ export const enHome: HomeStubContent = {
   redditAria: 'r/kakobuy community on Reddit (opens in new tab)',
   redditSnooAlt:
     'kakobuy spreadsheet · Reddit Snoo — r/kakobuy haul write-ups and QC chatter',
+  guideH2: 'How shopping through this hub works',
+  guideIntro:
+    'Four practical topics buyers ask before their first haul. Expand any row; for screenshots and paste UI detail, use How to buy.',
   sections: [
     {
-      h3: '1. What is a Kakobuy Spreadsheet?',
+      h3: 'What is a Kakobuy spreadsheet hub?',
       paragraphs: [
-        'A Kakobuy Spreadsheet is a curated directory of marketplace links (Taobao, Weidian, 1688) paired with batch info and QC photos. It serves as a professional shortcut to the best finds, saving you hours of manual searching.',
+        'In practice, it’s a hand-picked collection of the best product links from Chinese marketplaces like Taobao, Weidian, and 1688. We add notes on “batches” (quality versions), price estimates, and photos so you don’t have to guess while searching through sites that aren’t in your language.',
+        'This website acts as your guide and index. While we help you find the items, Kakobuy handles the actual buying, checking the quality in their warehouse, and shipping the parcel to your door.',
       ],
     },
     {
-      h3: '2. How to Buy via Spreadsheet',
+      h3: 'How do I buy once I pick a row?',
       paragraphs: [
-        'The process is simple: find an item in our catalogue, copy the HTTPS link, and paste it into the Kakobuy search bar. Once it arrives at the warehouse, you will receive professional QC photos to verify quality before international shipping.',
+        'It’s easy: copy the product link, paste it into the search bar on Kakobuy, and choose your size and color. Once you pay the domestic price, the item is sent to the Kakobuy warehouse where they take professional photos for you to review.',
+        'Always check these “QC” photos carefully. If the item looks different from what you expected, you can ask for a return or exchange before it ever leaves China.',
       ],
     },
     {
-      h3: '3. Why Use an Agent?',
+      h3: 'Why use an agent like Kakobuy?',
       paragraphs: [
-        'Agents consolidate your orders, provide quality inspections, and offer secure international shipping. This replaces the chaos of direct seller DMs with an auditable, insured dashboard for your entire haul.',
+        'Most sellers in China don’t ship directly to international addresses. Agents bridge that gap. They provide a safe place to store your items, verify that you got exactly what you paid for, and consolidate multiple items into one box to save you money on shipping.',
+        'Using an agent also gives you payment protection and a clear way to handle disputes if a seller sends the wrong batch or size.',
       ],
     },
     {
-      h3: '4. Batches & Link Maintenance',
+      h3: 'What about dead links or out-of-stock items?',
       paragraphs: [
-        'We use real-time data to keep our 5,000+ links active. We recommend cross-referencing batches (like LJR or GX) with community feedback to ensure the current stock matches your expectations.',
+        'The marketplace moves fast—sellers often update their links or run out of stock without warning. We refresh our directory constantly to keep things working, but if you hit a broken link, just check the category page for a fresh alternative.',
+        'If an item you bought is suddenly unavailable, Kakobuy will notify you and refund your money to your balance so you can pick something else.',
       ],
     },
   ],

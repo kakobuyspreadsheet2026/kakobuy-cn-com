@@ -90,28 +90,31 @@ export const esHome: HomeStubContent = {
     'kakobuy spreadsheet · Snoo Reddit — r/kakobuy debates QC, hauls y agents',
   sections: [
     {
-      h3: '1. ¿Qué es una Kakobuy Spreadsheet?',
+      h3: '¿Qué es un Kakobuy Spreadsheet Hub?',
       paragraphs: [
-        'En la comunidad, una "spreadsheet" es una lista curada de enlaces de mercados (Taobao, Weidian, 1688) con información de lotes y fotos QC. Es un atajo para encontrar los mejores productos rápidamente.',
-        'Nuestra plataforma transforma estas listas estáticas en una experiencia interactiva. Usa nuestras categorías para encontrar artículos verificados.',
+        'En la práctica, es una colección seleccionada a mano de los mejores enlaces de productos de mercados chinos como Taobao, Weidian y 1688. Añadimos notas sobre „batches“ (versiones de calidad), estimaciones de precios y fotos para que no tengas que adivinar mientras buscas en sitios que no están en tu idioma.',
+        'Este sitio web actúa como tu guía e índice. Mientras te ayudamos a encontrar los artículos, Kakobuy se encarga de la compra real, la comprobación de la calidad en su almacén y el envío del paquete a tu puerta.',
       ],
     },
     {
-      h3: '2. ¿Cómo comprar?',
+      h3: '¿Cómo compro una vez que elijo un artículo?',
       paragraphs: [
-        'El proceso es sencillo: encuentra un artículo en nuestro catálogo, copia el enlace HTTPS y pégalo en la barra de búsqueda de Kakobuy. Allí podrás elegir talla, color y finalizar tu compra.',
+        'Es fácil: copia el enlace del producto, pégalo en la barra de búsqueda de Kakobuy y elige tu talla y color. Una vez que pagues el precio doméstico, el artículo se envía al almacén de Kakobuy, donde toman fotos profesionales para que las revises.',
+        'Revisa siempre estas fotos „QC“ cuidadosamente. Si el artículo se ve diferente de lo que esperabas, puedes solicitar una devolución o cambio antes de que salga de China.',
       ],
     },
     {
-      h3: '3. Control de Calidad (QC)',
+      h3: '¿Por qué usar un agente como Kakobuy?',
       paragraphs: [
-        'Cuando tu artículo llegue al almacén, recibirás fotos profesionales de QC. Revísalas cuidadosamente para verificar la calidad antes de aprobar el envío internacional.',
+        'La mayoría de los vendedores en China no realizan envíos directos a direcciones internacionales. Los agentes cierran esa brecha. Proporcionan un lugar seguro para almacenar tus artículos, verifican que recibiste exactamente lo que pagaste y consolidan varios artículos en una sola caja para ahorrarte dinero en el envío.',
+        'El uso de un agente también te brinda protección de pago y una forma clara de manejar disputas si un vendedor envía el lote o la talla incorrectos.',
       ],
     },
     {
-      h3: '4. Gastos y Envío',
+      h3: '¿Qué pasa con los enlaces muertos o los artículos agotados?',
       paragraphs: [
-        'El coste total incluye el envío nacional, las tarifas del agente y el flete internacional. El peso volumétrico es clave para calcular el coste final del envío de tu paquete.',
+        'El mercado se mueve rápido: los vendedores suelen actualizar sus enlaces o quedarse sin existencias sin previo aviso. Actualizamos nuestro directorio constantemente para que todo siga funcionando, pero si encuentras un enlace roto, simplemente consulta la página de la categoría para encontrar una alternativa fresca.',
+        'Si un artículo que compraste de repente no está disponible, Kakobuy te notificará y te devolverá el dinero a tu saldo para que puedas elegir otra cosa.',
       ],
     },
   ],
