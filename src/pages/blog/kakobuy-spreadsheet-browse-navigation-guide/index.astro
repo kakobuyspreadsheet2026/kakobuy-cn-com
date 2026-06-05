@@ -1,0 +1,137 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/kakobuy-spreadsheet-browse-navigation-guide';
+const publishedISO = '2026-06-07';
+---
+
+<BlogArticleShell
+  title="How to browse the Kakobuy Spreadsheet: homepage grid, categories & full directory | kakobuy-cn.com"
+  description="A plain-language map of how kakobuy-cn.com is organised—featured picks, twelve category lanes, deep catalogue pools, and the external Spreadsheet tutorial—so you find links without treating every page the same."
+  canonicalPath={canonicalPath}
+  headline="Browse navigation guide: homepage, categories, and the full Kakobuy Spreadsheet directory"
+  publishedISO={publishedISO}
+  displayDate="7 June 2026"
+  structuredKeywords={[
+    'Kakobuy Spreadsheet browse',
+    'kakobuy-cn.com categories',
+    'spreadsheet directory navigation',
+    'how to find Kakobuy links',
+    'featured grid vs category pages',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    New visitors often land on our homepage, see a product grid, and ask a fair question: <em>“Is this the whole spreadsheet, or is there more?”</em>
+    Both—and neither.
+    <strong><a href="/">kakobuy-cn.com</a></strong> is a moderated <strong><a href="/">Kakobuy Spreadsheet</a></strong> directory with <strong>three browse layers</strong> (featured picks, category lanes, and deep pools) plus an external tutorial hub for power users.
+    This guide explains what each layer is for, when to use it, and how paste hygiene stays the same no matter where you clicked.
+  </p>
+
+  <h2>The three layers (mental model)</h2>
+  <div class="blog-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Layer</th>
+          <th scope="col">Where it lives</th>
+          <th scope="col">Best for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Featured grid</strong></td>
+          <td>Homepage upper section</td>
+          <td>Fast orientation—“what’s active this week”</td>
+        </tr>
+        <tr>
+          <td><strong>Category lanes</strong></td>
+          <td><a href="/category/shoes/">Shoes</a>, <a href="/category/hoodies/">Hoodies</a>, <a href="/category/perfume/">Perfume</a>, etc.</td>
+          <td>Shopping by wardrobe goal with extra lane context</td>
+        </tr>
+        <tr>
+          <td><strong>Deep pools</strong></td>
+          <td>Behind the UI (40+ marketplace lanes)</td>
+          <td>Power browsing via external spreadsheet bridges</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Think of the homepage as a <em>newsstand</em>, category pages as <em>aisles</em>, and the <a href="/spreadsheet/">Spreadsheet tutorial hub</a> as the <em>warehouse map</em> veterans keep open in another tab.
+  </p>
+
+  <h2>Layer 1 — Featured grid (“daily picks”)</h2>
+  <p>
+    The grid near the top of the homepage is intentionally small.
+    Curators rotate high-signal rows so repeat visitors see movement without scrolling a thousand cards on mobile.
+    Sellers in China rename shops, swap batches, and kill albums overnight—so featured picks emphasize <strong>fresh links</strong>, not completeness.
+  </p>
+  <p>
+    If a featured card’s link fails, that is normal link rot—not a site outage.
+    Jump to the matching <strong>category lane</strong> or the full directory flow described below; our <a href="/blog/spreadsheet-row-archiving-vanished-listings/">vanished listings guide</a> explains why rows disappear.
+  </p>
+
+  <h2>Layer 2 — Twelve homepage category shortcuts</h2>
+  <p>
+    Below the hero you will find twelve pills that map to shopper language, not factory taxonomy:
+    <strong>Shoes, T-Shirts, Pants, Jackets, Hoodies, Bags, Accessories, Electronics, Headwear, Jersey, Perfume, Other</strong>.
+    Each shortcut aggregates deeper marketplace lanes—for example, <a href="/category/shoes/">Shoes</a> pulls from sneaker pools plus boots and slides.
+  </p>
+  <p>
+    Category pages add <strong>unique editorial context</strong> (sizing notes, freight cautions, lane-specific FAQs) that the homepage grid does not repeat.
+    They are the best starting point when you know your wardrobe goal:
+  </p>
+  <ul>
+    <li>Footwear → <a href="/blog/kakobuy-sneakers-spreadsheet-lane-guide-2026/">sneakers lane guide</a></li>
+    <li>Fragrance → <a href="/blog/kakobuy-perfume-fragrance-spreadsheet-lane-2026/">perfume lane guide</a></li>
+    <li>Outerwear → <a href="/blog/kakobuy-jackets-outerwear-spreadsheet-lane-2026/">jackets &amp; parkas guide</a></li>
+    <li>Brand curiosity → <a href="/blog/kakobuy-spreadsheet-brands-catalog-2026/">2026 brand catalogue</a></li>
+  </ul>
+
+  <h2>Layer 3 — Deep pools &amp; the external spreadsheet hub</h2>
+  <p>
+    Behind the friendly twelve-lane UI sits a wider catalogue—roughly <strong>1,000+ rows</strong> and <strong>140+ brand labels</strong> in our June&nbsp;2026 export—organised into <strong>40+ deep lanes</strong> (sneakers, parkas, jewellery, tracksuits, etc.).
+    The on-site category cards show a diversified slice per lane; the highest-volume grid many veterans use lives on external spreadsheet bridges linked from our <a href="/spreadsheet/">Spreadsheet tutorial</a>.
+  </p>
+  <p>
+    Use the tutorial hub when:
+  </p>
+  <ul>
+    <li>You already understand paste workflow (<a href="/how-to-buy/">How to buy</a>).</li>
+    <li>You want spreadsheet-style scanning, filters, or curator columns.</li>
+    <li>You are cross-checking community hubs—read <a href="/blog/kakobuy-spreadsheet-hubs-compared/">hubs compared</a> for safety context.</li>
+  </ul>
+
+  <h2>What product detail pages are (and are not)</h2>
+  <p>
+    Clicking a card opens a product detail page with rich photos and paste-ready context.
+    Those pages exist to help you evaluate a row before copying the marketplace URL into Kakobuy.
+    They are <strong>not</strong> a checkout surface—commerce still happens on <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">Kakobuy</a> after paste.
+    Treat cards as <em>orientation</em>; treat Kakobuy inbound QC as <em>evidence</em> (<a href="/blog/kakobuy-spreadsheet-qc/">QC guide</a>).
+  </p>
+
+  <h2>One paste workflow—every entry point</h2>
+  <ol>
+    <li><strong>Pick a layer</strong> (featured, category, or external sheet) based on how much scrolling you tolerate.</li>
+    <li><strong>Open the live listing</strong> and copy the canonical URL—<a href="/blog/kakobuy-links-discovery-url-hygiene/">URL hygiene</a> matters more than which page you started from.</li>
+    <li><strong>Paste into Kakobuy</strong>; freeze size/colour variants before domestic pay (<a href="/blog/kakobuy-taobao/">Taobao</a>, <a href="/blog/kakobuy-weidian/">Weidian</a>, <a href="/blog/kakobuy-1688/">1688</a>).</li>
+    <li><strong>Approve warehouse photos</strong>, then consolidate and ship (<a href="/blog/kakobuy-spreadsheet-to-parcel-checklist/">Spreadsheet → parcel checklist</a>).</li>
+  </ol>
+
+  <h2>Common navigation mistakes</h2>
+  <ul>
+    <li><strong>Treating featured grid as exhaustive:</strong> it is curated, not complete—use categories next.</li>
+    <li><strong>Searching only brand names on-site:</strong> our taxonomy mirrors seller strings; missing brand ≠ impossible factory.</li>
+    <li><strong>Skipping category context:</strong> lane guides exist because freight and QC differ—tees and perfume do not ship alike.</li>
+    <li><strong>Replacing Kakobuy with DMs:</strong> WhatsApp “private agents” trade safety for hype—<a href="/blog/web-spreadsheets-vs-whatsapp-sellers-safety/">2026 safety report</a>.</li>
+  </ul>
+
+  <h2>Where the homepage intro fits</h2>
+  <p>
+    Scroll to the bottom of the homepage and you will find a short “New to Kakobuy?” section in plain language—what we curate, why links rotate, and how Kakobuy handles QC and freight.
+    Read it once, then bookmark the <strong><a href="/">Kakobuy Spreadsheet hub</a></strong> category that matches your haul.
+    That is the whole navigation secret: <em>picks for speed, categories for clarity, spreadsheet hub for depth—and Kakobuy for truth.</em>
+  </p>
+</BlogArticleShell>
