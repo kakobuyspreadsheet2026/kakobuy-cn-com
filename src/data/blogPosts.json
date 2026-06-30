@@ -1,5 +1,145 @@
 [
   {
+    "slug": "kakobuy-mobile-spreadsheet-shopping-guide-2026",
+    "title": "Mobile spreadsheet shopping: Kakobuy browse & paste workflow (2026)",
+    "published": "2026-07-08",
+    "description": "Browse kakobuy-cn.com on phone, paste into Kakobuy on the go. A 2026 editorial guide to mobile spreadsheet workflows—link hygiene, QC alerts, app vs browser, and when to finish on desktop.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-freight-line-picker-spreadsheet-2026",
+    "title": "Choosing Kakobuy freight lines: spreadsheet buyer guide (2026)",
+    "published": "2026-07-07",
+    "description": "DHL, EMS, specialised branded lines, economy post—how do spreadsheet buyers choose? A 2026 editorial framework for Kakobuy outbound routing: speed, cost, restrictions, and customs correlation.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-gift-season-spreadsheet-planning-2026",
+    "title": "Gift season spreadsheet planning: Kakobuy haul timing (2026)",
+    "published": "2026-07-06",
+    "description": "Holiday gifts from agent hauls need backward planning. A 2026 editorial guide for Kakobuy Spreadsheet shoppers—order windows, QC buffers, freight tiers, customs delays, and honest gift-date expectations.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-warehouse-hold-summer-2026",
+    "title": "Summer warehouse holds: Kakobuy Spreadsheet storage & timing (2026)",
+    "published": "2026-07-05",
+    "description": "Staggered summer buys need warehouse hold discipline. A 2026 editorial guide for Kakobuy Spreadsheet shoppers—free storage windows, consolidation timing, heat-season delays, and when holds expire.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-customs-seizure-aftercare-spreadsheet-2026",
+    "title": "After customs seizure: Kakobuy Spreadsheet buyer aftercare (2026)",
+    "published": "2026-07-04",
+    "description": "Parcel seized or destroyed at customs? A 2026 editorial guide for Kakobuy Spreadsheet buyers—immediate steps, insurance reality, re-route decisions, and honest expectations after a loss.",
+    "lang": "en"
+  },
+  {
+    "slug": "spreadsheet-wrong-variant-recovery-2026",
+    "title": "Wrong color or size shipped: spreadsheet variant recovery (2026)",
+    "published": "2026-07-03",
+    "description": "Warehouse QC shows the wrong colourway or size versus your Kakobuy order? A 2026 editorial guide to variant mistakes—reject timing, seller exchange, re-order workflow, and prevention at paste time.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-third-haul-veteran-spreadsheet-playbook-2026",
+    "title": "Third haul veteran playbook: Kakobuy Spreadsheet strategy (2026)",
+    "published": "2026-07-02",
+    "description": "After hauls one and two, how should spreadsheet shopping evolve? A 2026 editorial guide to seller loyalty, lane specialization, freight optimization, and avoiding veteran complacency on Kakobuy.",
+    "lang": "en"
+  },
+  {
+    "slug": "mixing-categories-outbound-parcel-spreadsheet-2026",
+    "title": "Mixing categories in one outbound parcel: Kakobuy Spreadsheet routing (2026)",
+    "published": "2026-07-01",
+    "description": "Sneakers plus perfume plus electronics in one carton? A 2026 editorial guide to mixed-category consolidation on Kakobuy—route restrictions, volumetric maths, and when to split parcels.",
+    "lang": "en"
+  },
+  {
+    "slug": "shoe-box-keep-or-drop-consolidation-2026",
+    "title": "Shoe boxes: keep or drop for Kakobuy consolidation? (2026)",
+    "published": "2026-06-30",
+    "description": "OEM shoe boxes inflate volumetric freight on agent hauls. A 2026 editorial guide for Kakobuy Spreadsheet buyers—when to keep boxes, when to drop, and how to QC without the carton.",
+    "lang": "en"
+  },
+  {
+    "slug": "qc-retake-reject-decision-spreadsheet-2026",
+    "title": "QC retake vs reject: spreadsheet buyer decision guide (2026)",
+    "published": "2026-06-29",
+    "description": "When warehouse photos fail your standards—retake, exchange, or reject? A 2026 editorial framework for Kakobuy Spreadsheet shoppers balancing time, seller policy, and batch quality.",
+    "lang": "en"
+  },
+  {
+    "slug": "summer-lightweight-haul-freight-2026",
+    "title": "Summer lightweight hauls: freight savings on the Kakobuy Spreadsheet (2026)",
+    "published": "2026-06-28",
+    "description": "Editorial freight tactics for summer 2026 spreadsheet carts—tees, shorts, sandals, volumetric weight basics, consolidation timing, and when lightweight does not mean cheap shipping.",
+    "lang": "en"
+  },
+  {
+    "slug": "australia-customs-kakobuy-spreadsheet-import-2026",
+    "title": "Australia imports via Kakobuy: GST, customs & spreadsheet buyer guide (2026)",
+    "published": "2026-06-27",
+    "description": "A plain-language 2026 guide for Australian buyers using the Kakobuy Spreadsheet—ABF customs reality, GST on low-value imports, declared value discipline, and landed-cost planning before consolidation.",
+    "lang": "en"
+  },
+  {
+    "slug": "france-douane-kakobuy-spreadsheet-import-2026",
+    "title": "France imports via Kakobuy: Douane, TVA & spreadsheet buyer guide (2026)",
+    "published": "2026-06-26",
+    "description": "A plain-language 2026 guide for French buyers using the Kakobuy Spreadsheet—Douane customs reality, TVA on agent parcels, declared value discipline, and landed-cost planning before consolidation.",
+    "lang": "en"
+  },
+  {
+    "slug": "germany-zoll-kakobuy-spreadsheet-import-2026",
+    "title": "Germany imports via Kakobuy: Zoll, VAT & spreadsheet buyer guide (2026)",
+    "published": "2026-06-25",
+    "description": "A plain-language 2026 guide for German buyers using the Kakobuy Spreadsheet—Zoll customs reality, EU VAT on agent parcels, declared value discipline, and landed-cost planning before consolidation.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-formal-dresses-spreadsheet-lane-2026",
+    "title": "Formal dresses on the Kakobuy Spreadsheet: 2026 lane guide (silhouettes, QC, freight)",
+    "published": "2026-06-24",
+    "description": "A data-backed guide to formal dress rows on kakobuy-cn.com—30 deep-lane cards, brand mix from Chanel to Louis Vuitton, fit QC, and freight notes before you paste into Kakobuy.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-belts-spreadsheet-lane-guide-2026",
+    "title": "Belts on the Kakobuy Spreadsheet: 2026 lane guide (buckles, leather, freight)",
+    "published": "2026-06-23",
+    "description": "A data-backed guide to belt rows on kakobuy-cn.com—30 deep-lane cards, luxury buckle clusters from Dior to Goyard, QC macros, and branded shipping reality before you paste into Kakobuy.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-coats-trench-spreadsheet-lane-2026",
+    "title": "Coats & trench coats on the Kakobuy Spreadsheet: 2026 lane guide",
+    "published": "2026-06-22",
+    "description": "A data-backed guide to coat rows on kakobuy-cn.com—30 deep-lane cards, brand clusters from Balenciaga to Canada Goose, volumetric freight, and QC before you paste into Kakobuy.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-blazers-formal-spreadsheet-lane-2026",
+    "title": "Blazers & formal jackets on the Kakobuy Spreadsheet: 2026 lane guide",
+    "published": "2026-06-21",
+    "description": "A data-backed guide to blazer rows on kakobuy-cn.com—30 deep-lane cards, brand mix from Burberry to Corteiz, structured-shoulder QC, and freight before you paste into Kakobuy.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-jeans-denim-spreadsheet-lane-2026",
+    "title": "Jeans & denim on the Kakobuy Spreadsheet: 2026 lane guide (Corteiz, DSquared, fit)",
+    "published": "2026-06-20",
+    "description": "A data-backed guide to jeans rows on kakobuy-cn.com—30 deep-lane denim cards, brand clusters from Corteiz to Levi's, sizing QC, and freight notes before you paste into Kakobuy.",
+    "lang": "en"
+  },
+  {
+    "slug": "kakobuy-jewelry-watches-spreadsheet-lane-2026",
+    "title": "Jewelry & watches on the Kakobuy Spreadsheet: 2026 lane guide (cards, timepieces, QC)",
+    "published": "2026-06-19",
+    "description": "A data-backed guide to jewelry and watch rows on kakobuy-cn.com—30 deep-lane cards, luxury brand clusters from Burberry to Goyard, and freight/QC reality before you paste into Kakobuy.",
+    "lang": "en"
+  },
+  {
     "slug": "kakobuy-second-haul-spreadsheet-strategy-2026",
     "title": "Second haul strategy: levelling up your Kakobuy Spreadsheet cart (2026)",
     "published": "2026-06-18",
