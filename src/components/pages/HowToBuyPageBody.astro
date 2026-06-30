@@ -1,7 +1,9 @@
 ---
 import SiteHeader from '../SiteHeader.astro';
 import SiteFooter from '../SiteFooter.astro';
+import RelatedBlogGuides from '../RelatedBlogGuides.astro';
 import type { HowToBuyCopy } from '../../i18n/copy/howToBuy';
+import { HOW_TO_BUY_RELATED_GUIDES } from '../../lib/relatedBlogGuides';
 
 interface Props {
   locale: string;
@@ -55,6 +57,13 @@ const { locale, copy, homeHref, excerpts } = Astro.props;
             }
           </div>
         </article>
+
+        <RelatedBlogGuides
+          heading="Related editorial guides"
+          intro="These kakobuy-cn.com articles expand on paste hygiene, QC, and the spreadsheet-to-parcel funnel—editorial only, not Kakobuy checkout."
+          guides={HOW_TO_BUY_RELATED_GUIDES}
+          id="how-to-buy-related-guides"
+        />
       </div>
     </div>
   </section>

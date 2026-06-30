@@ -2,8 +2,10 @@
 import SiteHeader from '../SiteHeader.astro';
 import SiteFooter from '../SiteFooter.astro';
 import SpreadsheetCategoryBrowse from '../SpreadsheetCategoryBrowse.astro';
+import RelatedBlogGuides from '../RelatedBlogGuides.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { SpreadsheetPageCopy } from '../../i18n/copy/spreadsheetPage';
+import { SPREADSHEET_RELATED_GUIDES } from '../../lib/relatedBlogGuides';
 import {
   getSpreadsheetBrowseCategories,
   PREVIEW_CARD_CATEGORY_SLUG,
@@ -257,6 +259,13 @@ const browseBySlug = Object.fromEntries(
           {copy.bullets.map((item) => <li>{item}</li>)}
         </ul>
       </section>
+
+      <RelatedBlogGuides
+        heading="Related editorial guides"
+        intro="Long-form notes on browsing kakobuy-cn.com, brand coverage, link hygiene, and first-haul budgeting."
+        guides={SPREADSHEET_RELATED_GUIDES}
+        id="spreadsheet-related-guides"
+      />
     </div>
   </section>
 </main>

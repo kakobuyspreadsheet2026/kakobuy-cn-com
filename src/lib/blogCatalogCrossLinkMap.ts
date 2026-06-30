@@ -104,6 +104,8 @@ const BLOG_CATALOG_MAP: Record<string, readonly string[]> = {
   'kakobuy-warehouse-storage-spreadsheet': ['shoes', 'jackets', 'bags'],
   'litbuy-agent-taobao-weidian-context': ['shoes', 't-shirts', 'accessories'],
   'kakobuy-sizing-spreadsheet-apparel': ['shoes', 't-shirts', 'pants', 'hoodies'],
+  'kakobuy-shipping-insurance-seizure-protection-guide': ['shoes', 'bags', 'jackets'],
+  'kakobuy-vs-joyabuy-vs-cnfans-2026-comparison': ['shoes', 't-shirts', 'electronics'],
   'kakobuy-mobile-spreadsheet-shopping-guide-2026': ['shoes', 't-shirts', 'hoodies'],
   'kakobuy-freight-line-picker-spreadsheet-2026': ['shoes', 'jackets', 'bags'],
   'kakobuy-gift-season-spreadsheet-planning-2026': ['jackets', 'hoodies', 'bags'],

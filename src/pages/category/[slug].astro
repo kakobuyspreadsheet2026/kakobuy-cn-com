@@ -5,6 +5,7 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import CategoryIntroBlock from '../../components/CategoryIntroBlock.astro';
 import CategoryProductCatalog from '../../components/CategoryProductCatalog.astro';
+import RelatedBlogGuides from '../../components/RelatedBlogGuides.astro';
 import { siteStructuredDataIds } from '../../consts';
 import categories from '../../data/api/categories.json';
 import categoryProducts from '../../data/api/category-products.json';
@@ -14,6 +15,7 @@ import { filterRenderableCatalogProducts } from '../../lib/catalogProducts';
 import { productDetailAbsoluteUrl } from '../../lib/productDetailRoutes';
 import { getCategorySeoCopy } from '../../lib/categorySeoCopy';
 import { CATEGORY_EXTRA_CONTENT_EN } from '../../lib/categoryExtraContent';
+import { CATEGORY_RELATED_GUIDES } from '../../lib/relatedBlogGuides';
 import { breadcrumbListLd } from '../../lib/breadcrumbSchema';
 import { catalogItemListLd } from '../../lib/catalogItemListLd';
 
@@ -73,6 +75,7 @@ const products = filterRenderableCatalogProducts(categoryProducts[apiSlug] || []
 const uiNameLower = uiName.toLowerCase();
 const { title, description } = getCategorySeoCopy(slug, uiName, locale);
 const extraContent = CATEGORY_EXTRA_CONTENT_EN[slug];
+const categoryRelatedGuides = CATEGORY_RELATED_GUIDES[slug] ?? [];
 const introText = content.categoryPage.introTemplate
   .replace('{uiNameLower}', uiNameLower);
 const externalBtnText = content.categoryPage.externalBtnTemplate
@@ -142,6 +145,15 @@ const itemListLd = catalogItemListLd(title, products, (p) =>
           <div class="category-extra-content prose-block">
             <div class="extra-content-inner" set:html={extraContent} />
           </div>
+        )}
+
+        {categoryRelatedGuides.length > 0 && (
+          <RelatedBlogGuides
+            heading="Related lane guides"
+            intro="Editorial deep-dives for this category on the Kakobuy Spreadsheet directory."
+            guides={categoryRelatedGuides}
+            id="category-related-guides"
+          />
         )}
       </div>
     </section>

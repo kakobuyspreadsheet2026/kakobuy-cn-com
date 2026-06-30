@@ -15,6 +15,7 @@ interface Props {
 const { locale = 'en', canonicalPath } = Astro.props;
 
 const hubKind = getBlogHubLinkKind(canonicalPath);
+const homeHref = getRelativeLocaleUrl(locale, '');
 const hubHref = getRelativeLocaleUrl(locale, getBlogHubLinkSegment(hubKind));
 const hubLabel = BLOG_HUB_LINK_LABELS[hubKind];
 const howToBuyHref = getRelativeLocaleUrl(locale, 'how-to-buy/');
@@ -32,8 +33,8 @@ const categoryShoesHref = getRelativeLocaleUrl(locale, 'category/shoes/');
         <>
           Ready to move from notes to links? Browse our{' '}
           <a href={categoryShoesHref}>on-site category lanes</a>
-          {' '}or{' '}
-          <a href={getRelativeLocaleUrl(locale, '')}>Kakobuy Spreadsheet home</a>
+          {' '}or the{' '}
+          <a href={homeHref}>Kakobuy Spreadsheet home</a>
           , then follow the{' '}
           <a href={hubHref}>{hubLabel}</a>
           {' '}before you paste marketplace URLs into your Kakobuy session—warehouse QC and shipping choices stay on Kakobuy. Crowd timelines live on{' '}
@@ -41,7 +42,9 @@ const categoryShoesHref = getRelativeLocaleUrl(locale, 'category/shoes/');
         </>
       ) : (
         <>
-          Ready to move from notes to links? Open the Kakobuy Spreadsheet catalogue (new tab), browse our{' '}
+          Ready to move from notes to links? Start on the{' '}
+          <a href={homeHref}>Kakobuy Spreadsheet home</a>
+          , browse our{' '}
           <a href={categoryShoesHref}>on-site category lanes</a>
           {' '}and{' '}
           <a href={hubHref}>{hubLabel}</a>
@@ -54,11 +57,12 @@ const categoryShoesHref = getRelativeLocaleUrl(locale, 'category/shoes/');
     }
   </p>
   <div class="cta-row blog-end-cta__actions">
+    <a class="btn btn-primary" href={homeHref}>Kakobuy Spreadsheet home →</a>
     <a
-      class="btn btn-primary"
+      class="btn btn-ghost"
       href={mlSpreadsheetKakobuy}
       target="_blank"
-      rel="noopener noreferrer">Open spreadsheet catalogue →</a
+      rel="noopener noreferrer">Open external catalogue ↗</a
     >
     <a class="btn btn-ghost" href={howToBuyHref}>How to buy →</a>
   </div>

@@ -2,9 +2,11 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import {
   BLOG_HUB_LINK_LABELS,
+  blogSlugFromCanonical,
   getBlogHubLinkKind,
   getBlogHubLinkSegment,
 } from '../lib/blogCatalogCrossLinkMap';
+import { PILLAR_HUB_GUIDES } from '../lib/relatedBlogGuides';
 import { getSpreadsheetBrowseCategories } from '../lib/spreadsheetCatalogLinks';
 import { productDetailHref } from '../lib/productDetailRoutes';
 
@@ -22,6 +24,9 @@ const {
   categories: categorySlugs,
   title = 'Browse related Kakobuy Spreadsheet picks',
 } = Astro.props;
+
+const currentSlug = blogSlugFromCanonical(canonicalPath);
+const pillarLinks = PILLAR_HUB_GUIDES.filter((guide) => guide.slug !== currentSlug);
 
 const lanes = getSpreadsheetBrowseCategories().filter((cat) =>
   categorySlugs.includes(cat.slug),
@@ -80,6 +85,18 @@ const primaryHubLabel = BLOG_HUB_LINK_LABELS[hubKind];
             </>
           )
         }
+        {pillarLinks.length > 0 ? (
+          <>
+            {' · '}
+            Hub guides:{' '}
+            {pillarLinks.map((guide, i) => (
+              <>
+                {i > 0 ? ' · ' : null}
+                <a href={`/blog/${guide.slug}/`}>{guide.title.replace(' (2026)', '')}</a>
+              </>
+            ))}
+          </>
+        ) : null}
       </p>
     </aside>
   )
