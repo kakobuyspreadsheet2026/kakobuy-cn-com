@@ -1,5 +1,6 @@
 ---
 import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+import BlogArticleInlineFigures from '../../../components/BlogArticleInlineFigures.astro';
 
 export const prerender = true;
 
@@ -21,6 +22,8 @@ const publishedISO = '2026-05-08';
   </p>
 
   <h2>What QC is (and is not)</h2>
+    <BlogArticleInlineFigures slug="kakobuy-spreadsheet-qc" />
+
   <p>
     In shopping-agent workflows, <strong>QC</strong> commonly refers to <em>inbound warehouse inspection photography</em> after the seller ships to the agent’s China warehouse.
     It is not a factory audit and not a guarantee that every stitch matches marketing renders—it is evidence you use to decide whether to proceed to international shipping or open a ticket while goods are still domestic-side.

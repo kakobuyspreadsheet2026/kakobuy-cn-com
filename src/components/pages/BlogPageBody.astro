@@ -2,6 +2,7 @@
 import SiteHeader from '../SiteHeader.astro';
 import SiteFooter from '../SiteFooter.astro';
 import type { BlogPageCopy } from '../../i18n/copy/blogPage';
+import { getBlogHeroMeta } from '../../lib/blogImages';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 export type BlogPostListEntry = {
@@ -101,20 +102,48 @@ const showEnglishBanner = locale !== 'en' && copy.blogEnglishBannerLead.length >
         {
           posts.length > 0 ? (
             <ul class="blog-post-list">
-              {posts.map((p) => (
-                <li class="blog-post-card">
-                  <time class="blog-post-date" datetime={p.published}>
-                    {p.published}
-                  </time>
-                  <h2 class="blog-post-title">
-                    <a href={`/blog/${p.slug}/`}>{p.title}</a>
-                  </h2>
-                  <p class="blog-post-desc">{p.description}</p>
-                  {p.lang === 'en' && locale !== 'en' && copy.postCardEnglishNote ? (
-                    <p class="blog-post-lang-note">{copy.postCardEnglishNote}</p>
-                  ) : null}
-                </li>
-              ))}
+              {posts.map((p) => {
+                const hero = getBlogHeroMeta(p.slug, p.title);
+                const showThumb = !hero.isDefault;
+                return (
+                  <li class="blog-post-card">
+                    <div class="blog-post-card-inner">
+                      {
+                        showThumb ? (
+                          <a
+                            href={`/blog/${p.slug}/`}
+                            class="blog-post-thumb-link"
+                            aria-hidden="true"
+                            tabindex="-1"
+                          >
+                            <img
+                              class="blog-post-thumb"
+                              src={hero.imageUrl}
+                              alt=""
+                              width="120"
+                              height="63"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </a>
+                        ) : null
+                      }
+                      <div class="blog-post-card-body">
+                        <time class="blog-post-date" datetime={p.published}>
+                          {p.published}
+                        </time>
+                        <h2 class="blog-post-title">
+                          <a href={`/blog/${p.slug}/`}>{p.title}</a>
+                        </h2>
+                        <p class="blog-post-desc">{p.description}</p>
+                        {p.lang === 'en' && locale !== 'en' && copy.postCardEnglishNote ? (
+                          <p class="blog-post-lang-note">{copy.postCardEnglishNote}</p>
+                        ) : null}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p class="blog-placeholder muted">Post list coming soon.</p>
@@ -228,10 +257,35 @@ const showEnglishBanner = locale !== 'en' && copy.blogEnglishBannerLead.length >
   }
   .blog-post-card {
     margin: 0;
-    padding: 1rem 1.1rem;
+    padding: 0;
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     background: var(--surface, #fff);
+    overflow: hidden;
+  }
+  .blog-post-card-inner {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+  .blog-post-thumb-link {
+    flex: 0 0 7.5rem;
+    display: block;
+    border-right: 1px solid var(--border);
+    background: color-mix(in srgb, var(--border) 25%, transparent);
+  }
+  .blog-post-thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 4.5rem;
+    object-fit: cover;
+    aspect-ratio: 1200 / 630;
+  }
+  .blog-post-card-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 1rem 1.1rem;
   }
   .blog-post-date {
     display: block;

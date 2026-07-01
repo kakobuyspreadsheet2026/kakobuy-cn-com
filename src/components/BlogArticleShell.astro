@@ -6,6 +6,7 @@ import SiteFooter from './SiteFooter.astro';
 import BlogEndCta from './BlogEndCta.astro';
 import BlogCatalogCrossLinks from './BlogCatalogCrossLinks.astro';
 import { getBlogCatalogCategories } from '../lib/blogCatalogCrossLinkMap';
+import { getBlogHeroFromCanonical } from '../lib/blogImages';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { defaultOgImagePath, siteStructuredDataIds } from '../consts';
 import { HTML_LANG_BY_ROUTE } from '../i18n/config';
@@ -43,6 +44,10 @@ const {
 
 const modifiedIsoEffective = modifiedISO ?? publishedISO;
 
+const heroMeta = getBlogHeroFromCanonical(canonicalPath, headline);
+const ogImageEffective = ogImage ?? heroMeta.ogImageUrl;
+const showHero = !heroMeta.isDefault;
+
 const locale = 'en';
 const blogIndexHref = getRelativeLocaleUrl(locale, 'blog');
 const homeHref = getRelativeLocaleUrl(locale, '');
@@ -51,10 +56,10 @@ const origin = Astro.site?.origin ?? 'https://kakobuy-cn.com';
 const { organizationId, websiteId } = siteStructuredDataIds(origin);
 const pageUrl = absoluteCanonicalUrl(canonicalPath, Astro.site);
 const shareImageUrl =
-  ogImage && /^https?:\/\//i.test(ogImage)
-    ? ogImage
-    : ogImage
-      ? new URL(ogImage, Astro.site).href
+  ogImageEffective && /^https?:\/\//i.test(ogImageEffective)
+    ? ogImageEffective
+    : ogImageEffective
+      ? new URL(ogImageEffective, Astro.site).href
       : new URL(defaultOgImagePath, Astro.site).href;
 
 const articleLd = {
@@ -99,7 +104,7 @@ const catalogCategories = getBlogCatalogCategories(canonicalPath);
   locale={locale}
   hreflangLocales={['en']}
   hreflangMirrorsCanonical
-  ogImage={ogImage}
+  ogImage={ogImageEffective}
   ogType="article"
   articlePublishedTime={publishedISO}
   articleModifiedTime={modifiedIsoEffective}
@@ -142,6 +147,23 @@ const catalogCategories = getBlogCatalogCategories(canonicalPath);
                 <slot name="lede" />
               </div>
             </header>
+
+            {
+              showHero ? (
+                <figure class="blog-hero">
+                  <img
+                    src={heroMeta.imageUrl}
+                    alt={heroMeta.alt}
+                    width="1200"
+                    height="630"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                  />
+                  <figcaption>{heroMeta.alt}</figcaption>
+                </figure>
+              ) : null
+            }
 
             <div class="blog-body prose-block">
               <slot />
@@ -212,6 +234,56 @@ const catalogCategories = getBlogCatalogCategories(canonicalPath);
   .blog-piece-head {
     margin-bottom: 1.25rem;
     max-width: 48rem;
+  }
+  .blog-hero {
+    margin: 0 0 1.5rem;
+    max-width: 52rem;
+    border-radius: 0.55rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface, #fff);
+  }
+  .blog-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+  }
+  .blog-hero figcaption {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  .prose-block :global(.blog-figure) {
+    margin: 0 0 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--surface, #fff);
+  }
+  .prose-block :global(.blog-figure img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .prose-block :global(.blog-figure-link) {
+    display: block;
+    text-decoration: none;
+  }
+  .prose-block :global(.blog-figure-link:hover img) {
+    opacity: 0.92;
+  }
+  .prose-block :global(.blog-figure figcaption) {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
   }
   .blog-piece-meta {
     margin: 0 0 0.75rem;

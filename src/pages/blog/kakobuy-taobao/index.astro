@@ -1,5 +1,6 @@
 ---
 import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+import BlogArticleInlineFigures from '../../../components/BlogArticleInlineFigures.astro';
 
 export const prerender = true;
 
@@ -21,6 +22,8 @@ const publishedISO = '2026-05-08';
   </p>
 
   <h2>Canonical URLs still matter</h2>
+    <BlogArticleInlineFigures slug="kakobuy-taobao" />
+
   <p>
     Taobao-family listings expose multiple entry URLs—mobile shares, shortened promos, storefront hops. Kakobuy ingestion generally prefers the stable listing core that resolves to your variant IDs. If your Spreadsheet row stores only a marketing redirect, expect mismatched photography downstream.
   </p>

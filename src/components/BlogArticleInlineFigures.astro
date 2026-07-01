@@ -1,0 +1,35 @@
+---
+import BlogInlineFigure from './BlogInlineFigure.astro';
+import { getBlogInlineFigures } from '../lib/blogImages';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const figures = getBlogInlineFigures(slug);
+---
+
+{
+  figures.length > 0 ? (
+    <div class="blog-inline-figures">
+      {figures.map((fig) => (
+        <BlogInlineFigure
+          src={fig.src}
+          alt={fig.alt}
+          caption={fig.caption}
+          href={fig.href}
+        />
+      ))}
+    </div>
+  ) : null
+}
+
+<style>
+  .blog-inline-figures {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 0 0 1.25rem;
+  }
+</style>

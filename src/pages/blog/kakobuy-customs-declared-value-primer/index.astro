@@ -1,5 +1,6 @@
 ---
 import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+import BlogArticleInlineFigures from '../../../components/BlogArticleInlineFigures.astro';
 
 export const prerender = true;
 
@@ -29,6 +30,8 @@ const publishedISO = '2026-05-15';
   </p>
 
   <h2>What “declared value” actually declares</h2>
+    <BlogArticleInlineFigures slug="kakobuy-customs-declared-value-primer" />
+
   <p>
     Carriers and customs administrations use declared contents to estimate <strong>risk</strong>, <strong>duty</strong>, <strong>tax</strong>, and sometimes anti-counterfeiting exposure.
     For consumer parcels the realistic anchor is generally <strong>what you paid merchants for the merchandise</strong>—not aspirational discounts, not forum guesses, and never “whatever fits under a folklore threshold.”

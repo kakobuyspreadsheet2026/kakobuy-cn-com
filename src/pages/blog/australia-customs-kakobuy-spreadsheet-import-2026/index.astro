@@ -1,5 +1,6 @@
 ---
 import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+import BlogArticleInlineFigures from '../../../components/BlogArticleInlineFigures.astro';
 
 export const prerender = true;
 
@@ -28,6 +29,8 @@ const publishedISO = '2026-06-27';
   </p>
 
   <h2>What Australian buyers are actually importing</h2>
+    <BlogArticleInlineFigures slug="australia-customs-kakobuy-spreadsheet-import-2026" />
+
   <p>
     kakobuy-cn.com publishes marketplace links and QC discipline—not checkout.
     When you paste a row into <a href="https://kakobuy.com/" target="_blank" rel="noopener noreferrer">Kakobuy</a>, the Australian import story starts at outbound shipment: carrier, declared value, contents description, and GST collection mechanics.
