@@ -1,0 +1,98 @@
+---
+import BlogArticleShell from '../../../components/BlogArticleShell.astro';
+
+export const prerender = true;
+
+const canonicalPath = '/blog/eu-product-identifiers-pid-spreadsheet-buyers-2026';
+const publishedISO = '2026-07-04';
+---
+
+<BlogArticleShell
+  title="EU product identifiers (PID): spreadsheet buyer guide for 2026 | kakobuy-cn.com"
+  description="From 1 November 2026, EU e-commerce imports require product identifiers. Learn what M-PID, NS-PID, and S-PID mean for Kakobuy Spreadsheet buyers and parcel traceability."
+  canonicalPath={canonicalPath}
+  headline="EU product identifiers (PID): why spreadsheet row hygiene matters before November 2026"
+  publishedISO={publishedISO}
+  displayDate="4 July 2026"
+  structuredKeywords={[
+    'EU product identifiers PID 2026',
+    'M-PID Kakobuy Spreadsheet',
+    'merchant product identifier customs',
+    'EU e-commerce import traceability',
+    'spreadsheet SKU hygiene 2026',
+  ]}
+>
+  <p class="blog-lede" slot="lede">
+    Product identifiers are becoming part of the EU customs story, and that matters for buyers who discover items through the <strong><a href="/">Kakobuy Spreadsheet</a></strong>.
+    EU guidance says Product Identifiers can be declared voluntarily from <strong>1 July 2026</strong> and become mandatory for distance-sale imports from <strong>1 November 2026</strong>.
+    For shoppers, the practical lesson is not to memorise TARIC codes; it is to keep cleaner product records.
+  </p>
+
+  <h2>What is a PID?</h2>
+  <p>
+    EU guidance around the 2026 low-value import reform describes Product Identifiers as traceability fields for e-commerce goods.
+    The most important one for many online purchases is the <strong>Merchant Product Identifier</strong>, or M-PID, which is assigned by the online seller, marketplace, or platform.
+    Related fields include manufacturer product identifiers when available.
+    Source:
+    <a href="https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en" target="_blank" rel="noopener noreferrer">EU guidance on the temporary flat fee and PIDs</a>.
+  </p>
+
+  <h2>Why buyers should care even if carriers file the data</h2>
+  <p>
+    Kakobuy users are not usually filing customs declarations themselves.
+    Still, the quality of the upstream listing data affects how easy it is for a carrier, marketplace, or customs system to understand the goods.
+    If a row disappears, a seller changes the listing, or a product has several near-identical variants, your screenshots and order notes become part of the evidence trail.
+  </p>
+
+  <div class="blog-table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Identifier idea</th><th scope="col">Buyer-friendly translation</th><th scope="col">What to save</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>M-PID</td><td>Seller/platform product code or SKU</td><td>Listing URL, item code, seller option</td></tr>
+        <tr><td>NS-PID</td><td>Manufacturer/supplier internal code</td><td>Model number if shown</td></tr>
+        <tr><td>S-PID</td><td>Standard barcode-style identifier</td><td>Barcode/EAN/GTIN if present</td></tr>
+        <tr><td>No clear identifier</td><td>Higher ambiguity</td><td>More screenshots and careful remarks</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Spreadsheet row hygiene checklist</h2>
+  <ol>
+    <li>Save the original product URL before purchase.</li>
+    <li>Screenshot the selected size, colour, batch, or seller option.</li>
+    <li>Record the row category: <a href="/category/shoes/">Shoes</a>, <a href="/category/bags/">Bags</a>, <a href="/category/electronics/">Electronics</a>, or another lane.</li>
+    <li>Keep the Kakobuy order number and seller tracking status together.</li>
+    <li>If the product has a visible model number or SKU, copy it into your personal haul note.</li>
+  </ol>
+
+  <h2>Why variants are the hidden risk</h2>
+  <p>
+    Product identifiers are meant to distinguish goods, but rep and agent-shopping listings often contain many variants under one seller page.
+    A single page might include budget and premium batches, multiple colours, and several size systems.
+    That is why the <a href="/blog/spreadsheet-wrong-variant-recovery-2026/">wrong variant recovery guide</a> remains relevant.
+    Cleaner records make it easier to explain what you intended to buy if warehouse QC does not match the order.
+  </p>
+
+  <h2>How this connects to EU parcel duty</h2>
+  <p>
+    The PID requirement sits beside the <a href="/blog/eu-low-value-parcel-duty-kakobuy-spreadsheet-2026/">€3 low-value parcel duty</a> and <a href="/blog/eu-ics2-pre-arrival-data-kakobuy-parcels-2026/">ICS2 pre-arrival data</a>.
+    Together, they show that EU customs is moving from loose parcel descriptions toward item-level traceability.
+    A mixed Kakobuy haul should therefore have item-level notes before it reaches the international shipping screen.
+  </p>
+
+  <h2>What not to overdo</h2>
+  <p>
+    You do not need a corporate compliance database for a personal haul.
+    Do not invent codes, do not paste unrelated barcodes, and do not claim manufacturer identifiers you cannot verify.
+    The buyer-safe approach is simpler: save the seller URL, selected variant, Kakobuy order number, and QC evidence.
+  </p>
+
+  <h2>Bottom line</h2>
+  <p>
+    PIDs are a customs-system topic, but the buyer habit is easy to understand.
+    Treat every spreadsheet row like a record you may need to explain later.
+    The more precise your row notes are before shipping, the less fragile the parcel becomes when EU data requirements tighten.
+  </p>
+</BlogArticleShell>
